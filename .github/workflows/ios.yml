@@ -27,10 +27,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Select an available iPhone simulator
+        timeout-minutes: 3
         run: |
           python3 - <<'PY'
           import json, os, subprocess
-          devices=json.loads(subprocess.check_output(['xcrun','simctl','list','devices','available','-j']))['devices']
+          devices=json.loads(subprocess.check_output(['xcrun','simctl','list','devices','available','-j'], timeout=90))['devices']
           candidates=[d for runtime, values in devices.items() if 'iOS' in runtime for d in values if d['name'].startswith('iPhone')]
           if not candidates:
               raise SystemExit('No iOS simulator is installed on this runner')
