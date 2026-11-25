@@ -52,7 +52,6 @@ final class WorldViewModel: ObservableObject {
             }
             #endif
         } catch {
-            database = nil
             fatalError = error.localizedDescription
         }
     }
@@ -60,6 +59,10 @@ final class WorldViewModel: ObservableObject {
     var species: Species? { state.flatMap { try? database?.species($0.pet.speciesID) } }
     var exportURL: URL? { store?.primaryURL }
     var display: DisplayMode { state?.settings.display ?? .lcd }
+    var hatchRemainingMinutes: Int {
+        guard let game = state, let egg = try? database?.egg(game.pet.eggID) else { return 0 }
+        return max(0,egg.hatchMinutes-game.pet.stageMinutes)
+    }
     var animationName: String {
         guard let p = state?.pet else { return "idle" }
         if p.life == .dead { return "defeat" }
@@ -159,6 +162,26 @@ final class WorldViewModel: ObservableObject {
         notifications.schedule(game: game, database: database)
     }
     func feedbackTap() { feedback.play(sound: state?.settings.sound ?? true, haptics: state?.settings.haptics ?? true) }
+    func inspectBackup(_ url: URL) throws -> GameState {
+        guard let store else { throw GameError.invalidData("内容数据库不可用，无法验证备份") }
+        let granted = url.startAccessingSecurityScopedResource()
+        defer { if granted { url.stopAccessingSecurityScopedResource() } }
+        return try store.decode(Data(contentsOf: url)).state
+    }
+    func restoreBackup(_ candidate: GameState) {
+        guard let store else { return }
+        do {
+            if let current = state {
+                // Keep a separate copy so autosave rotation cannot erase the pre-import world.
+                let preserved = store.directory.appendingPathComponent("world.before-restore.\(UUID().uuidString).json")
+                try FileManager.default.createDirectory(at: store.directory,withIntermediateDirectories: true)
+                try store.encode(current).write(to: preserved,options: .atomic)
+            }
+            try store.save(candidate)
+            state = candidate; fatalError = nil; message = "备份已恢复，正在结算离线时间"
+            refresh(forceSave: true)
+        } catch { alert = "恢复失败：\(error.localizedDescription)" }
+    }
     private func command(_ operation: (inout GameState, ContentDatabase, Date) throws -> Void) {
         alert = nil
         guard var game = state, let database, fatalError == nil else { return }

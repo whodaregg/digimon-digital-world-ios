@@ -44,6 +44,7 @@ struct WorldView: View {
                     Text(failure).foregroundStyle(Palette.muted)
                     Text("已保留原存档。请检查存储空间或恢复文件后重新启动。为保护养成记录，此时不会创建新存档。")
                         .font(.subheadline)
+                    if model.database != nil { BackupRestoreView(model: model) }
                 }.padding(28)
             } else if model.state != nil {
                 home
@@ -175,7 +176,7 @@ struct WorldView: View {
                     .padding(.horizontal,12).padding(.top,10).background(Color(red: 0.66,green: 0.73,blue: 0.52))
                 PetScreen(model: model)
                 HStack {
-                    Text(state.pet.isEgg ? "破壳倒计时 \(max(0,5-state.pet.stageMinutes)) MIN" : "\(state.pet.stats.weight) g  ·  \(state.pet.personality.uppercased())")
+                    Text(state.pet.isEgg ? "破壳倒计时 \(model.hatchRemainingMinutes) MIN" : "\(state.pet.stats.weight) g  ·  \(state.pet.personality.uppercased())")
                     Spacer()
                     Text("DP \(state.pet.stats.dp)")
                 }.font(.system(size: 8,weight: .bold,design: .monospaced)).foregroundStyle(Color(red: 0.2,green: 0.28,blue: 0.2))

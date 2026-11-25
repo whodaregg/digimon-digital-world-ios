@@ -127,7 +127,11 @@ struct DetailView: View {
                     }.padding(.vertical,6)
                 }
                 if game.pet.life == .dead {
-                    GameButton(title: "从始源之蛋重生") { model.care(.rebirth("founder")) }
+                    ForEach(database.eggs) { egg in
+                        let unlocked = game.dex.values.filter { $0 == .raised }.count >= egg.requiredRaised
+                        GameButton(title: "\(egg.name) · \(unlocked ? "重新孵化" : "需养成 \(egg.requiredRaised) 种角色")") { model.care(.rebirth(egg.id)) }
+                            .disabled(!unlocked)
+                    }
                 } else {
                     GameButton(title: game.pet.life == .frozen ? "恢复成长" : "冷冻当前伙伴") { model.care(.freeze(game.pet.life != .frozen)) }
                 }
@@ -163,6 +167,7 @@ struct DetailView: View {
                 Readout(name: "内容数据库",value: "v\(game.databaseVersion)")
                 Readout(name: "最后结算",value: game.lastTick.formatted(date: .abbreviated,time: .shortened))
                 if let url = model.exportURL { ShareLink("导出备份",item: url) }
+                BackupRestoreView(model: model)
                 Text("每次操作后原子写入；保留上一次有效备份。iCloud、联机、Watch 与系统小组件属于后续阶段。")
                     .font(.caption).foregroundStyle(Palette.muted)
             }

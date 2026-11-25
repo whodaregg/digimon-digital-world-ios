@@ -28,7 +28,9 @@ public enum AdventureEngine {
         if tile == "C" && !state.adventure.collected.contains(key) {
             state.adventure.collected.insert(key); state.inventory["fruit", default: 0] += 2
             state.inventory["recovery", default: 0] += 1
-            message = "找到数据碎片 · 水果 +2，恢复食物 +1"
+            state.inventory["vegetable", default: 0] += 1
+            state.inventory["energy", default: 0] += 1
+            message = "找到数据碎片 · 水果 +2，蔬菜、能量饮料和恢复食物各 +1"
             if state.adventure.collected.count >= map.questTarget && !state.adventure.questComplete {
                 state.adventure.questComplete = true; state.inventory["evolution-chip", default: 0] += 1
                 state.inventory["special", default: 0] += 1; completed = true

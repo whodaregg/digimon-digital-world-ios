@@ -135,6 +135,15 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(state.pet.stats.waste, 0)
         XCTAssertThrowsError(try GameEngine.perform(.feed("fruit"), state: &state, database: db(), at: noon))
     }
+    func testOldArchiveCannotCreateParallelLivePets() throws {
+        var state = try hatched("agumon")
+        state.pets[0].life = .dead
+        let archiveID = state.pet.id
+        try GameEngine.perform(.rebirth("founder"), state: &state, database: db(), at: noon)
+        try GameEngine.perform(.selectPet(archiveID), state: &state, database: db(), at: noon)
+        XCTAssertThrowsError(try GameEngine.perform(.rebirth("founder"), state: &state, database: db(), at: noon))
+        XCTAssertEqual(state.pets.count, 2)
+    }
     func testDirtCausesIllnessAndMedicineWorks() throws {
         var state = try hatched("agumon"); state.pets[0].stats.waste = 1
         try TimeEngine.advance(&state, to: noon.addingTimeInterval(120*60), database: db())

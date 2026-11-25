@@ -19,6 +19,9 @@ public enum GameEngine {
             result.activePetID = id; result.training = nil
         case .rebirth(let eggID):
             guard result.pet.life == .dead else { throw GameError.cannotAct("伙伴仍在成长，请继续照顾它") }
+            guard !result.pets.contains(where: { $0.life != .dead }) else {
+                throw GameError.cannotAct("已有伙伴正在成长或冷冻中，请先切换回当前伙伴")
+            }
             let egg = try database.egg(eggID)
             guard device.eggs.contains(eggID), result.dex.values.filter({ $0 == .raised }).count >= egg.requiredRaised else {
                 throw GameError.cannotAct("数码蛋尚未解锁")

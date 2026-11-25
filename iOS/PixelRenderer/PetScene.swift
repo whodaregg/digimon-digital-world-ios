@@ -16,9 +16,9 @@ final class PetScene: SKScene {
         addChild(pet)
     }
     required init?(coder: NSCoder) { fatalError("Storyboard initialization is not supported") }
-    func configure(species: Species?, egg: Bool, life: LifeState, animation: String,
+    func configure(species: Species?, egg: Bool, eggPattern: String, life: LifeState, animation: String,
                    mode: DisplayMode, waste: Int, dark: Bool, night: Bool, reduceMotion: Bool) {
-        let key = "\(species?.id ?? "")-\(egg)-\(life)-\(animation)-\(mode)-\(waste)-\(dark)-\(night)-\(reduceMotion)"
+        let key = "\(species?.id ?? "")-\(egg)-\(eggPattern)-\(life)-\(animation)-\(mode)-\(waste)-\(dark)-\(night)-\(reduceMotion)"
         guard key != signature else { return }; signature = key; style = mode
         children.filter { $0 != pet }.forEach { $0.removeFromParent() }
         let lcd = mode == .lcd
@@ -59,7 +59,7 @@ final class PetScene: SKScene {
                 for x in 0..<12 {
                     let dx = Double(x)-5.5, dy = Double(y)-8
                     if dx*dx/28+dy*dy/55 < 1 {
-                        let spot = (x*3+y*7)%13 < 3
+                        let spot = eggPattern == "stripes" ? y % 5 < 2 : (x*3+y*7)%13 < 3
                         let tile = SKSpriteNode(color: spot ? ink : (lcd ? ink.withAlphaComponent(0.3) : .white), size: CGSize(width: 4,height: 4))
                         tile.position = CGPoint(x: x*4-24,y: (16-y)*4-32); pet.addChild(tile)
                     }
@@ -109,7 +109,8 @@ struct PetScreen: View {
         guard let state = model.state else { return scene }
         var c = Calendar(identifier: .gregorian); c.timeZone = TimeZone(identifier: state.homeTimeZone) ?? .current
         let hour = c.component(.hour, from: date)
-        scene.configure(species: model.species, egg: state.pet.isEgg, life: state.pet.life,
+        scene.configure(species: model.species, egg: state.pet.isEgg,
+                        eggPattern: (try? model.database?.egg(state.pet.eggID).pattern) ?? "spots", life: state.pet.life,
                         animation: model.animationName, mode: state.settings.display,
                         waste: state.pet.stats.waste, dark: state.pet.lightsOff,
                         night: hour < 7 || hour >= 19, reduceMotion: reduceMotion)
