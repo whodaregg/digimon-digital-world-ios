@@ -4,6 +4,16 @@
 
 目前是开发版本，未完成最初需求中的全部阶段。操作依据官方说明书，隐藏数值参考社区实测；资料分歧和待验证部分见 [规则出处](Documentation/RULE_SOURCES.md)。
 
+## 模拟器实测截图
+
+以下为v0.3在iPhone 16 Pro / iOS 18.5的实际界面测试截图，展示默认彩色、固定顺序Quest和可选灰绿色LCD。
+
+<p>
+<img src="Documentation/Screenshots/ver1-color-home.png" width="220" alt="原版彩色角色与四心养成">
+<img src="Documentation/Screenshots/ver1-quest-areas.png" width="220" alt="Ver.1固定敌人顺序闯关">
+<img src="Documentation/Screenshots/ver1-lcd-preview.png" width="220" alt="三种显示模式直接选择与灰绿色预览">
+</p>
+
 ## 在 Xcode 运行
 
 1. 克隆仓库，用 Xcode 16 或更新版本打开 `DigitalWorld.xcodeproj`。

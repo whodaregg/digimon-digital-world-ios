@@ -1,43 +1,48 @@
-# 实测记录
+# v0.3 实测记录
 
-记录日期：2026-11-26（Australia/Sydney）。以下仅记录实际执行的验证，不代表全部需求或真机发布验收完成。
+记录日期：2026-11-26（Australia/Sydney）。本页记录实际执行结果，不代表真机发行或实体机逐项一致性验收完成。
 
-## 游戏核心
+[本轮验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45684163845)，应用及测试源码提交为 `fec9074067f9940ddc115508d2bca81e4f6def62`。后续截图和文档整理不修改应用、规则或测试源码；提交说明中文化只修改历史提交元数据。
 
-- Linux / Swift 6.0.3：`swift build` 成功，`swift test` **26 项通过，0 失败**。
-- GitHub macOS 15 runner：相同核心 **26 项通过，0 失败**。
-- 测试覆盖：内容引用、素材存在、Original Mode 门禁、孵化阈值、离线/分次结算一致性、不足一分钟余量、重复结算、时钟倒退、固定时区/夏令时睡眠、冷冻、疾病/治疗、过量喂食、死亡/重生、旧档案防重复重生、照顾/训练分支、进化道具一次性消耗、时机训练成功/失败/防重放、种子战斗、属性克制、地图碰撞/宝箱去重/任务奖励、存档回读/损坏恢复/版本迁移/未来版本拒绝。
-- 内容与工程重新生成后 `git diff --exit-code` 通过；JSON、plist、scheme XML 格式检查通过。
+## 游戏核心与素材
 
-核心验证与原生 UI 使用应用源码提交 `49a9c3f3548c719291b57c4dd17c3ec53f7e5469`。
+- 恢复任务后在Linux / Swift 6.0.3重新运行核心测试：**47项通过，0失败**。
+- 同一游戏核心此前已在[macOS验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45681385591)通过47项测试；随后源码变动仅为显示选择界面和对应UI测试。
+- 本轮macOS核心任务：等待执行器，尚未返回结果。
+- 28项公共/旧档测试与19项Ver.1专项测试覆盖8秒孵化、成长阈值、离线与分次结算、四心/满腹/蛋白质、训练成败与取消、照顾失误、分支边界、高阶战绩、固定Quest/解锁/重试/一次消耗、Cold/一只备份、睡眠与DP恢复、伤势死亡计时、时间倒退及存档损坏拒绝。
+- 18份角色图集的SHA-256、尺寸和非空帧引用校验通过，保存的PNG保持归档原始字节。
+- 内容及Xcode工程重新生成后，应用、核心、测试和工程文件没有差异；JSON、plist和scheme XML已通过解析检查。
 
-## 原生 iOS 应用
+补充开发机模拟时钟回放已走通黑球兽→滚球兽→亚古兽→暴龙兽→机械暴龙兽→电光暴龙兽的完整路线。这是加速软件回放，不是8天真实设备养成验证，不计入上述47项测试。
 
-环境：**Xcode 16.4 / iPhone 16 Pro 模拟器 / iOS 18.5 / arm64**。
+## 原生应用与显示切换
 
-原生 Debug 构建和测试 runner 编译成功，**3 项 UI 测试通过，0 失败**：
+环境：**Xcode 16.4 / iPhone 16 Pro / iOS 18.5 / arm64**。Debug应用与测试runner编译成功，**5项UI测试全部通过，0失败**，测试用例合计约203秒：
 
-1. 原创冒险地图打开、图鉴搜索。
-2. 实际喂食、开始训练、确认输入、取消训练、打开显示设置。
-3. 首次孵化与虚拟 B 键打开伙伴状态。
+1. 喂肉、A/B五次攻击训练并验证成功、进入显示设置。
+2. 新蛋孵化与A/B按键导航，未选择图标时B打开时钟。
+3. 旧版养成切换至Ver.1，保存并恢复切换前档案。
+4. 默认彩色，依次选择灰绿色LCD、高级彩色、复古彩色并检查勾选状态。
+5. 固定Quest首区可挑战、后区锁定、战斗结果/返回区域选择、图鉴搜索；没有方向移动按钮。
 
-执行记录显示 `Executed 3 tests, with 0 failures` 和 `** TEST SUCCEEDED **`，测试用例合计约 138 秒。测试基础设施还花费较长时间启动模拟器，因此该总步骤耗时约 9 分钟。附图为这次测试中实际捕获的屏幕，没有用设计图替代。
+日志包含 `Executed 5 tests, with 0 failures`。此前弹出式显示菜单的点击定位失败，改为页面内直接选择后，本轮已通过；不能将之前失败的整轮任务描述为成功。
 
-[核心与 UI 验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45663871437)
+## Release构建
 
-这次工作流整体标记为 **cancelled**：取得诊断日志时，编译及 UI 步骤已经成功，停止操作中断了随后开始的 Release 构建；不能把整体状态描述为全流程成功。之后将 Release 拆为独立任务补验。
+本轮通用iOS Simulator目标的Release构建成功。它验证编译，不包含真机签名、安装或运行。
 
-## Release 构建
+## 实际截图
 
-[独立 Release 验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45666176087)
+下列图片来自本轮成功的原生UI测试结果包，未使用设计图代替。场景背景为本工程重绘，角色为归档原版像素。
 
-**结果：成功。** Xcode 16.4 的 `Release` 配置在通用 iOS Simulator 目标上构建通过，日志为 `** BUILD SUCCEEDED **`。任务于 2026-11-26 04:35（Australia/Sydney）完成。该任务使用同一应用、核心、资源和 UI 测试源码；后续变更仅涉及文档、截图和 CI 的步骤拆分。真机签名与设备运行仍未验证。
+- [彩色主界面](Screenshots/ver1-color-home.png)
+- [固定顺序Quest区域](Screenshots/ver1-quest-areas.png)
+- [三次命中判定与败北结果](Screenshots/ver1-quest-result.png)
+- [灰绿色LCD](Screenshots/ver1-lcd-preview.png)、[高级彩色](Screenshots/ver1-advanced-preview.png)、[复古彩色](Screenshots/ver1-color-preview.png)
+- [伙伴状态](Screenshots/ver1-status.png)
 
-## 尚未验证
+## 尚未验证或实现
 
-- 真实 iPhone/iPad 安装、签名与 iOS 17 最低系统运行。
-- 通知实际送达、静音/触觉硬件表现、文件选择器跨设备恢复。
-- 一周以上连续养成、真实电量、Instruments 性能/内存、VoiceOver/大字体和 iPad 分屏。
-- 后续尚未实现的联机、历代实体机规则、特殊进化、Watch、HealthKit、Widget、iCloud 等功能。
+真实iPhone/iPad安装、iOS17最低系统、通知实际送达、硬件静音/触觉、长期养成、性能/内存、VoiceOver/大字体与iPad分屏仍待验收。隐藏参数存在资料分歧，尚无实体机并行一致性验证。通信、跨版本联展、其他历代机型、Watch、Widget、HealthKit、iCloud等未完成。
 
-真机后续工作见 [验收清单](DEVICE_CHECKLIST.md)。
+详见[规则出处](RULE_SOURCES.md)与[真机验收清单](DEVICE_CHECKLIST.md)。
