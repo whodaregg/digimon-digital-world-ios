@@ -1,5 +1,17 @@
 # 实测记录
 
+## v0.4.0 真机IPA
+
+[真机打包任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45695925289)已成功，构建源码为`2ac41ec9aa1b2fd6cdf4609c2fdcda45ec397e14`；游戏应用、核心与测试源码与下述已验证版本保持一致。
+
+- 使用iPhoneOS SDK编译Release，通过Mach-O平台IOS与arm64架构检查，最低iOS17.0。
+- IPA包含正确的Payload应用、Info.plist和游戏内容，ZIP完整性检查通过，不包含个人描述文件。
+- 已发布[未签名开发测试包](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.4.0)，文件`DigitalWorld-v0.4.0-unsigned.ipa`，899335字节。
+- 从发布页重新下载后，包结构、iPhoneOS标记、18份原始角色PNG哈希及SHA-256均核验一致。
+- IPA SHA-256：`61f5d2f82d98b87c9e1872d91a7fbc52ea3aef615bb80f8c748005e60c3ebb95`。
+
+此包需要用户自行签名，尚未完成真实iPhone安装与运行验收；不能把真机SDK构建成功表述为真机实测通过。
+
 ## v0.4 隐藏开发测试
 
 记录日期：2026-11-26（Australia/Sydney）。[本轮完整验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45691269111)已全部通过，实际验证源码为 `7bc23b87c9264c45bb61bd90b0028f6f83656a00`，其后仅整理文档与实测截图。

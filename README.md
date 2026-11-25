@@ -16,6 +16,14 @@ v0.4新增隐藏的本机开发测试面板，可指定已收录角色、发放�
 <img src="Documentation/Screenshots/ver1-lcd-preview.png" width="220" alt="三种显示模式直接选择与灰绿色预览">
 </p>
 
+## 下载IPA
+
+[下载 v0.4.0 未签名 IPA](https://github.com/whodaregg/digimon-digital-world-ios/releases/download/v0.4.0/DigitalWorld-v0.4.0-unsigned.ipa) · [发布页与校验文件](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.4.0)
+
+适用于真机arm64、iOS17及以上。安装包尚未签名，需要使用自己的签名工具与签名资料签名后安装，不能直接点开安装。发布页的Source code压缩包为源码，安装请下载`.ipa`文件。
+
+真机SDK编译、平台/架构、包结构与下载后的SHA-256已通过校验；实际iPhone签名安装仍待验收。后续打包可在Actions手动运行“打包真机IPA”，已存在的版本不会被覆盖。
+
 ## 在 Xcode 运行
 
 1. 克隆仓库，用 Xcode 16 或更新版本打开 `DigitalWorld.xcodeproj`。
