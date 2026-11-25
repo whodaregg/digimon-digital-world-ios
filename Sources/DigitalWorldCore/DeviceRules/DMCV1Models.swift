@@ -136,4 +136,5 @@ public struct DMCQuestResult: Sendable {
     public var records: [BattleRecord]
     public var cleared: Bool
     public var backgroundUnlocked: String?
+    public var playerSpeciesID: String
 }

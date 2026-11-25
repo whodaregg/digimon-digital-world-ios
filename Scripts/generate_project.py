@@ -58,7 +58,7 @@ for config in ['Debug','Release']:
     obj('config:project:'+config,f'isa = XCBuildConfiguration; buildSettings = {settings(common)}; name = {config};')
     for target in ['app','uitest']:
         values=dict(PRODUCT_NAME='$(TARGET_NAME)',PRODUCT_BUNDLE_IDENTIFIER='org.digitalworld.pet'+('.uitests' if target=='uitest' else ''),
-                    CURRENT_PROJECT_VERSION='4',MARKETING_VERSION='0.4.0',CODE_SIGN_STYLE='Automatic',
+                    CURRENT_PROJECT_VERSION='5',MARKETING_VERSION='0.5.0',CODE_SIGN_STYLE='Automatic',
                     TARGETED_DEVICE_FAMILY='1,2',SWIFT_EMIT_LOC_STRINGS='YES',
                     SUPPORTED_PLATFORMS='iphoneos iphonesimulator',SUPPORTS_MACCATALYST='NO')
         if target=='app':

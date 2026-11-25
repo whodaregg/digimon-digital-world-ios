@@ -54,9 +54,9 @@ final class WorldUITests: XCTestCase {
         app.buttons["quest-area-1"].tap()
         XCTAssertTrue(app.staticTexts["第 1 / 3 战"].waitForExistence(timeout: 5))
         for _ in 0..<3 {
-            if app.buttons["显示本战结果"].exists { app.buttons["显示本战结果"].tap() }
-            if app.buttons["继续下一战"].exists { app.buttons["继续下一战"].tap() }
-            else { break }
+            let skip = app.buttons["跳过本战演出"]
+            if skip.waitForExistence(timeout: 3) { skip.tap() }
+            if app.buttons["返回区域选择"].waitForExistence(timeout: 2) { break }
         }
         XCTAssertTrue(app.buttons["返回区域选择"].waitForExistence(timeout: 5))
         attachScreenshot("ver1-quest-result")
@@ -164,6 +164,51 @@ final class WorldUITests: XCTestCase {
         XCTAssertEqual(app.staticTexts["developerNotice"].label,"已恢复调试前存档")
         app.navigationBars.buttons["完成"].tap()
         XCTAssertTrue(app.staticTexts["AGUMON"].waitForExistence(timeout: 5))
+    }
+    func testLargeHomePetActuallyWalksAndTurns() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing","--ui-testing-hatched"]
+        app.launch()
+        let probe = app.staticTexts["homeMotionProbe"]
+        XCTAssertTrue(probe.waitForExistence(timeout: 10))
+        XCTAssertTrue(probe.label.contains("size=192"))
+        XCTAssertTrue(waitFor(probe,containing: "pose=walk",timeout: 5))
+        let before = probe.label.components(separatedBy: ";").first!
+        attachScreenshot("large-pet-walk-a")
+        let moved = NSPredicate { _,_ in !probe.label.hasPrefix(before+";") }
+        XCTAssertEqual(XCTWaiter.wait(for: [expectation(for: moved,evaluatedWith: probe)],timeout: 4),.completed)
+        attachScreenshot("large-pet-walk-b")
+        XCTAssertTrue(waitFor(probe,containing: "right=false",timeout: 7))
+        XCTAssertTrue(waitFor(probe,containing: "pose=happy",timeout: 8))
+        attachScreenshot("large-pet-happy")
+    }
+    func testQuestPlaysEveryEnemyWithAttackEvasionHitAndResult() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing","--ui-testing-hatched","--ui-testing-quest"]
+        app.launch()
+        XCTAssertTrue(app.buttons["action-BATTLE"].waitForExistence(timeout: 10))
+        app.buttons["action-BATTLE"].tap(); app.buttons["quest-area-1"].tap()
+        let probe = app.staticTexts["questAnimationProbe"]
+        XCTAssertTrue(probe.waitForExistence(timeout: 5))
+        for battle in 1...3 {
+            XCTAssertTrue(waitFor(app.staticTexts["questBattleNumber"],containing: "第 \(battle) / 3 战",timeout: 22))
+            XCTAssertTrue(waitFor(probe,containing: "shot=true",timeout: 8))
+            XCTAssertTrue(probe.label.contains("pose=attack"))
+            attachScreenshot("quest-\(battle)-attack")
+            XCTAssertTrue(waitFor(probe,containing: "mark=true",timeout: 4))
+            attachScreenshot("quest-\(battle)-hit")
+            XCTAssertTrue(waitFor(probe,containing: "回避",timeout: 8))
+            XCTAssertTrue(waitFor(probe,containing: "pose=victory",timeout: 20))
+            attachScreenshot("quest-\(battle)-victory")
+        }
+        XCTAssertTrue(app.buttons["返回区域选择"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["questResult"].label,"本区通关，进度已保存")
+        app.buttons["返回区域选择"].tap()
+        XCTAssertTrue(app.buttons["quest-area-2"].isEnabled)
+    }
+    private func waitFor(_ element: XCUIElement,containing text: String,timeout: TimeInterval) -> Bool {
+        let condition = NSPredicate { _,_ in element.exists && element.label.contains(text) }
+        return XCTWaiter.wait(for: [expectation(for: condition,evaluatedWith: element)],timeout: timeout) == .completed
     }
     private func openDeveloper(_ app: XCUIApplication) {
         let entry = app.descendants(matching: .any).matching(identifier: "developer-entry").firstMatch

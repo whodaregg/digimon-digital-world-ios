@@ -169,7 +169,7 @@ struct WorldView: View {
                     HStack {
                         Text("LOCAL SAVE / AUTO").font(.system(size: 9,design: .monospaced))
                         Spacer()
-                        Text(state.developerModifiedAt != nil ? "开发测试档" : model.isOriginal ? "v0.4.0 · COLOR Ver.1" : "旧版实验规则").font(.system(size: 9,design: .monospaced))
+                        Text(state.developerModifiedAt != nil ? "开发测试档" : model.isOriginal ? "v0.5.0 · COLOR Ver.1" : "旧版实验规则").font(.system(size: 9,design: .monospaced))
                     }.foregroundStyle(Palette.muted.opacity(0.7))
                 }
             }.pageStyle()

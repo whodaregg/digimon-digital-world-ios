@@ -332,10 +332,10 @@ public enum DMCV1Engine {
         var rng = SeededRandom(seed: result.rng), records: [BattleRecord] = []
         for enemy in area.opponents {
             let chance = hitChance(power: power,enemyPower: enemy.power,attribute: species.attribute,enemyAttribute: enemy.attribute)
-            var hits = 0, misses = 0, log: [String] = []
+            var hits = 0, misses = 0, log: [String] = [], hitSequence: [BattleSide] = []
             while hits < 3 && misses < 3 {
-                if rng.number(100) < chance { hits += 1; log.append("攻击命中 · \(hits)：\(misses)") }
-                else { misses += 1; log.append("受到攻击 · \(hits)：\(misses)") }
+                if rng.number(100) < chance { hits += 1; hitSequence.append(.player); log.append("攻击命中 · \(hits)：\(misses)") }
+                else { misses += 1; hitSequence.append(.opponent); log.append("受到攻击 · \(hits)：\(misses)") }
             }
             let won = hits == 3
             result.pets[i].stats.battles += 1; result.pets[i].dmc!.stageBattles += 1
@@ -346,7 +346,7 @@ public enum DMCV1Engine {
             if rng.number(100) < injuryChance { injure(&result.pets[i],doses: s.healDoses,at: now) }
             result.dex[enemy.speciesID] = max(result.dex[enemy.speciesID] ?? .encountered,.encountered)
             // hpRemaining is retained only for the legacy record format. Quest UI uses hit marks.
-            let record = BattleRecord(id: UUID(),date: now,opponent: enemy.speciesID,won: won,turns: hits+misses,hpRemaining: 0,log: log)
+            let record = BattleRecord(id: UUID(),date: now,opponent: enemy.speciesID,won: won,turns: hits+misses,hpRemaining: 0,log: log,hitSequence: hitSequence)
             records.append(record); result.battles.append(record)
             result.pets[i].record("quest","\(area.name) · \(enemy.speciesID) · \(won ? "胜利" : "败北")",at: now)
             if !won { break }
@@ -361,6 +361,6 @@ public enum DMCV1Engine {
         if result.pet.dmc!.stageInjuries >= 15 { die(&result,at: now) }
         if result.battles.count > 100 { result.battles.removeFirst(result.battles.count-100) }
         sync(&result.pets[i]); state = result
-        return DMCQuestResult(area: area,records: records,cleared: cleared,backgroundUnlocked: reward)
+        return DMCQuestResult(area: area,records: records,cleared: cleared,backgroundUnlocked: reward,playerSpeciesID: species.id)
     }
 }

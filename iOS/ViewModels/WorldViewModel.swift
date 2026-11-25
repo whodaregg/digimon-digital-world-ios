@@ -75,6 +75,11 @@ final class WorldViewModel: ObservableObject {
                     // Keep the original fixture awake regardless of CI wall-clock hour.
                     test.pets[0].dmc!.awakeUntil = Date().addingTimeInterval(3600)
                 }
+                if ProcessInfo.processInfo.arguments.contains("--ui-testing-quest") {
+                    test.rng = 1
+                    test.pets[0].developerTuning = DeveloperTuning()
+                    test.pets[0].developerTuning!.power = 1_000_000
+                }
                 test.homeTimeZone = "UTC"
                 state = test
             }

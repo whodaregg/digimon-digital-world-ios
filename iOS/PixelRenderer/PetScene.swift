@@ -3,33 +3,19 @@ import SwiftUI
 import DigitalWorldCore
 
 final class PetScene: SKScene {
-    private let pet = SKSpriteNode()
-    private let lcdShader = SKShader(source: """
-        void main() {
-            vec4 pixel = texture2D(u_texture, v_tex_coord);
-            vec4 shaded = SKDefaultShading();
-            float luminance = dot(pixel.rgb, vec3(0.299, 0.587, 0.114));
-            float level = floor(luminance * 3.0 + 0.5) / 3.0;
-            vec3 lcd = mix(vec3(0.19, 0.27, 0.19), vec3(0.66, 0.73, 0.52), level);
-            gl_FragColor = vec4(lcd, 1.0) * shaded.a;
-        }
-        """)
+    private let pet = PixelActor(size: 192)
     private var signature = ""
-    private var sheetCache: [String: SKTexture] = [:]
-    private let manifest = try? SpriteLibrary.manifest()
-    private var style: DisplayMode = .color
     override init(size: CGSize) {
         super.init(size: size)
         scaleMode = .aspectFit; anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        pet.size = CGSize(width: 128, height: 128)
-        pet.position = CGPoint(x: 0, y: -10); pet.zPosition = 3
+        pet.position = CGPoint(x: 0, y: 6); pet.zPosition = 3
         addChild(pet)
     }
     required init?(coder: NSCoder) { fatalError("Storyboard initialization is not supported") }
     func configure(species: Species?, egg: Bool, eggPattern: String, life: LifeState, animation: String,
                    mode: DisplayMode, waste: Int, dark: Bool, night: Bool, reduceMotion: Bool, background: String) {
         let key = "\(species?.id ?? "")-\(egg)-\(eggPattern)-\(life)-\(animation)-\(mode)-\(waste)-\(dark)-\(night)-\(reduceMotion)-\(background)"
-        guard key != signature else { return }; signature = key; style = mode
+        guard key != signature else { return }; signature = key
         children.filter { $0 != pet }.forEach { $0.removeFromParent() }
         let lcd = mode == .lcd
         let dimScene = night || dark
@@ -105,9 +91,12 @@ final class PetScene: SKScene {
         }
         pet.removeAllActions(); pet.removeAllChildren()
         pet.color = ink; pet.colorBlendFactor = 0
-        pet.shader = lcd ? lcdShader : nil
+        pet.shader = lcd ? PixelAtlas.lcdShader : nil
+        pet.zRotation = 0; pet.xScale = 1
+        pet.position.x = min(64,max(-64,pet.position.x))
         pet.alpha = life == .frozen ? 0.55 : (dark && !lcd ? 0.7 : 1)
         if egg {
+            pet.position = CGPoint(x: 0,y: -10)
             pet.texture = nil; pet.colorBlendFactor = 0; pet.color = .clear
             for y in 0..<16 {
                 for x in 0..<12 {
@@ -124,21 +113,11 @@ final class PetScene: SKScene {
             if !reduceMotion { pet.run(.repeatForever(.sequence([.rotate(toAngle: 0.08,duration: 0.2),.rotate(toAngle: -0.08,duration: 0.2),.rotate(toAngle: 0,duration: 0.2),.wait(forDuration: 1.4)]))) }
             return
         }
-        pet.zRotation = 0
-        guard let species, let definition = manifest?.sprites[species.spriteID],
-              let config = definition.animations[animation] ?? definition.animations["idle"] else { return }
-        let sheet: SKTexture
-        if let cached = sheetCache[species.spriteID] { sheet = cached }
-        else if let bytes = try? SpriteLibrary.imageData(id: species.spriteID), let uiImage = UIImage(data: bytes) {
-            sheet = SKTexture(image: uiImage); sheet.filteringMode = .nearest; sheetCache[species.spriteID] = sheet
-        } else { return }
-        let textures = config.frameIndices.compactMap { frame -> SKTexture? in
-            guard let region = try? definition.region(frame: frame) else { return nil }
-            let rect = CGRect(x: region.x, y: region.y, width: region.width, height: region.height)
-            let texture = SKTexture(rect: rect, in: sheet); texture.filteringMode = .nearest; return texture
-        }
-        pet.texture = textures.first
-        if !reduceMotion && life != .frozen { pet.run(.repeatForever(.animate(with: textures,timePerFrame: config.frameSeconds)),withKey: "frames") }
+        pet.position.y = 6
+        guard let species else { pet.texture = nil; return }
+        pet.use(species.spriteID,mode: mode)
+        pet.play(animation,animated: !reduceMotion && life != .frozen)
+        if animation == "idle" && life == .alive && !reduceMotion { roam() }
         if mode == .advanced && !reduceMotion {
             for i in 0..<7 {
                 let n = SKSpriteNode(color: UIColor(red: 0.8,green: 0.95,blue: 0.7,alpha: 0.7),size: CGSize(width: 2,height: 2))
@@ -147,6 +126,27 @@ final class PetScene: SKScene {
             }
         }
     }
+    // Separate movement and pose actions: care animations interrupt roaming immediately.
+    private func roam() {
+        func pose(_ name: String,_ right: Bool) -> SKAction {
+            .run { [weak self] in self?.pet.face(right: right); self?.pet.play(name) }
+        }
+        let start = Double(abs(64-pet.position.x))/36
+        pet.run(.sequence([
+            pose("walk",true),.moveTo(x: 64,duration: start),pose("idle",false),.wait(forDuration: 0.8),
+            .repeatForever(.sequence([
+                pose("walk",false),.moveTo(x: -64,duration: 3.6),pose("idle",true),.wait(forDuration: 0.8),
+                pose("happy",true),.wait(forDuration: 0.8),pose("walk",true),.moveTo(x: 64,duration: 3.6),
+                pose("idle",false),.wait(forDuration: 1.1)
+            ]))
+        ]),withKey: "roam")
+    }
+    #if DEBUG
+    var diagnostics: String {
+        "x=\(Int(pet.position.x));y=\(Int(pet.position.y));pose=\(pet.pose);frame=\(pet.frameIndex);right=\(pet.facingRight);size=\(Int(pet.size.width))"
+    }
+    #endif
+
 }
 
 struct PetScreen: View {
@@ -154,11 +154,18 @@ struct PetScreen: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var scene = PetScene(size: CGSize(width: 320,height: 200))
     var body: some View {
-        TimelineView(.periodic(from: .now, by: 1)) { context in
+        TimelineView(.periodic(from: .now, by: 0.25)) { context in
             SpriteView(scene: configured(at: context.date), isPaused: false, preferredFramesPerSecond: 15,
                        options: [.ignoresSiblingOrder])
                 .aspectRatio(1.6,contentMode: .fit)
+                .accessibilityIdentifier("homePetScreen")
                 .accessibilityLabel(model.state?.pet.isEgg == true ? "孵化中的数码蛋" : "像素伙伴 \(model.species?.name ?? "")")
+            #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("--ui-testing") {
+                Text(scene.diagnostics).font(.system(size: 1)).frame(height: 1)
+                    .accessibilityIdentifier("homeMotionProbe")
+            }
+            #endif
         }
     }
     private func configured(at date: Date) -> PetScene {

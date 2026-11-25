@@ -221,6 +221,7 @@ public struct BattleRecord: Codable, Equatable, Identifiable, Sendable {
     public var turns: Int
     public var hpRemaining: Int
     public var log: [String]
+    public var hitSequence: [BattleSide]? = nil
 }
 
 public struct GameState: Codable, Equatable, Sendable {
