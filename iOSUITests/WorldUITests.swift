@@ -77,13 +77,12 @@ final class WorldUITests: XCTestCase {
         attachScreenshot("original-color-home")
         if !app.buttons["action-SETTINGS"].isHittable { app.swipeUp() }
         app.buttons["action-SETTINGS"].tap()
-        let picker = app.buttons["displayModePicker"]
-        XCTAssertTrue(picker.waitForExistence(timeout: 5))
-        for mode in ["经典灰绿色 LCD","高级彩色","复古彩色"] {
-            picker.tap()
-            app.buttons[mode].tap()
-            XCTAssertTrue(picker.label.contains(mode),"Display selection should reflect \(mode)")
-            attachScreenshot(mode == "经典灰绿色 LCD" ? "lcd-preview" : mode == "高级彩色" ? "advanced-color-preview" : "retro-color-preview")
+        for mode in ["lcd","advanced","color"] {
+            let choice = app.buttons["display-mode-\(mode)"]
+            XCTAssertTrue(choice.waitForExistence(timeout: 5))
+            choice.tap()
+            XCTAssertEqual(choice.value as? String,"已选择")
+            attachScreenshot(mode == "lcd" ? "lcd-preview" : mode == "advanced" ? "advanced-color-preview" : "retro-color-preview")
         }
     }
     func testLegacyProfileCanBePreservedAndRestored() throws {
@@ -93,7 +92,9 @@ final class WorldUITests: XCTestCase {
         XCTAssertTrue(app.buttons["action-SETTINGS"].waitForExistence(timeout: 10))
         if !app.buttons["action-SETTINGS"].isHittable { app.swipeUp() }
         app.buttons["action-SETTINGS"].tap()
-        app.buttons["备份旧档并开始 Ver.1"].tap()
+        let start = app.buttons["备份旧档并开始 Ver.1"]
+        for _ in 0..<3 { if start.isHittable { break }; app.swipeUp() }
+        start.tap()
         XCTAssertTrue(app.staticTexts["COLOR Ver.1"].waitForExistence(timeout: 5))
         if !app.buttons["action-SETTINGS"].isHittable { app.swipeUp() }
         app.buttons["action-SETTINGS"].tap()

@@ -177,11 +177,9 @@ struct DetailView: View {
     @ViewBuilder private var settings: some View {
         if let game = model.state {
             Panel(title: "DISPLAY / 像素显示") {
-                Picker("显示模式",selection: Binding(get: { model.display },set: { value in model.settings { $0.display = value } })) {
-                    Text("复古彩色").tag(DisplayMode.color)
-                    Text("高级彩色").tag(DisplayMode.advanced)
-                    Text("经典灰绿色 LCD").tag(DisplayMode.lcd)
-                }.pickerStyle(.menu).accessibilityIdentifier("displayModePicker")
+                displayChoice("复古彩色",mode: .color)
+                displayChoice("高级彩色",mode: .advanced)
+                displayChoice("经典灰绿色 LCD",mode: .lcd)
                 Text("新游戏默认彩色。彩色模式显示原图配色，高级彩色加入动态光点；经典模式显示灰绿色单色像素。选择会随存档保存。")
                     .font(.footnote).foregroundStyle(Palette.muted)
                 PetScreen(model: model).clipShape(RoundedRectangle(cornerRadius: 8))
@@ -233,6 +231,17 @@ struct DetailView: View {
     }
     private func backgroundName(_ id: String) -> String {
         ["grasslands":"草原","office":"办公室","grid":"网格","dmc-logo":"COLOR标志","box-art":"包装主题","25th-anniversary":"25周年"][id] ?? id
+    }
+    private func displayChoice(_ title: String,mode: DisplayMode) -> some View {
+        Button { model.settings { $0.display = mode } } label: {
+            HStack {
+                Text(title)
+                Spacer()
+                Image(systemName: model.display == mode ? "checkmark.circle.fill" : "circle")
+            }.frame(minHeight: 32).contentShape(Rectangle())
+                .foregroundStyle(model.display == mode ? Palette.mint : Palette.muted)
+        }.buttonStyle(.plain).accessibilityIdentifier("display-mode-\(mode.rawValue)")
+            .accessibilityValue(model.display == mode ? "已选择" : "未选择")
     }
     @ViewBuilder private var devices: some View {
         if let database = model.database {
