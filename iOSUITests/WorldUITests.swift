@@ -143,6 +143,8 @@ final class WorldUITests: XCTestCase {
         app.buttons["developer-tab-items"].tap()
         search.tap(); search.typeText("evolution-chip"); dismissKeyboard(app)
         app.buttons["developer-item-evolution-chip"].tap()
+        XCTAssertEqual(app.buttons["developer-item-evolution-chip"].value as? String,"已选择")
+        XCTAssertEqual(app.textFields["developerItemID"].value as? String,"evolution-chip")
         replaceText(app.textFields["developerItemQuantity"],with: "8")
         dismissKeyboard(app)
         app.buttons["developerGrantItem"].tap()

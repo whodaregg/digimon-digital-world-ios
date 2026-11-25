@@ -105,8 +105,9 @@ struct DeveloperToolsView: View {
                         Spacer()
                         Text("库存 \(game.inventory[id,default: 0])").font(.caption)
                         Image(systemName: itemID == id ? "checkmark.circle.fill" : "circle")
-                    }.frame(minHeight: 36)
+                    }.frame(maxWidth: .infinity,minHeight: 36).contentShape(Rectangle())
                 }.buttonStyle(.plain).foregroundStyle(Palette.mint).accessibilityIdentifier("developer-item-\(id)")
+                    .accessibilityValue(itemID == id ? "已选择" : "未选择")
             }
             TextField("道具ID（也可输入自定义ID）",text: $itemID)
                 .textFieldStyle(.roundedBorder).textInputAutocapitalization(.never).autocorrectionDisabled()
