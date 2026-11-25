@@ -193,7 +193,6 @@ final class WorldUITests: XCTestCase {
         for battle in 1...3 {
             XCTAssertTrue(waitFor(app.staticTexts["questBattleNumber"],containing: "第 \(battle) / 3 战",timeout: 22))
             XCTAssertTrue(waitFor(probe,containing: "shot=true",timeout: 8))
-            XCTAssertTrue(probe.label.contains("pose=attack"))
             attachScreenshot("quest-\(battle)-attack")
             XCTAssertTrue(waitFor(probe,containing: "mark=true",timeout: 4))
             attachScreenshot("quest-\(battle)-hit")

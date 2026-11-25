@@ -47,7 +47,7 @@ final class QuestPlaybackController: ObservableObject {
     private func advance() {
         guard active,let result else { return }
         betweenBattles = true
-        if battle+1 >= result.records.count { finished = true; return }
+        if battle+1 >= result.records.count { if result.cleared { scene.clearArea() }; finished = true; return }
         transition?.cancel()
         transition = Task { @MainActor [weak self] in
             try? await Task.sleep(for: .milliseconds(700))

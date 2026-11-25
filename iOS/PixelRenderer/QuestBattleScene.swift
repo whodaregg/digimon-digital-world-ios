@@ -29,7 +29,12 @@ final class QuestBattleScene: SKScene {
         playerEffect = species.effect; enemyEffect = opponent.effect
         backdrop(); show(.opponent,pose: "idle")
         setPhase(boss ? "BOSS登场" : "敌人登场")
-        var actions: [SKAction] = [.wait(forDuration: 0.9),.run { [weak self] in self?.card("BATTLE") },.wait(forDuration: 0.6)]
+        var actions: [SKAction] = []
+        if boss {
+            card("WARNING"); setPhase("BOSS警告")
+            actions += [.wait(forDuration: 0.6),.run { [weak self] in self?.show(.opponent,pose: "idle"); self?.setPhase("BOSS登场") }]
+        }
+        actions += [.wait(forDuration: 0.9),.run { [weak self] in self?.card("BATTLE") },.wait(forDuration: 0.6)]
         for round in rounds {
             actions += attack(.player,lands: round.winner == .player,round: round)
             // A third hit ends immediately: there is no extra enemy shot after victory.
@@ -141,13 +146,33 @@ final class QuestBattleScene: SKScene {
             }
         }
     }
+    func clearArea() { card("CLEAR"); setPhase("区域通关") }
     private func card(_ text: String) {
         player.isHidden = true; enemy.isHidden = true; effects.removeAllChildren()
         block(effects,0,0,320,200,ink)
-        let label = SKLabelNode(fontNamed: "Menlo-Bold"); label.text = text
-        label.fontSize = 46; label.fontColor = mode == .lcd ? .init(red: 0.66,green: 0.73,blue: 0.52,alpha: 1) : .systemGreen
-        label.verticalAlignmentMode = .center; effects.addChild(label); setPhase("战斗开始")
+        let glyphs: [Character:[String]] = [
+            "A": [".###.","#...#","#...#","#####","#...#","#...#","#...#"],
+            "B": ["####.","#...#","#...#","####.","#...#","#...#","####."],
+            "C": [".####","#....","#....","#....","#....","#....",".####"],
+            "E": ["#####","#....","#....","####.","#....","#....","#####"],
+            "G": [".####","#....","#....","#.###","#...#","#...#",".###."],
+            "I": ["#####","..#..","..#..","..#..","..#..","..#..","#####"],
+            "L": ["#....","#....","#....","#....","#....","#....","#####"],
+            "N": ["#...#","##..#","##..#","#.#.#","#..##","#..##","#...#"],
+            "R": ["####.","#...#","#...#","####.","#.#..","#..#.","#...#"],
+            "T": ["#####","..#..","..#..","..#..","..#..","..#..","..#.."],
+            "W": ["#...#","#...#","#...#","#.#.#","#.#.#","##.##","#...#"]
+        ]
+        let color: UIColor = mode == .lcd ? .init(red: 0.66,green: 0.73,blue: 0.52,alpha: 1) : text == "WARNING" ? .systemYellow : text == "CLEAR" ? .cyan : .systemGreen
+        for (i,c) in text.enumerated() {
+            guard let rows = glyphs[c] else { continue }
+            let letter = pixels(rows,color: color,scale: 6)
+            letter.position.x = (CGFloat(i)-CGFloat(text.count-1)/2)*36
+            effects.addChild(letter)
+        }
+        setPhase("战斗开始")
     }
+
     private func backdrop() {
         scenery.removeAllChildren()
         let lcd = mode == .lcd
