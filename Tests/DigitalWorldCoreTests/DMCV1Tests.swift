@@ -223,6 +223,28 @@ final class DMCV1Tests: XCTestCase {
         try TimeEngine.advance(&g,to: noon.addingTimeInterval(360*60),database: content)
         XCTAssertEqual(g.pet.life,.dead)
     }
+    func testSleepingPausesInjuryAndEmptyHeartDeathTimers() throws {
+        let content = try db(); var g = try game("agumon")
+        var calendar = Calendar(identifier: .gregorian); calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        let night = calendar.date(from: DateComponents(year: 2026,month: 11,day: 27,hour: 0))!
+        g.lastTick = night; g.highWatermark = night; g.pets[0].lightsOff = true
+        DMCV1Engine.injure(&g.pets[0],doses: 2,at: night)
+        g.pets[0].dmc!.injuredMinutes = 359; g.pets[0].dmc!.emptyHungerMinutes = 719
+        g.pets[0].dmc!.hungerHearts = 0; DMCV1Engine.sync(&g.pets[0])
+        try TimeEngine.advance(&g,to: night.addingTimeInterval(6*3600),database: content)
+        XCTAssertEqual(g.pet.life,.alive); XCTAssertEqual(g.pet.dmc!.injuredMinutes,359)
+        XCTAssertEqual(g.pet.dmc!.emptyHungerMinutes,719)
+    }
+    func testOriginalHasNoLegacyFourteenDayDeathAndRejectsClockRollback() throws {
+        let content = try db(); var g = try game("blitzgreymon")
+        g.pets[0].activeMinutes = 14*1440; g.pets[0].stageMinutes = 14*1440
+        try TimeEngine.advance(&g,to: noon.addingTimeInterval(60),database: content)
+        XCTAssertEqual(g.pet.life,.alive)
+        let snapshot = g
+        XCTAssertTrue(try TimeEngine.advance(&g,to: noon,database: content).clockReversed)
+        XCTAssertThrowsError(try GameEngine.perform(.feed("meat"),state: &g,database: content,at: noon))
+        XCTAssertEqual(g,snapshot)
+    }
     func testOriginalSaveRoundTripAndCorruptProfileRejected() throws {
         let content = try db(), store = SaveStore(directory: URL(fileURLWithPath: "/unused"),database: try db())
         var g = try game("agumon")

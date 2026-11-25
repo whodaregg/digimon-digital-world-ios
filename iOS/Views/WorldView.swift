@@ -63,6 +63,7 @@ struct WorldView: View {
             }
         }
         .onReceive(timer) { _ in if phase == .active { model.refresh() } }
+        .onChange(of: model.state?.deviceID) { _, _ in selected = nil; page = nil }
         .sheet(item: $page) { value in
             NavigationStack {
                 DetailView(page: value,model: model)
@@ -142,7 +143,7 @@ struct WorldView: View {
                                     Image(systemName: actions[index].2).font(.system(size: 20,weight: .light))
                                     Text(actions[index].0).font(.system(size: 9,weight: .bold,design: .monospaced)).lineLimit(1).minimumScaleFactor(0.65)
                                 }.frame(maxWidth: .infinity,minHeight: 65)
-                                    .foregroundStyle(selected == index ? Palette.mint : Palette.muted)
+                                    .foregroundStyle(actions[index].0 == "CALL" && model.hasCall ? Palette.amber : selected == index ? Palette.mint : Palette.muted)
                                     .background(selected == index ? Palette.mint.opacity(0.08) : Palette.panel,in: RoundedRectangle(cornerRadius: 11))
                                     .overlay(RoundedRectangle(cornerRadius: 11).stroke(selected == index ? Palette.mint.opacity(0.65) : Palette.line,lineWidth: 1))
                             }.buttonStyle(.plain).accessibilityLabel(actions[index].0 == "CALL" ? (model.hasCall ? "养成呼叫已点亮" : "养成呼叫未点亮") : actions[index].1)
@@ -252,6 +253,7 @@ struct WorldView: View {
             .frame(maxWidth: .infinity).accessibilityIdentifier("action-\(id)")
     }
     private func activate(_ index: Int) {
+        guard actions.indices.contains(index) else { selected = nil; return }
         model.feedbackTap()
         let action = actions[index].0
         if ["FOOD","TRAIN","BATTLE"].contains(action) { model.openCareCommand() }
