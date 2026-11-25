@@ -1,0 +1,83 @@
+{
+  "tileSize": 24,
+  "columns": 3,
+  "rows": 15,
+  "artStatus": "original-test-art-not-official",
+  "animations": {
+    "idle": {
+      "row": 0,
+      "frames": 3,
+      "frameSeconds": 0.22
+    },
+    "walk": {
+      "row": 1,
+      "frames": 3,
+      "frameSeconds": 0.22
+    },
+    "happy": {
+      "row": 2,
+      "frames": 3,
+      "frameSeconds": 0.22
+    },
+    "sad": {
+      "row": 3,
+      "frames": 3,
+      "frameSeconds": 0.22
+    },
+    "hungry": {
+      "row": 4,
+      "frames": 3,
+      "frameSeconds": 0.22
+    },
+    "eat": {
+      "row": 5,
+      "frames": 3,
+      "frameSeconds": 0.22
+    },
+    "sleep": {
+      "row": 6,
+      "frames": 3,
+      "frameSeconds": 0.65
+    },
+    "training": {
+      "row": 7,
+      "frames": 3,
+      "frameSeconds": 0.22
+    },
+    "attack": {
+      "row": 8,
+      "frames": 3,
+      "frameSeconds": 0.22
+    },
+    "special": {
+      "row": 9,
+      "frames": 3,
+      "frameSeconds": 0.22
+    },
+    "hit": {
+      "row": 10,
+      "frames": 3,
+      "frameSeconds": 0.22
+    },
+    "injured": {
+      "row": 11,
+      "frames": 3,
+      "frameSeconds": 0.22
+    },
+    "victory": {
+      "row": 12,
+      "frames": 3,
+      "frameSeconds": 0.22
+    },
+    "defeat": {
+      "row": 13,
+      "frames": 3,
+      "frameSeconds": 0.22
+    },
+    "evolution": {
+      "row": 14,
+      "frames": 3,
+      "frameSeconds": 0.22
+    }
+  }
+}

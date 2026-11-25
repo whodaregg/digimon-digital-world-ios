@@ -1,0 +1,1334 @@
+{
+  "version": 1,
+  "species": [
+    {
+      "id": "botamon",
+      "name": "Botamon",
+      "nameSC": "黑球兽",
+      "nameTC": "黑球獸",
+      "nameJP": "ボタモン",
+      "stage": "baby1",
+      "attribute": "unknown",
+      "type": "Slime",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab"
+      ],
+      "stats": {
+        "hp": 35,
+        "attack": 8,
+        "defense": 5,
+        "speed": 5,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Acid Bubbles",
+      "effect": "bubble",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "botamon",
+      "artStatus": "original-test-art-not-official",
+      "referenceURL": "https://digimon.net/reference_en/detail.php?directory_name=botamon",
+      "verifiedFields": [
+        "name",
+        "stage",
+        "type",
+        "specialMove"
+      ],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": [
+        {
+          "id": "to-koromon",
+          "target": "koromon",
+          "priority": 0,
+          "stageMinutes": 60,
+          "minimumTraining": 0,
+          "minimumBattles": 0,
+          "minimumWinRate": 0,
+          "maximumMistakes": null,
+          "minimumMistakes": 0,
+          "minimumHealth": 25,
+          "minimumWeight": 1,
+          "maximumWeight": 999,
+          "minimumBond": 0,
+          "requiredItem": null,
+          "provenance": "original-balance"
+        }
+      ]
+    },
+    {
+      "id": "koromon",
+      "name": "Koromon",
+      "nameSC": "滚球兽",
+      "nameTC": "滾球獸",
+      "nameJP": "コロモン",
+      "stage": "baby2",
+      "attribute": "unknown",
+      "type": "Lesser",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab"
+      ],
+      "stats": {
+        "hp": 65,
+        "attack": 16,
+        "defense": 11,
+        "speed": 8,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Foam",
+      "effect": "bubble",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "koromon",
+      "artStatus": "original-test-art-not-official",
+      "referenceURL": "https://digimon.net/reference_en/detail.php?directory_name=koromon",
+      "verifiedFields": [
+        "name",
+        "stage",
+        "type",
+        "specialMove"
+      ],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": [
+        {
+          "id": "to-agumon",
+          "target": "agumon",
+          "priority": 10,
+          "stageMinutes": 360,
+          "minimumTraining": 3,
+          "minimumBattles": 0,
+          "minimumWinRate": 0,
+          "maximumMistakes": 2,
+          "minimumMistakes": 0,
+          "minimumHealth": 25,
+          "minimumWeight": 1,
+          "maximumWeight": 999,
+          "minimumBond": 0,
+          "requiredItem": null,
+          "provenance": "original-balance"
+        },
+        {
+          "id": "to-betamon",
+          "target": "betamon",
+          "priority": 0,
+          "stageMinutes": 360,
+          "minimumTraining": 0,
+          "minimumBattles": 0,
+          "minimumWinRate": 0,
+          "maximumMistakes": null,
+          "minimumMistakes": 0,
+          "minimumHealth": 25,
+          "minimumWeight": 1,
+          "maximumWeight": 999,
+          "minimumBond": 0,
+          "requiredItem": null,
+          "provenance": "original-balance"
+        }
+      ]
+    },
+    {
+      "id": "agumon",
+      "name": "Agumon",
+      "nameSC": "亚古兽",
+      "nameTC": "亞古獸",
+      "nameJP": "アグモン",
+      "stage": "rookie",
+      "attribute": "vaccine",
+      "type": "Reptile",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab"
+      ],
+      "stats": {
+        "hp": 95,
+        "attack": 24,
+        "defense": 17,
+        "speed": 11,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Pepper Breath",
+      "effect": "fire",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "agumon",
+      "artStatus": "original-test-art-not-official",
+      "referenceURL": "https://digimon.net/reference_en/detail.php?directory_name=agumon",
+      "verifiedFields": [
+        "name",
+        "stage",
+        "type",
+        "specialMove",
+        "attribute"
+      ],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": [
+        {
+          "id": "to-greymon",
+          "target": "greymon",
+          "priority": 20,
+          "stageMinutes": 1440,
+          "minimumTraining": 12,
+          "minimumBattles": 5,
+          "minimumWinRate": 0.6,
+          "maximumMistakes": 3,
+          "minimumMistakes": 0,
+          "minimumHealth": 25,
+          "minimumWeight": 1,
+          "maximumWeight": 999,
+          "minimumBond": 15,
+          "requiredItem": null,
+          "provenance": "original-balance"
+        },
+        {
+          "id": "to-numemon",
+          "target": "numemon",
+          "priority": 10,
+          "stageMinutes": 1440,
+          "minimumTraining": 0,
+          "minimumBattles": 0,
+          "minimumWinRate": 0,
+          "maximumMistakes": null,
+          "minimumMistakes": 6,
+          "minimumHealth": 25,
+          "minimumWeight": 1,
+          "maximumWeight": 999,
+          "minimumBond": 0,
+          "requiredItem": null,
+          "provenance": "original-balance"
+        },
+        {
+          "id": "to-tyrannomon",
+          "target": "tyrannomon",
+          "priority": 0,
+          "stageMinutes": 1440,
+          "minimumTraining": 0,
+          "minimumBattles": 0,
+          "minimumWinRate": 0,
+          "maximumMistakes": null,
+          "minimumMistakes": 0,
+          "minimumHealth": 25,
+          "minimumWeight": 1,
+          "maximumWeight": 999,
+          "minimumBond": 0,
+          "requiredItem": null,
+          "provenance": "original-balance"
+        }
+      ]
+    },
+    {
+      "id": "betamon",
+      "name": "Betamon",
+      "nameSC": "蝌蚪兽",
+      "nameTC": "蝌蚪獸",
+      "nameJP": "ベタモン",
+      "stage": "rookie",
+      "attribute": "virus",
+      "type": "Amphibian",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab"
+      ],
+      "stats": {
+        "hp": 95,
+        "attack": 24,
+        "defense": 17,
+        "speed": 11,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Electric Shock",
+      "effect": "electric",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "betamon",
+      "artStatus": "original-test-art-not-official",
+      "referenceURL": "https://digimon.net/reference_en/detail.php?directory_name=betamon",
+      "verifiedFields": [
+        "name",
+        "stage",
+        "type",
+        "specialMove",
+        "attribute"
+      ],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": [
+        {
+          "id": "to-numemon",
+          "target": "numemon",
+          "priority": 10,
+          "stageMinutes": 1440,
+          "minimumTraining": 0,
+          "minimumBattles": 0,
+          "minimumWinRate": 0,
+          "maximumMistakes": null,
+          "minimumMistakes": 6,
+          "minimumHealth": 25,
+          "minimumWeight": 1,
+          "maximumWeight": 999,
+          "minimumBond": 0,
+          "requiredItem": null,
+          "provenance": "original-balance"
+        },
+        {
+          "id": "to-tyrannomon",
+          "target": "tyrannomon",
+          "priority": 0,
+          "stageMinutes": 1440,
+          "minimumTraining": 0,
+          "minimumBattles": 0,
+          "minimumWinRate": 0,
+          "maximumMistakes": null,
+          "minimumMistakes": 0,
+          "minimumHealth": 25,
+          "minimumWeight": 1,
+          "maximumWeight": 999,
+          "minimumBond": 0,
+          "requiredItem": null,
+          "provenance": "original-balance"
+        }
+      ]
+    },
+    {
+      "id": "greymon",
+      "name": "Greymon",
+      "nameSC": "暴龙兽",
+      "nameTC": "暴龍獸",
+      "nameJP": "グレイモン",
+      "stage": "champion",
+      "attribute": "vaccine",
+      "type": "Dinosaur",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab"
+      ],
+      "stats": {
+        "hp": 125,
+        "attack": 32,
+        "defense": 23,
+        "speed": 14,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Mega Flame",
+      "effect": "fire",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "greymon",
+      "artStatus": "original-test-art-not-official",
+      "referenceURL": null,
+      "verifiedFields": [],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": [
+        {
+          "id": "to-metalgreymon",
+          "target": "metalgreymon",
+          "priority": 10,
+          "stageMinutes": 2880,
+          "minimumTraining": 20,
+          "minimumBattles": 10,
+          "minimumWinRate": 0.6,
+          "maximumMistakes": 5,
+          "minimumMistakes": 0,
+          "minimumHealth": 25,
+          "minimumWeight": 1,
+          "maximumWeight": 999,
+          "minimumBond": 0,
+          "requiredItem": "evolution-chip",
+          "provenance": "original-balance"
+        }
+      ]
+    },
+    {
+      "id": "tyrannomon",
+      "name": "Tyrannomon",
+      "nameSC": "巨龙兽",
+      "nameTC": "巨龍獸",
+      "nameJP": "ティラノモン",
+      "stage": "champion",
+      "attribute": "data",
+      "type": "Dinosaur",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab"
+      ],
+      "stats": {
+        "hp": 125,
+        "attack": 32,
+        "defense": 23,
+        "speed": 14,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Fire Breath",
+      "effect": "fire",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "tyrannomon",
+      "artStatus": "original-test-art-not-official",
+      "referenceURL": null,
+      "verifiedFields": [],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": []
+    },
+    {
+      "id": "numemon",
+      "name": "Numemon",
+      "nameSC": "鼻涕兽",
+      "nameTC": "鼻涕獸",
+      "nameJP": "ヌメモン",
+      "stage": "champion",
+      "attribute": "virus",
+      "type": "Mollusk",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab"
+      ],
+      "stats": {
+        "hp": 125,
+        "attack": 32,
+        "defense": 23,
+        "speed": 14,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Poop Toss",
+      "effect": "sludge",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "numemon",
+      "artStatus": "original-test-art-not-official",
+      "referenceURL": "https://digimon.net/reference_en/detail.php?directory_name=numemon",
+      "verifiedFields": [
+        "name",
+        "stage",
+        "type",
+        "specialMove",
+        "attribute"
+      ],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": []
+    },
+    {
+      "id": "metalgreymon",
+      "name": "MetalGreymon",
+      "nameSC": "机械暴龙兽",
+      "nameTC": "機械暴龍獸",
+      "nameJP": "メタルグレイモン",
+      "stage": "ultimate",
+      "attribute": "virus",
+      "type": "Cyborg",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab"
+      ],
+      "stats": {
+        "hp": 155,
+        "attack": 40,
+        "defense": 29,
+        "speed": 17,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Giga Destroyer",
+      "effect": "missile",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "metalgreymon",
+      "artStatus": "original-test-art-not-official",
+      "referenceURL": null,
+      "verifiedFields": [],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": []
+    }
+  ],
+  "devices": [
+    {
+      "enabled": true,
+      "verifiedOriginal": false,
+      "mode": "ultimate",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "ultimate-lab",
+      "name": "Digital World · 1997 LAB",
+      "notes": "原创融合规则，初代外形研究；不是实体 Ver.1 的精确模拟。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "dm1",
+      "name": "Digital Monster Ver.1–5",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "pendulum",
+      "name": "Digimon Pendulum",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "progress",
+      "name": "Pendulum Progress",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "pendulum-x",
+      "name": "Pendulum X",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "accel",
+      "name": "Digimon Accel",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "mini",
+      "name": "Digimon Mini",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "twin",
+      "name": "Digimon Twin L / R",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "catch",
+      "name": "Digimon Catch",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "dm20",
+      "name": "Digital Monster Ver.20th",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "pen20",
+      "name": "Pendulum Ver.20th",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "dmx",
+      "name": "Digital Monster X Ver.1–3",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "pendulum-z",
+      "name": "Pendulum Z / Z II",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "vital",
+      "name": "Vital Bracelet / BE",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "color",
+      "name": "Digital Monster COLOR",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "pen-color",
+      "name": "Pendulum COLOR",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "digivice99",
+      "name": "Digivice 1999",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "d3",
+      "name": "D-3",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "dark",
+      "name": "D-Ark / D-Power",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "scanner",
+      "name": "D-Scanner",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "ic",
+      "name": "Digivice iC / Burst",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "xros",
+      "name": "Xros Loader",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "appli",
+      "name": "Appli Drive / DUO",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "complete",
+      "name": "Digivice Ver.15th / Complete",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "25color",
+      "name": "Digivice 25th COLOR EVOLUTION",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "wave",
+      "name": "ORIGINAL NEW WAVE",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    },
+    {
+      "enabled": false,
+      "verifiedOriginal": false,
+      "mode": "original",
+      "hungerEveryMinutes": 45,
+      "strengthEveryMinutes": 90,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 30,
+      "freezeSupported": true,
+      "manualRestSupported": true,
+      "foods": [
+        "meat",
+        "protein",
+        "fruit",
+        "vegetable",
+        "energy",
+        "special",
+        "recovery"
+      ],
+      "eggs": [
+        "founder",
+        "signal"
+      ],
+      "id": "revival",
+      "name": "Digivice Ver.REVIVAL",
+      "notes": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。"
+    }
+  ],
+  "foods": [
+    {
+      "id": "meat",
+      "name": "肉",
+      "fullness": 25,
+      "strength": 0,
+      "happiness": 1,
+      "energy": 0,
+      "health": 0,
+      "weight": 1
+    },
+    {
+      "id": "protein",
+      "name": "蛋白质",
+      "fullness": 0,
+      "strength": 20,
+      "happiness": 0,
+      "energy": 0,
+      "health": 0,
+      "weight": 2
+    },
+    {
+      "id": "fruit",
+      "name": "水果",
+      "fullness": 15,
+      "strength": 0,
+      "happiness": 8,
+      "energy": 5,
+      "health": 0,
+      "weight": 1
+    },
+    {
+      "id": "vegetable",
+      "name": "蔬菜",
+      "fullness": 10,
+      "strength": 0,
+      "happiness": 3,
+      "energy": 0,
+      "health": 2,
+      "weight": 0
+    },
+    {
+      "id": "energy",
+      "name": "能量饮料",
+      "fullness": 0,
+      "strength": 0,
+      "happiness": 0,
+      "energy": 30,
+      "health": -1,
+      "weight": 1
+    },
+    {
+      "id": "special",
+      "name": "特别食物",
+      "fullness": 20,
+      "strength": 10,
+      "happiness": 15,
+      "energy": 10,
+      "health": 5,
+      "weight": 2
+    },
+    {
+      "id": "recovery",
+      "name": "恢复食物",
+      "fullness": 10,
+      "strength": 0,
+      "happiness": 0,
+      "energy": 10,
+      "health": 15,
+      "weight": 1
+    }
+  ],
+  "eggs": [
+    {
+      "id": "founder",
+      "name": "始源之蛋",
+      "hatchMinutes": 5,
+      "species": "botamon",
+      "pattern": "spots",
+      "requiredRaised": 0
+    },
+    {
+      "id": "signal",
+      "name": "信号之蛋",
+      "hatchMinutes": 10,
+      "species": "botamon",
+      "pattern": "stripes",
+      "requiredRaised": 3
+    }
+  ],
+  "maps": [
+    {
+      "id": "signal-garden",
+      "name": "信号花园 · 原创关卡",
+      "questTarget": 3,
+      "enemies": [
+        "agumon",
+        "betamon",
+        "numemon"
+      ],
+      "rows": [
+        "################",
+        "#...#......C...#",
+        "#...#..##......#",
+        "#......##..~~..#",
+        "#.C....#...~~..#",
+        "#..###.#.......#",
+        "#......#..C....#",
+        "#..............#",
+        "#...~~....##...#",
+        "#...~~.........#",
+        "#..............#",
+        "################"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+name: Native iOS validation
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  core:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify generated content and project
+        run: |
+          python3 Scripts/build_content.py
+          python3 Scripts/generate_project.py
+          git diff --exit-code
+      - name: Test deterministic game core
+        run: swift test
+  ios:
+    runs-on: macos-15
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select an available iPhone simulator
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess
+          devices=json.loads(subprocess.check_output(['xcrun','simctl','list','devices','available','-j']))['devices']
+          candidates=[d for runtime, values in devices.items() if 'iOS' in runtime for d in values if d['name'].startswith('iPhone')]
+          if not candidates:
+              raise SystemExit('No iOS simulator is installed on this runner')
+          with open(os.environ['GITHUB_ENV'],'a') as f:
+              f.write('SIMULATOR_ID='+candidates[0]['udid']+'\n')
+          PY
+      - name: Build and exercise native application
+        run: |
+          set -o pipefail
+          xcodebuild test -project DigitalWorld.xcodeproj -scheme DigitalWorld \
+            -destination "platform=iOS Simulator,id=$SIMULATOR_ID" \
+            -parallel-testing-enabled NO -resultBundlePath build/NativeTests.xcresult \
+            CODE_SIGNING_ALLOWED=NO | tee build-ios.log
+      - name: Check release configuration
+        run: |
+          xcodebuild build -project DigitalWorld.xcodeproj -scheme DigitalWorld \
+            -configuration Release -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-ios-validation
+          path: |
+            build-ios.log
+            build/NativeTests.xcresult
