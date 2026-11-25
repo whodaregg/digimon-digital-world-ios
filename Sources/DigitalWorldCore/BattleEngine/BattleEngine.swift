@@ -25,7 +25,8 @@ public enum BattleEngine {
         guard state.deviceID != DMCV1Engine.deviceID else { throw GameError.cannotAct("Ver.1 请进入 Quest 顺序闯关") }
         let index = state.activeIndex
         let p = state.pet
-        let player = try database.species(p.speciesID)
+        var player = try database.species(p.speciesID)
+        if let stats = p.developerTuning?.battleStats { player.stats = stats }
         let enemy = try database.species(opponentID)
         guard p.life == .alive, !p.isEgg, !p.sleeping, !p.stats.sick, !p.stats.injured,
               p.stats.energy >= 15, p.stats.stamina >= 15, p.stats.health >= 30,

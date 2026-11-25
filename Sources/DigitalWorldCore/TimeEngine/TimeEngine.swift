@@ -88,6 +88,7 @@ public enum TimeEngine {
                     if state.training?.petID == p.id { state.training = nil }
                 } else if let rule = try EvolutionEngine.candidate(pet: p, database: database, inventory: state.inventory) {
                     p.speciesID = rule.target; p.stageMinutes = 0; p.evolutionHistory.append(rule.target)
+                    p.developerTuning = nil
                     if let item = rule.requiredItem { state.inventory[item, default: 0] -= 1 }
                     state.dex[rule.target] = .raised
                     p.record("evolution", "进化 · \((try database.species(rule.target)).name)", at: date)

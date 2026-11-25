@@ -81,7 +81,7 @@ public enum DMCV1Engine {
                 !(p.dmc!.awakeUntil.map { intervalStart < $0 } ?? false)
             if intervalSleeping {
                 p.dmc!.sleepMinutes += 1
-                if p.dmc!.sleepMinutes >= 480 { p.stats.dp = s.maxDP }
+                if p.dmc!.sleepMinutes >= 480 { p.stats.dp = p.developerTuning?.maxDP ?? s.maxDP }
             } else { p.dmc!.sleepMinutes = 0 }
             p.sleeping = scheduled && !(p.dmc!.awakeUntil.map { date < $0 } ?? false)
             if p.sleeping {
@@ -177,6 +177,7 @@ public enum DMCV1Engine {
         if care.hungerHearts == 0 { care.hungerCall = date }
         if care.strengthHearts == 0 { care.strengthCall = date }
         state.pets[i].dmc = care; state.pets[i].speciesID = target; state.pets[i].stageMinutes = 0
+        state.pets[i].developerTuning = nil
         state.pets[i].stats.dp = next.maxDP; state.pets[i].stats.weight = max(next.minimumWeight,state.pet.stats.weight)
         state.pets[i].stats.injured = false; state.pets[i].evolutionHistory.append(target)
         state.pets[i].record("evolution","进化 · \(target)",at: date); state.dex[target] = .raised
@@ -234,7 +235,7 @@ public enum DMCV1Engine {
                     result.pets[i].dmc!.strengthHearts = min(4,result.pet.dmc!.strengthHearts+1)
                     result.pets[i].stats.weight += 2; result.pets[i].dmc!.proteinCount += 1
                     if result.pet.dmc!.proteinCount % 4 == 0 {
-                        result.pets[i].stats.dp = min(try rules.species(result.pet.speciesID).maxDP,result.pet.stats.dp+1)
+                        result.pets[i].stats.dp = min(try result.pet.developerTuning?.maxDP ?? rules.species(result.pet.speciesID).maxDP,result.pet.stats.dp+1)
                         result.pets[i].dmc!.proteinOverdoses = min(7,result.pet.dmc!.proteinOverdoses+1)
                     }
                     result.pets[i].dmc!.strengthCall = nil; result.pets[i].dmc!.emptyStrengthMinutes = 0
@@ -326,7 +327,7 @@ public enum DMCV1Engine {
               !result.pet.stats.injured, result.training == nil else { throw GameError.cannotAct("Quest需要成长期以上、无伤且DP至少1") }
         let s = try rules.species(species.id)
         let bonus: Int = species.stage == .rookie ? 5 : species.stage == .champion ? 8 : species.stage == .ultimate ? 15 : 25
-        let power = s.power + (result.pet.dmc!.strengthHearts == 4 ? bonus : 0) + (result.pet.dmc!.traited ? bonus : 0)
+        let power = (result.pet.developerTuning?.power ?? s.power) + (result.pet.dmc!.strengthHearts == 4 ? bonus : 0) + (result.pet.dmc!.traited ? bonus : 0)
         result.pets[i].stats.dp -= 1; result.pets[i].stats.weight = max(s.minimumWeight,result.pet.stats.weight-6)
         var rng = SeededRandom(seed: result.rng), records: [BattleRecord] = []
         for enemy in area.opponents {

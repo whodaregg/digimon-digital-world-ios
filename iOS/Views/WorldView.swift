@@ -2,7 +2,7 @@ import SwiftUI
 import DigitalWorldCore
 
 enum WorldPage: String, Identifiable, CaseIterable {
-    case status, food, train, battle, sleep, adventure, digidex, storage, settings, devices, call, clock
+    case status, food, train, battle, sleep, adventure, digidex, storage, settings, devices, call, clock, developer
     var id: String { rawValue }
     var title: String {
         switch self {
@@ -18,6 +18,7 @@ enum WorldPage: String, Identifiable, CaseIterable {
         case .devices: return "机型与规则"
         case .call: return "养成呼叫"
         case .clock: return "时钟"
+        case .developer: return "开发测试"
         }
     }
 }
@@ -63,7 +64,8 @@ struct WorldView: View {
             }
         }
         .onReceive(timer) { _ in if phase == .active { model.refresh() } }
-        .onChange(of: model.state?.deviceID) { _, _ in selected = nil; page = nil }
+        .onChange(of: model.state?.deviceID) { _, _ in selected = nil; if page != .developer { page = nil } }
+        .onChange(of: phase) { _, value in if value != .active { model.lockDeveloper() } }
         .sheet(item: $page) { value in
             NavigationStack {
                 DetailView(page: value,model: model)
@@ -73,7 +75,10 @@ struct WorldView: View {
                         ToolbarItem(placement: .topBarTrailing) { Button("完成") { model.cancelTrainingIfNeeded(value); page = nil } }
                     }
             }.presentationDragIndicator(.visible)
-                .onDisappear { if model.state?.training != nil { model.cancelTraining() } }
+                .onDisappear {
+                    if model.state?.training != nil { model.cancelTraining() }
+                    model.lockDeveloper()
+                }
         }
         .alert("提示",isPresented: Binding(get: { model.alert != nil },set: { if !$0 { model.alert = nil } })) {
             Button("知道了",role: .cancel) { model.alert = nil }
@@ -164,7 +169,7 @@ struct WorldView: View {
                     HStack {
                         Text("LOCAL SAVE / AUTO").font(.system(size: 9,design: .monospaced))
                         Spacer()
-                        Text(model.isOriginal ? "v0.3.0 · COLOR Ver.1" : "旧版实验规则").font(.system(size: 9,design: .monospaced))
+                        Text(state.developerModifiedAt != nil ? "开发测试档" : model.isOriginal ? "v0.4.0 · COLOR Ver.1" : "旧版实验规则").font(.system(size: 9,design: .monospaced))
                     }.foregroundStyle(Palette.muted.opacity(0.7))
                 }
             }.pageStyle()
@@ -174,6 +179,9 @@ struct WorldView: View {
         HStack(alignment: .center) {
             VStack(alignment: .leading,spacing: 3) {
                 Text("DIGIMON").font(.system(size: 23,weight: .black,design: .monospaced)).tracking(3).foregroundStyle(Palette.mint)
+                    .contentShape(Rectangle()).onLongPressGesture(minimumDuration: 2) {
+                        model.lockDeveloper(); page = .developer
+                    }.accessibilityIdentifier("developer-entry")
                 Text("D I G I T A L   W O R L D").font(.system(size: 9,weight: .medium,design: .monospaced)).foregroundStyle(Palette.muted)
             }
             Spacer()

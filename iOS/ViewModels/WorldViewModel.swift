@@ -13,6 +13,11 @@ final class WorldViewModel: ObservableObject {
     @Published var trainingScore: Int?
     @Published var lastQuest: DMCQuestResult?
     @Published private(set) var previousProfileBackupURL: URL?
+    @Published private(set) var developerUnlocked = false
+    @Published private(set) var developerBackupURL: URL?
+    @Published var developerNotice = ""
+    @Published var developerError: String?
+    private var developerSnapshotCreated = false
     private(set) var database: ContentDatabase?
     private var store: SaveStore?
     private var lastPersist = Date.distantPast
@@ -35,6 +40,12 @@ final class WorldViewModel: ObservableObject {
             #endif
             let persistence = SaveStore(directory: directory, database: content)
             store = persistence
+            developerBackupURL = (try? FileManager.default.contentsOfDirectory(at: directory,includingPropertiesForKeys: [.contentModificationDateKey]))?
+                .filter { $0.lastPathComponent.hasPrefix("world.before-developer.") && $0.pathExtension == "json" }
+                .max { a,b in
+                    ((try? a.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate) ?? .distantPast) <
+                    ((try? b.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate) ?? .distantPast)
+                }
             previousProfileBackupURL = (try? FileManager.default.contentsOfDirectory(at: directory,includingPropertiesForKeys: [.contentModificationDateKey]))?
                 .filter { $0.lastPathComponent.hasPrefix("world.before-restore.") && $0.pathExtension == "json" }
                 .max { a,b in
@@ -184,6 +195,53 @@ final class WorldViewModel: ObservableObject {
             restoreBackup(candidate)
             message = "旧档已独立备份，开始 Ver.1 养成"
         } catch { alert = error.localizedDescription }
+    }
+    @discardableResult func unlockDeveloper(_ code: String) -> Bool {
+        developerError = nil
+        guard code == "0313" else { developerError = "访问码不正确"; return false }
+        if state == nil { start(eggID: "dmc-v1-egg") }
+        guard state != nil, fatalError == nil else { developerError = "当前存档不可用"; return false }
+        developerUnlocked = true; developerSnapshotCreated = false; developerNotice = "开发测试已解锁"
+        return true
+    }
+    func lockDeveloper() {
+        developerUnlocked = false; developerSnapshotCreated = false; developerError = nil; developerNotice = ""
+    }
+    @discardableResult func developer(_ action: DeveloperAction) -> Bool {
+        developerError = nil
+        guard developerUnlocked, let current = state, let database, let store else {
+            developerError = "请先解锁开发测试入口"; return false
+        }
+        do {
+            let now = Date()
+            var next = current
+            try DeveloperEngine.perform(action,state: &next,database: database,at: now)
+            if !developerSnapshotCreated {
+                let url = store.directory.appendingPathComponent("world.before-developer.\(UUID().uuidString).json")
+                try FileManager.default.createDirectory(at: store.directory,withIntermediateDirectories: true)
+                try store.encode(current).write(to: url,options: .atomic)
+                developerBackupURL = url; developerSnapshotCreated = true
+            }
+            try store.save(next)
+            state = next; lastPersist = now; lastQuest = nil; lastBattle = nil; trainingScore = nil
+            switch action {
+            case .selectSpecies(let id): developerNotice = "已指定 \((try database.species(id)).nameSC)"
+            case .grantItem(let id,let amount): developerNotice = "已发放 \(amount) × \(id)"
+            case .edit: developerNotice = "数值已保存"
+            }
+            message = "开发测试修改已保存"; feedbackTap(); return true
+        } catch { developerError = error.localizedDescription; return false }
+    }
+    func restoreDeveloperBackup() {
+        developerError = nil
+        guard developerUnlocked, let url = developerBackupURL, let store else { developerError = "没有可恢复的调试备份"; return }
+        do {
+            var candidate = try store.decode(Data(contentsOf: url)).state
+            if let database { try TimeEngine.advance(&candidate,to: Date(),database: database) }
+            try store.save(candidate)
+            state = candidate; lastPersist = Date(); lastQuest = nil; lastBattle = nil; trainingScore = nil
+            developerNotice = "已恢复调试前存档"; message = developerNotice
+        } catch { developerError = "恢复失败：\(error.localizedDescription)" }
     }
     func restorePreviousProfile() {
         guard let url = previousProfileBackupURL else { return }

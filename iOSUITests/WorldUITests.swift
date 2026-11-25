@@ -105,6 +105,78 @@ final class WorldUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["COLOR LAB"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["AGUMON"].exists)
     }
+    func testDeveloperCodeAndSessionLock() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing","--ui-testing-hatched"]
+        app.launch()
+        openDeveloper(app)
+        let code = app.secureTextFields["developerCode"]
+        code.tap(); code.typeText("0000")
+        app.buttons["developerUnlock"].tap()
+        XCTAssertTrue(app.staticTexts["developerError"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["developerError"].label,"访问码不正确")
+        XCTAssertFalse(app.buttons["developer-tab-species"].exists)
+        code.tap(); code.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue,count: 4)+"0313")
+        app.buttons["developerUnlock"].tap()
+        XCTAssertTrue(app.buttons["developer-tab-species"].waitForExistence(timeout: 5))
+        XCUIDevice.shared.press(.home)
+        app.activate()
+        XCTAssertTrue(app.secureTextFields["developerCode"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.buttons["developer-tab-species"].exists)
+        app.navigationBars.buttons["完成"].tap()
+        openDeveloper(app)
+        XCTAssertTrue(app.secureTextFields["developerCode"].exists)
+    }
+    func testDeveloperSpeciesItemsStatsAndBackup() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing","--ui-testing-hatched"]
+        app.launch()
+        openDeveloper(app)
+        app.secureTextFields["developerCode"].tap()
+        app.secureTextFields["developerCode"].typeText("0313")
+        app.buttons["developerUnlock"].tap()
+        XCTAssertTrue(app.buttons["developer-tab-species"].waitForExistence(timeout: 5))
+        let search = app.textFields["developerSearch"]
+        search.tap(); search.typeText("blitzgreymon"); dismissKeyboard(app)
+        app.buttons["developer-species-blitzgreymon"].tap()
+        XCTAssertEqual(app.staticTexts["developerNotice"].label,"已指定 电光暴龙兽")
+        app.buttons["developer-tab-items"].tap()
+        search.tap(); search.typeText("evolution-chip"); dismissKeyboard(app)
+        app.buttons["developer-item-evolution-chip"].tap()
+        replaceText(app.textFields["developerItemQuantity"],with: "8")
+        dismissKeyboard(app)
+        app.buttons["developerGrantItem"].tap()
+        XCTAssertEqual(app.staticTexts["developerNotice"].label,"已发放 8 × evolution-chip")
+        let stats = app.buttons["developer-tab-stats"]
+        if !stats.isHittable { app.swipeDown() }
+        stats.tap()
+        search.tap(); search.typeText("power"); dismissKeyboard(app)
+        replaceText(app.textFields["developer-field-power"],with: "500")
+        dismissKeyboard(app)
+        app.buttons["developerSaveStats"].tap()
+        XCTAssertEqual(app.staticTexts["developerNotice"].label,"数值已保存")
+        XCTAssertEqual(app.textFields["developer-field-power"].value as? String,"500")
+        attachScreenshot("developer-stats")
+        app.buttons["developer-tab-backup"].tap()
+        app.buttons["developerRestore"].tap()
+        XCTAssertEqual(app.staticTexts["developerNotice"].label,"已恢复调试前存档")
+        app.navigationBars.buttons["完成"].tap()
+        XCTAssertTrue(app.staticTexts["AGUMON"].waitForExistence(timeout: 5))
+    }
+    private func openDeveloper(_ app: XCUIApplication) {
+        let entry = app.descendants(matching: .any).matching(identifier: "developer-entry").firstMatch
+        XCTAssertTrue(entry.waitForExistence(timeout: 10))
+        for _ in 0..<3 { if entry.isHittable { break }; app.swipeDown() }
+        entry.press(forDuration: 2.2)
+        XCTAssertTrue(app.secureTextFields["developerCode"].waitForExistence(timeout: 5))
+    }
+    private func replaceText(_ field: XCUIElement,with value: String) {
+        let current = field.value as? String ?? ""
+        field.tap(); field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue,count: current.count)+value)
+    }
+    private func dismissKeyboard(_ app: XCUIApplication) {
+        if app.buttons["收起键盘"].exists { app.buttons["收起键盘"].tap() }
+    }
     private func attachScreenshot(_ name: String) {
         let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)

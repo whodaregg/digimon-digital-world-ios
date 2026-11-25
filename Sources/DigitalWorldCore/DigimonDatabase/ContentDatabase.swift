@@ -102,6 +102,17 @@ public struct ContentDatabase: Codable, Sendable {
         for pet in state.pets {
             _ = try species(pet.speciesID); _ = try egg(pet.eggID)
             let s = pet.stats
+            if let tuning = pet.developerTuning {
+                guard state.developerModifiedAt != nil,
+                      tuning.power.map({ (0...1_000_000).contains($0) }) ?? true,
+                      tuning.maxDP.map({ (0...99).contains($0) }) ?? true else { throw GameError.invalidData("测试覆盖数值无效") }
+                if let b = tuning.battleStats {
+                    guard [b.hp,b.attack,b.defense,b.speed].allSatisfy({ (1...1_000_000).contains($0) }),
+                          (0...100).contains(b.critical), (0...100).contains(b.stamina), (0...99).contains(b.dp) else {
+                        throw GameError.invalidData("测试战斗数值无效")
+                    }
+                }
+            }
             guard pet.activeMinutes >= 0, pet.stageMinutes >= 0, pet.awakeMinutes >= 0,
                   (0...100).contains(s.health), (0...100).contains(s.fullness),
                   (0...100).contains(s.energy), (0...100).contains(s.strength),
@@ -114,7 +125,7 @@ public struct ContentDatabase: Codable, Sendable {
                 guard let c = pet.dmc, let rule = dmcV1?.roster[pet.speciesID], pet.eggID == "dmc-v1-egg",
                       (0...4).contains(c.hungerHearts), (0...4).contains(c.strengthHearts),
                       (0...7).contains(c.proteinOverdoses), (0...10).contains(c.meatBeyondFull),
-                      (0...99).contains(s.weight), (0...rule.maxDP).contains(s.dp),
+                      (1...99).contains(s.weight), (0...(pet.developerTuning?.maxDP ?? rule.maxDP)).contains(s.dp),
                       c.eggStartedAt.timeIntervalSince1970.isFinite, c.eggStartedAt <= state.highWatermark,
                       [c.stageTrainings,c.stageMistakes,c.stageBattles,c.perfectBattleCount,c.megaBattleCount,
                        c.overfeeds,c.sleepDisturbances,c.proteinCount,c.stageInjuries,c.dosesRemaining,
@@ -125,6 +136,9 @@ public struct ContentDatabase: Codable, Sendable {
                     throw GameError.invalidData("Ver.1 养成数据无效")
                 }
             }
+        }
+        if let modified = state.developerModifiedAt {
+            guard modified.timeIntervalSince1970.isFinite, modified <= state.highWatermark else { throw GameError.invalidData("测试记录时间无效") }
         }
         if state.deviceID == DMCV1Engine.deviceID {
             guard let c = state.dmc, (0..<10).contains(c.trainingCycle),

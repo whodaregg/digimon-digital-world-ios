@@ -18,6 +18,7 @@ struct DetailView: View {
                 case .storage: storage
                 case .settings: settings
                 case .devices: devices
+                case .developer: DeveloperToolsView(model: model)
                 case .call:
                     Panel(title: "CALL / 养成呼叫") {
                         Text(model.callMessage).font(.headline)
