@@ -35,15 +35,17 @@ UI 位于主 actor，领域引擎不使用全局时钟、网络、后台任务�
 
 `database.json` 独立于代码，包含 `version`、species、devices、eggs、foods、maps。所有规则引用使用稳定 ID。`ContentDatabase.validate()` 验证重复 ID、引用、阶段方向、时间阈值、战斗数值、地图行宽和规则来源。`validateSave()` 在读写边界验证存档与内容兼容性。
 
-首次登场、家族、官方机型名单等未核实内容保持空/unknown，不通过猜测填满数据。`verifiedFields` 仅列实际核实字段；`balanceProvenance`、进化规则 `provenance`、`artStatus` 明确区分原创参数和测试美术。
+首次登场、家族、官方机型名单等未核实内容保持空/unknown，不通过猜测填满数据。`verifiedFields` 仅列实际核实字段；`balanceProvenance`、进化规则 `provenance`、`artStatus` 明确区分原创参数和归档原版角色像素。
 
 数据中的普通进化支持多个条件并按 priority、规则 ID 确定顺序，只选择第一个符合条件的分支。进化道具一次性消耗；未满足条件不会仅因时间足够而强行进化。特殊进化应作为新规则类型实现、测试、迁移，而不是冒充已由当前普通进化引擎支持。
 
 ## 美术契约
 
-每角色独立 PNG，当前图集 72×360、24×24 帧、3 列 × 15 行，透明背景。`sprites.json` 定义动画名称、行号、帧数与播放速度。SpriteKit 以 `.nearest` 采样，前台基础帧率 15 fps；动态模式增加独立场景层。减少动态效果开启时停止角色帧动画和光点动画。
+每角色独立 PNG，当前为 Digital Monster COLOR 归档图集，64×64 帧画布、12 或 13 列、1 行，保留上游原始 PNG 字节。`sprites.json` v2 按角色定义布局、动作帧索引与播放速度；缺失/空白原图姿态的回退记入 `fallbackActions`。SpriteKit 和图鉴缩略图读取同一配置，采用 `.nearest` 采样，不再假定所有角色共用 3×15 布局。
 
-导入替换 PNG 时保持布局，或同步修改 JSON。正式素材必须替换 `artStatus` 并记录许可，不能仅更换标记而不完成审核。
+`sprite-sources.json` 保存原始来源、固定上游提交、SHA-256、尺寸与可用姿态。`Scripts/validate_assets.py` 离线检查字节完整性和非空帧引用。`build_content.py` 只生成规则数据，不能覆盖角色 PNG。新增素材必须附独立来源与许可状态。当前归档来源不是官方发行许可。
+
+新建存档默认 `.color`；读取旧存档保留已保存的 `.lcd`/`.color`/`.advanced` 选择。显示切换只更新设置，不更改角色、养成状态、时间或进化条件。
 
 ## 权限与服务
 

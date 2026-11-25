@@ -2,14 +2,16 @@ import SwiftUI
 import DigitalWorldCore
 
 struct SpriteThumbnail: View {
+    private static let manifest = try? SpriteLibrary.manifest()
     let id: String
     var size: CGFloat = 48
     var silhouette = false
     var body: some View {
         Group {
-            if let data = try? SpriteLibrary.imageData(id: id), let image = UIImage(data: data) {
+            if let definition = Self.manifest?.sprites[id],
+               let data = try? SpriteLibrary.imageData(id: id), let image = UIImage(data: data) {
                 Image(uiImage: image).resizable().interpolation(.none)
-                    .frame(width: size*3,height: size*15)
+                    .frame(width: size*CGFloat(definition.columns),height: size*CGFloat(definition.rows))
                     .frame(width: size,height: size,alignment: .topLeading).clipped()
                     .brightness(silhouette ? -1 : 0)
             } else {
@@ -70,7 +72,7 @@ struct DigidexView: View {
                     .font(.caption).foregroundStyle(Palette.muted)
                 EvolutionTreeView(species: database.species)
             }
-            Text("数据库目前包含 8 个角色，不代表全部官方角色；素材为独立原创测试像素研究稿。")
+            Text("目前包含 8 个角色，使用 Digital Monster COLOR 的角色像素资料图集；尚未收齐全部官方角色与动作。")
                 .font(.caption2).foregroundStyle(Palette.muted)
         }
         EmptyView().sheet(item: $selected) { species in

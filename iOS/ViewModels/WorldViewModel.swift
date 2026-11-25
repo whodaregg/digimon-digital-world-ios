@@ -58,7 +58,7 @@ final class WorldViewModel: ObservableObject {
 
     var species: Species? { state.flatMap { try? database?.species($0.pet.speciesID) } }
     var exportURL: URL? { store?.primaryURL }
-    var display: DisplayMode { state?.settings.display ?? .lcd }
+    var display: DisplayMode { state?.settings.display ?? .color }
     var hatchRemainingMinutes: Int {
         guard let game = state, let egg = try? database?.egg(game.pet.eggID) else { return 0 }
         return max(0,egg.hatchMinutes-game.pet.stageMinutes)

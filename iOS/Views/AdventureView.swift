@@ -40,11 +40,14 @@ struct AdventureView: View {
                             }
                         }
                     }
-                    let xx = CGFloat(game.adventure.x)*tile, yy = CGFloat(game.adventure.y)*tile
-                    rect(xx+tile*0.25,yy+tile*0.1,tile*0.5,tile*0.5,Palette.mint)
-                    rect(xx+tile*0.15,yy+tile*0.55,tile*0.7,tile*0.3,Palette.mint)
-                    rect(xx+tile*0.52,yy+tile*0.25,tile*0.13,tile*0.13,Palette.background)
                 }.aspectRatio(CGFloat(map.rows[0].count)/CGFloat(map.rows.count),contentMode: .fit)
+                    .overlay(alignment: .topLeading) {
+                        GeometryReader { proxy in
+                            let tile = proxy.size.width / CGFloat(map.rows[0].count)
+                            SpriteThumbnail(id: game.pet.speciesID,size: tile*1.5)
+                                .position(x: (CGFloat(game.adventure.x)+0.5)*tile,y: (CGFloat(game.adventure.y)+0.5)*tile)
+                        }.allowsHitTesting(false)
+                    }
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .accessibilityLabel("信号花园，当前位置横坐标 \(game.adventure.x)，纵坐标 \(game.adventure.y)")
                 Text(model.message).font(.caption).foregroundStyle(Palette.amber).frame(minHeight: 30)

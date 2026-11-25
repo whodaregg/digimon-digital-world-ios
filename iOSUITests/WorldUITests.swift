@@ -53,6 +53,23 @@ final class WorldUITests: XCTestCase {
         field.tap(); field.typeText("Agumon")
         XCTAssertTrue(app.buttons.containing(.staticText,identifier: "Agumon").firstMatch.waitForExistence(timeout: 5))
     }
+    func testOriginalColorAndFreeDisplaySwitching() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing","--ui-testing-hatched"]
+        app.launch()
+        XCTAssertTrue(app.staticTexts["COLOR LAB"].waitForExistence(timeout: 10))
+        attachScreenshot("original-color-home")
+        if !app.buttons["action-SETTINGS"].isHittable { app.swipeUp() }
+        app.buttons["action-SETTINGS"].tap()
+        let picker = app.buttons["displayModePicker"]
+        XCTAssertTrue(picker.waitForExistence(timeout: 5))
+        for mode in ["经典灰绿色 LCD","高级彩色","复古彩色"] {
+            picker.tap()
+            app.buttons[mode].tap()
+            XCTAssertTrue(picker.label.contains(mode),"Display selection should reflect \(mode)")
+            attachScreenshot(mode == "经典灰绿色 LCD" ? "lcd-preview" : mode == "高级彩色" ? "advanced-color-preview" : "retro-color-preview")
+        }
+    }
     private func attachScreenshot(_ name: String) {
         let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)

@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "species": [
     {
       "id": "botamon",
@@ -32,7 +32,7 @@
       "wakeHour": 7,
       "lifespanMinutes": 20160,
       "spriteID": "botamon",
-      "artStatus": "original-test-art-not-official",
+      "artStatus": "archived-digital-monster-color",
       "referenceURL": "https://digimon.net/reference_en/detail.php?directory_name=botamon",
       "verifiedFields": [
         "name",
@@ -92,7 +92,7 @@
       "wakeHour": 7,
       "lifespanMinutes": 20160,
       "spriteID": "koromon",
-      "artStatus": "original-test-art-not-official",
+      "artStatus": "archived-digital-monster-color",
       "referenceURL": "https://digimon.net/reference_en/detail.php?directory_name=koromon",
       "verifiedFields": [
         "name",
@@ -169,7 +169,7 @@
       "wakeHour": 7,
       "lifespanMinutes": 20160,
       "spriteID": "agumon",
-      "artStatus": "original-test-art-not-official",
+      "artStatus": "archived-digital-monster-color",
       "referenceURL": "https://digimon.net/reference_en/detail.php?directory_name=agumon",
       "verifiedFields": [
         "name",
@@ -264,7 +264,7 @@
       "wakeHour": 7,
       "lifespanMinutes": 20160,
       "spriteID": "betamon",
-      "artStatus": "original-test-art-not-official",
+      "artStatus": "archived-digital-monster-color",
       "referenceURL": "https://digimon.net/reference_en/detail.php?directory_name=betamon",
       "verifiedFields": [
         "name",
@@ -342,7 +342,7 @@
       "wakeHour": 7,
       "lifespanMinutes": 20160,
       "spriteID": "greymon",
-      "artStatus": "original-test-art-not-official",
+      "artStatus": "archived-digital-monster-color",
       "referenceURL": null,
       "verifiedFields": [],
       "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
@@ -397,7 +397,7 @@
       "wakeHour": 7,
       "lifespanMinutes": 20160,
       "spriteID": "tyrannomon",
-      "artStatus": "original-test-art-not-official",
+      "artStatus": "archived-digital-monster-color",
       "referenceURL": null,
       "verifiedFields": [],
       "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
@@ -434,7 +434,7 @@
       "wakeHour": 7,
       "lifespanMinutes": 20160,
       "spriteID": "numemon",
-      "artStatus": "original-test-art-not-official",
+      "artStatus": "archived-digital-monster-color",
       "referenceURL": "https://digimon.net/reference_en/detail.php?directory_name=numemon",
       "verifiedFields": [
         "name",
@@ -477,7 +477,7 @@
       "wakeHour": 7,
       "lifespanMinutes": 20160,
       "spriteID": "metalgreymon",
-      "artStatus": "original-test-art-not-official",
+      "artStatus": "archived-digital-monster-color",
       "referenceURL": null,
       "verifiedFields": [],
       "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
@@ -509,8 +509,8 @@
         "signal"
       ],
       "id": "ultimate-lab",
-      "name": "Digital World · 1997 LAB",
-      "notes": "原创融合规则，初代外形研究；不是实体 Ver.1 的精确模拟。"
+      "name": "Digital World · COLOR LAB",
+      "notes": "采用 Digital Monster COLOR 角色像素图集的原创融合养成规则；不是实体机规则的精确模拟。"
     },
     {
       "enabled": false,

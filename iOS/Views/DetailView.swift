@@ -143,12 +143,13 @@ struct DetailView: View {
         if let game = model.state {
             Panel(title: "DISPLAY / 像素显示") {
                 Picker("显示模式",selection: Binding(get: { model.display },set: { value in model.settings { $0.display = value } })) {
-                    Text("Classic LCD").tag(DisplayMode.lcd)
-                    Text("Retro Color").tag(DisplayMode.color)
-                    Text("Advanced Pixel").tag(DisplayMode.advanced)
-                }.pickerStyle(.menu)
-                Text("LCD 使用单色像素；彩色模式增加场景层次；高级模式加入动态光点。素材均以最近邻方式采样。")
+                    Text("复古彩色").tag(DisplayMode.color)
+                    Text("高级彩色").tag(DisplayMode.advanced)
+                    Text("经典灰绿色 LCD").tag(DisplayMode.lcd)
+                }.pickerStyle(.menu).accessibilityIdentifier("displayModePicker")
+                Text("新游戏默认彩色。彩色模式显示原图配色，高级彩色加入动态光点；经典模式显示灰绿色单色像素。选择会随存档保存。")
                     .font(.footnote).foregroundStyle(Palette.muted)
+                PetScreen(model: model).clipShape(RoundedRectangle(cornerRadius: 8))
             }
             Panel(title: "FEEDBACK / 声音与触觉") {
                 Toggle("电子按键音",isOn: Binding(get: { model.state?.settings.sound ?? true },set: { v in model.settings { $0.sound = v } }))
@@ -176,7 +177,7 @@ struct DetailView: View {
     @ViewBuilder private var devices: some View {
         if let database = model.database {
             Panel(title: "ACTIVE / 可游玩") {
-                Text("1997 LAB · ULTIMATE").font(.headline).foregroundStyle(Palette.mint)
+                Text("COLOR LAB · ULTIMATE").font(.headline).foregroundStyle(Palette.mint)
                 Text(database.devices[0].notes).font(.footnote).foregroundStyle(Palette.muted)
                 Text("肉与蛋白质、时机训练、离线 PVE、冷冻与原创探索规则已接入。")
                     .font(.footnote)

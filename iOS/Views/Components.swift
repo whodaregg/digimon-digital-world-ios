@@ -1,4 +1,5 @@
 import SwiftUI
+import DigitalWorldCore
 
 enum Palette {
     static let background = Color(red: 0.035,green: 0.055,blue: 0.075)
@@ -7,6 +8,12 @@ enum Palette {
     static let mint = Color(red: 0.65,green: 0.89,blue: 0.65)
     static let muted = Color(red: 0.48,green: 0.58,blue: 0.59)
     static let amber = Color(red: 0.97,green: 0.74,blue: 0.41)
+    static func screenSurface(_ mode: DisplayMode) -> Color {
+        mode == .lcd ? Color(red: 0.66,green: 0.73,blue: 0.52) : Color(red: 0.08,green: 0.19,blue: 0.27)
+    }
+    static func screenInk(_ mode: DisplayMode) -> Color {
+        mode == .lcd ? Color(red: 0.2,green: 0.28,blue: 0.2) : Color(red: 0.84,green: 0.96,blue: 1)
+    }
 }
 
 struct Panel<Content: View>: View {

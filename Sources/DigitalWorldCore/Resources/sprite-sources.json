@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "upstreamRepository": "https://github.com/furudbat/wayland-vpets",
+  "upstreamCommit": "2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0",
+  "device": "Digital Monster COLOR",
+  "retrievedOn": "2026-11-26",
+  "rights": "Digimon characters and sprites © Bandai, Akiyoshi Hongo, Toei Animation. Archival source is not an official distribution license.",
+  "frameOrder": [
+    "idle1",
+    "idle2",
+    "angry",
+    "down1",
+    "happy",
+    "eat1",
+    "sleep1",
+    "refuse",
+    "sad",
+    "down2",
+    "eat2",
+    "sleep2",
+    "attack"
+  ],
+  "files": {
+    "botamon": {
+      "file": "botamon.png",
+      "character": "Botamon",
+      "sha256": "a0962e406ff34c9cfac09b2c6b5aa1eb2a57396c61b3ccb988041f938a5bafac",
+      "width": 832,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        10,
+        12
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Botamon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "koromon": {
+      "file": "koromon.png",
+      "character": "Koromon",
+      "sha256": "2863fe4273bce8f59db14be3a8b8082b11e0aef23d09860c95ba79991790969a",
+      "width": 768,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        7,
+        10,
+        11
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Koromon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "agumon": {
+      "file": "agumon.png",
+      "character": "Agumon",
+      "sha256": "5c07e9260722b4bd8111ffd474f3a13d4339be5bb4b45d62322971974d14fd81",
+      "width": 768,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        9,
+        10,
+        11
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Agumon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "betamon": {
+      "file": "betamon.png",
+      "character": "Betamon",
+      "sha256": "87615774e42ba237eb28cc6c8323ddf8724f890e2922169c659160c6b5c460d8",
+      "width": 832,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Betamon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "greymon": {
+      "file": "greymon.png",
+      "character": "Greymon",
+      "sha256": "7ba6335d697a0ecd874ec66f96cc542ec1e1118d361fcff3a2039e6c063370f3",
+      "width": 768,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        9,
+        10,
+        11
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Greymon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "tyrannomon": {
+      "file": "tyrannomon.png",
+      "character": "Tyranomon",
+      "sha256": "ff41effc5e136fd492c13253bb8fab307883c209eb1fef1bc789d2646cbd8b9a",
+      "width": 768,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        4,
+        6,
+        7,
+        9,
+        10,
+        11
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Tyranomon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "numemon": {
+      "file": "numemon.png",
+      "character": "Numemon",
+      "sha256": "852f65e3daa6ac02b14602be2b1c2e14f68072bc99660b6c9df4e4b61129fab9",
+      "width": 832,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        12
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Numemon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "metalgreymon": {
+      "file": "metalgreymon.png",
+      "character": "Metal Greymon (Virus)",
+      "sha256": "74eb7fd44be8f5ec685a8e85c5cc6d95d6a99ea747aa7a72b81bb2f99de09e92",
+      "width": 768,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        10,
+        11
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Metal%20Greymon%20%28Virus%29.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    }
+  }
+}

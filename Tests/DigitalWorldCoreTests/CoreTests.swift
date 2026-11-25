@@ -14,16 +14,45 @@ final class CoreTests: XCTestCase {
         g.pets[0].evolutionHistory = [species]; g.dex[species] = .raised
         return g
     }
-    func testDatabaseReferencesAndStudySheets() throws {
+    func testDatabaseReferencesAndArchivedColorSheets() throws {
         let content = try db()
         try content.validate()
         XCTAssertEqual(content.species.count, 8)
         let manifest = try SpriteLibrary.manifest()
-        XCTAssertEqual(manifest.animations.count, 15)
+        XCTAssertEqual(manifest.schemaVersion, 2)
+        XCTAssertEqual(manifest.sprites.count, 8)
+        XCTAssertEqual(manifest.artStatus, "archived-digital-monster-color")
         for s in content.species {
+            let sheet = try XCTUnwrap(manifest.sprites[s.spriteID])
+            XCTAssertEqual(sheet.animations.count, 15)
             let data = try SpriteLibrary.imageData(id: s.spriteID)
             XCTAssertEqual(Array(data.prefix(8)), [137,80,78,71,13,10,26,10])
+            let width = data[16..<20].reduce(UInt32(0)) { $0 << 8 | UInt32($1) }
+            let height = data[20..<24].reduce(UInt32(0)) { $0 << 8 | UInt32($1) }
+            XCTAssertEqual(Int(width),sheet.columns*sheet.tileSize)
+            XCTAssertEqual(Int(height),sheet.rows*sheet.tileSize)
+            XCTAssertEqual(s.artStatus,"archived-digital-monster-color")
             XCTAssertEqual(s.balanceProvenance.prefix(16), "original-balance")
+        }
+    }
+    func testSpriteRegionsHandleTwelveAndThirteenColumns() throws {
+        let manifest = try SpriteLibrary.manifest()
+        let agu = try XCTUnwrap(manifest.sprites["agumon"])
+        let beta = try XCTUnwrap(manifest.sprites["betamon"])
+        XCTAssertEqual(agu.columns,12); XCTAssertEqual(beta.columns,13)
+        XCTAssertEqual(try agu.region(frame: 0).width,1.0/12.0)
+        XCTAssertEqual(try beta.region(frame: 12).x,12.0/13.0)
+        XCTAssertEqual(try beta.region(frame: 12).height,1)
+        XCTAssertThrowsError(try agu.region(frame: 12))
+        XCTAssertThrowsError(try beta.region(frame: -1))
+    }
+    func testColorDefaultAndAllDisplayChoicesPersist() throws {
+        let store = SaveStore(directory: URL(fileURLWithPath: "/unused"),database: try db())
+        var g = try game()
+        XCTAssertEqual(g.settings.display,.color)
+        for choice in DisplayMode.allCases {
+            g.settings.display = choice
+            XCTAssertEqual(try store.decode(store.encode(g)).state.settings.display,choice)
         }
     }
     func testOriginalModeCannotMasqueradeAsVerified() throws {

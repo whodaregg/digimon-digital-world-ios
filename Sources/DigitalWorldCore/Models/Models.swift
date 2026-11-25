@@ -187,7 +187,7 @@ public struct Pet: Codable, Equatable, Identifiable, Sendable {
 }
 
 public struct Settings: Codable, Equatable, Sendable {
-    public var display: DisplayMode = .lcd
+    public var display: DisplayMode = .color
     public var sound = true
     public var haptics = true
     public var notifications = false

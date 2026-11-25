@@ -82,7 +82,7 @@ struct WorldView: View {
                         VStack(alignment: .leading,spacing: 8) {
                             Text("始源之蛋").font(.title2.bold())
                             Text("5 分钟孵化 · 幼年期 I").font(.caption).foregroundStyle(Palette.muted)
-                            Text("1997 LAB / ULTIMATE").font(.system(.caption2,design: .monospaced)).foregroundStyle(Palette.amber)
+                            Text("COLOR LAB / ULTIMATE").font(.system(.caption2,design: .monospaced)).foregroundStyle(Palette.amber)
                         }
                     }
                     Text("从一枚蛋开始。喂食、清洁、互动训练，让你的照顾方式决定它的成长。离开后时间仍然流逝。")
@@ -91,7 +91,7 @@ struct WorldView: View {
                         .accessibilityIdentifier("startHatching")
                 }
                 Panel(title: "当前内容 / 开发中") {
-                    Text("本版本使用原创融合规则与原创测试像素素材。角色资料分字段标注核验状态；Original Mode 须完成实体说明书核验后开放。")
+                    Text("采用 Digital Monster COLOR 角色像素图集与原创融合规则。默认彩色显示，设置中可自由切换经典灰绿色 LCD。Original Mode 须完成实体说明书核验后开放。")
                         .font(.footnote).foregroundStyle(Palette.muted)
                     Button("查看机型与规则状态") { page = .devices }
                 }
@@ -134,7 +134,7 @@ struct WorldView: View {
                     HStack {
                         Text("LOCAL SAVE / AUTO").font(.system(size: 9,design: .monospaced))
                         Spacer()
-                        Text("v0.1.0 · ULTIMATE LAB").font(.system(size: 9,design: .monospaced))
+                        Text("v0.2.0 · COLOR LAB").font(.system(size: 9,design: .monospaced))
                     }.foregroundStyle(Palette.muted.opacity(0.7))
                 }
             }.pageStyle()
@@ -162,7 +162,7 @@ struct WorldView: View {
                 bolt; Spacer(); Text("D I G I T A L   M O N S T E R").font(.system(size: 9,weight: .bold,design: .monospaced)).foregroundStyle(Palette.muted); Spacer(); bolt
             }
             HStack {
-                Text("1997 LAB").font(.system(size: 10,weight: .black,design: .monospaced)).foregroundStyle(Palette.amber)
+                Text(model.display == .lcd ? "CLASSIC LCD" : "COLOR LAB").font(.system(size: 10,weight: .black,design: .monospaced)).foregroundStyle(Palette.amber)
                 Spacer()
                 Text(state.pet.life == .frozen ? "❄ PAUSED" : state.pet.life == .dead ? "MEMORY" : state.pet.sleeping ? "SLEEPING" : "● LIVE")
                     .font(.system(size: 9,weight: .bold,design: .monospaced)).foregroundStyle(Palette.mint)
@@ -172,15 +172,15 @@ struct WorldView: View {
                     Text(state.pet.isEgg ? "DIGI-EGG" : model.species?.name.uppercased() ?? "UNKNOWN")
                     Spacer()
                     Text(state.pet.isEgg ? "HATCHING" : "\(state.pet.activeMinutes / 1440) D · \(model.species?.stage.rawValue.uppercased() ?? "")")
-                }.font(.system(size: 9,weight: .bold,design: .monospaced)).foregroundStyle(Color(red: 0.2,green: 0.28,blue: 0.2))
-                    .padding(.horizontal,12).padding(.top,10).background(Color(red: 0.66,green: 0.73,blue: 0.52))
+                }.font(.system(size: 9,weight: .bold,design: .monospaced)).foregroundStyle(Palette.screenInk(model.display))
+                    .padding(.horizontal,12).padding(.top,10).background(Palette.screenSurface(model.display))
                 PetScreen(model: model)
                 HStack {
                     Text(state.pet.isEgg ? "破壳倒计时 \(model.hatchRemainingMinutes) MIN" : "\(state.pet.stats.weight) g  ·  \(state.pet.personality.uppercased())")
                     Spacer()
                     Text("DP \(state.pet.stats.dp)")
-                }.font(.system(size: 8,weight: .bold,design: .monospaced)).foregroundStyle(Color(red: 0.2,green: 0.28,blue: 0.2))
-                    .padding(10).background(Color(red: 0.66,green: 0.73,blue: 0.52))
+                }.font(.system(size: 8,weight: .bold,design: .monospaced)).foregroundStyle(Palette.screenInk(model.display))
+                    .padding(10).background(Palette.screenSurface(model.display))
             }.clipShape(RoundedRectangle(cornerRadius: 6))
                 .padding(9).background(Color.black.opacity(0.5),in: RoundedRectangle(cornerRadius: 12))
             HStack {

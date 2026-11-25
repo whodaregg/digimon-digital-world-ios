@@ -2,11 +2,11 @@
 
 原生 iOS 17 像素电子宠物工程。SwiftUI 界面、SpriteKit 最近邻像素渲染，以及可以脱离 Apple 框架编译测试的 Swift 游戏核心。无需联网、账号或在线 AI 服务。
 
-**当前为 v0.1 开发版本，不是需求中全部十个阶段的最终成品。** 可游玩内容采用明确标注的原创融合规则；不宣称复刻了未经核实的实体机规则。官方角色资料、原创游戏数值、原创测试素材分别标注。
+**当前为 v0.2 开发版本，不是需求中全部十个阶段的最终成品。** 可游玩内容采用明确标注的原创融合规则；不宣称复刻了未经核实的实体机规则。角色像素采用 Digital Monster COLOR 资料图集，原创游戏数值仍单独标注。新游戏默认彩色，可在设置中随时切换复古彩色、高级彩色和经典灰绿色 LCD；旧存档保留已有显示选择。
 
 ## 模拟器实测截图
 
-以下截图来自 Xcode 自动化测试中的原生 iOS 应用。
+以下为 v0.1 原生测试截图；v0.2 更换原版彩色角色并默认彩色，新版截图随验证结果更新。
 
 <p>
 <img src="Documentation/Screenshots/hatching.png" width="220" alt="LCD 数码蛋孵化状态">
@@ -49,6 +49,7 @@
 ```sh
 swift test
 python3 Scripts/build_content.py
+python3 Scripts/validate_assets.py
 python3 Scripts/generate_project.py
 git diff --exit-code
 ```
@@ -81,6 +82,6 @@ xcodebuild test -project DigitalWorld.xcodeproj -scheme DigitalWorld \
 
 ## 资料与素材
 
-这是非官方开发工程。Digimon 相关名称与角色权益属于相应权利人。仓库没有复制官方立绘、动画、音乐、剧情文本或实体机 Sprite Sheet。当前 PNG 是为开发绘制的原创测试研究稿，**不属于已获授权的正式角色美术**。商用或公开发行前仍需完成相关权利、地区译名和发布审查。
+这是非官方开发工程。8 个角色已由测试自绘图替换为 Digital Monster COLOR 的彩色像素归档图集，直接保存上游 PNG 原始字节，不重绘、不改色、不生成替代角色。图集来源、固定版本和 SHA-256 见 [素材出处](Documentation/SPRITE_CREDITS.md)。本项目尚未取得官方发行授权；像素图集归档来源不等于发行许可。
 
 资料核验与未核实字段见 [数据来源](Documentation/SOURCES.md)。

@@ -23,6 +23,7 @@ jobs:
       - name: Verify generated content and project
         run: |
           python3 Scripts/build_content.py
+          python3 Scripts/validate_assets.py
           python3 Scripts/generate_project.py
           git diff --exit-code
       - name: Test deterministic game core
