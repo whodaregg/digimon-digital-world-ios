@@ -4,6 +4,11 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      release_only:
+        description: Run only the Release build
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
@@ -11,6 +16,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   core:
+    if: ${{ !inputs.release_only }}
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
@@ -22,6 +28,7 @@ jobs:
       - name: Test deterministic game core
         run: swift test
   ios:
+    if: ${{ !inputs.release_only }}
     runs-on: macos-15
     timeout-minutes: 25
     steps:
@@ -38,21 +45,46 @@ jobs:
           with open(os.environ['GITHUB_ENV'],'a') as f:
               f.write('SIMULATOR_ID='+candidates[0]['udid']+'\n')
           PY
-      - name: Build and exercise native application
+      - name: Compile native application and test runner
+        timeout-minutes: 8
         run: |
           set -o pipefail
-          xcodebuild test -project DigitalWorld.xcodeproj -scheme DigitalWorld \
+          xcodebuild build-for-testing -project DigitalWorld.xcodeproj -scheme DigitalWorld \
             -destination "platform=iOS Simulator,id=$SIMULATOR_ID" \
-            -parallel-testing-enabled NO -resultBundlePath build/NativeTests.xcresult \
+            -derivedDataPath build/DerivedData -resultBundlePath build/NativeBuild.xcresult \
             CODE_SIGNING_ALLOWED=NO | tee build-ios.log
-      - name: Check release configuration
+      - name: Exercise native application
+        timeout-minutes: 10
         run: |
-          xcodebuild build -project DigitalWorld.xcodeproj -scheme DigitalWorld \
-            -configuration Release -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO
+          set -o pipefail
+          xcodebuild test-without-building -project DigitalWorld.xcodeproj -scheme DigitalWorld \
+            -destination "platform=iOS Simulator,id=$SIMULATOR_ID" \
+            -derivedDataPath build/DerivedData -parallel-testing-enabled NO \
+            -test-timeouts-enabled YES -default-test-execution-time-allowance 120 \
+            -maximum-test-execution-time-allowance 180 -resultBundlePath build/NativeTests.xcresult \
+            CODE_SIGNING_ALLOWED=NO | tee test-ios.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: native-ios-validation
           path: |
             build-ios.log
+            test-ios.log
+            build/NativeBuild.xcresult
             build/NativeTests.xcresult
+  release:
+    runs-on: macos-15
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile release application
+        run: |
+          set -o pipefail
+          xcodebuild build -project DigitalWorld.xcodeproj -scheme DigitalWorld \
+            -configuration Release -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO | tee build-release.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: release-validation
+          path: build-release.log

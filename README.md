@@ -24,7 +24,7 @@
 - 原子本地自动存档、上一版有效备份、损坏检查与备份恢复、v1→v2 升级、系统分享导出与验证后的备份导入。
 - 经过用户授权的基础本地提醒与安静时段。
 
-完整范围与限制见 [阶段状态](Documentation/STATUS.md)。
+完整范围与限制见 [阶段状态](Documentation/STATUS.md)，实测记录见 [验证结果](Documentation/VALIDATION.md)，真机工作见 [验收清单](Documentation/DEVICE_CHECKLIST.md)。
 
 ## 时间与养成
 
