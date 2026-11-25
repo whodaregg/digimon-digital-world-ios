@@ -2,6 +2,15 @@ name: Native iOS validation
 on:
   push:
     branches: [main]
+    paths:
+      - 'Sources/**'
+      - 'iOS/**'
+      - 'Tests/**'
+      - 'iOSUITests/**'
+      - 'Scripts/**'
+      - 'Package.swift'
+      - 'DigitalWorld.xcodeproj/**'
+      - '.github/workflows/ios.yml'
   pull_request:
   workflow_dispatch:
     inputs:

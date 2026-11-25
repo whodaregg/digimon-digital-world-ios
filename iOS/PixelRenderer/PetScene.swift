@@ -4,6 +4,16 @@ import DigitalWorldCore
 
 final class PetScene: SKScene {
     private let pet = SKSpriteNode()
+    private let lcdShader = SKShader(source: """
+        void main() {
+            vec4 pixel = texture2D(u_texture, v_tex_coord);
+            vec4 shaded = SKDefaultShading();
+            float luminance = dot(pixel.rgb, vec3(0.299, 0.587, 0.114));
+            float level = floor(luminance * 3.0 + 0.5) / 3.0;
+            vec3 lcd = mix(vec3(0.19, 0.27, 0.19), vec3(0.66, 0.73, 0.52), level);
+            gl_FragColor = vec4(lcd, 1.0) * shaded.a;
+        }
+        """)
     private var signature = ""
     private var sheetCache: [String: SKTexture] = [:]
     private let manifest = try? SpriteLibrary.manifest()
@@ -71,7 +81,8 @@ final class PetScene: SKScene {
             square(CGFloat(70+i*15),-57,10,6,ink,z: 2); square(CGFloat(70+i*15),-52,5,5,ink,z: 2)
         }
         pet.removeAllActions(); pet.removeAllChildren()
-        pet.color = ink; pet.colorBlendFactor = lcd ? 1 : 0
+        pet.color = ink; pet.colorBlendFactor = 0
+        pet.shader = lcd ? lcdShader : nil
         pet.alpha = life == .frozen ? 0.55 : (dark && !lcd ? 0.7 : 1)
         if egg {
             pet.texture = nil; pet.colorBlendFactor = 0; pet.color = .clear
