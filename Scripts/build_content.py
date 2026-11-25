@@ -3,6 +3,7 @@ import json
 import struct
 import zlib
 from pathlib import Path
+from dmc_content import EXTRA, extend
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'Sources/DigitalWorldCore/Resources'
@@ -33,6 +34,7 @@ ROUTES = {
     'betamon': [evolution('numemon', 1440, 10, min_mistakes=6), evolution('tyrannomon', 1440)],
     'greymon': [evolution('metalgreymon', 2880, 10, training=20, battles=10, wins=.6, mistakes=5, item='evolution-chip')],
 }
+ENTRIES += EXTRA
 species = []
 verified = {'botamon', 'koromon', 'agumon', 'betamon', 'numemon'}
 for key, name, sc, tc, jp, stage, attr, typ, move, effect, level in ENTRIES:
@@ -84,6 +86,7 @@ database = dict(version=2, species=species, devices=devices, foods=foods,
             '#.C....#...~~..#', '#..###.#.......#', '#......#..C....#', '#..............#',
             '#...~~....##...#', '#...~~.........#', '#..............#', '################'])])
 OUT.mkdir(parents=True, exist_ok=True)
+extend(database,OUT)
 (OUT/'database.json').write_text(json.dumps(database,ensure_ascii=False,indent=2)+'\n')
 
-print(f'Built {len(species)} species and content version 2. Character PNGs are preserved unchanged.')
+print(f'Built {len(species)} species and content version {database["version"]}. Character PNGs are preserved unchanged.')

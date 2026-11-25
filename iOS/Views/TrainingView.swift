@@ -4,6 +4,45 @@ import DigitalWorldCore
 struct TrainingView: View {
     @ObservedObject var model: WorldViewModel
     var body: some View {
+        if model.isOriginal { original } else { legacy }
+    }
+    private var original: some View {
+        Panel(title: "TRAINING / 上下段攻击") {
+            Text("A 攻击上段，B 攻击下段。每组5次，命中至少3次成功；完成整组无论成败都计入训练与努力，取消不计数。")
+                .font(.footnote).foregroundStyle(Palette.muted)
+            HStack {
+                SpriteThumbnail(id: model.state?.pet.speciesID ?? "agumon",size: 88)
+                Spacer()
+                Image(systemName: "shield.lefthalf.filled").font(.system(size: 48)).foregroundStyle(Palette.amber)
+                SpriteThumbnail(id: model.state?.pet.speciesID ?? "agumon",size: 88).scaleEffect(x: -1,y: 1)
+            }
+            let hits = model.state?.dmc?.trainingHits ?? []
+            HStack {
+                ForEach(0..<5,id: \.self) { index in
+                    Image(systemName: index < hits.count ? (hits[index] ? "checkmark.circle.fill" : "xmark.circle") : "circle.dotted")
+                        .font(.title2).foregroundStyle(index < hits.count && hits[index] ? Palette.mint : Palette.muted)
+                        .frame(maxWidth: .infinity)
+                }
+            }.accessibilityLabel("已完成\(hits.count)次攻击，命中\(hits.filter { $0 }.count)次")
+            if model.state?.training != nil {
+                Text("第 \(hits.count+1) / 5 次攻击").font(.headline)
+                HStack {
+                    GameButton(title: "A / 上段") { model.originalTraining("A") }.accessibilityIdentifier("training-A")
+                    GameButton(title: "B / 下段") { model.originalTraining("B") }.accessibilityIdentifier("training-B")
+                }
+                Button("结束本次训练") { model.cancelTraining() }
+            } else {
+                if let score = model.trainingScore {
+                    Text("命中 \(score) / 5 · \(score >= 3 ? "成功，力量＋1心" : "失败，训练次数已记录")")
+                        .font(.headline).foregroundStyle(Palette.mint)
+                }
+                GameButton(title: "开始训练") { model.beginTraining() }.accessibilityIdentifier("beginTraining")
+            }
+            Readout(name: "本阶段训练",value: "\(model.state?.pet.dmc?.stageTrainings ?? 0) 次")
+            HeartReadout(name: "努力",value: model.state?.pet.dmc?.effortHearts ?? 0)
+        }
+    }
+    private var legacy: some View {
         Panel(title: "TIMING / 精准训练") {
             Text("在光标进入绿色目标区时按下确认。共 3 次，平均准确度达到 60 分才算训练成功。每次开始消耗 5 能量。")
                 .font(.subheadline).foregroundStyle(Palette.muted)

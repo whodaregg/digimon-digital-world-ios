@@ -27,8 +27,8 @@ final class PetScene: SKScene {
     }
     required init?(coder: NSCoder) { fatalError("Storyboard initialization is not supported") }
     func configure(species: Species?, egg: Bool, eggPattern: String, life: LifeState, animation: String,
-                   mode: DisplayMode, waste: Int, dark: Bool, night: Bool, reduceMotion: Bool) {
-        let key = "\(species?.id ?? "")-\(egg)-\(eggPattern)-\(life)-\(animation)-\(mode)-\(waste)-\(dark)-\(night)-\(reduceMotion)"
+                   mode: DisplayMode, waste: Int, dark: Bool, night: Bool, reduceMotion: Bool, background: String) {
+        let key = "\(species?.id ?? "")-\(egg)-\(eggPattern)-\(life)-\(animation)-\(mode)-\(waste)-\(dark)-\(night)-\(reduceMotion)-\(background)"
         guard key != signature else { return }; signature = key; style = mode
         children.filter { $0 != pet }.forEach { $0.removeFromParent() }
         let lcd = mode == .lcd
@@ -73,6 +73,29 @@ final class PetScene: SKScene {
             square(120,67,16,24,light); square(120,67,24,16,light)
         } else {
             square(0,-67,320,3,ink.withAlphaComponent(0.45),z: 1)
+        }
+        // Original screen themes are represented by new pixel scenery; character PNGs stay untouched.
+        if background != "grasslands" {
+            let paper = lcd ? UIColor(red: 0.66,green: 0.73,blue: 0.52,alpha: 1) :
+                (dimScene ? UIColor(red: 0.09,green: 0.16,blue: 0.24,alpha: 1) : UIColor(red: 0.80,green: 0.88,blue: 0.91,alpha: 1))
+            square(0,0,320,200,paper,z: 1.1)
+            if background == "office" {
+                for x in [-100,80] {
+                    square(CGFloat(x),30,65,55,ink.withAlphaComponent(0.35),z: 1.2)
+                    square(CGFloat(x),30,54,44,paper,z: 1.3)
+                    square(CGFloat(x),30,3,44,ink.withAlphaComponent(0.35),z: 1.4)
+                }
+                square(0,-70,320,4,ink.withAlphaComponent(0.5),z: 1.4)
+                square(-110,-55,60,6,ink,z: 1.4); square(-132,-68,4,24,ink,z: 1.4)
+            } else if background == "grid" {
+                for x in stride(from: -160,through: 160,by: 16) { square(CGFloat(x),0,1,200,ink.withAlphaComponent(0.25),z: 1.3) }
+                for y in stride(from: -96,through: 96,by: 16) { square(0,CGFloat(y),320,1,ink.withAlphaComponent(0.25),z: 1.3) }
+            } else {
+                for i in 0..<14 { square(CGFloat(i*26-160),CGFloat((i*31)%170-85),12,12,ink.withAlphaComponent(0.2),z: 1.3) }
+                let label = SKLabelNode(fontNamed: "Menlo-Bold")
+                label.text = background == "25th-anniversary" ? "25th ANNIVERSARY" : background == "box-art" ? "DIGITAL MONSTER" : "COLOR"
+                label.fontSize = 15; label.fontColor = ink; label.position = CGPoint(x: 0,y: 60); label.zPosition = 1.5; addChild(label)
+            }
         }
         if dimScene {
             for i in 0..<13 { square(CGFloat((i*47)%300-150),CGFloat(15+(i*31)%70),2,2,(lcd ? ink : .white).withAlphaComponent(0.7)) }
@@ -146,7 +169,8 @@ struct PetScreen: View {
                         eggPattern: (try? model.database?.egg(state.pet.eggID).pattern) ?? "spots", life: state.pet.life,
                         animation: model.animationName, mode: state.settings.display,
                         waste: state.pet.stats.waste, dark: state.pet.lightsOff,
-                        night: hour < 7 || hour >= 19, reduceMotion: reduceMotion)
+                        night: hour < 7 || hour >= 19, reduceMotion: reduceMotion,
+                        background: state.dmc?.selectedBackground ?? "grasslands")
         return scene
     }
 }

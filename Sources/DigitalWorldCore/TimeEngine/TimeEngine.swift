@@ -13,6 +13,7 @@ public enum TimeEngine {
     /// A fixed home timezone prevents travel from rewriting a pet's sleep schedule.
     @discardableResult
     public static func advance(_ state: inout GameState, to now: Date, database: ContentDatabase) throws -> TimeReport {
+        if state.deviceID == DMCV1Engine.deviceID { return try DMCV1Engine.advance(&state,to: now,database: database) }
         guard now.timeIntervalSince1970.isFinite else { throw GameError.invalidData("时间无效") }
         let device = try database.device(state.deviceID)
         var report = TimeReport()

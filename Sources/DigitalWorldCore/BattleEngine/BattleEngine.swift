@@ -22,6 +22,7 @@ public enum BattleEngine {
     /// Original offline PVE rules. Not an emulation of a physical device battle protocol.
     public static func fight(_ state: inout GameState, opponentID: String,
                              database: ContentDatabase, at now: Date) throws -> BattleRecord {
+        guard state.deviceID != DMCV1Engine.deviceID else { throw GameError.cannotAct("Ver.1 请进入 Quest 顺序闯关") }
         let index = state.activeIndex
         let p = state.pet
         let player = try database.species(p.speciesID)

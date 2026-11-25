@@ -1,6 +1,6 @@
 # 原版角色像素图集出处
 
-v0.2 按用户要求使用 Digital Monster COLOR 的彩色角色像素，替换 v0.1 的自绘测试角色。彩色原图用于复古彩色和高级彩色；经典 LCD 是可选显示滤色，不改变保存的原图。
+v0.2 / v0.3 按用户要求使用 Digital Monster COLOR 的彩色角色像素，替换 v0.1 的自绘测试角色。彩色原图用于复古彩色和高级彩色；经典 LCD 是可选显示滤色，不改变保存的原图。
 
 ## 来源
 
@@ -20,6 +20,8 @@ v0.2 按用户要求使用 Digital Monster COLOR 的彩色角色像素，替换 
 | tyrannomon | Tyranomon / 巨龙兽 | 64×64，12 列 |
 | numemon | Numemon / 鼻涕兽 | 64×64，13 列 |
 | metalgreymon | Metal Greymon (Virus) / 机械暴龙兽（病毒种） | 64×64，12 列 |
+
+v0.3补齐Ver.1名单：Devimon、Meramon、Airdramon、Seadramon、Mamemon、Monzaemon、Blitz Greymon、Bancho Mamemon、Shin Monzaemon、Omegamon Alter-S，均来自上述同一固定提交。共18份原始PNG；机器可读清单包含每份完整信息。17种可养成，Alter-S现为最终区NPC。
 
 ## 完整性与动作
 

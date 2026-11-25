@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "species": [
     {
       "id": "botamon",
@@ -14,7 +14,8 @@
       "generation": "initial-content",
       "firstAppearance": null,
       "devices": [
-        "ultimate-lab"
+        "ultimate-lab",
+        "dmc-ver1"
       ],
       "stats": {
         "hp": 35,
@@ -74,7 +75,8 @@
       "generation": "initial-content",
       "firstAppearance": null,
       "devices": [
-        "ultimate-lab"
+        "ultimate-lab",
+        "dmc-ver1"
       ],
       "stats": {
         "hp": 65,
@@ -151,7 +153,8 @@
       "generation": "initial-content",
       "firstAppearance": null,
       "devices": [
-        "ultimate-lab"
+        "ultimate-lab",
+        "dmc-ver1"
       ],
       "stats": {
         "hp": 95,
@@ -246,7 +249,8 @@
       "generation": "initial-content",
       "firstAppearance": null,
       "devices": [
-        "ultimate-lab"
+        "ultimate-lab",
+        "dmc-ver1"
       ],
       "stats": {
         "hp": 95,
@@ -324,7 +328,8 @@
       "generation": "initial-content",
       "firstAppearance": null,
       "devices": [
-        "ultimate-lab"
+        "ultimate-lab",
+        "dmc-ver1"
       ],
       "stats": {
         "hp": 125,
@@ -379,7 +384,8 @@
       "generation": "initial-content",
       "firstAppearance": null,
       "devices": [
-        "ultimate-lab"
+        "ultimate-lab",
+        "dmc-ver1"
       ],
       "stats": {
         "hp": 125,
@@ -416,7 +422,8 @@
       "generation": "initial-content",
       "firstAppearance": null,
       "devices": [
-        "ultimate-lab"
+        "ultimate-lab",
+        "dmc-ver1"
       ],
       "stats": {
         "hp": 125,
@@ -459,7 +466,8 @@
       "generation": "initial-content",
       "firstAppearance": null,
       "devices": [
-        "ultimate-lab"
+        "ultimate-lab",
+        "dmc-ver1"
       ],
       "stats": {
         "hp": 155,
@@ -482,9 +490,410 @@
       "verifiedFields": [],
       "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
       "evolutions": []
+    },
+    {
+      "id": "devimon",
+      "name": "Devimon",
+      "nameSC": "恶魔兽",
+      "nameTC": "惡魔獸",
+      "nameJP": "デビモン",
+      "stage": "champion",
+      "attribute": "virus",
+      "type": "Evil",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab",
+        "dmc-ver1"
+      ],
+      "stats": {
+        "hp": 125,
+        "attack": 32,
+        "defense": 23,
+        "speed": 14,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Death Claw",
+      "effect": "claw",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "devimon",
+      "artStatus": "archived-digital-monster-color",
+      "referenceURL": null,
+      "verifiedFields": [],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": []
+    },
+    {
+      "id": "meramon",
+      "name": "Meramon",
+      "nameSC": "火焰兽",
+      "nameTC": "火焰獸",
+      "nameJP": "メラモン",
+      "stage": "champion",
+      "attribute": "data",
+      "type": "Flame",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab",
+        "dmc-ver1"
+      ],
+      "stats": {
+        "hp": 125,
+        "attack": 32,
+        "defense": 23,
+        "speed": 14,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Burning Fist",
+      "effect": "fire",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "meramon",
+      "artStatus": "archived-digital-monster-color",
+      "referenceURL": null,
+      "verifiedFields": [],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": []
+    },
+    {
+      "id": "airdramon",
+      "name": "Airdramon",
+      "nameSC": "飞龙兽",
+      "nameTC": "飛龍獸",
+      "nameJP": "エアドラモン",
+      "stage": "champion",
+      "attribute": "vaccine",
+      "type": "Mythical Beast",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab",
+        "dmc-ver1"
+      ],
+      "stats": {
+        "hp": 125,
+        "attack": 32,
+        "defense": 23,
+        "speed": 14,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Spinning Needle",
+      "effect": "wind",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "airdramon",
+      "artStatus": "archived-digital-monster-color",
+      "referenceURL": null,
+      "verifiedFields": [],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": []
+    },
+    {
+      "id": "seadramon",
+      "name": "Seadramon",
+      "nameSC": "海龙兽",
+      "nameTC": "海龍獸",
+      "nameJP": "シードラモン",
+      "stage": "champion",
+      "attribute": "data",
+      "type": "Aquatic",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab",
+        "dmc-ver1"
+      ],
+      "stats": {
+        "hp": 125,
+        "attack": 32,
+        "defense": 23,
+        "speed": 14,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Ice Arrow",
+      "effect": "ice",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "seadramon",
+      "artStatus": "archived-digital-monster-color",
+      "referenceURL": null,
+      "verifiedFields": [],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": []
+    },
+    {
+      "id": "mamemon",
+      "name": "Mamemon",
+      "nameSC": "豆豆兽",
+      "nameTC": "豆豆獸",
+      "nameJP": "マメモン",
+      "stage": "ultimate",
+      "attribute": "data",
+      "type": "Mutant",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab",
+        "dmc-ver1"
+      ],
+      "stats": {
+        "hp": 155,
+        "attack": 40,
+        "defense": 29,
+        "speed": 17,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Smiley Bomb",
+      "effect": "bomb",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "mamemon",
+      "artStatus": "archived-digital-monster-color",
+      "referenceURL": null,
+      "verifiedFields": [],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": []
+    },
+    {
+      "id": "monzaemon",
+      "name": "Monzaemon",
+      "nameSC": "熊仔兽",
+      "nameTC": "熊仔獸",
+      "nameJP": "もんざえモン",
+      "stage": "ultimate",
+      "attribute": "vaccine",
+      "type": "Puppet",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab",
+        "dmc-ver1"
+      ],
+      "stats": {
+        "hp": 155,
+        "attack": 40,
+        "defense": 29,
+        "speed": 17,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Hearts Attack",
+      "effect": "heart",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "monzaemon",
+      "artStatus": "archived-digital-monster-color",
+      "referenceURL": null,
+      "verifiedFields": [],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": []
+    },
+    {
+      "id": "blitzgreymon",
+      "name": "BlitzGreymon",
+      "nameSC": "电光暴龙兽",
+      "nameTC": "電光暴龍獸",
+      "nameJP": "ブリッツグレイモン",
+      "stage": "mega",
+      "attribute": "virus",
+      "type": "Cyborg",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab",
+        "dmc-ver1"
+      ],
+      "stats": {
+        "hp": 185,
+        "attack": 48,
+        "defense": 35,
+        "speed": 20,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Plasma Stake",
+      "effect": "electric",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "blitzgreymon",
+      "artStatus": "archived-digital-monster-color",
+      "referenceURL": null,
+      "verifiedFields": [],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": []
+    },
+    {
+      "id": "banchomamemon",
+      "name": "BanchoMamemon",
+      "nameSC": "番长豆豆兽",
+      "nameTC": "番長豆豆獸",
+      "nameJP": "バンチョーマメモン",
+      "stage": "mega",
+      "attribute": "data",
+      "type": "Mutant",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab",
+        "dmc-ver1"
+      ],
+      "stats": {
+        "hp": 185,
+        "attack": 48,
+        "defense": 35,
+        "speed": 20,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Golden Rush",
+      "effect": "bomb",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "banchomamemon",
+      "artStatus": "archived-digital-monster-color",
+      "referenceURL": null,
+      "verifiedFields": [],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": []
+    },
+    {
+      "id": "shinmonzaemon",
+      "name": "ShinMonzaemon",
+      "nameSC": "真熊仔兽",
+      "nameTC": "真熊仔獸",
+      "nameJP": "しんもんざえモン",
+      "stage": "mega",
+      "attribute": "vaccine",
+      "type": "Puppet",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab",
+        "dmc-ver1"
+      ],
+      "stats": {
+        "hp": 185,
+        "attack": 48,
+        "defense": 35,
+        "speed": 20,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Wonderful Heart",
+      "effect": "heart",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "shinmonzaemon",
+      "artStatus": "archived-digital-monster-color",
+      "referenceURL": null,
+      "verifiedFields": [],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": []
+    },
+    {
+      "id": "omegamon-alter-s",
+      "name": "Omegamon Alter-S",
+      "nameSC": "奥米加兽 Alter-S",
+      "nameTC": "奧米加獸 Alter-S",
+      "nameJP": "オメガモン Alter-S",
+      "stage": "ultra",
+      "attribute": "virus",
+      "type": "Holy Knight",
+      "family": [],
+      "generation": "initial-content",
+      "firstAppearance": null,
+      "devices": [
+        "ultimate-lab",
+        "dmc-ver1"
+      ],
+      "stats": {
+        "hp": 215,
+        "attack": 56,
+        "defense": 41,
+        "speed": 23,
+        "critical": 5,
+        "stamina": 100,
+        "dp": 10
+      },
+      "specialMove": "Garuru Sword",
+      "effect": "sword",
+      "rarity": "test-content",
+      "sleepHour": 21,
+      "wakeHour": 7,
+      "lifespanMinutes": 20160,
+      "spriteID": "omegamon-alter-s",
+      "artStatus": "archived-digital-monster-color",
+      "referenceURL": null,
+      "verifiedFields": [],
+      "balanceProvenance": "original-balance; all stats, sleep, lifespan and routes are game-designed; translations pending review",
+      "evolutions": []
     }
   ],
   "devices": [
+    {
+      "id": "dmc-ver1",
+      "name": "Digital Monster COLOR Ver.1",
+      "enabled": true,
+      "verifiedOriginal": true,
+      "mode": "original",
+      "notes": "以Ver.1说明书操作及社区实测数据实现彩色养成与8区顺序Quest；隐藏参数仍有待实体机复核。",
+      "hungerEveryMinutes": 48,
+      "strengthEveryMinutes": 48,
+      "wasteEveryMinutes": 120,
+      "careGraceMinutes": 10,
+      "freezeSupported": true,
+      "manualRestSupported": false,
+      "foods": [
+        "meat",
+        "protein"
+      ],
+      "eggs": [
+        "dmc-v1-egg"
+      ]
+    },
     {
       "enabled": true,
       "verifiedOriginal": false,
@@ -1303,6 +1712,14 @@
       "species": "botamon",
       "pattern": "stripes",
       "requiredRaised": 3
+    },
+    {
+      "id": "dmc-v1-egg",
+      "name": "Ver.1 数码蛋",
+      "hatchMinutes": 1,
+      "species": "botamon",
+      "pattern": "spots",
+      "requiredRaised": 0
     }
   ],
   "maps": [

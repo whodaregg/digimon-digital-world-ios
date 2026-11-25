@@ -19,12 +19,16 @@ public struct ContentDatabase: Codable, Sendable {
     public var eggs: [Egg]
     public var foods: [Food]
     public var maps: [TileMap]
+    public var dmcV1: DMCV1Rules?
 
     public static func bundled() throws -> Self {
         guard let url = Bundle.module.url(forResource: "database", withExtension: "json") else {
             throw GameError.invalidData("缺少 database.json")
         }
-        return try load(Data(contentsOf: url))
+        var database = try load(Data(contentsOf: url))
+        database.dmcV1 = try DMCV1Rules.bundled()
+        try database.dmcV1?.validate(database: database)
+        return database
     }
     public static func load(_ data: Data) throws -> Self {
         let content = try JSONDecoder().decode(Self.self, from: data)
@@ -106,6 +110,35 @@ public struct ContentDatabase: Codable, Sendable {
                   (1...999).contains(s.weight), (0...8).contains(s.waste),
                   s.wins >= 0, s.battles >= s.wins, s.mistakes >= 0,
                   s.training >= 0, s.trainingAttempts >= s.training else { throw GameError.invalidData("养成数据越界") }
+            if state.deviceID == DMCV1Engine.deviceID {
+                guard let c = pet.dmc, let rule = dmcV1?.roster[pet.speciesID], pet.eggID == "dmc-v1-egg",
+                      (0...4).contains(c.hungerHearts), (0...4).contains(c.strengthHearts),
+                      (0...7).contains(c.proteinOverdoses), (0...10).contains(c.meatBeyondFull),
+                      (0...99).contains(s.weight), (0...rule.maxDP).contains(s.dp),
+                      c.eggStartedAt.timeIntervalSince1970.isFinite, c.eggStartedAt <= state.highWatermark,
+                      [c.stageTrainings,c.stageMistakes,c.stageBattles,c.perfectBattleCount,c.megaBattleCount,
+                       c.overfeeds,c.sleepDisturbances,c.proteinCount,c.stageInjuries,c.dosesRemaining,
+                       c.hungerMinutes,c.strengthMinutes,c.wasteMinutes,c.emptyHungerMinutes,c.emptyStrengthMinutes,
+                       c.injuredMinutes,c.sleepMinutes].allSatisfy({ $0 >= 0 && $0 < Int.max/1000 }),
+                      [c.hungerCall,c.strengthCall,c.sleepCall,c.awakeUntil].compactMap({ $0 }).allSatisfy({ $0.timeIntervalSince1970.isFinite }),
+                      s.fullness == c.hungerHearts*25, s.strength == c.strengthHearts*25 else {
+                    throw GameError.invalidData("Ver.1 养成数据无效")
+                }
+            }
+        }
+        if state.deviceID == DMCV1Engine.deviceID {
+            guard let c = state.dmc, (0..<10).contains(c.trainingCycle),
+                  c.trainingChoices.count <= 5, c.trainingChoices.count == c.trainingHits.count,
+                  c.trainingChoices.allSatisfy({ ["A","B"].contains($0) }),
+                  c.clearedAreas == Set(1...8).intersection(c.clearedAreas),
+                  c.clearedAreas.isEmpty || c.clearedAreas == Set(1...(c.clearedAreas.max() ?? 1)),
+                  c.backgrounds.isSubset(of: ["grasslands","office","grid","dmc-logo","box-art","25th-anniversary"]),
+                  c.backgrounds.contains(c.selectedBackground),
+                  c.backupPetID == nil || state.pets.contains(where: { $0.id == c.backupPetID && $0.life == .frozen && $0.id != state.activePetID }),
+                  !state.pets.contains(where: { $0.id != state.activePetID && $0.life == .alive }),
+                  state.training == nil || (state.training?.petID == state.activePetID && c.trainingChoices.count < 5) else {
+                throw GameError.invalidData("Ver.1 设备进度无效")
+            }
         }
         guard state.inventory.values.allSatisfy({ $0 >= 0 && $0 <= 999999 }),
               maps.contains(where: { $0.id == state.adventure.mapID && $0.tile(x: state.adventure.x, y: state.adventure.y) != "#" }) else {

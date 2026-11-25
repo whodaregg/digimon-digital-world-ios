@@ -11,6 +11,7 @@ final class WorldViewModel: ObservableObject {
     @Published var lastBattle: BattleRecord?
     @Published var encounter: String?
     @Published var trainingScore: Int?
+    @Published var lastQuest: DMCQuestResult?
     private(set) var database: ContentDatabase?
     private var store: SaveStore?
     private var lastPersist = Date.distantPast
@@ -42,12 +43,17 @@ final class WorldViewModel: ObservableObject {
             }
             #if DEBUG
             if ProcessInfo.processInfo.arguments.contains("--ui-testing-hatched") {
-                var test = try DeviceRegistry.newGame(database: content, deviceID: "ultimate-lab", eggID: "founder",
+                var test = try DeviceRegistry.newGame(database: content, deviceID: "dmc-ver1", eggID: "dmc-v1-egg",
                                                       now: Date(), timeZone: TimeZone.current.identifier)
                 test.pets[0].isEgg = false; test.pets[0].speciesID = "agumon"
                 test.pets[0].evolutionHistory = ["botamon", "koromon", "agumon"]
                 test.dex["agumon"] = .raised
-                test.inventory["fruit"] = 2
+                test.pets[0].stats.weight = 20; test.pets[0].stats.dp = 20
+                test.pets[0].dmc!.hungerHearts = 3; test.pets[0].dmc!.strengthHearts = 4
+                test.pets[0].stats.fullness = 75; test.pets[0].stats.strength = 100
+                // Fixture time is daytime in the saved zone, independent of CI's wall clock.
+                test.homeTimeZone = "UTC"
+                test.pets[0].dmc!.awakeUntil = Date().addingTimeInterval(3600)
                 state = test
             }
             #endif
@@ -59,6 +65,24 @@ final class WorldViewModel: ObservableObject {
     var species: Species? { state.flatMap { try? database?.species($0.pet.speciesID) } }
     var exportURL: URL? { store?.primaryURL }
     var display: DisplayMode { state?.settings.display ?? .color }
+    var isOriginal: Bool { state?.deviceID == DMCV1Engine.deviceID }
+    var hatchRemainingSeconds: Int {
+        guard let care = state?.pet.dmc else { return 0 }
+        return max(0,Int(ceil(care.eggStartedAt.addingTimeInterval(8).timeIntervalSinceNow)))
+    }
+    var callMessage: String {
+        guard let p = state?.pet, let c = p.dmc else { return "没有呼叫" }
+        var calls: [String] = []
+        if c.hungerCall != nil { calls.append("空腹：请喂肉") }
+        if c.strengthCall != nil { calls.append("力量不足：请训练或喂蛋白质") }
+        if c.sleepCall != nil { calls.append("正在睡觉：请关灯") }
+        if p.stats.injured { calls.append("受伤：请治疗") }
+        return calls.isEmpty ? "目前没有养成呼叫" : calls.joined(separator: "\n")
+    }
+    var hasCall: Bool {
+        guard let p = state?.pet, let c = p.dmc else { return false }
+        return c.hungerCall != nil || c.strengthCall != nil || c.sleepCall != nil
+    }
     var hatchRemainingMinutes: Int {
         guard let game = state, let egg = try? database?.egg(game.pet.eggID) else { return 0 }
         return max(0,egg.hatchMinutes-game.pet.stageMinutes)
@@ -76,9 +100,9 @@ final class WorldViewModel: ObservableObject {
     func start(eggID: String) {
         guard let database, fatalError == nil else { return }
         do {
-            state = try DeviceRegistry.newGame(database: database, deviceID: "ultimate-lab", eggID: eggID,
+            state = try DeviceRegistry.newGame(database: database, deviceID: "dmc-ver1", eggID: "dmc-v1-egg",
                                                now: Date(), timeZone: TimeZone.current.identifier)
-            message = "孵化已开始 · 5 分钟后诞生"
+            message = "Ver.1 孵化已开始 · 8 秒后诞生"
             persist(); play("evolution")
         } catch { alert = error.localizedDescription }
     }
@@ -111,6 +135,44 @@ final class WorldViewModel: ObservableObject {
     func beginTraining() {
         trainingScore = nil
         command { game, _, now in try TrainingEngine.begin(&game, at: now) }
+    }
+    func originalTraining(_ choice: String) {
+        command { game, content, now in
+            trainingScore = try DMCV1Engine.train(&game,choice: choice,database: content,at: now)
+        }
+        play(trainingScore.map { $0 >= 3 ? "victory" : "sad" } ?? "attack")
+    }
+    func openCareCommand() {
+        guard isOriginal, state?.pet.isEgg == false, state?.pet.life == .alive else { return }
+        command { game, _, now in try DMCV1Engine.wake(&game,at: now) }
+    }
+    func quest(_ area: Int) {
+        lastQuest = nil
+        command { game, content, now in
+            lastQuest = try DMCV1Engine.quest(&game,areaID: area,database: content,at: now)
+        }
+        if let result = lastQuest {
+            message = result.cleared ? "\(result.area.name) 通关" : "挑战结束，下次从本区首战重新开始"
+            play(result.cleared ? "victory" : "hit")
+        }
+    }
+    func swapBackup() {
+        command { game, _, now in try DMCV1Engine.swapBackup(&game,at: now) }
+    }
+    func selectBackground(_ id: String) {
+        command { game, _, _ in
+            guard game.dmc?.backgrounds.contains(id) == true else { throw GameError.cannotAct("背景尚未解锁") }
+            game.dmc!.selectedBackground = id
+        }
+    }
+    func startOriginalProfile() {
+        guard let database, let current = state, !isOriginal else { return }
+        do {
+            var candidate = try DeviceRegistry.newGame(database: database,deviceID: "dmc-ver1",eggID: "dmc-v1-egg",now: Date(),timeZone: TimeZone.current.identifier)
+            candidate.settings = current.settings
+            restoreBackup(candidate)
+            message = "旧档已独立备份，开始 Ver.1 养成"
+        } catch { alert = error.localizedDescription }
     }
     func tapTraining() {
         command { game, _, now in

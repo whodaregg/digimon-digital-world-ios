@@ -9,6 +9,7 @@ public struct AdventureResult: Sendable {
 public enum AdventureEngine {
     public static func move(_ state: inout GameState, dx: Int, dy: Int,
                             database: ContentDatabase, at now: Date) throws -> AdventureResult {
+        guard state.deviceID != DMCV1Engine.deviceID else { throw GameError.cannotAct("Ver.1 通过 Quest 顺序闯关") }
         guard abs(dx) + abs(dy) == 1 else { throw GameError.cannotAct("每次移动一格") }
         guard state.pet.life == .alive, !state.pet.isEgg, !state.pet.sleeping,
               !state.pet.stats.sick, !state.pet.stats.injured, state.pet.stats.energy > 0,

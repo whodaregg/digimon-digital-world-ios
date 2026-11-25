@@ -177,6 +177,7 @@ public struct Pet: Codable, Equatable, Identifiable, Sendable {
     public var history: [JournalEvent] = []
     public var evolutionHistory: [String] = []
     public var personality = "Curious"
+    public var dmc: DMCCareState?
     public init(id: UUID = UUID(), speciesID: String, eggID: String) {
         self.id = id; self.speciesID = speciesID; self.eggID = eggID
     }
@@ -222,7 +223,7 @@ public struct BattleRecord: Codable, Equatable, Identifiable, Sendable {
 }
 
 public struct GameState: Codable, Equatable, Sendable {
-    public static let currentVersion = 2
+    public static let currentVersion = 3
     public var schemaVersion = Self.currentVersion
     public var databaseVersion: Int
     public var deviceID: String
@@ -241,6 +242,7 @@ public struct GameState: Codable, Equatable, Sendable {
     public var training: TrainingSession?
     public var battles: [BattleRecord] = []
     public var rng: UInt64 = 0xD1617A1
+    public var dmc: DMCDeviceState?
     public var activeIndex: Int { pets.firstIndex { $0.id == activePetID } ?? 0 }
     public var pet: Pet { pets[activeIndex] }
 

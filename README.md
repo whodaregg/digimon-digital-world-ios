@@ -1,48 +1,29 @@
 # DIGIMON · DIGITAL WORLD
 
-原生 iOS 17 像素电子宠物工程。SwiftUI 界面、SpriteKit 最近邻像素渲染，以及可以脱离 Apple 框架编译测试的 Swift 游戏核心。无需联网、账号或在线 AI 服务。
+原生 iOS 17 像素电子宠物工程，使用 SwiftUI、SpriteKit 与独立 Swift 游戏核心。**v0.3 默认以 Digital Monster COLOR Ver.1 为基准：彩色养成＋8区顺序闯关。** 角色采用原版彩色像素归档图集，设置可自由切换复古彩色、高级彩色和经典灰绿色 LCD，并保存选择。
 
-**当前为 v0.2 开发版本，不是需求中全部十个阶段的最终成品。** 可游玩内容采用明确标注的原创融合规则；不宣称复刻了未经核实的实体机规则。角色像素采用 Digital Monster COLOR 资料图集，原创游戏数值仍单独标注。新游戏默认彩色，可在设置中随时切换复古彩色、高级彩色和经典灰绿色 LCD；旧存档保留已有显示选择。
-
-## 模拟器实测截图
-
-以下为 v0.1 原生测试截图；v0.2 更换原版彩色角色并默认彩色，新版截图随验证结果更新。
-
-<p>
-<img src="Documentation/Screenshots/hatching.png" width="220" alt="LCD 数码蛋孵化状态">
-<img src="Documentation/Screenshots/adventure.png" width="220" alt="原创信号花园探索地图">
-<img src="Documentation/Screenshots/settings.png" width="220" alt="显示、声音与提醒设置">
-</p>
+目前是开发版本，未完成最初需求中的全部阶段。操作依据官方说明书，隐藏数值参考社区实测；资料分歧和待验证部分见 [规则出处](Documentation/RULE_SOURCES.md)。
 
 ## 在 Xcode 运行
 
-1. 使用 GitHub 的 **Code → Open with Xcode** 或克隆本仓库。
-2. 用 Xcode 16 或更新版本打开 `DigitalWorld.xcodeproj`，选择 **DigitalWorld** scheme。
-3. 选择 iPhone 或 iPad 模拟器，按 **Run**。Swift Package 是仓库内的本地依赖，不需要下载第三方库。
-4. 在欢迎页选择「孵化这枚数码蛋」。5 分钟真实时间后出生；关闭应用再打开也会结算。
+1. 克隆仓库，用 Xcode 16 或更新版本打开 `DigitalWorld.xcodeproj`。
+2. 选择 **DigitalWorld** scheme 和 iPhone/iPad 模拟器，按 **Run**。
+3. 在欢迎页孵化 Ver.1 数码蛋，约8秒后诞生。应用关闭后再打开会结算离线时间。
 
-真机运行：在应用 target 的 **Signing & Capabilities** 中选择自己的开发团队，改为自己的唯一 Bundle ID，然后选择已连接的 iPhone。仓库不包含签名证书、描述文件或已签名 IPA。
+Swift Package 位于仓库内，无第三方库依赖。真机需在 Signing & Capabilities 选择自己的开发团队和唯一 Bundle ID；仓库不包含签名证书或已签名 IPA。
 
-## 目前能玩什么
+## 当前玩法
 
-- 孵化 → 喂食 → 互动时机训练 → 分支进化 → 离线 PVE → 原创地图探索 → 死亡与重生。
-- 饱食、力量、幸福、能量、体重、年龄、健康、体力、DP、训练表现、战绩、失误、疾病、伤势、亲密度和忠诚度记录。
-- 自然睡眠、关灯、手动休息、冷冻成长，以及生病、清洁与治疗。
-- 8 个角色、7 种食物、2 枚蛋（其中 1 枚有解锁要求）、原创「信号花园」地图及数据碎片任务。
-- 图鉴搜索和属性/阶段筛选，可平移缩放的进化分支图，角色资料与规则条件说明。
-- 三种显示模式、A/B/C 虚拟按键、触屏快捷操作、基础电子按键音与触觉反馈。
-- 原子本地自动存档、上一版有效备份、损坏检查与备份恢复、v1→v2 升级、系统分享导出与验证后的备份导入。
-- 经过用户授权的基础本地提醒与安静时段。
+- 四颗饱食心、四颗力量心、努力、年龄、体重、DP与通算胜率。
+- 肉和蛋白质；A上段/B下段五次攻击训练，命中至少三次成功；完整失败训练也计入努力与进化条件。
+- 按角色作息睡眠、关灯、睡眠打扰、Cold暂停成长、一只伙伴备份交换、清洁和多次治疗。
+- 照顾失误、训练、满腹、睡眠打扰与战绩决定进化；包含Ver.1的17种养成角色。
+- Quest按AREA 1～7、F顺序解锁；每区固定3～5个敌人，连续战斗，先命中三次获胜。失败需从本区首战重来，每次整区消耗1DP、减重6g。
+- Alter-S作为最终区敌人收录；通信和联展尚未开放。
+- 原版角色像素、三种显示模式、可解锁的重绘背景主题、A/B/C按键与触屏快捷操作。
+- 图鉴、中文规则说明、成长日志、本地自动存档与损坏恢复、v1/v2旧档兼容、验证后的文件导入与导出。
 
-完整范围与限制见 [阶段状态](Documentation/STATUS.md)，实测记录见 [验证结果](Documentation/VALIDATION.md)，真机工作见 [验收清单](Documentation/DEVICE_CHECKLIST.md)。
-
-## 时间与养成
-
-养成不是自动挂机升级。训练需要实际的三次时机输入；进化条件综合成长时间、照顾失误、训练、体重、战绩、健康、亲密度与道具。当前所有阈值均为**本游戏原创平衡参数**。
-
-时间引擎以保存的分钟游标进行确定性结算，保留不足一分钟的余量。每次操作、回到前台及前台定时刷新时都会结算；不依赖应用在后台永久运行。存档建立时固定养成时区，旅行不会重写作息；夏令时按这个时区的当地小时处理。时间倒退会阻止获得额外成长与执行养成操作；离线本地存档不能可靠防止所有改时作弊，在线竞技仍须服务端校验。
-
-照顾不周会使伙伴生病、改变分支甚至死亡。可以在「睡眠」或「档案」中冷冻伙伴，暂停成长。
+原味界面已移除平面上下左右探索。旧版实验存档继续按旧规则读取，可在设置中“备份旧档并开始 Ver.1”；切换前会另存完整旧档，显示设置会保留。
 
 ## 验证
 
@@ -54,34 +35,30 @@ python3 Scripts/generate_project.py
 git diff --exit-code
 ```
 
-在 macOS / Xcode 环境验证原生应用：
+macOS原生验证：
 
 ```sh
 xcodebuild test -project DigitalWorld.xcodeproj -scheme DigitalWorld \
-  -destination 'platform=iOS Simulator,name=iPhone 16' \
-  CODE_SIGNING_ALLOWED=NO
+  -destination 'platform=iOS Simulator,name=iPhone 16' CODE_SIGNING_ALLOWED=NO
 ```
 
-用 `xcrun simctl list devices available` 查找自己安装的模拟器名称并替换。GitHub Actions 会自动选择可用 iPhone 模拟器，运行核心测试、原生 UI 测试及 Release 构建，保存测试结果包和截图附件。测试状态以 [Actions](https://github.com/whodaregg/digimon-digital-world-ios/actions) 的实际结果为准。
+模拟器名称按 `xcrun simctl list devices available` 调整。GitHub Actions执行核心、原生界面与Release构建检查，实际状态见 [Actions](https://github.com/whodaregg/digimon-digital-world-ios/actions)；已完成验证见 [实测记录](Documentation/VALIDATION.md)。
 
-## 结构
+## 工程与资料
 
-| 位置 | 职责 |
+| 目录 | 内容 |
 | --- | --- |
-| `Sources/DigitalWorldCore` | 不依赖 UI 的养成、时间、进化、训练、战斗、探索与存档 |
-| `Sources/DigitalWorldCore/Resources` | 独立版本化 JSON 数据与 PNG 动画图集 |
-| `iOS/App`, `ViewModels`, `Views` | SwiftUI 应用与 MVVM 状态协调 |
-| `iOS/PixelRenderer` | SpriteKit 动画，nearest filtering |
-| `iOS/AudioSystem`, `NotificationSystem` | 原生声音、触觉、本地通知 |
-| `Tests/DigitalWorldCoreTests` | 注入时钟的确定性单元测试 |
-| `iOSUITests` | 模拟器上的交互与截图检查 |
-| `Scripts` | 无第三方依赖的内容、素材与工程生成 |
-| `Documentation` | 架构、数据来源、阶段缺口和真机验收 |
+| `Sources/DigitalWorldCore/DeviceRules` | Ver.1独立规则、时间/养成/训练/Quest与数据模型 |
+| `Sources/DigitalWorldCore/Resources` | 版本化内容、规则JSON、原始角色PNG及出处哈希 |
+| `Sources/DigitalWorldCore` 其余目录 | 旧规则兼容、公共模型、存档、素材读取 |
+| `iOS` | SwiftUI界面、SpriteKit像素显示、声音、触觉、本地通知 |
+| `Tests`, `iOSUITests` | 确定性核心测试与模拟器交互测试 |
+| `Scripts` | 内容、素材校验与Xcode工程生成 |
 
-新增角色只需要扩充 JSON、PNG 和动画配置；添加已经受支持的条件组合无需修改进化引擎。新增特殊进化机制需先扩展规则 schema 和测试，不能仅靠写一个角色名字自动获得完整机制。
+- [中文更新记录](CHANGELOG.md)
+- [规则出处与分歧](Documentation/RULE_SOURCES.md)
+- [角色像素出处](Documentation/SPRITE_CREDITS.md)
+- [范围与未完成功能](Documentation/STATUS.md)
+- [真机验收清单](Documentation/DEVICE_CHECKLIST.md)
 
-## 资料与素材
-
-这是非官方开发工程。8 个角色已由测试自绘图替换为 Digital Monster COLOR 的彩色像素归档图集，直接保存上游 PNG 原始字节，不重绘、不改色、不生成替代角色。图集来源、固定版本和 SHA-256 见 [素材出处](Documentation/SPRITE_CREDITS.md)。本项目尚未取得官方发行授权；像素图集归档来源不等于发行许可。
-
-资料核验与未核实字段见 [数据来源](Documentation/SOURCES.md)。
+这是非官方开发工程。角色PNG保留归档原始字节，没有用自绘或生成角色冒充原版。原始素材与权利状态详见出处文档，归档来源不等于官方发行授权。

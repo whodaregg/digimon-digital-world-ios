@@ -973,6 +973,1202 @@
         "injured",
         "defeat"
       ]
+    },
+    "devimon": {
+      "tileSize": 64,
+      "columns": 13,
+      "rows": 1,
+      "animations": {
+        "idle": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "walk": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "happy": {
+          "frameIndices": [
+            0,
+            4,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "sad": {
+          "frameIndices": [
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "hungry": {
+          "frameIndices": [
+            2,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "eat": {
+          "frameIndices": [
+            5,
+            10
+          ],
+          "frameSeconds": 0.28
+        },
+        "sleep": {
+          "frameIndices": [
+            6,
+            11
+          ],
+          "frameSeconds": 0.55
+        },
+        "training": {
+          "frameIndices": [
+            0,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "attack": {
+          "frameIndices": [
+            12,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "special": {
+          "frameIndices": [
+            12,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "hit": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "injured": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "victory": {
+          "frameIndices": [
+            4,
+            0,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "defeat": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "evolution": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        }
+      },
+      "fallbackActions": [
+        "sad",
+        "hungry"
+      ]
+    },
+    "meramon": {
+      "tileSize": 64,
+      "columns": 12,
+      "rows": 1,
+      "animations": {
+        "idle": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "walk": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "happy": {
+          "frameIndices": [
+            0,
+            4,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "sad": {
+          "frameIndices": [
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "hungry": {
+          "frameIndices": [
+            2,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "eat": {
+          "frameIndices": [
+            10,
+            10
+          ],
+          "frameSeconds": 0.28
+        },
+        "sleep": {
+          "frameIndices": [
+            6,
+            11
+          ],
+          "frameSeconds": 0.55
+        },
+        "training": {
+          "frameIndices": [
+            0,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "attack": {
+          "frameIndices": [
+            2,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "special": {
+          "frameIndices": [
+            2,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "hit": {
+          "frameIndices": [
+            3,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "injured": {
+          "frameIndices": [
+            3,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "victory": {
+          "frameIndices": [
+            4,
+            0,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "defeat": {
+          "frameIndices": [
+            3,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "evolution": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        }
+      },
+      "fallbackActions": [
+        "sad",
+        "hungry",
+        "eat",
+        "attack",
+        "special",
+        "hit",
+        "injured",
+        "defeat"
+      ]
+    },
+    "airdramon": {
+      "tileSize": 64,
+      "columns": 12,
+      "rows": 1,
+      "animations": {
+        "idle": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "walk": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "happy": {
+          "frameIndices": [
+            0,
+            4,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "sad": {
+          "frameIndices": [
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "hungry": {
+          "frameIndices": [
+            2,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "eat": {
+          "frameIndices": [
+            10,
+            10
+          ],
+          "frameSeconds": 0.28
+        },
+        "sleep": {
+          "frameIndices": [
+            6,
+            11
+          ],
+          "frameSeconds": 0.55
+        },
+        "training": {
+          "frameIndices": [
+            0,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "attack": {
+          "frameIndices": [
+            2,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "special": {
+          "frameIndices": [
+            2,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "hit": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "injured": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "victory": {
+          "frameIndices": [
+            4,
+            0,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "defeat": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "evolution": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        }
+      },
+      "fallbackActions": [
+        "sad",
+        "hungry",
+        "eat",
+        "attack",
+        "special"
+      ]
+    },
+    "seadramon": {
+      "tileSize": 64,
+      "columns": 12,
+      "rows": 1,
+      "animations": {
+        "idle": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "walk": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "happy": {
+          "frameIndices": [
+            0,
+            4,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "sad": {
+          "frameIndices": [
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "hungry": {
+          "frameIndices": [
+            2,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "eat": {
+          "frameIndices": [
+            10,
+            10
+          ],
+          "frameSeconds": 0.28
+        },
+        "sleep": {
+          "frameIndices": [
+            6,
+            11
+          ],
+          "frameSeconds": 0.55
+        },
+        "training": {
+          "frameIndices": [
+            0,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "attack": {
+          "frameIndices": [
+            2,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "special": {
+          "frameIndices": [
+            2,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "hit": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "injured": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "victory": {
+          "frameIndices": [
+            4,
+            0,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "defeat": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "evolution": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        }
+      },
+      "fallbackActions": [
+        "sad",
+        "hungry",
+        "eat",
+        "attack",
+        "special"
+      ]
+    },
+    "mamemon": {
+      "tileSize": 64,
+      "columns": 13,
+      "rows": 1,
+      "animations": {
+        "idle": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "walk": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "happy": {
+          "frameIndices": [
+            0,
+            4,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "sad": {
+          "frameIndices": [
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "hungry": {
+          "frameIndices": [
+            2,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "eat": {
+          "frameIndices": [
+            5,
+            10
+          ],
+          "frameSeconds": 0.28
+        },
+        "sleep": {
+          "frameIndices": [
+            0,
+            0
+          ],
+          "frameSeconds": 0.55
+        },
+        "training": {
+          "frameIndices": [
+            0,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "attack": {
+          "frameIndices": [
+            12,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "special": {
+          "frameIndices": [
+            12,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "hit": {
+          "frameIndices": [
+            3,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "injured": {
+          "frameIndices": [
+            3,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "victory": {
+          "frameIndices": [
+            4,
+            0,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "defeat": {
+          "frameIndices": [
+            3,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "evolution": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        }
+      },
+      "fallbackActions": [
+        "sad",
+        "hungry",
+        "sleep",
+        "hit",
+        "injured",
+        "defeat"
+      ]
+    },
+    "monzaemon": {
+      "tileSize": 64,
+      "columns": 13,
+      "rows": 1,
+      "animations": {
+        "idle": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "walk": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "happy": {
+          "frameIndices": [
+            0,
+            4,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "sad": {
+          "frameIndices": [
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "hungry": {
+          "frameIndices": [
+            2,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "eat": {
+          "frameIndices": [
+            5,
+            10
+          ],
+          "frameSeconds": 0.28
+        },
+        "sleep": {
+          "frameIndices": [
+            6,
+            11
+          ],
+          "frameSeconds": 0.55
+        },
+        "training": {
+          "frameIndices": [
+            0,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "attack": {
+          "frameIndices": [
+            12,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "special": {
+          "frameIndices": [
+            12,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "hit": {
+          "frameIndices": [
+            3,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "injured": {
+          "frameIndices": [
+            3,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "victory": {
+          "frameIndices": [
+            4,
+            0,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "defeat": {
+          "frameIndices": [
+            3,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "evolution": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        }
+      },
+      "fallbackActions": [
+        "sad",
+        "hungry",
+        "hit",
+        "injured",
+        "defeat"
+      ]
+    },
+    "blitzgreymon": {
+      "tileSize": 64,
+      "columns": 13,
+      "rows": 1,
+      "animations": {
+        "idle": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "walk": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "happy": {
+          "frameIndices": [
+            0,
+            4,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "sad": {
+          "frameIndices": [
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "hungry": {
+          "frameIndices": [
+            2,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "eat": {
+          "frameIndices": [
+            5,
+            10
+          ],
+          "frameSeconds": 0.28
+        },
+        "sleep": {
+          "frameIndices": [
+            6,
+            0
+          ],
+          "frameSeconds": 0.55
+        },
+        "training": {
+          "frameIndices": [
+            0,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "attack": {
+          "frameIndices": [
+            12,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "special": {
+          "frameIndices": [
+            12,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "hit": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "injured": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "victory": {
+          "frameIndices": [
+            4,
+            0,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "defeat": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "evolution": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        }
+      },
+      "fallbackActions": [
+        "sad",
+        "hungry",
+        "sleep"
+      ]
+    },
+    "banchomamemon": {
+      "tileSize": 64,
+      "columns": 13,
+      "rows": 1,
+      "animations": {
+        "idle": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "walk": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "happy": {
+          "frameIndices": [
+            0,
+            4,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "sad": {
+          "frameIndices": [
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "hungry": {
+          "frameIndices": [
+            2,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "eat": {
+          "frameIndices": [
+            5,
+            10
+          ],
+          "frameSeconds": 0.28
+        },
+        "sleep": {
+          "frameIndices": [
+            6,
+            0
+          ],
+          "frameSeconds": 0.55
+        },
+        "training": {
+          "frameIndices": [
+            0,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "attack": {
+          "frameIndices": [
+            12,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "special": {
+          "frameIndices": [
+            12,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "hit": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "injured": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "victory": {
+          "frameIndices": [
+            4,
+            0,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "defeat": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "evolution": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        }
+      },
+      "fallbackActions": [
+        "sad",
+        "hungry",
+        "sleep"
+      ]
+    },
+    "shinmonzaemon": {
+      "tileSize": 64,
+      "columns": 12,
+      "rows": 1,
+      "animations": {
+        "idle": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "walk": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "happy": {
+          "frameIndices": [
+            0,
+            4,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "sad": {
+          "frameIndices": [
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "hungry": {
+          "frameIndices": [
+            2,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "eat": {
+          "frameIndices": [
+            5,
+            10
+          ],
+          "frameSeconds": 0.28
+        },
+        "sleep": {
+          "frameIndices": [
+            6,
+            11
+          ],
+          "frameSeconds": 0.55
+        },
+        "training": {
+          "frameIndices": [
+            0,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "attack": {
+          "frameIndices": [
+            2,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "special": {
+          "frameIndices": [
+            2,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "hit": {
+          "frameIndices": [
+            3,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "injured": {
+          "frameIndices": [
+            3,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "victory": {
+          "frameIndices": [
+            4,
+            0,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "defeat": {
+          "frameIndices": [
+            3,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "evolution": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        }
+      },
+      "fallbackActions": [
+        "sad",
+        "hungry",
+        "attack",
+        "special",
+        "hit",
+        "injured",
+        "defeat"
+      ]
+    },
+    "omegamon-alter-s": {
+      "tileSize": 64,
+      "columns": 13,
+      "rows": 1,
+      "animations": {
+        "idle": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "walk": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        },
+        "happy": {
+          "frameIndices": [
+            0,
+            4,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "sad": {
+          "frameIndices": [
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "hungry": {
+          "frameIndices": [
+            2,
+            3
+          ],
+          "frameSeconds": 0.28
+        },
+        "eat": {
+          "frameIndices": [
+            5,
+            10
+          ],
+          "frameSeconds": 0.28
+        },
+        "sleep": {
+          "frameIndices": [
+            6,
+            11
+          ],
+          "frameSeconds": 0.55
+        },
+        "training": {
+          "frameIndices": [
+            0,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "attack": {
+          "frameIndices": [
+            12,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "special": {
+          "frameIndices": [
+            12,
+            2
+          ],
+          "frameSeconds": 0.28
+        },
+        "hit": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "injured": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "victory": {
+          "frameIndices": [
+            4,
+            0,
+            4
+          ],
+          "frameSeconds": 0.28
+        },
+        "defeat": {
+          "frameIndices": [
+            3,
+            9
+          ],
+          "frameSeconds": 0.28
+        },
+        "evolution": {
+          "frameIndices": [
+            0,
+            1
+          ],
+          "frameSeconds": 0.28
+        }
+      },
+      "fallbackActions": [
+        "sad",
+        "hungry"
+      ]
     }
   }
 }

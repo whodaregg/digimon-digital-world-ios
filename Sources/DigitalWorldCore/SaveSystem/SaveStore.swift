@@ -42,9 +42,9 @@ public struct SaveStore: Sendable {
         guard version >= 1 else { throw GameError.saveCorrupt }
         // v1 -> v2: the fixed tick cursor becomes the initial wall-clock watermark.
         if version == 1 {
-            object["schemaVersion"] = 2
             object["highWatermark"] = object["highWatermark"] ?? object["lastTick"]
         }
+        if version <= 2 { object["schemaVersion"] = GameState.currentVersion }
         let migratedData = try JSONSerialization.data(withJSONObject: object, options: [.sortedKeys])
         var state = try JSONDecoder().decode(GameState.self, from: migratedData)
         try database.validateSave(state)

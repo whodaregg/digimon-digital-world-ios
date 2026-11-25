@@ -17,10 +17,10 @@ final class CoreTests: XCTestCase {
     func testDatabaseReferencesAndArchivedColorSheets() throws {
         let content = try db()
         try content.validate()
-        XCTAssertEqual(content.species.count, 8)
+        XCTAssertEqual(content.species.count, 18)
         let manifest = try SpriteLibrary.manifest()
         XCTAssertEqual(manifest.schemaVersion, 2)
-        XCTAssertEqual(manifest.sprites.count, 8)
+        XCTAssertEqual(manifest.sprites.count, 18)
         XCTAssertEqual(manifest.artStatus, "archived-digital-monster-color")
         for s in content.species {
             let sheet = try XCTUnwrap(manifest.sprites[s.spriteID])
@@ -57,7 +57,7 @@ final class CoreTests: XCTestCase {
     }
     func testOriginalModeCannotMasqueradeAsVerified() throws {
         XCTAssertThrowsError(try DeviceRegistry.newGame(database: db(), deviceID: "dm1", eggID: "founder", now: noon))
-        var content = try db(); content.devices[1].enabled = true
+        var content = try db(); let index = try XCTUnwrap(content.devices.firstIndex { $0.id == "dm1" }); content.devices[index].enabled = true
         XCTAssertThrowsError(try content.validate())
     }
     func testEggDoesNotHatchEarly() throws {
@@ -289,7 +289,7 @@ final class CoreTests: XCTestCase {
             return try JSONSerialization.data(withJSONObject: e)
         }
         let migrated = try store.decode(versioned(1))
-        XCTAssertTrue(migrated.migrated); XCTAssertEqual(migrated.state.schemaVersion, 2)
+        XCTAssertTrue(migrated.migrated); XCTAssertEqual(migrated.state.schemaVersion, GameState.currentVersion)
         XCTAssertEqual(migrated.state.highWatermark, migrated.state.lastTick)
         XCTAssertThrowsError(try store.decode(versioned(99))) { XCTAssertEqual($0 as? GameError, .futureSave(99)) }
     }

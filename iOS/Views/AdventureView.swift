@@ -1,91 +1,57 @@
 import SwiftUI
 import DigitalWorldCore
 
+/// Ver.1 has an ordered quest ladder, never a free directional map.
 struct AdventureView: View {
     @ObservedObject var model: WorldViewModel
     var body: some View {
-        if let game = model.state, let map = model.database?.maps.first(where: { $0.id == game.adventure.mapID }) {
-            Panel(title: "WORLD / \(map.name)") {
-                HStack {
-                    Text("收集 3 枚数据碎片").font(.headline)
-                    Spacer()
-                    Text("\(game.adventure.collected.count) / \(map.questTarget)").font(.system(.headline,design: .monospaced)).foregroundStyle(Palette.amber)
-                }
-                Text(game.adventure.questComplete ? "任务已完成 · 进化芯片已加入背包" : "沿着小径探索，打开三个宝箱。草地每移动 7 步有机会发现野生伙伴。")
+        if model.isOriginal, let game = model.state, let rules = model.database?.dmcV1 {
+            Panel(title: "QUEST / 顺序闯关") {
+                Text("按区域顺序挑战")
+                    .font(.title3.bold()).accessibilityIdentifier("questHeading")
+                Text("每区固定连续战斗；先命中3次获胜。全胜解锁下一区，落败后需从本区首战重来。每次整区挑战消耗1 DP、减重6g。")
                     .font(.footnote).foregroundStyle(Palette.muted)
-                Canvas { context,size in
-                    let tile = size.width / CGFloat(map.rows[0].count)
-                    func rect(_ x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat,_ color: Color) {
-                        context.fill(Path(CGRect(x: x,y: y,width: w,height: h)),with: .color(color))
-                    }
-                    for y in map.rows.indices {
-                        for x in 0..<map.rows[y].count {
-                            let value = map.tile(x: x,y: y), xx = CGFloat(x)*tile, yy = CGFloat(y)*tile
-                            rect(xx,yy,tile,tile,Color(red: 0.21,green: 0.34,blue: 0.25))
-                            if value == "#" {
-                                rect(xx+tile*0.1,yy+tile*0.2,tile*0.8,tile*0.7,Color(red: 0.1,green: 0.21,blue: 0.17))
-                                rect(xx+tile*0.25,yy+tile*0.05,tile*0.5,tile*0.9,Color(red: 0.1,green: 0.21,blue: 0.17))
-                                rect(xx+tile*0.3,yy+tile*0.18,tile*0.25,tile*0.2,Color(red: 0.17,green: 0.29,blue: 0.2))
-                            } else if value == "~" {
-                                rect(xx,yy,tile,tile,Color(red: 0.18,green: 0.39,blue: 0.48))
-                                rect(xx+tile*0.2,yy+tile*0.3,tile*0.5,tile*0.08,Palette.mint.opacity(0.3))
-                            } else if value == "C" {
-                                let collected = game.adventure.collected.contains("\(map.id):\(x):\(y)")
-                                rect(xx+tile*0.15,yy+tile*0.25,tile*0.7,tile*0.55,collected ? Palette.muted : Palette.amber)
-                                rect(xx+tile*0.1,yy+tile*0.5,tile*0.8,tile*0.1,Palette.background)
-                                rect(xx+tile*0.45,yy+tile*0.45,tile*0.15,tile*0.25,Palette.background)
-                            } else if (x+y)%3 == 0 {
-                                rect(xx+tile*0.3,yy+tile*0.7,tile*0.1,tile*0.16,Palette.mint.opacity(0.3))
-                                rect(xx+tile*0.7,yy+tile*0.4,tile*0.1,tile*0.16,Palette.mint.opacity(0.3))
+                HStack {
+                    SpriteThumbnail(id: game.pet.speciesID,size: 64)
+                    Spacer()
+                    Readout(name: "DP",value: "\(game.pet.stats.dp)")
+                }
+                ForEach(rules.areas) { area in
+                    let unlocked = area.id == 1 || game.dmc!.clearedAreas.contains(area.id-1)
+                    let cleared = game.dmc!.clearedAreas.contains(area.id)
+                    VStack(alignment: .leading,spacing: 12) {
+                        HStack {
+                            Image(systemName: cleared ? "checkmark.circle.fill" : unlocked ? "circle" : "lock.fill")
+                                .foregroundStyle(unlocked ? Palette.mint : Palette.muted)
+                            Text(area.name).font(.system(.headline,design: .monospaced))
+                            Spacer()
+                            Text(cleared ? "已通关" : unlocked ? "可挑战" : "未解锁").font(.caption)
+                        }
+                        HStack(spacing: 0) {
+                            ForEach(Array(area.opponents.enumerated()),id: \.offset) { index,enemy in
+                                VStack(spacing: 4) {
+                                    SpriteThumbnail(id: enemy.speciesID,size: 44)
+                                    Text(index == area.opponents.count-1 ? "BOSS" : "\(index+1)")
+                                        .font(.system(size: 9,design: .monospaced)).foregroundStyle(Palette.muted)
+                                }.frame(maxWidth: .infinity)
+                                if index < area.opponents.count-1 { Image(systemName: "chevron.right").font(.system(size: 8)).foregroundStyle(Palette.muted) }
                             }
                         }
-                    }
-                }.aspectRatio(CGFloat(map.rows[0].count)/CGFloat(map.rows.count),contentMode: .fit)
-                    .overlay(alignment: .topLeading) {
-                        GeometryReader { proxy in
-                            let tile = proxy.size.width / CGFloat(map.rows[0].count)
-                            SpriteThumbnail(id: game.pet.speciesID,size: tile*1.5)
-                                .position(x: (CGFloat(game.adventure.x)+0.5)*tile,y: (CGFloat(game.adventure.y)+0.5)*tile)
-                        }.allowsHitTesting(false)
-                    }
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .accessibilityLabel("信号花园，当前位置横坐标 \(game.adventure.x)，纵坐标 \(game.adventure.y)")
-                Text(model.message).font(.caption).foregroundStyle(Palette.amber).frame(minHeight: 30)
-                HStack {
-                    VStack(alignment: .leading,spacing: 8) {
-                        SpriteThumbnail(id: game.pet.speciesID,size: 64)
-                        Text(model.species?.name ?? "").font(.caption)
-                        Text("ENERGY \(game.pet.stats.energy)").font(.system(.caption2,design: .monospaced)).foregroundStyle(Palette.muted)
-                    }
-                    Spacer()
-                    VStack(spacing: 5) {
-                        direction("arrow.up",dx: 0,dy: -1)
-                        HStack(spacing: 5) {
-                            direction("arrow.left",dx: -1,dy: 0)
-                            Image(systemName: "circle.fill").foregroundStyle(Palette.line).frame(width: 44,height: 44)
-                            direction("arrow.right",dx: 1,dy: 0)
-                        }
-                        direction("arrow.down",dx: 0,dy: 1)
-                    }
+                        GameButton(title: unlocked ? "挑战 \(area.name)" : "先完成前一区域") { model.quest(area.id) }
+                            .disabled(!unlocked || game.pet.isEgg || game.pet.life != .alive)
+                            .accessibilityIdentifier("quest-area-\(area.id)")
+                    }.padding(.vertical,10)
+                    Divider().overlay(Palette.line)
                 }
-                if let encounter = model.encounter {
-                    HStack {
-                        Text("发现 \(encounter)").font(.subheadline)
-                        Spacer()
-                        Button("挑战") { model.fight(encounter); model.encounter = nil }.buttonStyle(.bordered)
-                        Button("离开") { model.encounter = nil }
-                    }
-                    if let battle = model.lastBattle {
-                        Text(battle.won ? "最近战斗胜利" : "最近战斗败北，请检查伤势").font(.caption).foregroundStyle(Palette.amber)
-                    }
-                }
+                Text("通信对战与联展尚未开放。奥米加兽 Alter-S 现为最终区敌人。")
+                    .font(.caption).foregroundStyle(Palette.muted)
+            }
+        } else {
+            Panel(title: "旧版养成档案") {
+                Text("此存档采用早期实验规则。开始 Ver.1 后即可按实体机形式养成和顺序闯关，当前档案会另存备份。")
+                    .font(.subheadline)
+                GameButton(title: "备份旧档并开始 Ver.1") { model.startOriginalProfile() }
             }
         }
-    }
-    private func direction(_ symbol: String,dx: Int,dy: Int) -> some View {
-        Button { model.move(dx: dx,dy: dy) } label: {
-            Image(systemName: symbol).font(.system(size: 17,weight: .bold)).frame(width: 44,height: 44)
-                .background(Palette.line,in: RoundedRectangle(cornerRadius: 8))
-        }.buttonStyle(.plain).foregroundStyle(Palette.mint).accessibilityLabel("移动 \(symbol)")
     }
 }

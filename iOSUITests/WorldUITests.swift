@@ -12,6 +12,10 @@ final class WorldUITests: XCTestCase {
         let b = app.buttons["hardware-B"]
         if !b.isHittable { app.swipeUp() }
         b.tap()
+        XCTAssertTrue(app.navigationBars["时钟"].waitForExistence(timeout: 5))
+        app.navigationBars.buttons["完成"].tap()
+        app.buttons["hardware-A"].tap()
+        b.tap()
         XCTAssertTrue(app.navigationBars["伙伴状态"].waitForExistence(timeout: 5))
         attachScreenshot("hatching-status")
     }
@@ -26,10 +30,9 @@ final class WorldUITests: XCTestCase {
         app.navigationBars.buttons["完成"].tap()
         app.buttons["action-TRAIN"].tap()
         app.buttons["beginTraining"].tap()
-        XCTAssertTrue(app.buttons["trainingTap"].waitForExistence(timeout: 5))
-        app.buttons["trainingTap"].tap()
-        // Wait on UI interaction rather than asserting a timing-sensitive training score.
-        app.buttons["结束本次训练"].tap()
+        XCTAssertTrue(app.buttons["training-B"].waitForExistence(timeout: 5))
+        for key in ["B","B","B","A","A"] { app.buttons["training-"+key].tap() }
+        XCTAssertTrue(app.staticTexts["命中 5 / 5 · 成功，力量＋1心"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.buttons["beginTraining"].exists)
         app.navigationBars.buttons["完成"].tap()
         if !app.buttons["action-SETTINGS"].isHittable { app.swipeUp() }
@@ -37,14 +40,27 @@ final class WorldUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["DISPLAY / 像素显示"].waitForExistence(timeout: 5))
         attachScreenshot("settings")
     }
-    func testAdventureAndDigidex() throws {
+    func testSequentialQuestAndDigidex() throws {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing","--ui-testing-hatched"]
         app.launch()
-        XCTAssertTrue(app.buttons["action-ADVENTURE"].waitForExistence(timeout: 10))
-        app.buttons["action-ADVENTURE"].tap()
-        XCTAssertTrue(app.staticTexts["收集 3 枚数据碎片"].waitForExistence(timeout: 5))
-        attachScreenshot("signal-garden")
+        XCTAssertTrue(app.buttons["action-BATTLE"].waitForExistence(timeout: 10))
+        app.buttons["action-BATTLE"].tap()
+        XCTAssertTrue(app.staticTexts["按区域顺序挑战"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["quest-area-1"].isEnabled)
+        XCTAssertFalse(app.buttons["quest-area-2"].isEnabled)
+        XCTAssertFalse(app.buttons["移动 arrow.up"].exists)
+        attachScreenshot("ver1-quest-areas")
+        app.buttons["quest-area-1"].tap()
+        XCTAssertTrue(app.staticTexts["第 1 / 3 战"].waitForExistence(timeout: 5))
+        for _ in 0..<3 {
+            if app.buttons["显示本战结果"].exists { app.buttons["显示本战结果"].tap() }
+            if app.buttons["继续下一战"].exists { app.buttons["继续下一战"].tap() }
+            else { break }
+        }
+        XCTAssertTrue(app.buttons["返回区域选择"].waitForExistence(timeout: 5))
+        attachScreenshot("ver1-quest-result")
+        app.buttons["返回区域选择"].tap()
         app.navigationBars.buttons["完成"].tap()
         if !app.buttons["action-DIGIDEX"].isHittable { app.swipeUp() }
         app.buttons["action-DIGIDEX"].tap()
@@ -57,7 +73,7 @@ final class WorldUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing","--ui-testing-hatched"]
         app.launch()
-        XCTAssertTrue(app.staticTexts["COLOR LAB"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["COLOR Ver.1"].waitForExistence(timeout: 10))
         attachScreenshot("original-color-home")
         if !app.buttons["action-SETTINGS"].isHittable { app.swipeUp() }
         app.buttons["action-SETTINGS"].tap()

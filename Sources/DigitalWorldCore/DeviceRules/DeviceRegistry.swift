@@ -15,7 +15,13 @@ public enum DeviceRegistry {
         guard egg.requiredRaised == 0 else { throw GameError.cannotAct("该数码蛋尚未解锁") }
         var pet = Pet(speciesID: egg.species, eggID: eggID)
         pet.record("egg", "数码蛋开始孵化", at: now)
-        return GameState(databaseVersion: database.version, deviceID: deviceID, mode: device.mode,
-                         timeZone: timeZone, now: now, pet: pet)
+        if deviceID == DMCV1Engine.deviceID {
+            pet.dmc = DMCCareState(eggStartedAt: now); pet.stats.dp = 0
+            DMCV1Engine.sync(&pet)
+        }
+        var state = GameState(databaseVersion: database.version, deviceID: deviceID, mode: device.mode,
+                              timeZone: timeZone, now: now, pet: pet)
+        if deviceID == DMCV1Engine.deviceID { state.dmc = DMCDeviceState() }
+        return state
     }
 }

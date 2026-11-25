@@ -63,6 +63,22 @@ struct Readout: View {
     }
 }
 
+struct HeartReadout: View {
+    let name: String
+    let value: Int
+    var body: some View {
+        HStack {
+            Text(name).foregroundStyle(Palette.muted)
+            Spacer()
+            ForEach(0..<4,id: \.self) { index in
+                Image(systemName: index < value ? "heart.fill" : "heart")
+                    .foregroundStyle(Palette.mint)
+            }
+        }.font(.subheadline).accessibilityElement(children: .ignore)
+            .accessibilityLabel("\(name)，\(value)颗心，满值4")
+    }
+}
+
 struct GameButton: View {
     let title: String
     var role: ButtonRole? = nil

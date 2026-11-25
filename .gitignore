@@ -9,3 +9,4 @@ xcuserdata/
 *.xcresult
 build/
 .env
+__pycache__/

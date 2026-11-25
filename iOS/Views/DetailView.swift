@@ -18,6 +18,20 @@ struct DetailView: View {
                 case .storage: storage
                 case .settings: settings
                 case .devices: devices
+                case .call:
+                    Panel(title: "CALL / 养成呼叫") {
+                        Text(model.callMessage).font(.headline)
+                        Text("空腹或力量呼叫须在10分钟内回应；睡眠呼叫须在1小时内关灯。")
+                            .font(.footnote).foregroundStyle(Palette.muted)
+                    }
+                case .clock:
+                    Panel(title: "CLOCK / 时钟") {
+                        TimelineView(.periodic(from: .now,by: 1)) { context in
+                            Text(context.date,format: .dateTime.hour().minute().second())
+                                .font(.system(size: 36,weight: .bold,design: .monospaced))
+                        }
+                        Text(model.state?.homeTimeZone ?? "").font(.caption)
+                    }
                 }
             }.pageStyle()
         }.background(Palette.background)
@@ -31,8 +45,22 @@ struct DetailView: View {
                 Readout(name: "年龄",value: "\(game.pet.activeMinutes/1440) 天 \(game.pet.activeMinutes%1440/60) 小时")
                 Readout(name: "体重",value: "\(game.pet.stats.weight) g")
                 Readout(name: "属性",value: model.species?.attribute.rawValue ?? "unknown")
-                Readout(name: "性格",value: game.pet.personality)
+                if !model.isOriginal { Readout(name: "性格",value: game.pet.personality) }
             }
+            if let care = game.pet.dmc {
+                Panel(title: "CARE / Ver.1") {
+                    HeartReadout(name: "饱食",value: care.hungerHearts)
+                    HeartReadout(name: "力量",value: care.strengthHearts)
+                    HeartReadout(name: "努力",value: care.effortHearts)
+                    Readout(name: "DP",value: "\(game.pet.stats.dp)")
+                    Readout(name: "战斗 / 通算胜率",value: "\(game.pet.stats.battles) / \(Int(game.pet.stats.winRate*100))%")
+                    Readout(name: "本阶段训练",value: "\(care.stageTrainings)")
+                    Readout(name: "本阶段照顾失误",value: "\(care.stageMistakes)")
+                    Readout(name: "本阶段满腹 / 睡眠打扰",value: "\(care.overfeeds) / \(care.sleepDisturbances)")
+                    Readout(name: "废物",value: "\(game.pet.stats.waste)")
+                    Readout(name: "伤势",value: game.pet.stats.injured ? "需继续治疗" : "无伤")
+                }
+            } else {
             Panel(title: "CARE / 养成数值") {
                 Metric(name: "饱食度",value: game.pet.stats.fullness)
                 Metric(name: "力量",value: game.pet.stats.strength)
@@ -51,6 +79,7 @@ struct DetailView: View {
                 Readout(name: "环境废物",value: "\(game.pet.stats.waste)")
                 Readout(name: "当前疾病 / 受伤",value: "\(game.pet.stats.sick ? "生病" : "无疾病") / \(game.pet.stats.injured ? "受伤" : "无伤")")
             }
+            }
             Panel(title: "JOURNAL / 成长日志") {
                 ForEach(game.pet.history.reversed()) { event in
                     HStack(alignment: .top) {
@@ -68,7 +97,7 @@ struct DetailView: View {
         if let game = model.state, let database = model.database,
            let rule = try? database.device(game.deviceID) {
             Panel(title: "FEED / 食物") {
-                Text("肉与蛋白质不限量供应。其他食物来自探索或对战；过量喂食会损害健康。")
+                Text(model.isOriginal ? "肉恢复1颗饱食心、增重1g；蛋白质恢复1颗力量心、增重2g，每4份恢复1 DP。满腹与蛋白质过量会影响养成。" : "肉与蛋白质不限量供应；其他食物来自旧版实验玩法。")
                     .font(.footnote).foregroundStyle(Palette.muted)
                 ForEach(database.foods.filter { rule.foods.contains($0.id) }) { item in
                     HStack(spacing: 12) {
@@ -76,7 +105,7 @@ struct DetailView: View {
                             .font(.title).foregroundStyle(Palette.mint).frame(width: 40)
                         VStack(alignment: .leading,spacing: 4) {
                             Text(item.name).font(.headline)
-                            Text("饱食 +\(item.fullness)  力量 +\(item.strength)  体重 +\(item.weight)g")
+                            Text(model.isOriginal ? (item.id == "meat" ? "饱食＋1心 · 体重＋1g" : "力量＋1心 · 体重＋2g") : "饱食 +\(item.fullness)  力量 +\(item.strength)  体重 +\(item.weight)g")
                                 .font(.system(size: 10,design: .monospaced)).foregroundStyle(Palette.muted)
                             Text(["meat","protein"].contains(item.id) ? "供应充足" : "库存 \(game.inventory[item.id,default: 0])")
                                 .font(.caption2).foregroundStyle(Palette.amber)
@@ -95,14 +124,19 @@ struct DetailView: View {
     @ViewBuilder private var sleep: some View {
         if let game = model.state {
             Panel(title: "SLEEP / \(game.pet.sleeping ? "休息中" : "清醒")") {
-                Text("当前测试规则的自然睡眠为 21:00–07:00，采用创建存档时的固定时区。手动休息可恢复能量，睡眠时请关灯。")
+                Text(model.isOriginal ? "依角色就寝时间自动入睡，08:00醒来。连续睡眠8小时恢复全部DP；睡眠仍计入进化时间。Cold暂停成长，备份交换只保存一只伙伴。" : "旧版实验规则：21:00–07:00自然睡眠，手动休息恢复能量。")
                     .font(.footnote).foregroundStyle(Palette.muted)
                 Readout(name: "养成时区",value: game.homeTimeZone)
                 Toggle("关灯",isOn: Binding(get: { model.state?.pet.lightsOff ?? false },set: { model.care(.lights($0)) }))
-                Toggle("手动休息",isOn: Binding(get: { model.state?.pet.manualRest ?? false },set: { model.care(.rest($0)) }))
+                if !model.isOriginal { Toggle("手动休息",isOn: Binding(get: { model.state?.pet.manualRest ?? false },set: { model.care(.rest($0)) })) }
                 Toggle("冷冻成长",isOn: Binding(get: { model.state?.pet.life == .frozen },set: { model.care(.freeze($0)) }))
                     .disabled(game.pet.life == .dead)
-                Metric(name: "能量",value: game.pet.stats.energy,color: Palette.amber)
+                if model.isOriginal {
+                    GameButton(title: game.dmc?.backupPetID == nil ? "备份当前伙伴并开始新蛋" : "与备份伙伴交换") { model.swapBackup() }
+                        .disabled(game.pet.isEgg || game.pet.life == .dead)
+                    Text("交换后饱食与力量归零；体重、努力及成长记录保留。")
+                        .font(.caption).foregroundStyle(Palette.muted)
+                } else { Metric(name: "能量",value: game.pet.stats.energy,color: Palette.amber) }
                 PetScreen(model: model).clipShape(RoundedRectangle(cornerRadius: 8))
             }
         }
@@ -123,11 +157,12 @@ struct DetailView: View {
                         }
                         Spacer()
                         if pet.id == game.activePetID { Image(systemName: "checkmark.circle.fill").foregroundStyle(Palette.mint) }
-                        else { Button("查看") { model.care(.selectPet(pet.id)) }.buttonStyle(.bordered) }
+                        else if !model.isOriginal { Button("切换") { model.care(.selectPet(pet.id)) }.buttonStyle(.bordered) }
+                        else { Text(pet.id == game.dmc?.backupPetID ? "备份" : "历史").font(.caption) }
                     }.padding(.vertical,6)
                 }
                 if game.pet.life == .dead {
-                    ForEach(database.eggs) { egg in
+                    ForEach(database.eggs.filter { (try? database.device(game.deviceID).eggs.contains($0.id)) == true }) { egg in
                         let unlocked = game.dex.values.filter { $0 == .raised }.count >= egg.requiredRaised
                         GameButton(title: "\(egg.name) · \(unlocked ? "重新孵化" : "需养成 \(egg.requiredRaised) 种角色")") { model.care(.rebirth(egg.id)) }
                             .disabled(!unlocked)
@@ -150,6 +185,21 @@ struct DetailView: View {
                 Text("新游戏默认彩色。彩色模式显示原图配色，高级彩色加入动态光点；经典模式显示灰绿色单色像素。选择会随存档保存。")
                     .font(.footnote).foregroundStyle(Palette.muted)
                 PetScreen(model: model).clipShape(RoundedRectangle(cornerRadius: 8))
+            }
+            if let device = game.dmc {
+                Panel(title: "BACKGROUND / 屏幕背景") {
+                    Picker("已解锁背景",selection: Binding(get: { device.selectedBackground },set: { model.selectBackground($0) })) {
+                        ForEach(device.backgrounds.sorted(),id: \.self) { id in Text(backgroundName(id)).tag(id) }
+                    }.pickerStyle(.menu)
+                    Text("通关区域1、4、F可解锁背景主题；养成真熊仔兽另有纪念主题。")
+                        .font(.caption).foregroundStyle(Palette.muted)
+                }
+            } else {
+                Panel(title: "Ver.1 / 开始原味养成") {
+                    Text("当前为旧版实验档。开始Ver.1前会单独保存完整旧档，可随时导入恢复。")
+                        .font(.footnote)
+                    GameButton(title: "备份旧档并开始 Ver.1") { model.startOriginalProfile() }
+                }
             }
             Panel(title: "FEEDBACK / 声音与触觉") {
                 Toggle("电子按键音",isOn: Binding(get: { model.state?.settings.sound ?? true },set: { v in model.settings { $0.sound = v } }))
@@ -174,12 +224,15 @@ struct DetailView: View {
             }
         }
     }
+    private func backgroundName(_ id: String) -> String {
+        ["grasslands":"草原","office":"办公室","grid":"网格","dmc-logo":"COLOR标志","box-art":"包装主题","25th-anniversary":"25周年"][id] ?? id
+    }
     @ViewBuilder private var devices: some View {
         if let database = model.database {
             Panel(title: "ACTIVE / 可游玩") {
-                Text("COLOR LAB · ULTIMATE").font(.headline).foregroundStyle(Palette.mint)
+                Text("Digital Monster COLOR Ver.1").font(.headline).foregroundStyle(Palette.mint)
                 Text(database.devices[0].notes).font(.footnote).foregroundStyle(Palette.muted)
-                Text("肉与蛋白质、时机训练、离线 PVE、冷冻与原创探索规则已接入。")
+                Text("肉与蛋白质、A/B五次攻击训练、四心养成、Cold与一只备份、8区固定顺序Quest。隐藏参数来自有出处的社区实测，仍待实体机逐项复核。")
                     .font(.footnote)
             }
             Panel(title: "ORIGINAL / 资料核验队列") {

@@ -6,6 +6,15 @@ struct BattleView: View {
     @State private var revealed = 0
     @State private var playback: Task<Void, Never>?
     var body: some View {
+        if model.isOriginal {
+            if let result = model.lastQuest {
+                QuestPlaybackView(model: model,result: result)
+            } else {
+                AdventureView(model: model)
+            }
+        } else { legacy }
+    }
+    @ViewBuilder private var legacy: some View {
         if let database = model.database {
             Panel(title: "PVE / 原创离线规则") {
                 Text("每次对战消耗 15 能量与体力。属性、速度、训练、健康和 DP 参与计算；败北可能受伤。结果会立即保存，再播放战斗记录。")
@@ -61,6 +70,65 @@ struct BattleView: View {
                 try? await Task.sleep(for: .milliseconds(200))
                 guard !Task.isCancelled else { return }
                 revealed = index+1
+            }
+        }
+    }
+}
+
+
+struct QuestPlaybackView: View {
+    @ObservedObject var model: WorldViewModel
+    let result: DMCQuestResult
+    @State private var battle = 0
+    @State private var revealed = 0
+    @State private var playback: Task<Void,Never>?
+    private var record: BattleRecord { result.records[battle] }
+    var body: some View {
+        Panel(title: "QUEST / \(result.area.name)") {
+            Text("第 \(battle+1) / \(result.area.opponents.count) 战").font(.headline)
+            HStack {
+                SpriteThumbnail(id: model.state?.pet.speciesID ?? "agumon",size: 100)
+                Spacer(); Text("VS").font(.title.bold()).foregroundStyle(Palette.amber); Spacer()
+                SpriteThumbnail(id: record.opponent,size: 100).scaleEffect(x: -1,y: 1)
+            }
+            Text((try? model.database?.species(record.opponent))?.nameSC ?? record.opponent)
+                .font(.headline).frame(maxWidth: .infinity)
+            HStack {
+                hitMarks(record.log.prefix(revealed).filter { $0.hasPrefix("攻击命中") }.count,color: Palette.mint)
+                Spacer()
+                hitMarks(record.log.prefix(revealed).filter { $0.hasPrefix("受到攻击") }.count,color: Palette.amber)
+            }
+            ForEach(Array(record.log.prefix(revealed).enumerated()),id: \.offset) { _,line in
+                Text(line).font(.system(.subheadline,design: .monospaced))
+            }
+            if revealed < record.log.count {
+                Button("显示本战结果") { playback?.cancel(); revealed = record.log.count }
+            } else {
+                Text(record.won ? "胜利" : "败北").font(.largeTitle.bold()).foregroundStyle(record.won ? Palette.mint : Palette.amber)
+                if battle+1 < result.records.count {
+                    GameButton(title: "继续下一战") { battle += 1; startPlayback() }
+                } else {
+                    Text(result.cleared ? "本区通关，进度已保存" : "本次挑战结束；再挑战将从本区首战开始")
+                        .font(.subheadline).accessibilityIdentifier("questResult")
+                    if result.backgroundUnlocked != nil { Text("新背景已解锁，可在设置选择").foregroundStyle(Palette.amber) }
+                    GameButton(title: "返回区域选择") { model.lastQuest = nil }
+                }
+            }
+            Text("整区结果已保存；关闭页面或跳过演出不会重抽战果。")
+                .font(.caption).foregroundStyle(Palette.muted)
+        }.onAppear { startPlayback() }.onDisappear { playback?.cancel() }
+    }
+    private func hitMarks(_ count: Int,color: Color) -> some View {
+        HStack { ForEach(0..<3,id: \.self) { i in Image(systemName: i < count ? "circle.fill" : "circle").foregroundStyle(color) } }
+    }
+    private func startPlayback() {
+        playback?.cancel(); revealed = 0
+        let lines = record.log.count
+        playback = Task { @MainActor in
+            for i in 1...lines {
+                try? await Task.sleep(for: .milliseconds(650))
+                guard !Task.isCancelled else { return }
+                revealed = i
             }
         }
     }

@@ -1,0 +1,818 @@
+{
+  "version": 1,
+  "deviceID": "dmc-ver1",
+  "manualURL": "https://toy.bandai.co.jp/manuals/files/2645513.pdf",
+  "referenceURLs": [
+    "https://humulos.com/digimon/dmc/manual/",
+    "https://humulos.com/digimon/dmc/quest/",
+    "https://nhoko.xxxxxxxx.jp/digicolor.html",
+    "https://nhoko.xxxxxxxx.jp/dc-evo-list.html"
+  ],
+  "verificationNotes": [
+    "按官方说明书核对操作，隐藏阈值、敌人力量和心值下降周期使用社区实测资料；周期为分钟近似值。",
+    "胜率60～69%的进化概率资料有分歧：本配置采用Humulos的50%，NHOKO记为25%，尚待实体机复核。",
+    "完全体15战采用NHOKO的成长期与成熟期合计；究极体须在完全体阶段另战15次。",
+    "通信与联展尚未实现；奥米加兽Alter-S仅作为最终关敌人，不会通过普通养成赠送。"
+  ],
+  "hatchSeconds": 8,
+  "trainingPatterns": [
+    "BBBAA",
+    "ABABB",
+    "BABBA",
+    "ABBAB",
+    "AAABA",
+    "BBAAB",
+    "ABBBA",
+    "BAABB",
+    "BABAB",
+    "ABAAA"
+  ],
+  "roster": {
+    "botamon": {
+      "id": "botamon",
+      "minimumWeight": 5,
+      "sleepHour": null,
+      "evolutionMinutes": 10,
+      "heartLossMinutes": 3,
+      "maxDP": 0,
+      "healDoses": 0,
+      "power": 0
+    },
+    "koromon": {
+      "id": "koromon",
+      "minimumWeight": 10,
+      "sleepHour": 20,
+      "evolutionMinutes": 720,
+      "heartLossMinutes": 30,
+      "maxDP": 0,
+      "healDoses": 1,
+      "power": 0
+    },
+    "agumon": {
+      "id": "agumon",
+      "minimumWeight": 20,
+      "sleepHour": 20,
+      "evolutionMinutes": 1440,
+      "heartLossMinutes": 48,
+      "maxDP": 20,
+      "healDoses": 2,
+      "power": 30
+    },
+    "betamon": {
+      "id": "betamon",
+      "minimumWeight": 20,
+      "sleepHour": 21,
+      "evolutionMinutes": 1440,
+      "heartLossMinutes": 38,
+      "maxDP": 20,
+      "healDoses": 2,
+      "power": 25
+    },
+    "greymon": {
+      "id": "greymon",
+      "minimumWeight": 30,
+      "sleepHour": 21,
+      "evolutionMinutes": 2160,
+      "heartLossMinutes": 59,
+      "maxDP": 30,
+      "healDoses": 1,
+      "power": 50
+    },
+    "tyrannomon": {
+      "id": "tyrannomon",
+      "minimumWeight": 20,
+      "sleepHour": 22,
+      "evolutionMinutes": 2160,
+      "heartLossMinutes": 59,
+      "maxDP": 30,
+      "healDoses": 2,
+      "power": 45
+    },
+    "devimon": {
+      "id": "devimon",
+      "minimumWeight": 40,
+      "sleepHour": 23,
+      "evolutionMinutes": 2160,
+      "heartLossMinutes": 48,
+      "maxDP": 30,
+      "healDoses": 1,
+      "power": 50
+    },
+    "meramon": {
+      "id": "meramon",
+      "minimumWeight": 30,
+      "sleepHour": 0,
+      "evolutionMinutes": 2160,
+      "heartLossMinutes": 48,
+      "maxDP": 30,
+      "healDoses": 2,
+      "power": 45
+    },
+    "airdramon": {
+      "id": "airdramon",
+      "minimumWeight": 30,
+      "sleepHour": 23,
+      "evolutionMinutes": 2160,
+      "heartLossMinutes": 38,
+      "maxDP": 30,
+      "healDoses": 1,
+      "power": 50
+    },
+    "seadramon": {
+      "id": "seadramon",
+      "minimumWeight": 20,
+      "sleepHour": 23,
+      "evolutionMinutes": 2160,
+      "heartLossMinutes": 38,
+      "maxDP": 30,
+      "healDoses": 2,
+      "power": 45
+    },
+    "numemon": {
+      "id": "numemon",
+      "minimumWeight": 10,
+      "sleepHour": 0,
+      "evolutionMinutes": 2160,
+      "heartLossMinutes": 28,
+      "maxDP": 30,
+      "healDoses": 3,
+      "power": 40
+    },
+    "metalgreymon": {
+      "id": "metalgreymon",
+      "minimumWeight": 40,
+      "sleepHour": 20,
+      "evolutionMinutes": 2880,
+      "heartLossMinutes": 59,
+      "maxDP": 40,
+      "healDoses": 1,
+      "power": 100
+    },
+    "mamemon": {
+      "id": "mamemon",
+      "minimumWeight": 5,
+      "sleepHour": 23,
+      "evolutionMinutes": 2880,
+      "heartLossMinutes": 59,
+      "maxDP": 40,
+      "healDoses": 1,
+      "power": 85
+    },
+    "monzaemon": {
+      "id": "monzaemon",
+      "minimumWeight": 40,
+      "sleepHour": 21,
+      "evolutionMinutes": 2880,
+      "heartLossMinutes": 48,
+      "maxDP": 40,
+      "healDoses": 1,
+      "power": 100
+    },
+    "blitzgreymon": {
+      "id": "blitzgreymon",
+      "minimumWeight": 50,
+      "sleepHour": 23,
+      "evolutionMinutes": 0,
+      "heartLossMinutes": 59,
+      "maxDP": 50,
+      "healDoses": 1,
+      "power": 170
+    },
+    "banchomamemon": {
+      "id": "banchomamemon",
+      "minimumWeight": 5,
+      "sleepHour": 23,
+      "evolutionMinutes": 0,
+      "heartLossMinutes": 59,
+      "maxDP": 50,
+      "healDoses": 1,
+      "power": 150
+    },
+    "shinmonzaemon": {
+      "id": "shinmonzaemon",
+      "minimumWeight": 40,
+      "sleepHour": 23,
+      "evolutionMinutes": 0,
+      "heartLossMinutes": 48,
+      "maxDP": 50,
+      "healDoses": 2,
+      "power": 170
+    },
+    "omegamon-alter-s": {
+      "id": "omegamon-alter-s",
+      "minimumWeight": 40,
+      "sleepHour": 23,
+      "evolutionMinutes": 0,
+      "heartLossMinutes": 66,
+      "maxDP": 50,
+      "healDoses": 1,
+      "power": 200
+    }
+  },
+  "evolutions": [
+    {
+      "id": "botamon-to-koromon",
+      "from": "botamon",
+      "target": "koromon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "孵化后 10 分钟"
+    },
+    {
+      "id": "koromon-to-agumon",
+      "from": "koromon",
+      "target": "agumon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 3,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "照顾失误 0～3 次"
+    },
+    {
+      "id": "koromon-to-betamon",
+      "from": "koromon",
+      "target": "betamon",
+      "priority": 10,
+      "minimumMistakes": 4,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "照顾失误至少 4 次"
+    },
+    {
+      "id": "agumon-to-greymon",
+      "from": "agumon",
+      "target": "greymon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 3,
+      "minimumTraining": 32,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "失误≤3、训练≥32"
+    },
+    {
+      "id": "agumon-to-devimon",
+      "from": "agumon",
+      "target": "devimon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 3,
+      "minimumTraining": 0,
+      "maximumTraining": 31,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "失误≤3、训练≤31"
+    },
+    {
+      "id": "agumon-to-tyrannomon",
+      "from": "agumon",
+      "target": "tyrannomon",
+      "priority": 10,
+      "minimumMistakes": 4,
+      "maximumMistakes": null,
+      "minimumTraining": 5,
+      "maximumTraining": 15,
+      "minimumOverfeeds": 3,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 4,
+      "maximumSleepDisturbances": 5,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "失误≥4、训练5～15、满腹≥3、睡眠打扰4～5"
+    },
+    {
+      "id": "agumon-to-meramon",
+      "from": "agumon",
+      "target": "meramon",
+      "priority": 10,
+      "minimumMistakes": 4,
+      "maximumMistakes": null,
+      "minimumTraining": 16,
+      "maximumTraining": null,
+      "minimumOverfeeds": 3,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 6,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "失误≥4、训练≥16、满腹≥3、睡眠打扰≥6"
+    },
+    {
+      "id": "agumon-to-numemon",
+      "from": "agumon",
+      "target": "numemon",
+      "priority": 0,
+      "minimumMistakes": 4,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "失误≥4且未满足其他分支"
+    },
+    {
+      "id": "betamon-to-devimon",
+      "from": "betamon",
+      "target": "devimon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 3,
+      "minimumTraining": 48,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "失误≤3、训练≥48"
+    },
+    {
+      "id": "betamon-to-meramon",
+      "from": "betamon",
+      "target": "meramon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 3,
+      "minimumTraining": 0,
+      "maximumTraining": 47,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "失误≤3、训练≤47"
+    },
+    {
+      "id": "betamon-to-airdramon",
+      "from": "betamon",
+      "target": "airdramon",
+      "priority": 10,
+      "minimumMistakes": 4,
+      "maximumMistakes": null,
+      "minimumTraining": 8,
+      "maximumTraining": 31,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": 3,
+      "minimumSleepDisturbances": 9,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "失误≥4、训练8～31、满腹≤3、睡眠打扰≥9"
+    },
+    {
+      "id": "betamon-to-seadramon",
+      "from": "betamon",
+      "target": "seadramon",
+      "priority": 10,
+      "minimumMistakes": 4,
+      "maximumMistakes": null,
+      "minimumTraining": 8,
+      "maximumTraining": 31,
+      "minimumOverfeeds": 4,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": 8,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "失误≥4、训练8～31、满腹≥4、睡眠打扰≤8"
+    },
+    {
+      "id": "betamon-to-numemon",
+      "from": "betamon",
+      "target": "numemon",
+      "priority": 0,
+      "minimumMistakes": 4,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "失误≥4且未满足其他分支"
+    },
+    {
+      "id": "greymon-to-metalgreymon",
+      "from": "greymon",
+      "target": "metalgreymon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "成长期起累计至少15战；依通算胜率判定"
+    },
+    {
+      "id": "devimon-to-metalgreymon",
+      "from": "devimon",
+      "target": "metalgreymon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "成长期起累计至少15战；依通算胜率判定"
+    },
+    {
+      "id": "airdramon-to-metalgreymon",
+      "from": "airdramon",
+      "target": "metalgreymon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "成长期起累计至少15战；依通算胜率判定"
+    },
+    {
+      "id": "tyrannomon-to-mamemon",
+      "from": "tyrannomon",
+      "target": "mamemon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "成长期起累计至少15战；依通算胜率判定"
+    },
+    {
+      "id": "meramon-to-mamemon",
+      "from": "meramon",
+      "target": "mamemon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "成长期起累计至少15战；依通算胜率判定"
+    },
+    {
+      "id": "seadramon-to-mamemon",
+      "from": "seadramon",
+      "target": "mamemon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "成长期起累计至少15战；依通算胜率判定"
+    },
+    {
+      "id": "numemon-to-monzaemon",
+      "from": "numemon",
+      "target": "monzaemon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "成长期起累计至少15战；依通算胜率判定"
+    },
+    {
+      "id": "metalgreymon-to-blitzgreymon",
+      "from": "metalgreymon",
+      "target": "blitzgreymon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 1,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "本阶段失误≤1、至少15战；依通算胜率判定"
+    },
+    {
+      "id": "mamemon-to-banchomamemon",
+      "from": "mamemon",
+      "target": "banchomamemon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 1,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "本阶段失误≤1、至少15战；依通算胜率判定"
+    },
+    {
+      "id": "monzaemon-to-shinmonzaemon",
+      "from": "monzaemon",
+      "target": "shinmonzaemon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 1,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "本阶段失误≤1、至少15战；依通算胜率判定"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1,
+      "name": "AREA 1",
+      "opponents": [
+        {
+          "speciesID": "betamon",
+          "attribute": "virus",
+          "power": 15
+        },
+        {
+          "speciesID": "agumon",
+          "attribute": "vaccine",
+          "power": 19
+        },
+        {
+          "speciesID": "meramon",
+          "attribute": "data",
+          "power": 23
+        }
+      ],
+      "backgroundReward": "grid"
+    },
+    {
+      "id": 2,
+      "name": "AREA 2",
+      "opponents": [
+        {
+          "speciesID": "numemon",
+          "attribute": "virus",
+          "power": 19
+        },
+        {
+          "speciesID": "seadramon",
+          "attribute": "data",
+          "power": 23
+        },
+        {
+          "speciesID": "devimon",
+          "attribute": "virus",
+          "power": 28
+        }
+      ],
+      "backgroundReward": null
+    },
+    {
+      "id": 3,
+      "name": "AREA 3",
+      "opponents": [
+        {
+          "speciesID": "tyrannomon",
+          "attribute": "data",
+          "power": 28
+        },
+        {
+          "speciesID": "airdramon",
+          "attribute": "vaccine",
+          "power": 37
+        },
+        {
+          "speciesID": "greymon",
+          "attribute": "vaccine",
+          "power": 45
+        }
+      ],
+      "backgroundReward": null
+    },
+    {
+      "id": 4,
+      "name": "AREA 4",
+      "opponents": [
+        {
+          "speciesID": "seadramon",
+          "attribute": "data",
+          "power": 45
+        },
+        {
+          "speciesID": "meramon",
+          "attribute": "data",
+          "power": 55
+        },
+        {
+          "speciesID": "devimon",
+          "attribute": "virus",
+          "power": 65
+        },
+        {
+          "speciesID": "mamemon",
+          "attribute": "data",
+          "power": 80
+        }
+      ],
+      "backgroundReward": "dmc-logo"
+    },
+    {
+      "id": 5,
+      "name": "AREA 5",
+      "opponents": [
+        {
+          "speciesID": "airdramon",
+          "attribute": "vaccine",
+          "power": 55
+        },
+        {
+          "speciesID": "tyrannomon",
+          "attribute": "data",
+          "power": 70
+        },
+        {
+          "speciesID": "greymon",
+          "attribute": "vaccine",
+          "power": 85
+        },
+        {
+          "speciesID": "metalgreymon",
+          "attribute": "virus",
+          "power": 105
+        }
+      ],
+      "backgroundReward": null
+    },
+    {
+      "id": 6,
+      "name": "AREA 6",
+      "opponents": [
+        {
+          "speciesID": "meramon",
+          "attribute": "data",
+          "power": 65
+        },
+        {
+          "speciesID": "mamemon",
+          "attribute": "data",
+          "power": 80
+        },
+        {
+          "speciesID": "monzaemon",
+          "attribute": "vaccine",
+          "power": 95
+        },
+        {
+          "speciesID": "banchomamemon",
+          "attribute": "data",
+          "power": 120
+        }
+      ],
+      "backgroundReward": null
+    },
+    {
+      "id": 7,
+      "name": "AREA 7",
+      "opponents": [
+        {
+          "speciesID": "numemon",
+          "attribute": "virus",
+          "power": 75
+        },
+        {
+          "speciesID": "metalgreymon",
+          "attribute": "virus",
+          "power": 90
+        },
+        {
+          "speciesID": "monzaemon",
+          "attribute": "vaccine",
+          "power": 110
+        },
+        {
+          "speciesID": "blitzgreymon",
+          "attribute": "virus",
+          "power": 130
+        },
+        {
+          "speciesID": "shinmonzaemon",
+          "attribute": "vaccine",
+          "power": 145
+        }
+      ],
+      "backgroundReward": null
+    },
+    {
+      "id": 8,
+      "name": "AREA F",
+      "opponents": [
+        {
+          "speciesID": "metalgreymon",
+          "attribute": "virus",
+          "power": 85
+        },
+        {
+          "speciesID": "banchomamemon",
+          "attribute": "data",
+          "power": 100
+        },
+        {
+          "speciesID": "shinmonzaemon",
+          "attribute": "vaccine",
+          "power": 135
+        },
+        {
+          "speciesID": "blitzgreymon",
+          "attribute": "virus",
+          "power": 160
+        },
+        {
+          "speciesID": "omegamon-alter-s",
+          "attribute": "virus",
+          "power": 220
+        }
+      ],
+      "backgroundReward": "box-art"
+    }
+  ]
+}
