@@ -86,6 +86,24 @@ final class WorldUITests: XCTestCase {
             attachScreenshot(mode == "经典灰绿色 LCD" ? "lcd-preview" : mode == "高级彩色" ? "advanced-color-preview" : "retro-color-preview")
         }
     }
+    func testLegacyProfileCanBePreservedAndRestored() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing","--ui-testing-legacy"]
+        app.launch()
+        XCTAssertTrue(app.buttons["action-SETTINGS"].waitForExistence(timeout: 10))
+        if !app.buttons["action-SETTINGS"].isHittable { app.swipeUp() }
+        app.buttons["action-SETTINGS"].tap()
+        app.buttons["备份旧档并开始 Ver.1"].tap()
+        XCTAssertTrue(app.staticTexts["COLOR Ver.1"].waitForExistence(timeout: 5))
+        if !app.buttons["action-SETTINGS"].isHittable { app.swipeUp() }
+        app.buttons["action-SETTINGS"].tap()
+        let restore = app.buttons["restorePreviousProfile"]
+        for _ in 0..<5 { if restore.isHittable { break }; app.swipeUp() }
+        XCTAssertTrue(restore.exists)
+        restore.tap()
+        XCTAssertTrue(app.staticTexts["COLOR LAB"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["AGUMON"].exists)
+    }
     private func attachScreenshot(_ name: String) {
         let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)

@@ -12,6 +12,7 @@ final class WorldViewModel: ObservableObject {
     @Published var encounter: String?
     @Published var trainingScore: Int?
     @Published var lastQuest: DMCQuestResult?
+    @Published private(set) var previousProfileBackupURL: URL?
     private(set) var database: ContentDatabase?
     private var store: SaveStore?
     private var lastPersist = Date.distantPast
@@ -34,6 +35,13 @@ final class WorldViewModel: ObservableObject {
             #endif
             let persistence = SaveStore(directory: directory, database: content)
             store = persistence
+            previousProfileBackupURL = (try? FileManager.default.contentsOfDirectory(at: directory,includingPropertiesForKeys: [.contentModificationDateKey]))?
+                .filter { $0.lastPathComponent.hasPrefix("world.before-restore.") && $0.pathExtension == "json" }
+                .max { a,b in
+                    let left = (try? a.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate) ?? .distantPast
+                    let right = (try? b.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate) ?? .distantPast
+                    return left < right
+                }
             if let loaded = try persistence.load() {
                 state = loaded.state
                 if loaded.recoveredBackup { message = "主存档损坏，已恢复上次备份；损坏文件将保留。" }
@@ -42,18 +50,21 @@ final class WorldViewModel: ObservableObject {
                 refresh()
             }
             #if DEBUG
-            if ProcessInfo.processInfo.arguments.contains("--ui-testing-hatched") {
-                var test = try DeviceRegistry.newGame(database: content, deviceID: "dmc-ver1", eggID: "dmc-v1-egg",
+            if ProcessInfo.processInfo.arguments.contains("--ui-testing-hatched") || ProcessInfo.processInfo.arguments.contains("--ui-testing-legacy") {
+                let legacy = ProcessInfo.processInfo.arguments.contains("--ui-testing-legacy")
+                var test = try DeviceRegistry.newGame(database: content, deviceID: legacy ? "ultimate-lab" : "dmc-ver1", eggID: legacy ? "founder" : "dmc-v1-egg",
                                                       now: Date(), timeZone: TimeZone.current.identifier)
                 test.pets[0].isEgg = false; test.pets[0].speciesID = "agumon"
                 test.pets[0].evolutionHistory = ["botamon", "koromon", "agumon"]
                 test.dex["agumon"] = .raised
                 test.pets[0].stats.weight = 20; test.pets[0].stats.dp = 20
-                test.pets[0].dmc!.hungerHearts = 3; test.pets[0].dmc!.strengthHearts = 4
-                test.pets[0].stats.fullness = 75; test.pets[0].stats.strength = 100
-                // Fixture time is daytime in the saved zone, independent of CI's wall clock.
+                if !legacy {
+                    test.pets[0].dmc!.hungerHearts = 3; test.pets[0].dmc!.strengthHearts = 4
+                    test.pets[0].stats.fullness = 75; test.pets[0].stats.strength = 100
+                    // Keep the original fixture awake regardless of CI wall-clock hour.
+                    test.pets[0].dmc!.awakeUntil = Date().addingTimeInterval(3600)
+                }
                 test.homeTimeZone = "UTC"
-                test.pets[0].dmc!.awakeUntil = Date().addingTimeInterval(3600)
                 state = test
             }
             #endif
@@ -174,6 +185,11 @@ final class WorldViewModel: ObservableObject {
             message = "旧档已独立备份，开始 Ver.1 养成"
         } catch { alert = error.localizedDescription }
     }
+    func restorePreviousProfile() {
+        guard let url = previousProfileBackupURL else { return }
+        do { restoreBackup(try inspectBackup(url)) }
+        catch { alert = "旧档校验失败：\(error.localizedDescription)" }
+    }
     func tapTraining() {
         command { game, _, now in
             guard let id = game.training?.id else { throw GameError.cannotAct("请先开始训练") }
@@ -238,6 +254,7 @@ final class WorldViewModel: ObservableObject {
                 let preserved = store.directory.appendingPathComponent("world.before-restore.\(UUID().uuidString).json")
                 try FileManager.default.createDirectory(at: store.directory,withIntermediateDirectories: true)
                 try store.encode(current).write(to: preserved,options: .atomic)
+                previousProfileBackupURL = preserved
             }
             try store.save(candidate)
             state = candidate; fatalError = nil; message = "备份已恢复，正在结算离线时间"

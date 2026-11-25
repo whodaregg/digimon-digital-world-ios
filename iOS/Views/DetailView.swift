@@ -219,6 +219,13 @@ struct DetailView: View {
                 Readout(name: "最后结算",value: game.lastTick.formatted(date: .abbreviated,time: .shortened))
                 if let url = model.exportURL { ShareLink("导出备份",item: url) }
                 BackupRestoreView(model: model)
+                if let previous = model.previousProfileBackupURL {
+                    ShareLink("导出切换前档案",item: previous)
+                    Button("恢复切换前档案") { model.restorePreviousProfile() }
+                        .accessibilityIdentifier("restorePreviousProfile")
+                    Text("恢复前也会保存当前档案；养成时间继续按各档记录结算。")
+                        .font(.caption).foregroundStyle(Palette.muted)
+                }
                 Text("每次操作后原子写入；保留上一次有效备份。iCloud、联机、Watch 与系统小组件属于后续阶段。")
                     .font(.caption).foregroundStyle(Palette.muted)
             }
