@@ -52,6 +52,7 @@ for config in ['Debug','Release']:
                 DEBUG_INFORMATION_FORMAT='dwarf' if config=='Debug' else 'dwarf-with-dsym',
                 SWIFT_OPTIMIZATION_LEVEL='-Onone' if config=='Debug' else '-O',
                 ENABLE_TESTABILITY='YES' if config=='Debug' else 'NO',
+                ONLY_ACTIVE_ARCH='YES' if config=='Debug' else 'NO',
                 SWIFT_ACTIVE_COMPILATION_CONDITIONS='DEBUG' if config=='Debug' else '',
                 GCC_PREPROCESSOR_DEFINITIONS='DEBUG=1 $(inherited)' if config=='Debug' else '$(inherited)')
     obj('config:project:'+config,f'isa = XCBuildConfiguration; buildSettings = {settings(common)}; name = {config};')
