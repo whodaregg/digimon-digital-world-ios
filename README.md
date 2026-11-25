@@ -4,6 +4,16 @@
 
 **当前为 v0.1 开发版本，不是需求中全部十个阶段的最终成品。** 可游玩内容采用明确标注的原创融合规则；不宣称复刻了未经核实的实体机规则。官方角色资料、原创游戏数值、原创测试素材分别标注。
 
+## 模拟器实测截图
+
+以下截图来自 Xcode 自动化测试中的原生 iOS 应用。
+
+<p>
+<img src="Documentation/Screenshots/hatching.png" width="220" alt="LCD 数码蛋孵化状态">
+<img src="Documentation/Screenshots/adventure.png" width="220" alt="原创信号花园探索地图">
+<img src="Documentation/Screenshots/settings.png" width="220" alt="显示、声音与提醒设置">
+</p>
+
 ## 在 Xcode 运行
 
 1. 使用 GitHub 的 **Code → Open with Xcode** 或克隆本仓库。
