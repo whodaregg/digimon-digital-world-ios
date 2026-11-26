@@ -32,6 +32,12 @@ public enum GameEngine {
             }
             try LifecycleManager.makeRoom(&result)
             var newPet = Pet(speciesID: egg.species, eggID: eggID)
+            if device.id == ArchiveCareEngine.deviceID {
+                newPet.speciesID = result.pet.speciesID
+                newPet.isEgg = false
+                newPet.evolutionHistory = [newPet.speciesID]
+                newPet.appearances = [SpeciesAppearance(newPet.speciesID, at: now)]
+            }
             newPet.record("egg", "继承图鉴，重新开始", at: now)
             result.pets.append(newPet); result.activePetID = newPet.id; result.training = nil
             result.adventure = AdventureState()

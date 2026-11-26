@@ -110,7 +110,9 @@ extension WorldViewModel {
             guard let egg = device.eggs.first else { return }
             let now = max(simulationDate,old.highWatermark)
             var archived = old; LifecycleManager.archiveBeforeReset(&archived,at: now)
-            var game = try DeviceRegistry.newGame(database: database,deviceID: old.deviceID,eggID: egg,now: now,timeZone: old.homeTimeZone)
+            var game = try old.deviceID == ArchiveCareEngine.deviceID
+                ? ArchiveCareEngine.adopt(old.pet.speciesID, database: database, at: now, timeZone: old.homeTimeZone)
+                : DeviceRegistry.newGame(database: database,deviceID: old.deviceID,eggID: egg,now: now,timeZone: old.homeTimeZone)
             game.settings = old.settings; game.clockOffsetSeconds = old.clockOffsetSeconds; game.sessionStyle = old.playStyle; game.sandboxOffsetSeconds = old.sandboxOffsetSeconds
             game.dex = old.dex; game.lifecycles = archived.lifecycles
             if old.playStyle == .sandbox { game.developerModifiedAt = game.highWatermark }

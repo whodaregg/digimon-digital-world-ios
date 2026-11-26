@@ -22,6 +22,21 @@ final class ArchiveCareTests: XCTestCase {
         }
     }
 
+    func testRebirthPreservesSelectedArchiveFormAndPriorIdentity() throws {
+        let database = try ContentDatabase.bundled()
+        let species = try XCTUnwrap(database.species.first { $0.name == "Agumon (Black) X" })
+        var game = try ArchiveCareEngine.adopt(species.id, database: database, at: noon)
+        let oldID = game.pet.id
+        game.pets[0].life = .dead
+        try GameEngine.perform(.rebirth("founder"), state: &game, database: database, at: noon)
+        XCTAssertEqual(game.pet.speciesID, species.id)
+        XCTAssertNotEqual(game.pet.id, oldID)
+        XCTAssertFalse(game.pet.isEgg)
+        XCTAssertEqual(game.pets.first { $0.id == oldID }?.life, .dead)
+        XCTAssertEqual(game.dex[species.id], .raised)
+        try database.validateSave(game)
+    }
+
     func testArchiveTrainingBattleAndOfflineCareUseRealEngines() throws {
         let database = try ContentDatabase.bundled()
         let species = try XCTUnwrap(database.species.first { $0.name == "Agumon (Black) X" })
