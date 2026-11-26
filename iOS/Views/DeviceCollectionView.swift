@@ -100,9 +100,13 @@ struct PlaySettingsView: View {
                 Picker(l(model.text(.shell)),selection: Binding(get: { state.settings.presentation.shell },set: { value in model.editPresentation { $0.shell = value } })) {
                     Text(l("Brown")).tag("brown"); Text(l("Gray")).tag("gray"); Text(l("Blue")).tag("blue"); Text(l("White")).tag("white")
                 }
-                Picker(l(model.text(.language)),selection: Binding(get: { state.settings.presentation.language },set: { value in model.editPresentation { $0.language = value } })) {
-                    ForEach(AppLanguage.allCases,id: \.self) { language in Text(language.title).tag(language) }
-                }.accessibilityIdentifier("appLanguage")
+                Text(model.text(.language))
+                ForEach(AppLanguage.allCases,id: \.self) { language in
+                    Button { model.editPresentation { $0.language = language } } label: {
+                        HStack { Text(language.title); Spacer(); Image(systemName: state.settings.presentation.language == language ? "checkmark.circle.fill" : "circle") }
+                            .padding(.vertical,6).contentShape(Rectangle())
+                    }.buttonStyle(.plain).accessibilityIdentifier("choose-language-\(language.rawValue)")
+                }
             }
             if model.isSandbox {
                 Panel(title: "SANDBOX") {

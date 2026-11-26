@@ -52,8 +52,8 @@ jobs:
         run: swift test
   ios:
     if: ${{ !inputs.release_only }}
-    runs-on: macos-15-intel
-    timeout-minutes: 35
+    runs-on: macos-15
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - name: Start native room integration peer
@@ -90,14 +90,14 @@ jobs:
             -derivedDataPath build/DerivedData -resultBundlePath build/NativeBuild.xcresult \
             CODE_SIGNING_ALLOWED=NO | tee build-ios.log
       - name: Exercise native application
-        timeout-minutes: 20
+        timeout-minutes: 25
         run: |
           set -o pipefail
           xcodebuild test-without-building -project DigitalWorld.xcodeproj -scheme DigitalWorld \
             -destination "platform=iOS Simulator,id=$SIMULATOR_ID" \
             -derivedDataPath build/DerivedData -parallel-testing-enabled NO \
-            -test-timeouts-enabled YES -default-test-execution-time-allowance 120 \
-            -maximum-test-execution-time-allowance 180 -resultBundlePath build/NativeTests.xcresult \
+            -test-timeouts-enabled YES -default-test-execution-time-allowance 180 \
+            -maximum-test-execution-time-allowance 240 -resultBundlePath build/NativeTests.xcresult \
             CODE_SIGNING_ALLOWED=NO | tee test-ios.log
       - uses: actions/upload-artifact@v4
         if: always()

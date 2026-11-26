@@ -64,8 +64,9 @@ final class WorldUITests: XCTestCase {
     private func verifyLanguageAndCloud(_ languageName: String) {
         let app = launch()
         openSettings(app)
-        let language = app.buttons["appLanguage"]
-        scrollTo(language,in: app); language.tap(); app.buttons[languageName].tap()
+        let code = languageName == "English" ? "en" : languageName == "日本語" ? "ja" : "zh-Hant"
+        let language = app.buttons["choose-language-"+code]
+        scrollTo(language,in: app); language.tap()
         let cloud = app.buttons["cloudChooseFolder"]; scrollTo(cloud,in: app)
         XCTAssertTrue(cloud.label.contains("iCloud Drive"))
         if languageName == "English" { XCTAssertFalse(cloud.label.contains("选择")) }
