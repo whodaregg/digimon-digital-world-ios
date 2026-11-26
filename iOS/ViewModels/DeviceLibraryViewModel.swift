@@ -14,7 +14,8 @@ extension WorldViewModel {
         if style == .classic && !isOriginal { alert = "旧版实验规则不支持经典模式"; return }
         if style == .sandbox { enterSandbox(); return }
         if isSandbox {
-            if let formal = formalSlots.first(where: { $0.deviceID == state?.deviceID }) { activateSlot(formal.id) }
+            if let id = activeSlot?.id,let formal = libraryIndex.formalSource(for: id) { activateSlot(formal.id) }
+            else if formalSlots.contains(where: { $0.deviceID == state?.deviceID }) { alert = "此导入Sandbox未记录来源，请在设备收藏中选择正式设备"; return }
             else { createDevice(state?.deviceID ?? DMCV1Engine.deviceID,style: style) }
             guard !isSandbox else { return }
         }
@@ -52,16 +53,21 @@ extension WorldViewModel {
     }
     func enterSandbox() {
         guard !isSandbox,let current = state,let library else { return }
-        if let existing = libraryIndex.slots.first(where: { $0.deviceID == current.deviceID && !$0.style.isFormal }) {
+        let origin = libraryIndex.activeID
+        if let origin,let existing = libraryIndex.sandbox(for: origin) {
             activateSlot(existing.id); return
         }
         do {
             try saveCurrentSlot()
             var copy = current; copy.sessionStyle = .sandbox
             copy.developerModifiedAt = copy.highWatermark; copy.training = nil
-            let slot = try library.add(copy,to: &libraryIndex,at: Date())
+            let slot = try library.add(copy,to: &libraryIndex,at: Date(),sourceSlotID: origin)
             install(copy,slot: slot); message = "已进入独立Sandbox，正式养成和收藏保持隔离"
         } catch { alert = error.localizedDescription }
+    }
+    func returnToFormal() {
+        if let id = activeSlot?.id,let formal = libraryIndex.formalSource(for: id) { activateSlot(formal.id) }
+        else { setPlayStyle(.enhanced) }
     }
     func advanceSandbox(minutes: Int) {
         guard isSandbox,(1...43_200).contains(minutes),var game = state,let database else { return }
@@ -107,7 +113,15 @@ extension WorldViewModel {
     func install(_ game: GameState,slot: DeviceSlot) {
         state = game; store = library?.store(for: slot); fatalError = nil; lcd.returnHome(); lcdNotice = nil
         lastQuest = nil; lastBattle = nil; trainingScore = nil; animation = "idle"
-        lockDeveloper(); developerBackupURL = nil
+        lockDeveloper()
+        developerBackupURL = store.flatMap { store in
+            (try? FileManager.default.contentsOfDirectory(at: store.directory,includingPropertiesForKeys: [.contentModificationDateKey]))?
+                .filter { $0.lastPathComponent.hasPrefix("world.before-developer.") && $0.pathExtension == "json" }
+                .max { a,b in
+                    ((try? a.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate) ?? .distantPast) <
+                    ((try? b.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate) ?? .distantPast)
+                }
+        }
         refreshCollection(); updateLibraryMetadata()
     }
 }

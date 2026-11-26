@@ -110,3 +110,28 @@ final class DeviceSessionTests: XCTestCase {
         XCTAssertThrowsError(try db.validateSave(game))
     }
 }
+
+final class SandboxOriginTests: XCTestCase {
+    func testSameProfileInstancesKeepDifferentSandboxOriginsAndFormalModes() throws {
+        let db = try ContentDatabase.bundled(), now = Date(timeIntervalSince1970: 1_800_446_400)
+        let dir = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: dir) }
+        let library = DeviceLibraryStore(directory: dir,database: db); var index = DeviceLibraryIndex()
+        var a = try DeviceRegistry.newGame(database: db,deviceID: "dmc-ver1",eggID: "dmc-v1-egg",now: now)
+        a.sessionStyle = .classic
+        let formalA = try library.add(a,to: &index,at: now)
+        var b = try DeviceRegistry.newGame(database: db,deviceID: "dmc-ver1",eggID: "dmc-v1-egg",now: now)
+        b.sessionStyle = .enhanced
+        let formalB = try library.add(b,to: &index,at: now)
+        a.sessionStyle = .sandbox; a.developerModifiedAt = now
+        b.sessionStyle = .sandbox; b.developerModifiedAt = now
+        let sandboxA = try library.add(a,to: &index,at: now,sourceSlotID: formalA.id)
+        let sandboxB = try library.add(b,to: &index,at: now,sourceSlotID: formalB.id)
+        let restored = try library.loadIndex()
+        XCTAssertEqual(restored.sandbox(for: formalA.id)?.id,sandboxA.id)
+        XCTAssertEqual(restored.sandbox(for: formalB.id)?.id,sandboxB.id)
+        XCTAssertEqual(restored.formalSource(for: sandboxA.id)?.style,.classic)
+        XCTAssertEqual(restored.formalSource(for: sandboxB.id)?.id,formalB.id)
+        XCTAssertNotEqual(try library.store(for: sandboxA).load()?.state.pet.id,try library.store(for: sandboxB).load()?.state.pet.id)
+    }
+}

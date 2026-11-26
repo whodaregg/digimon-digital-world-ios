@@ -103,7 +103,7 @@ struct PlaySettingsView: View {
                     Stepper("\(minutes) MIN",value: $minutes,in: 1...43_200,step: 10)
                     Button(model.text(.timeAdvance)) { model.advanceSandbox(minutes: minutes) }.accessibilityIdentifier("sandboxAdvance")
                     Button("摇晃训练输入测试") { showMotion = true }
-                    Button(model.text(.returnFormal)) { model.setPlayStyle(.enhanced) }.accessibilityIdentifier("returnFormal")
+                    Button(model.text(.returnFormal)) { model.returnToFormal() }.accessibilityIdentifier("returnFormal")
                     Text("隐藏开发入口提供角色、道具与数值编辑；这里的时间推进调用同一养成引擎，不改变系统时钟。")
                         .font(.caption).foregroundStyle(Palette.muted)
                 }

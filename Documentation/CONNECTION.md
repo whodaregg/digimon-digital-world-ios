@@ -15,6 +15,6 @@
 
 认证、系统匹配界面和可靠数据适配已写入ConnectionCoordinator，但当前Info.plist的GameCenterEnabled为false，普通构建不展示未配置的匹配按钮。
 
-启用需项目所有者在Apple开发团队注册对应Bundle ID并启用Game Center，在Xcode为应用加入Game Center能力/有效签名配置，并将GameCenterEnabled设为true。随后用两台已登录Game Center的真实iPhone验证认证、匹配、消息、断线和保存。当前未做该配置，也不宣称在线匹配已验收。
+启用需项目所有者在Apple开发团队注册对应Bundle ID并启用Game Center，在Xcode为应用加入Game Center能力/有效签名配置，并将GameCenterEnabled设为true。该开关由Scripts/generate_project.py管理，不能只改生成后的Info.plist；启用时必须同步生成器的能力/签名配置和validate_project.py的默认关闭检查。随后用两台已登录Game Center的真实iPhone验证认证、匹配、消息、断线和保存。当前未做该配置，也不宣称在线匹配已验收。
 
 参考：[Apple Multipeer Connectivity](https://developer.apple.com/documentation/multipeerconnectivity)、[Apple GameKit](https://developer.apple.com/documentation/gamekit)、[COLOR说明资料](https://humulos.com/digimon/dmc/manual/)。

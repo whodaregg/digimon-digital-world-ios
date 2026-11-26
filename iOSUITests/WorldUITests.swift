@@ -49,13 +49,15 @@ final class WorldUITests: XCTestCase {
     }
     func testSandboxTimeAndReturnPreserveFormalCare() throws {
         let app = launch(); openSettings(app)
+        app.buttons["play-style-classic"].tap()
         app.buttons["play-style-sandbox"].tap()
         let advance = app.buttons["sandboxAdvance"]; scrollTo(advance,in: app); advance.tap()
         let back = app.buttons["returnFormal"]; scrollTo(back,in: app); back.tap()
         app.navigationBars.buttons["完成"].tap()
         let probe = app.staticTexts["gameStateProbe"]
-        XCTAssertTrue(waitFor(probe,containing: "style=enhanced;offset=0;egg=false;slots=2",timeout: 5))
+        XCTAssertTrue(waitFor(probe,containing: "style=classic;offset=0;egg=false;slots=2",timeout: 5))
         XCTAssertTrue(probe.label.contains("meals=0;weight=20;"))
+        XCTAssertFalse(app.buttons["action-FOOD"].isEnabled)
     }
     func testDeviceCollectionCreatesAndSwitchesIndependentPets() throws {
         let app = launch()

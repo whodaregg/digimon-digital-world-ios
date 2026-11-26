@@ -46,7 +46,7 @@ Ver.1的8区固定敌人顺序写入独立数据，每次整区挑战在事务�
 
 GameMode继续表示原味/旧实验规则；PlayStyle单独表示classic/enhanced/sandbox，避免把界面模式当成另一套养成数值。DeviceLibraryStore在devices.json保存设备索引，每个UUID拥有独立的SaveStore目录、主档与备份。旧world.json只读迁入独立设备，原文件保留。切换先保存当前设备，再验证/结算目标并更新索引；不覆盖其它设备。
 
-Sandbox首次进入复制当前伙伴到独立文件。DeveloperEngine只通过Sandbox页面调用；正式收藏按CollectionManager过滤Sandbox、旧实验与测试标记。SandboxEngine以持久化时间偏移调用同一TimeEngine，不改系统时间。导入保留前档，并创建独立设备。
+Sandbox首次进入复制当前伙伴到独立文件，并记录来源设备实例UUID；同一型号的不同设备不会误用彼此的测试副本，返回时恢复该来源设备的模式设置。DeveloperEngine只通过Sandbox页面调用；正式收藏按CollectionManager过滤Sandbox、旧实验与测试标记。SandboxEngine以持久化时间偏移调用同一TimeEngine，不改系统时间。导入保留前档，并创建独立设备。
 
 生命周期会在死亡时捕获，在32个Pet档位满后将已归档死者移出活动数组，保留独立LifecycleRecord、形态、战绩和日志。重置使用reset原因归档，不伪造死亡。首次获得只使用实际记录的SpeciesAppearance；旧档没有日期时不编造。
 

@@ -94,8 +94,16 @@ final class WorldViewModel: ObservableObject {
             }
             #endif
             if var current = state,libraryIndex.activeID == nil {
-                if current.developerModifiedAt != nil { current.sessionStyle = .sandbox }
-                let slot = try libraryStore.add(current,to: &libraryIndex,at: Date())
+                var origin: UUID?
+                if current.developerModifiedAt != nil {
+                    current.sessionStyle = .sandbox
+                    if let url = developerBackupURL,var original = try? persistence.decode(Data(contentsOf: url)).state,
+                       original.deviceID == current.deviceID,original.developerModifiedAt == nil {
+                        original.sessionStyle = .enhanced
+                        origin = try libraryStore.add(original,to: &libraryIndex,at: Date()).id
+                    }
+                }
+                let slot = try libraryStore.add(current,to: &libraryIndex,at: Date(),sourceSlotID: origin)
                 state = current; store = libraryStore.store(for: slot)
             }
             refreshCollection()
@@ -256,9 +264,12 @@ final class WorldViewModel: ObservableObject {
     }
     func restoreDeveloperBackup() {
         developerError = nil
-        guard developerUnlocked, let url = developerBackupURL, let store else { developerError = "没有可恢复的调试备份"; return }
+        guard developerUnlocked,isSandbox,let url = developerBackupURL,let store else { developerError = "没有可恢复的Sandbox调试备份"; return }
         do {
             var candidate = try store.decode(Data(contentsOf: url)).state
+            guard candidate.deviceID == state?.deviceID else { throw GameError.invalidData("备份来自另一机型，请通过导入创建独立设备") }
+            candidate.sessionStyle = .sandbox
+            candidate.developerModifiedAt = candidate.developerModifiedAt ?? candidate.highWatermark
             if let database { try TimeEngine.advance(&candidate,to: SandboxEngine.date(for: candidate,wallTime: Date()),database: database) }
             try store.save(candidate)
             state = candidate; lastPersist = Date(); lastQuest = nil; lastBattle = nil; trainingScore = nil

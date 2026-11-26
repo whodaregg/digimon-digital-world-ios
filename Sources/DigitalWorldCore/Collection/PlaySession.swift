@@ -128,6 +128,7 @@ public struct DeviceSlot: Codable, Equatable, Identifiable, Sendable {
     public var id: UUID
     public var deviceID: String
     public var style: PlayStyle
+    public var sourceSlotID: UUID? = nil
     public var createdAt: Date
     public var lastOpenedAt: Date
 }
@@ -136,6 +137,15 @@ public struct DeviceLibraryIndex: Codable, Equatable, Sendable {
     public var activeID: UUID?
     public var slots: [DeviceSlot] = []
     public init() {}
+    public func sandbox(for sourceID: UUID) -> DeviceSlot? {
+        slots.first { !$0.style.isFormal && $0.sourceSlotID == sourceID }
+    }
+    public func formalSource(for sandboxID: UUID) -> DeviceSlot? {
+        guard let sandbox = slots.first(where: { $0.id == sandboxID && !$0.style.isFormal }) else { return nil }
+        if let origin = sandbox.sourceSlotID { return slots.first { $0.id == origin && $0.style.isFormal } }
+        let candidates = slots.filter { $0.deviceID == sandbox.deviceID && $0.style.isFormal }
+        return candidates.count == 1 ? candidates.first : nil
+    }
 }
 /// Each physical-device instance owns an independent SaveStore, including its backups.
 public struct DeviceLibraryStore: Sendable {
@@ -155,7 +165,12 @@ public struct DeviceLibraryStore: Sendable {
             let index = try JSONDecoder().decode(DeviceLibraryIndex.self,from: envelope.payload)
             guard index.version == 1,index.slots.count <= 128,Set(index.slots.map(\.id)).count == index.slots.count,
                   index.activeID == nil || index.slots.contains(where: { $0.id == index.activeID }) else { throw GameError.saveCorrupt }
-            for slot in index.slots { _ = try database.device(slot.deviceID) }
+            for slot in index.slots {
+                _ = try database.device(slot.deviceID)
+                if let source = slot.sourceSlotID {
+                    guard !slot.style.isFormal,index.slots.contains(where: { $0.id == source && $0.style.isFormal && $0.deviceID == slot.deviceID }) else { throw GameError.saveCorrupt }
+                }
+            }
             return index
         }
         do { return try decode(path) } catch {
@@ -177,9 +192,13 @@ public struct DeviceLibraryStore: Sendable {
         }
         try envelope.write(to: path,options: .atomic)
     }
-    public func add(_ state: GameState,to index: inout DeviceLibraryIndex,at now: Date) throws -> DeviceSlot {
+    public func add(_ state: GameState,to index: inout DeviceLibraryIndex,at now: Date,sourceSlotID: UUID? = nil) throws -> DeviceSlot {
         guard index.slots.count < 128 else { throw GameError.cannotAct("设备收藏档位已满") }
-        let slot = DeviceSlot(id: UUID(),deviceID: state.deviceID,style: state.playStyle,createdAt: now,lastOpenedAt: now)
+        if let sourceSlotID {
+            guard !state.playStyle.isFormal,index.slots.contains(where: { $0.id == sourceSlotID && $0.style.isFormal && $0.deviceID == state.deviceID }) else { throw GameError.invalidData("Sandbox来源设备无效") }
+        }
+        var slot = DeviceSlot(id: UUID(),deviceID: state.deviceID,style: state.playStyle,createdAt: now,lastOpenedAt: now)
+        slot.sourceSlotID = sourceSlotID
         try store(for: slot).save(state)
         var candidate = index; candidate.slots.append(slot); candidate.activeID = slot.id
         try saveIndex(candidate); index = candidate; return slot
