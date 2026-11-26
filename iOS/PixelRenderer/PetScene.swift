@@ -32,7 +32,7 @@ final class PetScene: SKScene {
         }
         if lcd {
             for x in stride(from: -160, through: 160, by: 4) {
-                for y in stride(from: -100, through: 100, by: 4) {
+                for y in stride(from: -120, through: 120, by: 4) {
                     if (x+y)%12 == 0 { square(CGFloat(x), CGFloat(y), 1, 1, ink.withAlphaComponent(0.06)) }
                 }
             }
@@ -52,7 +52,7 @@ final class PetScene: SKScene {
                 square(x,-46,30,36,leaves)
                 square(x,-24,18,12,leaves)
             }
-            square(0,-84,320,34,grass,z: 1)
+            square(0,-94,320,54,grass,z: 1)
             square(0,-68,320,4,dimScene ? ink : UIColor(red: 0.68,green: 0.84,blue: 0.39,alpha: 1),z: 1)
             square(0,-91,120,14,dimScene ? UIColor(red: 0.26,green: 0.32,blue: 0.28,alpha: 1) : UIColor(red: 0.75,green: 0.64,blue: 0.41,alpha: 1),z: 1)
             for i in 0..<5 {
@@ -69,7 +69,7 @@ final class PetScene: SKScene {
         if background != "grasslands" {
             let paper = lcd ? UIColor(red: 0.66,green: 0.73,blue: 0.52,alpha: 1) :
                 (dimScene ? UIColor(red: 0.09,green: 0.16,blue: 0.24,alpha: 1) : UIColor(red: 0.80,green: 0.88,blue: 0.91,alpha: 1))
-            square(0,0,320,200,paper,z: 1.1)
+            square(0,0,320,240,paper,z: 1.1)
             if background == "office" {
                 for x in [-100,80] {
                     square(CGFloat(x),30,65,55,ink.withAlphaComponent(0.35),z: 1.2)
@@ -182,12 +182,12 @@ final class PetScene: SKScene {
 struct PetScreen: View {
     @ObservedObject var model: WorldViewModel
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var scene = PetScene(size: CGSize(width: 320,height: 200))
+    @State private var scene = PetScene(size: CGSize(width: 320,height: 240))
     var body: some View {
         TimelineView(.periodic(from: .now, by: 0.25)) { context in
             SpriteView(scene: configured(at: context.date), isPaused: false, preferredFramesPerSecond: 15,
                        options: [.ignoresSiblingOrder])
-                .aspectRatio(1.6,contentMode: .fit)
+                .aspectRatio(4/3,contentMode: .fit)
                 .accessibilityIdentifier("homePetScreen")
                 .accessibilityLabel(model.state?.pet.isEgg == true ? "孵化中的数码蛋" : "像素伙伴 \(model.species?.name ?? "")")
             #if DEBUG

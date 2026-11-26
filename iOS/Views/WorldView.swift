@@ -168,6 +168,12 @@ struct WorldView: View {
                         }
                     }
                     if !model.isOriginal { hardwareButtons }
+                    #if DEBUG
+                    if ProcessInfo.processInfo.arguments.contains("--ui-testing") {
+                        Text("meals=\(state.pet.stats.meals);weight=\(state.pet.stats.weight);training=\(state.pet.stats.trainingAttempts);dp=\(state.pet.stats.dp);style=\(state.playStyle.rawValue);offset=\(state.sandboxOffsetSeconds ?? 0);egg=\(state.pet.isEgg);slots=\(model.libraryIndex.slots.count)")
+                            .font(.system(size: 1)).frame(height: 1).accessibilityIdentifier("gameStateProbe")
+                    }
+                    #endif
                     HStack {
                         Text("LOCAL SAVE / AUTO").font(.system(size: 9,design: .monospaced))
                         Spacer()

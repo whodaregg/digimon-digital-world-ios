@@ -28,10 +28,12 @@ struct DigidexView: View {
     @State private var attribute = "all"
     @State private var stage = "all"
     @State private var selected: Species?
+    @State private var deviceFilter = "all"
+    @State private var collectionFilter = "all"
     var body: some View {
         if let database = model.database {
             Panel(title: "DIGIDEX / \(model.state?.dex.count ?? 0) OF \(database.species.count)") {
-                let raised = model.state?.dex.values.filter { $0 == .raised }.count ?? 0
+                let raised = model.isSandbox ? model.state?.dex.values.filter { $0 == .raised }.count ?? 0 : model.collectionEntries.filter { $0.discovery == .raised }.count
                 Readout(name: "已养成完成度",value: "\(raised * 100 / max(1,database.species.count))%")
                 TextField("搜索名称 / ID",text: $query).textFieldStyle(.roundedBorder)
                 HStack {
@@ -44,19 +46,32 @@ struct DigidexView: View {
                         ForEach(Stage.allCases,id: \.self) { value in Text(value.rawValue).tag(value.rawValue) }
                     }
                 }.pickerStyle(.menu)
+                HStack {
+                    Picker(model.text(.device),selection: $deviceFilter) {
+                        Text(model.text(.all)).tag("all")
+                        ForEach(database.devices.filter { $0.enabled }) { Text($0.name).tag($0.id) }
+                    }
+                    Picker(model.text(.collection),selection: $collectionFilter) {
+                        Text(model.text(.all)).tag("all"); Text("已发现").tag("discovered"); Text("已养成").tag("raised")
+                    }
+                }.pickerStyle(.menu)
+                if model.isSandbox { Text("SANDBOX图鉴 · 不计入正式收藏").font(.caption).foregroundStyle(Palette.amber) }
                 let filtered = database.species.filter { species in
                     (query.isEmpty || [species.name,species.nameSC,species.nameTC,species.nameJP,species.id].contains { $0.localizedCaseInsensitiveContains(query) }) &&
-                    (attribute == "all" || species.attribute.rawValue == attribute) && (stage == "all" || species.stage.rawValue == stage)
+                    (attribute == "all" || species.attribute.rawValue == attribute) && (stage == "all" || species.stage.rawValue == stage) &&
+                    (deviceFilter == "all" || species.devices.contains(deviceFilter)) &&
+                    (collectionFilter == "all" || discovery(species.id) != nil && (collectionFilter != "raised" || discovery(species.id) == .raised))
                 }
                 if filtered.isEmpty { Text("没有匹配角色，请调整筛选条件。").font(.footnote).foregroundStyle(Palette.muted) }
                 ForEach(filtered) { species in
-                    let discovery = model.state?.dex[species.id]
+                    let discovery = discovery(species.id)
                     Button { selected = species } label: {
                         HStack(spacing: 14) {
                             SpriteThumbnail(id: species.id,size: 56,silhouette: discovery == nil)
                                 .background(Palette.muted.opacity(0.15),in: RoundedRectangle(cornerRadius: 8))
                             VStack(alignment: .leading,spacing: 4) {
-                                Text(discovery == nil ? "???" : species.name).font(.headline)
+                                Text(discovery == nil ? "???" : species.localizedName(model.language)).font(.headline)
+                                if discovery != nil && model.language != .english { Text(species.name).font(.caption2) }
                                 Text(discovery == nil ? "未发现" : discovery == .raised ? "已养成" : "已遭遇")
                                     .font(.system(.caption2,design: .monospaced)).foregroundStyle(Palette.muted)
                             }
@@ -67,7 +82,7 @@ struct DigidexView: View {
                     }.buttonStyle(.plain)
                 }
             }
-            if model.isOriginal, let rules = database.dmcV1 {
+            if model.isOriginal && !model.isClassic, let rules = database.dmcV1 {
                 Panel(title: "EVOLUTION / COLOR Ver.1") {
                     Text("养成由照顾失误、训练、满腹、睡眠打扰和战绩决定；不使用经验升级。")
                         .font(.footnote).foregroundStyle(Palette.muted)
@@ -83,7 +98,7 @@ struct DigidexView: View {
                     Text("电光暴龙兽＋Ver.2偃月加鲁鲁兽的联展未开放；Alter-S不会通过普通进化获得。")
                         .font(.caption2).foregroundStyle(Palette.muted)
                 }
-            } else {
+            } else if !model.isOriginal {
             Panel(title: "EVOLUTION / 旧版实验分支") {
                 Text("双指缩放、上下左右拖动。以下为本游戏养成路线，并非实体机官方条件。")
                     .font(.caption).foregroundStyle(Palette.muted)
@@ -98,13 +113,18 @@ struct DigidexView: View {
                 ScrollView {
                     VStack(spacing: 16) {
                         Panel(title: species.name.uppercased()) {
-                            SpriteThumbnail(id: species.id,size: 120).frame(maxWidth: .infinity)
+                            if discovery(species.id) != nil || model.isSandbox { SpeciesPreview(id: species.spriteID,mode: model.display) }
+                            else { SpriteThumbnail(id: species.id,size: 120,silhouette: true) }
                             Text("\(species.nameSC) / \(species.nameTC) / \(species.nameJP)").font(.subheadline)
                             Readout(name: "阶段",value: species.stage.rawValue)
                             Readout(name: "种族",value: species.type)
                             Readout(name: "属性",value: species.attribute.rawValue)
                             Readout(name: "必杀技",value: species.specialMove)
                             if !model.isOriginal { Readout(name: "HP / 攻击 / 防御",value: "\(species.stats.hp) / \(species.stats.attack) / \(species.stats.defense)") }
+                            if let entry = model.collectionEntries.first(where: { $0.id == species.id }) {
+                                Readout(name: model.text(.obtainedCount),value: "\(entry.obtainedCount)")
+                                Readout(name: model.text(.firstObtained),value: entry.firstObtained?.formatted(date: .abbreviated,time: .shortened) ?? "旧档未记录")
+                            }
                             Readout(name: "首次登场",value: species.firstAppearance ?? "待核验")
                             Text(model.isOriginal ? "Ver.1战斗使用力量与三次命中判定。睡眠和隐藏进化条件依公开资料实现，尚待实体机复核。" : "此页旧版规则数值为实验平衡参数。")
                                 .font(.caption).foregroundStyle(Palette.amber)
@@ -112,7 +132,7 @@ struct DigidexView: View {
                                 .font(.caption).foregroundStyle(Palette.muted)
                             if let source = species.referenceURL, let url = URL(string: source) { Link("官方角色资料",destination: url) }
                         }
-                        if model.isOriginal, let rules = model.database?.dmcV1 {
+                        if model.isOriginal && !model.isClassic, let rules = model.database?.dmcV1 {
                             Panel(title: "Ver.1 / 条件") {
                                 if let stats = rules.roster[species.id] {
                                     Readout(name: "最低体重",value: "\(stats.minimumWeight) g")
@@ -124,7 +144,7 @@ struct DigidexView: View {
                                 }
                                 if species.id == "omegamon-alter-s" { Text("需要跨版本通信联展，目前仅作为Quest最终敌人。") }
                             }
-                        } else if !species.evolutions.isEmpty {
+                        } else if !model.isOriginal && !species.evolutions.isEmpty {
                             Panel(title: "BRANCHES / 条件") {
                                 ForEach(species.evolutions) { rule in
                                     VStack(alignment: .leading,spacing: 6) {
@@ -144,6 +164,10 @@ struct DigidexView: View {
             }
         }
     }
+    private func discovery(_ id: String) -> Discovery? {
+        model.isSandbox ? model.state?.dex[id] : model.collectionEntries.first(where: { $0.id == id })?.discovery ?? model.state?.dex[id]
+    }
+
 }
 
 struct EvolutionTreeView: View {

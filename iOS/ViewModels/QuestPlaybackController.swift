@@ -4,7 +4,7 @@ import DigitalWorldCore
 
 @MainActor
 final class QuestPlaybackController: ObservableObject {
-    let scene = QuestBattleScene(size: CGSize(width: 320,height: 200))
+    let scene = QuestBattleScene(size: CGSize(width: 320,height: 240))
     @Published private(set) var battle = 0
     @Published private(set) var playerHits = 0
     @Published private(set) var enemyHits = 0

@@ -22,7 +22,7 @@ struct ColorDeviceView: View {
                         Text(model.isSandbox ? "TEST" : "Ver.1")
                     }.font(PixelFont.font(10,language: model.language)).padding(.horizontal,6).padding(.top,4)
                     Rectangle().fill(Palette.screenSurface(model.display))
-                        .aspectRatio(1.6,contentMode: .fit)
+                        .aspectRatio(4/3,contentMode: .fit)
                         .overlay { content.clipped() }
                     icons(4..<8)
                 }
@@ -46,7 +46,7 @@ struct ColorDeviceView: View {
         }.padding(14)
             .background(shellColor,in: RoundedRectangle(cornerRadius: 24))
             .overlay(RoundedRectangle(cornerRadius: 24).stroke(.black.opacity(0.45),lineWidth: 3))
-            .onChange(of: model.lastQuest?.records.first?.id) { _,_ in beginReplay() }
+            .onChange(of: model.lastQuest?.records.first?.id) { _,_ in if model.lastQuest == nil { replay.stop(); model.lcdBattleFinished = false } else { beginReplay() } }
             .onChange(of: model.lcdSkipRequest) { _,_ in replay.skip() }
             .onChange(of: replay.finished) { _,done in model.lcdBattleFinished = done }
             .onAppear { beginReplay() }

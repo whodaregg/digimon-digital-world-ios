@@ -91,7 +91,7 @@ struct QuestPlaybackView: View {
                 .font(.headline).frame(maxWidth: .infinity)
             TimelineView(.periodic(from: .now,by: 0.1)) { _ in
                 SpriteView(scene: replay.scene,preferredFramesPerSecond: 30,options: [.ignoresSiblingOrder])
-                    .aspectRatio(1.6,contentMode: .fit)
+                    .aspectRatio(4/3,contentMode: .fit)
                     .accessibilityLabel("Quest战斗演出")
                     .accessibilityIdentifier("questArena")
                 #if DEBUG

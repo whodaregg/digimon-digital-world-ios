@@ -3,107 +3,78 @@ import XCTest
 final class WorldUITests: XCTestCase {
     override func setUpWithError() throws { continueAfterFailure = false }
     func testHatchingAndHardwareNavigation() throws {
-        let app = XCUIApplication()
-        app.launchArguments = ["--ui-testing"]
-        app.launch()
+        let app = launch(hatched: false)
         XCTAssertTrue(app.buttons["startHatching"].waitForExistence(timeout: 10))
         app.buttons["startHatching"].tap()
-        XCTAssertTrue(app.buttons["action-FOOD"].waitForExistence(timeout: 5))
-        let b = app.buttons["hardware-B"]
-        if !b.isHittable { app.swipeUp() }
-        b.tap()
-        XCTAssertTrue(app.navigationBars["时钟"].waitForExistence(timeout: 5))
-        app.navigationBars.buttons["完成"].tap()
-        app.buttons["hardware-A"].tap()
-        b.tap()
-        XCTAssertTrue(app.navigationBars["伙伴状态"].waitForExistence(timeout: 5))
-        attachScreenshot("hatching-status")
+        XCTAssertTrue(app.buttons["hardware-B"].waitForExistence(timeout: 5))
+        app.buttons["hardware-B"].tap()
+        XCTAssertTrue(element(app,"lcdClock").waitForExistence(timeout: 5))
+        app.buttons["hardware-C"].tap(); app.buttons["hardware-A"].tap(); app.buttons["hardware-B"].tap()
+        XCTAssertTrue(element(app,"lcdStatusPage").waitForExistence(timeout: 5))
+        attachScreenshot("lcd-hatching-status")
     }
-    func testFeedingTrainingAndDisplaySettings() throws {
-        let app = XCUIApplication()
-        app.launchArguments = ["--ui-testing","--ui-testing-hatched"]
-        app.launch()
+    func testLCDFeedingTrainingAndActualStats() throws {
+        let app = launch()
         XCTAssertTrue(app.buttons["action-FOOD"].waitForExistence(timeout: 10))
-        app.buttons["action-FOOD"].tap()
-        XCTAssertTrue(app.buttons["feed-meat"].waitForExistence(timeout: 5))
-        app.buttons["feed-meat"].tap()
-        app.navigationBars.buttons["完成"].tap()
-        app.buttons["action-TRAIN"].tap()
-        app.buttons["beginTraining"].tap()
-        XCTAssertTrue(app.buttons["training-B"].waitForExistence(timeout: 5))
+        app.buttons["action-FOOD"].tap(); app.buttons["lcdFeed"].tap()
+        app.buttons["hardware-C"].tap()
+        XCTAssertTrue(waitFor(app.staticTexts["gameStateProbe"],containing: "meals=1;weight=21;",timeout: 5))
+        app.buttons["action-TRAIN"].tap(); app.buttons["beginTraining"].tap()
         for key in ["B","B","B","A","A"] { app.buttons["training-"+key].tap() }
-        XCTAssertTrue(app.staticTexts["命中 5 / 5 · 成功，力量＋1心"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.buttons["beginTraining"].exists)
-        app.navigationBars.buttons["完成"].tap()
-        if !app.buttons["action-SETTINGS"].isHittable { app.swipeUp() }
-        app.buttons["action-SETTINGS"].tap()
-        XCTAssertTrue(app.staticTexts["DISPLAY / 像素显示"].waitForExistence(timeout: 5))
-        attachScreenshot("settings")
+        XCTAssertTrue(waitFor(app.staticTexts["lcdTrainingResult"],containing: "5/5",timeout: 5))
+        app.buttons["hardware-C"].tap()
+        XCTAssertTrue(app.staticTexts["gameStateProbe"].label.contains("training=1;"))
+        attachScreenshot("lcd-training-result")
     }
-    func testSequentialQuestAndDigidex() throws {
-        let app = XCUIApplication()
-        app.launchArguments = ["--ui-testing","--ui-testing-hatched"]
-        app.launch()
-        XCTAssertTrue(app.buttons["action-BATTLE"].waitForExistence(timeout: 10))
-        app.buttons["action-BATTLE"].tap()
-        XCTAssertTrue(app.staticTexts["按区域顺序挑战"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.buttons["quest-area-1"].isEnabled)
-        XCTAssertFalse(app.buttons["quest-area-2"].isEnabled)
-        XCTAssertFalse(app.buttons["移动 arrow.up"].exists)
-        attachScreenshot("ver1-quest-areas")
-        app.buttons["quest-area-1"].tap()
-        XCTAssertTrue(app.staticTexts["第 1 / 3 战"].waitForExistence(timeout: 5))
-        for _ in 0..<3 {
-            let skip = app.buttons["跳过本战演出"]
-            if skip.waitForExistence(timeout: 3) { skip.tap() }
-            if app.buttons["返回区域选择"].waitForExistence(timeout: 2) { break }
-        }
-        XCTAssertTrue(app.buttons["返回区域选择"].waitForExistence(timeout: 5))
-        attachScreenshot("ver1-quest-result")
-        app.buttons["返回区域选择"].tap()
-        app.navigationBars.buttons["完成"].tap()
-        if !app.buttons["action-DIGIDEX"].isHittable { app.swipeUp() }
-        app.buttons["action-DIGIDEX"].tap()
-        XCTAssertTrue(app.textFields["搜索名称 / ID"].waitForExistence(timeout: 5))
-        let field = app.textFields["搜索名称 / ID"]
-        field.tap(); field.typeText("Agumon")
-        XCTAssertTrue(app.buttons.containing(.staticText,identifier: "Agumon").firstMatch.waitForExistence(timeout: 5))
+    func testClassicModeUsesHardwareAndHidesHiddenConditions() throws {
+        let app = launch(); openSettings(app)
+        app.buttons["play-style-classic"].tap(); app.navigationBars.buttons["完成"].tap()
+        XCTAssertFalse(app.buttons["action-FOOD"].isEnabled)
+        app.buttons["hardware-A"].tap(); app.buttons["hardware-B"].tap()
+        XCTAssertTrue(element(app,"lcdStatusPage").exists)
+        XCTAssertFalse(app.staticTexts["本阶段照顾失误"].exists)
+        app.buttons["hardware-C"].tap(); openSettings(app)
+        app.buttons["play-style-enhanced"].tap(); app.navigationBars.buttons["完成"].tap()
+        XCTAssertTrue(app.buttons["action-FOOD"].isEnabled)
     }
     func testOriginalColorAndFreeDisplaySwitching() throws {
-        let app = XCUIApplication()
-        app.launchArguments = ["--ui-testing","--ui-testing-hatched"]
-        app.launch()
-        XCTAssertTrue(app.staticTexts["COLOR Ver.1"].waitForExistence(timeout: 10))
-        attachScreenshot("original-color-home")
-        if !app.buttons["action-SETTINGS"].isHittable { app.swipeUp() }
-        app.buttons["action-SETTINGS"].tap()
+        let app = launch(); attachScreenshot("large-color-home")
+        openSettings(app)
         for mode in ["lcd","advanced","color"] {
             let choice = app.buttons["display-mode-\(mode)"]
-            XCTAssertTrue(choice.waitForExistence(timeout: 5))
-            choice.tap()
+            scrollTo(choice,in: app); choice.tap()
             XCTAssertEqual(choice.value as? String,"已选择")
-            attachScreenshot(mode == "lcd" ? "lcd-preview" : mode == "advanced" ? "advanced-color-preview" : "retro-color-preview")
+            attachScreenshot("display-"+mode)
         }
     }
-    func testLegacyProfileCanBePreservedAndRestored() throws {
-        let app = XCUIApplication()
-        app.launchArguments = ["--ui-testing","--ui-testing-legacy"]
-        app.launch()
-        XCTAssertTrue(app.buttons["action-SETTINGS"].waitForExistence(timeout: 10))
-        if !app.buttons["action-SETTINGS"].isHittable { app.swipeUp() }
-        app.buttons["action-SETTINGS"].tap()
-        let start = app.buttons["备份旧档并开始 Ver.1"]
-        for _ in 0..<3 { if start.isHittable { break }; app.swipeUp() }
-        start.tap()
-        XCTAssertTrue(app.staticTexts["COLOR Ver.1"].waitForExistence(timeout: 5))
-        if !app.buttons["action-SETTINGS"].isHittable { app.swipeUp() }
-        app.buttons["action-SETTINGS"].tap()
-        let restore = app.buttons["restorePreviousProfile"]
-        for _ in 0..<5 { if restore.isHittable { break }; app.swipeUp() }
-        XCTAssertTrue(restore.exists)
-        restore.tap()
-        XCTAssertTrue(app.staticTexts["COLOR LAB"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["AGUMON"].exists)
+    func testSandboxTimeAndReturnPreserveFormalCare() throws {
+        let app = launch(); openSettings(app)
+        app.buttons["play-style-sandbox"].tap()
+        let advance = app.buttons["sandboxAdvance"]; scrollTo(advance,in: app); advance.tap()
+        let back = app.buttons["returnFormal"]; scrollTo(back,in: app); back.tap()
+        app.navigationBars.buttons["完成"].tap()
+        let probe = app.staticTexts["gameStateProbe"]
+        XCTAssertTrue(waitFor(probe,containing: "style=enhanced;offset=0;egg=false;slots=2",timeout: 5))
+        XCTAssertTrue(probe.label.contains("meals=0;weight=20;"))
+    }
+    func testDeviceCollectionCreatesAndSwitchesIndependentPets() throws {
+        let app = launch()
+        app.buttons["action-DIGIVICE"].tap()
+        app.buttons["profile-dmc-ver1"].tap()
+        XCTAssertTrue(app.buttons["create-device-dmc-ver1"].waitForExistence(timeout: 5))
+        app.buttons["create-device-dmc-ver1"].tap()
+        let old = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@","switch-slot-")).firstMatch
+        XCTAssertTrue(old.waitForExistence(timeout: 5)); old.tap()
+        app.navigationBars.buttons["完成"].tap()
+        XCTAssertTrue(waitFor(app.staticTexts["gameStateProbe"],containing: "egg=false;slots=2",timeout: 5))
+        attachScreenshot("device-collection-returned-pet")
+    }
+    func testResetRequiresConfirmationAndPreservesOtherSlots() throws {
+        let app = launch(); openSettings(app)
+        let reset = app.buttons["resetDevice"]; scrollTo(reset,in: app); reset.tap()
+        app.buttons["取消"].tap(); reset.tap(); app.buttons["确认重置"].tap()
+        app.navigationBars.buttons["完成"].tap()
+        XCTAssertTrue(waitFor(app.staticTexts["gameStateProbe"],containing: "egg=true;",timeout: 5))
     }
     func testDeveloperCodeAndSessionLock() throws {
         let app = XCUIApplication()
@@ -163,7 +134,7 @@ final class WorldUITests: XCTestCase {
         app.buttons["developerRestore"].tap()
         XCTAssertEqual(app.staticTexts["developerNotice"].label,"已恢复调试前存档")
         app.navigationBars.buttons["完成"].tap()
-        XCTAssertTrue(app.staticTexts["AGUMON"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["亚古兽"].waitForExistence(timeout: 5))
     }
     func testLargeHomePetActuallyWalksAndTurns() throws {
         let app = XCUIApplication()
@@ -183,27 +154,52 @@ final class WorldUITests: XCTestCase {
         attachScreenshot("large-pet-happy")
     }
     func testQuestPlaysEveryEnemyWithAttackEvasionHitAndResult() throws {
-        let app = XCUIApplication()
-        app.launchArguments = ["--ui-testing","--ui-testing-hatched","--ui-testing-quest"]
-        app.launch()
-        XCTAssertTrue(app.buttons["action-BATTLE"].waitForExistence(timeout: 10))
-        app.buttons["action-BATTLE"].tap(); app.buttons["quest-area-1"].tap()
+        let app = launch(quest: true)
+        app.buttons["action-BATTLE"].tap(); app.buttons["lcdQuestStart"].tap()
         let probe = app.staticTexts["questAnimationProbe"]
         XCTAssertTrue(probe.waitForExistence(timeout: 5))
         for battle in 1...3 {
-            XCTAssertTrue(waitFor(app.staticTexts["questBattleNumber"],containing: "第 \(battle) / 3 战",timeout: 22))
+            XCTAssertTrue(waitFor(app.staticTexts["questBattleNumber"],containing: "\(battle)/3",timeout: 22))
             XCTAssertTrue(waitFor(probe,containing: "shot=true",timeout: 8))
-            attachScreenshot("quest-\(battle)-attack")
+            attachScreenshot("lcd-quest-\(battle)-attack")
             XCTAssertTrue(waitFor(probe,containing: "mark=true",timeout: 4))
-            attachScreenshot("quest-\(battle)-hit")
+            attachScreenshot("lcd-quest-\(battle)-hit")
             XCTAssertTrue(waitFor(probe,containing: "回避",timeout: 8))
             XCTAssertTrue(waitFor(probe,containing: "pose=victory",timeout: 20))
-            attachScreenshot("quest-\(battle)-victory")
         }
-        XCTAssertTrue(app.buttons["返回区域选择"].waitForExistence(timeout: 5))
-        XCTAssertEqual(app.staticTexts["questResult"].label,"本区通关，进度已保存")
-        app.buttons["返回区域选择"].tap()
-        XCTAssertTrue(app.buttons["quest-area-2"].isEnabled)
+        XCTAssertTrue(app.buttons["lcdQuestReturn"].waitForExistence(timeout: 5))
+        attachScreenshot("lcd-area-clear")
+        app.buttons["lcdQuestReturn"].tap()
+    }
+    func testDigidexSearchAndAnimatedPreview() throws {
+        let app = launch()
+        app.buttons["action-DIGIDEX"].tap()
+        let field = app.textFields["搜索名称 / ID"]
+        XCTAssertTrue(field.waitForExistence(timeout: 5)); field.tap(); field.typeText("Agumon")
+        let row = app.buttons.containing(.staticText,identifier: "Agumon").firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 5)); row.tap()
+        XCTAssertTrue(element(app,"animationPreview").waitForExistence(timeout: 5))
+        attachScreenshot("digidex-animated-preview")
+    }
+    private func launch(hatched: Bool = true,quest: Bool = false) -> XCUIApplication {
+        let app = XCUIApplication(); app.launchArguments = ["--ui-testing"]
+        if hatched { app.launchArguments.append("--ui-testing-hatched") }
+        if quest { app.launchArguments.append("--ui-testing-quest") }
+        app.launch()
+        if hatched { XCTAssertTrue(app.buttons["hardware-A"].waitForExistence(timeout: 10)) }
+        return app
+    }
+    private func element(_ app: XCUIApplication,_ id: String) -> XCUIElement {
+        app.descendants(matching: .any).matching(identifier: id).firstMatch
+    }
+    private func openSettings(_ app: XCUIApplication) {
+        let settings = app.buttons["action-SETTINGS"]
+        scrollTo(settings,in: app); settings.tap()
+        XCTAssertTrue(app.buttons["play-style-classic"].waitForExistence(timeout: 5))
+    }
+    private func scrollTo(_ element: XCUIElement,in app: XCUIApplication) {
+        for _ in 0..<10 { if element.exists && element.isHittable { return }; app.swipeUp() }
+        XCTAssertTrue(element.exists)
     }
     private func waitFor(_ element: XCUIElement,containing text: String,timeout: TimeInterval) -> Bool {
         let deadline = Date().addingTimeInterval(timeout)

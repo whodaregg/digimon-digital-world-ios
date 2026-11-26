@@ -128,10 +128,10 @@ final class QuestBattleScene: SKScene {
     private func hitMark() {
         effects.removeAllChildren(); player.isHidden = true; enemy.isHidden = true
         let mark = SKNode(); mark.name = "hitMark"; effects.addChild(mark)
-        block(mark,0,0,320,200,mode == .lcd ? UIColor(red: 0.66,green: 0.73,blue: 0.52,alpha: 1) : .systemYellow)
+        block(mark,0,0,320,240,mode == .lcd ? UIColor(red: 0.66,green: 0.73,blue: 0.52,alpha: 1) : .systemYellow)
         for i in 0..<10 {
             let x = CGFloat(i*36-160)
-            block(mark,x,94,14,12,ink); block(mark,x+12,-94,14,12,ink)
+            block(mark,x,114,14,12,ink); block(mark,x+12,-114,14,12,ink)
         }
         for y in [-60,0,60] { block(mark,-154,CGFloat(y),12,24,ink); block(mark,154,CGFloat(y),12,24,ink) }
         mark.addChild(skull(color: mode == .lcd ? ink : UIColor(red: 0.19,green: 0.16,blue: 0.39,alpha: 1),scale: 7))
@@ -154,7 +154,7 @@ final class QuestBattleScene: SKScene {
     func clearArea() { card("CLEAR"); setPhase("区域通关") }
     private func card(_ text: String) {
         player.isHidden = true; enemy.isHidden = true; effects.removeAllChildren()
-        block(effects,0,0,320,200,ink)
+        block(effects,0,0,320,240,ink)
         let glyphs: [Character:[String]] = [
             "A": [".###.","#...#","#...#","#####","#...#","#...#","#...#"],
             "B": ["####.","#...#","#...#","####.","#...#","#...#","####."],
@@ -186,7 +186,7 @@ final class QuestBattleScene: SKScene {
             let x = CGFloat(i*65-160), c = lcd ? ink.withAlphaComponent(0.15) : UIColor(red: 0.37,green: 0.51,blue: 0.69,alpha: 1)
             block(scenery,x,-30,70,40,c); block(scenery,x,-4,40,14,c); block(scenery,x,6,18,8,c)
         }
-        block(scenery,0,-84,320,34,lcd ? ink.withAlphaComponent(0.18) : .init(red: 0.42,green: 0.66,blue: 0.25,alpha: 1))
+        block(scenery,0,-94,320,54,lcd ? ink.withAlphaComponent(0.18) : .init(red: 0.42,green: 0.66,blue: 0.25,alpha: 1))
         block(scenery,0,-67,320,3,lcd ? ink.withAlphaComponent(0.45) : .init(red: 0.68,green: 0.84,blue: 0.39,alpha: 1))
     }
     #if DEBUG
