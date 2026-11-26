@@ -30,7 +30,7 @@ public enum GameEngine {
             guard device.eggs.contains(eggID), result.dex.values.filter({ $0 == .raised }).count >= egg.requiredRaised else {
                 throw GameError.cannotAct("数码蛋尚未解锁")
             }
-            guard result.pets.count < 32 else { throw GameError.cannotAct("本地历史已达 32 只，请先导出存档") }
+            try LifecycleManager.makeRoom(&result)
             var newPet = Pet(speciesID: egg.species, eggID: eggID)
             newPet.record("egg", "继承图鉴，重新开始", at: now)
             result.pets.append(newPet); result.activePetID = newPet.id; result.training = nil

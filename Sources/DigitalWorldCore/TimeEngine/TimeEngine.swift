@@ -13,7 +13,10 @@ public enum TimeEngine {
     /// A fixed home timezone prevents travel from rewriting a pet's sleep schedule.
     @discardableResult
     public static func advance(_ state: inout GameState, to now: Date, database: ContentDatabase) throws -> TimeReport {
-        if state.deviceID == DMCV1Engine.deviceID { return try DMCV1Engine.advance(&state,to: now,database: database) }
+        if state.deviceID == DMCV1Engine.deviceID {
+            let report = try DMCV1Engine.advance(&state,to: now,database: database)
+            LifecycleManager.capture(&state); return report
+        }
         guard now.timeIntervalSince1970.isFinite else { throw GameError.invalidData("时间无效") }
         let device = try database.device(state.deviceID)
         var report = TimeReport()
@@ -38,7 +41,7 @@ public enum TimeEngine {
                 if p.isEgg {
                     if p.stageMinutes >= (try database.egg(p.eggID)).hatchMinutes {
                         p.isEgg = false; p.stageMinutes = 0; p.activeMinutes = 0
-                        p.evolutionHistory = [p.speciesID]
+                        p.evolutionHistory = [p.speciesID]; p.appearances = [SpeciesAppearance(p.speciesID,at: date)]
                         p.record("hatch", "孵化 · \((try database.species(p.speciesID)).name)", at: date)
                         state.dex[p.speciesID] = .raised; report.hatchings += 1
                     }
@@ -87,6 +90,7 @@ public enum TimeEngine {
                     p.record("death", "回归数据，养成记录已保留", at: date); report.deaths += 1
                     if state.training?.petID == p.id { state.training = nil }
                 } else if let rule = try EvolutionEngine.candidate(pet: p, database: database, inventory: state.inventory) {
+                    p.appearances = (p.appearances ?? []) + [SpeciesAppearance(rule.target,at: date)]
                     p.speciesID = rule.target; p.stageMinutes = 0; p.evolutionHistory.append(rule.target)
                     p.developerTuning = nil
                     if let item = rule.requiredItem { state.inventory[item, default: 0] -= 1 }
@@ -101,6 +105,7 @@ public enum TimeEngine {
         report.minutes = count
         state.lastTick = cursor.addingTimeInterval(Double(count) * 60)
         if let session = state.training, now.timeIntervalSince(session.startedAt) > 30 { state.training = nil }
+        LifecycleManager.capture(&state)
         return report
     }
     public static func isSleepHour(_ hour: Int, sleep: Int, wake: Int) -> Bool {

@@ -8,6 +8,7 @@ final class QuestBattleScene: SKScene {
     private let enemy = PixelActor(size: 160)
     private let effects = SKNode()
     private let scenery = SKNode()
+    private var previousFrame: TimeInterval?
     private var mode: DisplayMode = .color
     private var reduced = false
     private var playerEffect = "fire", enemyEffect = "electric"
@@ -43,6 +44,10 @@ final class QuestBattleScene: SKScene {
         actions += [.run { [weak self] in self?.result(won: record.won) },.wait(forDuration: 1.6),
                     .run { [weak self] in self?.onFinished?() }]
         run(.sequence(actions),withKey: "quest")
+    }
+    override func update(_ currentTime: TimeInterval) {
+        let delta = previousFrame.map { min(0.25,max(0,currentTime-$0)) } ?? 0
+        previousFrame = currentTime; player.tick(delta); enemy.tick(delta)
     }
     func stop() {
         removeAllActions(); player.removeAllActions(); enemy.removeAllActions()

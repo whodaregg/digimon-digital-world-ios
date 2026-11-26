@@ -177,6 +177,7 @@ public struct Pet: Codable, Equatable, Identifiable, Sendable {
     public var history: [JournalEvent] = []
     public var evolutionHistory: [String] = []
     public var personality = "Curious"
+    public var appearances: [SpeciesAppearance]?
     public var dmc: DMCCareState?
     public var developerTuning: DeveloperTuning?
     public init(id: UUID = UUID(), speciesID: String, eggID: String) {
@@ -189,12 +190,14 @@ public struct Pet: Codable, Equatable, Identifiable, Sendable {
 }
 
 public struct Settings: Codable, Equatable, Sendable {
+    public var interface: DevicePresentationSettings?
     public var display: DisplayMode = .color
     public var sound = true
     public var haptics = true
     public var notifications = false
     public var quietStart = 22
     public var quietEnd = 8
+    public init() {}
 }
 
 public struct AdventureState: Codable, Equatable, Sendable {
@@ -225,7 +228,7 @@ public struct BattleRecord: Codable, Equatable, Identifiable, Sendable {
 }
 
 public struct GameState: Codable, Equatable, Sendable {
-    public static let currentVersion = 4
+    public static let currentVersion = 5
     public var schemaVersion = Self.currentVersion
     public var databaseVersion: Int
     public var deviceID: String
@@ -245,6 +248,9 @@ public struct GameState: Codable, Equatable, Sendable {
     public var battles: [BattleRecord] = []
     public var rng: UInt64 = 0xD1617A1
     public var dmc: DMCDeviceState?
+    public var sandboxOffsetSeconds: Int?
+    public var sessionStyle: PlayStyle?
+    public var lifecycles: [LifecycleRecord]?
     public var developerModifiedAt: Date?
     public var activeIndex: Int { pets.firstIndex { $0.id == activePetID } ?? 0 }
     public var pet: Pet { pets[activeIndex] }

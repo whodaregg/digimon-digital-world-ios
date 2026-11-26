@@ -122,7 +122,7 @@ struct WorldView: View {
             VStack(spacing: 22) {
                 header
                 if let state = model.state {
-                    device(state)
+                    if model.isOriginal { ColorDeviceView(model: model) } else { device(state) }
                     if let care = state.pet.dmc {
                         VStack(spacing: 10) {
                             HeartReadout(name: "饱食",value: care.hungerHearts)
@@ -141,6 +141,7 @@ struct WorldView: View {
                         Text(model.message).font(.system(.caption,design: .monospaced)).foregroundStyle(Palette.muted).lineLimit(2)
                         Spacer(minLength: 0)
                     }.frame(minHeight: 30).accessibilityIdentifier("worldMessage")
+                    if !model.isOriginal {
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(),spacing: 9),count: 4),spacing: 10) {
                         ForEach(actions.indices,id: \.self) { index in
                             Button { selected = index; activate(index) } label: {
@@ -156,20 +157,21 @@ struct WorldView: View {
                                 .disabled(model.isOriginal && actions[index].0 == "CALL")
                         }
                     }
+                    }
                     if model.isOriginal {
                         if model.hasCall { Text(model.callMessage).font(.caption).foregroundStyle(Palette.amber) }
                         HStack {
-                            utility("DIGIDEX","图鉴",page: .digidex)
-                            utility("STORAGE","档案",page: .storage)
-                            utility("SETTINGS","设置",page: .settings)
-                            utility("DIGIVICE","机型",page: .devices)
+                            utility("DIGIDEX",model.text(.digidex),page: .digidex)
+                            utility("STORAGE",model.text(.history),page: .storage)
+                            utility("SETTINGS",model.text(.settings),page: .settings)
+                            utility("DIGIVICE",model.text(.devices),page: .devices)
                         }
                     }
-                    hardwareButtons
+                    if !model.isOriginal { hardwareButtons }
                     HStack {
                         Text("LOCAL SAVE / AUTO").font(.system(size: 9,design: .monospaced))
                         Spacer()
-                        Text(state.developerModifiedAt != nil ? "开发测试档" : model.isOriginal ? "v0.5.0 · COLOR Ver.1" : "旧版实验规则").font(.system(size: 9,design: .monospaced))
+                        Text(model.isSandbox ? "SANDBOX / 独立测试档" : state.developerModifiedAt != nil ? "开发测试档" : model.isOriginal ? "v0.6.0 · COLOR Ver.1" : "旧版实验规则").font(.system(size: 9,design: .monospaced))
                     }.foregroundStyle(Palette.muted.opacity(0.7))
                 }
             }.pageStyle()

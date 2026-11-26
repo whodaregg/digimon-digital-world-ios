@@ -20,6 +20,9 @@ final class QuestPlaybackController: ObservableObject {
     private var reduced = false
     func start(_ result: DMCQuestResult,database: ContentDatabase?,mode: DisplayMode,reduceMotion: Bool) {
         guard !active else { return }
+        if self.result?.records.first?.id != result.records.first?.id {
+            battle = 0; playerHits = 0; enemyHits = 0; finished = false; error = nil
+        }
         self.result = result; self.database = database; self.mode = mode; reduced = reduceMotion
         active = true; showBattle()
     }

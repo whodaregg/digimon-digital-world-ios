@@ -44,7 +44,7 @@ public struct SaveStore: Sendable {
         if version == 1 {
             object["highWatermark"] = object["highWatermark"] ?? object["lastTick"]
         }
-        if version <= 3 { object["schemaVersion"] = GameState.currentVersion }
+        if version <= 4 { object["schemaVersion"] = GameState.currentVersion }
         let migratedData = try JSONSerialization.data(withJSONObject: object, options: [.sortedKeys])
         var state = try JSONDecoder().decode(GameState.self, from: migratedData)
         try database.validateSave(state)

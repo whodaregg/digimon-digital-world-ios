@@ -90,6 +90,12 @@ public struct ContentDatabase: Codable, Sendable {
         guard state.schemaVersion == GameState.currentVersion else {
             throw GameError.futureSave(state.schemaVersion)
         }
+        let ui = state.settings.presentation
+        guard ui.volume.isFinite,(0...1).contains(ui.volume),ui.contrast.isFinite,(0.5...1.5).contains(ui.contrast),
+              ui.brightness.isFinite,(0.3...1).contains(ui.brightness),["brown","gray","blue","white"].contains(ui.shell),
+              (0...315_360_000).contains(state.sandboxOffsetSeconds ?? 0),
+              state.playStyle == .sandbox || (state.sandboxOffsetSeconds ?? 0) == 0,
+              state.playStyle != .sandbox || state.developerModifiedAt != nil else { throw GameError.invalidData("显示设置或Sandbox隔离标记无效") }
         let d = try device(state.deviceID)
         guard d.mode == state.mode, d.enabled, !state.pets.isEmpty,
               state.pets.count <= 32, state.pets.contains(where: { $0.id == state.activePetID }),

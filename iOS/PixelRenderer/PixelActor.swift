@@ -32,6 +32,11 @@ enum PixelAtlas {
 final class PixelActor: SKSpriteNode {
     private(set) var speciesID = ""
     private(set) var pose = "idle"
+    private var clock = SpriteAnimationClock()
+    private var frames: [SKTexture] = []
+    private var seconds = 0.28
+    private var animates = true
+    private var desiredRight = false
     var frameIndex: Int { PixelAtlas.textures(speciesID).firstIndex { $0 === texture } ?? -1 }
     var facingRight: Bool { xScale < 0 }
     init(size: CGFloat) {
@@ -40,16 +45,21 @@ final class PixelActor: SKSpriteNode {
     }
     required init?(coder: NSCoder) { fatalError("Storyboard initialization is not supported") }
     func use(_ id: String,mode: DisplayMode) { speciesID = id; shader = mode == .lcd ? PixelAtlas.lcdShader : nil; color = .white }
-    func face(right: Bool) { xScale = right ? -abs(xScale) : abs(xScale) }
+    func face(right: Bool) { desiredRight = right; xScale = right ? -1 : 1 }
     func play(_ action: String,animated: Bool = true) {
-        removeAction(forKey: "pose"); pose = action
-        guard let sheet = PixelAtlas.manifest?.sprites[speciesID],
-              let animation = sheet.animations[action] ?? sheet.animations["idle"] else { texture = nil; return }
+        pose = action; animates = animated; clock.reset()
+        guard let sheet = PixelAtlas.manifest?.sprites[speciesID] else { texture = nil; return }
+        let alias = ["jump":"happy","blink":"idle","refuse":"sad","wake":"happy","sick":"sad","critical":"special","dodge":"hit","death":"defeat","clean":"happy","medicine":"happy"]
+        let animation = sheet.animations[action] ?? sheet.animations[alias[action] ?? "idle"]
+        guard let animation else { texture = nil; return }
         let all = PixelAtlas.textures(speciesID)
-        let frames = animation.frameIndices.compactMap { all.indices.contains($0) ? all[$0] : nil }
-        texture = frames.first
-        if animated && frames.count > 1 {
-            run(.repeatForever(.animate(with: frames,timePerFrame: animation.frameSeconds)),withKey: "pose")
-        }
+        frames = animation.frameIndices.compactMap { all.indices.contains($0) ? all[$0] : nil }
+        if action == "refuse",all.indices.contains(7),SpriteLibrary.availableFrames(id: speciesID).contains(7) { frames = [all[7]] }
+        seconds = animation.frameSeconds; texture = frames.first
+    }
+    func tick(_ delta: TimeInterval) {
+        if animates { clock.advance(delta) }
+        if !frames.isEmpty { texture = frames[clock.index(count: frames.count,frameSeconds: seconds)] }
+        xScale = desiredRight ? -1 : 1
     }
 }

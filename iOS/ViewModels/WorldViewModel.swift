@@ -3,7 +3,11 @@ import DigitalWorldCore
 
 @MainActor
 final class WorldViewModel: ObservableObject {
-    @Published private(set) var state: GameState?
+    @Published var state: GameState?
+    @Published var lcd = DeviceInputRouter()
+    @Published var lcdNotice: String?
+    @Published var lcdSkipRequest = 0
+    @Published var lcdBattleFinished = false
     @Published var message = "欢迎来到数码世界"
     @Published var alert: String?
     @Published var fatalError: String?
@@ -14,12 +18,15 @@ final class WorldViewModel: ObservableObject {
     @Published var lastQuest: DMCQuestResult?
     @Published private(set) var previousProfileBackupURL: URL?
     @Published private(set) var developerUnlocked = false
-    @Published private(set) var developerBackupURL: URL?
+    @Published var developerBackupURL: URL?
     @Published var developerNotice = ""
     @Published var developerError: String?
     private var developerSnapshotCreated = false
     private(set) var database: ContentDatabase?
-    private var store: SaveStore?
+    var store: SaveStore?
+    var library: DeviceLibraryStore?
+    @Published var libraryIndex = DeviceLibraryIndex()
+    @Published var collectionEntries: [DigidexEntry] = []
     private var lastPersist = Date.distantPast
     private var feedback = FeedbackEngine()
     private let notifications = NotificationCoordinator()
@@ -38,15 +45,18 @@ final class WorldViewModel: ObservableObject {
                 try? FileManager.default.removeItem(at: directory)
             }
             #endif
-            let persistence = SaveStore(directory: directory, database: content)
+            let libraryStore = DeviceLibraryStore(directory: directory,database: content)
+            library = libraryStore; libraryIndex = try libraryStore.loadIndex()
+            var persistence = SaveStore(directory: directory,database: content)
+            if let slot = libraryIndex.slots.first(where: { $0.id == libraryIndex.activeID }) { persistence = libraryStore.store(for: slot) }
             store = persistence
-            developerBackupURL = (try? FileManager.default.contentsOfDirectory(at: directory,includingPropertiesForKeys: [.contentModificationDateKey]))?
+            developerBackupURL = (try? FileManager.default.contentsOfDirectory(at: persistence.directory,includingPropertiesForKeys: [.contentModificationDateKey]))?
                 .filter { $0.lastPathComponent.hasPrefix("world.before-developer.") && $0.pathExtension == "json" }
                 .max { a,b in
                     ((try? a.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate) ?? .distantPast) <
                     ((try? b.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate) ?? .distantPast)
                 }
-            previousProfileBackupURL = (try? FileManager.default.contentsOfDirectory(at: directory,includingPropertiesForKeys: [.contentModificationDateKey]))?
+            previousProfileBackupURL = (try? FileManager.default.contentsOfDirectory(at: persistence.directory,includingPropertiesForKeys: [.contentModificationDateKey]))?
                 .filter { $0.lastPathComponent.hasPrefix("world.before-restore.") && $0.pathExtension == "json" }
                 .max { a,b in
                     let left = (try? a.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate) ?? .distantPast
@@ -58,7 +68,6 @@ final class WorldViewModel: ObservableObject {
                 if loaded.recoveredBackup { message = "主存档损坏，已恢复上次备份；损坏文件将保留。" }
                 else if loaded.migrated { message = "存档已完成版本升级" }
                 else { message = "欢迎回来，伙伴一直在成长" }
-                refresh()
             }
             #if DEBUG
             if ProcessInfo.processInfo.arguments.contains("--ui-testing-hatched") || ProcessInfo.processInfo.arguments.contains("--ui-testing-legacy") {
@@ -76,7 +85,7 @@ final class WorldViewModel: ObservableObject {
                     test.pets[0].dmc!.awakeUntil = Date().addingTimeInterval(3600)
                 }
                 if ProcessInfo.processInfo.arguments.contains("--ui-testing-quest") {
-                    test.rng = 1
+                    test.rng = 1; test.developerModifiedAt = test.highWatermark
                     test.pets[0].developerTuning = DeveloperTuning()
                     test.pets[0].developerTuning!.power = 1_000_000
                 }
@@ -84,11 +93,19 @@ final class WorldViewModel: ObservableObject {
                 state = test
             }
             #endif
+            if var current = state,libraryIndex.activeID == nil {
+                if current.developerModifiedAt != nil { current.sessionStyle = .sandbox }
+                let slot = try libraryStore.add(current,to: &libraryIndex,at: Date())
+                state = current; store = libraryStore.store(for: slot)
+            }
+            refreshCollection()
+            if state != nil { refresh(forceSave: true) }
         } catch {
             fatalError = error.localizedDescription
         }
     }
 
+    var simulationDate: Date { state.map { SandboxEngine.date(for: $0,wallTime: Date()) } ?? Date() }
     var species: Species? { state.flatMap { try? database?.species($0.pet.speciesID) } }
     var exportURL: URL? { store?.primaryURL }
     var display: DisplayMode { state?.settings.display ?? .color }
@@ -116,7 +133,7 @@ final class WorldViewModel: ObservableObject {
     }
     var animationName: String {
         guard let p = state?.pet else { return "idle" }
-        if p.life == .dead { return "defeat" }
+        if p.life == .dead { return "death" }
         if p.sleeping { return "sleep" }
         if p.stats.injured { return "injured" }
         if animation != "idle" { return animation }
@@ -125,18 +142,14 @@ final class WorldViewModel: ObservableObject {
         return "idle"
     }
     func start(eggID: String) {
-        guard let database, fatalError == nil else { return }
-        do {
-            state = try DeviceRegistry.newGame(database: database, deviceID: "dmc-ver1", eggID: "dmc-v1-egg",
-                                               now: Date(), timeZone: TimeZone.current.identifier)
-            message = "Ver.1 孵化已开始 · 8 秒后诞生"
-            persist(); play("evolution")
-        } catch { alert = error.localizedDescription }
+        guard fatalError == nil else { return }
+        createDevice(DMCV1Engine.deviceID)
+        message = "Ver.1 孵化已开始 · 8 秒后诞生"; play("evolution")
     }
     func refresh(now: Date = Date(), forceSave: Bool = false) {
         guard var game = state, let database, fatalError == nil else { return }
         do {
-            let result = try TimeEngine.advance(&game, to: now, database: database)
+            let result = try TimeEngine.advance(&game, to: SandboxEngine.date(for: game,wallTime: now), database: database)
             state = game
             if result.clockReversed { message = "检测到设备时间倒退，请恢复正确时间" }
             else if result.deaths > 0 { message = "伙伴回归数据，记录已保留"; play("defeat") }
@@ -150,8 +163,8 @@ final class WorldViewModel: ObservableObject {
         guard alert == nil else { return }
         switch action {
         case .feed: message = "喂食完成"; play("eat")
-        case .clean: message = "环境清理完成"; play("happy")
-        case .medicine: message = "治疗完成"; play("happy")
+        case .clean: message = "环境清理完成"; play("clean")
+        case .medicine: message = "治疗完成"; play("medicine")
         case .lights(let off): message = off ? "灯光已关闭" : "灯光已开启"
         case .rest(let rest): message = rest ? "休息中，恢复能量" : "已结束手动休息；作息时间内仍会睡眠"
         case .freeze(let frozen): message = frozen ? "成长已暂停" : "成长已恢复"
@@ -206,6 +219,8 @@ final class WorldViewModel: ObservableObject {
         guard code == "0313" else { developerError = "访问码不正确"; return false }
         if state == nil { start(eggID: "dmc-v1-egg") }
         guard state != nil, fatalError == nil else { developerError = "当前存档不可用"; return false }
+        if !isSandbox { enterSandbox() }
+        guard isSandbox else { developerError = "无法创建独立Sandbox档案"; return false }
         developerUnlocked = true; developerSnapshotCreated = false; developerNotice = "开发测试已解锁"
         return true
     }
@@ -218,7 +233,7 @@ final class WorldViewModel: ObservableObject {
             developerError = "请先解锁开发测试入口"; return false
         }
         do {
-            let now = Date()
+            let now = simulationDate
             var next = current
             try DeveloperEngine.perform(action,state: &next,database: database,at: now)
             if !developerSnapshotCreated {
@@ -242,7 +257,7 @@ final class WorldViewModel: ObservableObject {
         guard developerUnlocked, let url = developerBackupURL, let store else { developerError = "没有可恢复的调试备份"; return }
         do {
             var candidate = try store.decode(Data(contentsOf: url)).state
-            if let database { try TimeEngine.advance(&candidate,to: Date(),database: database) }
+            if let database { try TimeEngine.advance(&candidate,to: SandboxEngine.date(for: candidate,wallTime: Date()),database: database) }
             try store.save(candidate)
             state = candidate; lastPersist = Date(); lastQuest = nil; lastBattle = nil; trainingScore = nil
             developerNotice = "已恢复调试前存档"; message = developerNotice
@@ -295,14 +310,14 @@ final class WorldViewModel: ObservableObject {
     }
     func persist() {
         guard let game = state, let store, fatalError == nil else { return }
-        do { try store.save(game); lastPersist = Date() }
+        do { try store.save(game); lastPersist = Date(); refreshCollection() }
         catch { alert = "存档写入失败：\(error.localizedDescription)" }
     }
     func scheduleNotifications() {
         guard let game = state, let database else { return }
         notifications.schedule(game: game, database: database)
     }
-    func feedbackTap() { feedback.play(sound: state?.settings.sound ?? true, haptics: state?.settings.haptics ?? true) }
+    func feedbackTap() { feedback.play(sound: state?.settings.sound ?? true, haptics: state?.settings.haptics ?? true,volume: state?.settings.presentation.volume ?? 0.55) }
     func inspectBackup(_ url: URL) throws -> GameState {
         guard let store else { throw GameError.invalidData("内容数据库不可用，无法验证备份") }
         let granted = url.startAccessingSecurityScopedResource()
@@ -319,15 +334,20 @@ final class WorldViewModel: ObservableObject {
                 try store.encode(current).write(to: preserved,options: .atomic)
                 previousProfileBackupURL = preserved
             }
-            try store.save(candidate)
-            state = candidate; fatalError = nil; message = "备份已恢复，正在结算离线时间"
+            if let library {
+                var copy = candidate
+                if copy.developerModifiedAt != nil { copy.sessionStyle = .sandbox }
+                let slot = try library.add(copy,to: &libraryIndex,at: Date())
+                install(copy,slot: slot)
+            } else { try store.save(candidate); state = candidate }
+            fatalError = nil; message = "备份已恢复为独立设备档案，正在结算离线时间"
             refresh(forceSave: true)
         } catch { alert = "恢复失败：\(error.localizedDescription)" }
     }
     private func command(_ operation: (inout GameState, ContentDatabase, Date) throws -> Void) {
         alert = nil
         guard var game = state, let database, fatalError == nil else { return }
-        let now = Date()
+        let now = simulationDate
         do {
             try TimeEngine.advance(&game, to: now, database: database)
             guard now >= game.highWatermark else { throw GameError.cannotAct("设备时间早于存档时间，请恢复正确时间") }
@@ -338,7 +358,7 @@ final class WorldViewModel: ObservableObject {
             state = game; persist(); alert = error.localizedDescription
         }
     }
-    private func play(_ value: String) {
+    func play(_ value: String) {
         animationTask?.cancel(); animation = value
         animationTask = Task { [weak self] in
             try? await Task.sleep(for: .seconds(value == "evolution" ? 3 : 1.6))

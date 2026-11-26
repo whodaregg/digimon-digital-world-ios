@@ -206,8 +206,12 @@ final class WorldUITests: XCTestCase {
         XCTAssertTrue(app.buttons["quest-area-2"].isEnabled)
     }
     private func waitFor(_ element: XCUIElement,containing text: String,timeout: TimeInterval) -> Bool {
-        let condition = NSPredicate { _,_ in element.exists && element.label.contains(text) }
-        return XCTWaiter.wait(for: [expectation(for: condition,evaluatedWith: element)],timeout: timeout) == .completed
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if element.exists && element.label.contains(text) { return true }
+            RunLoop.current.run(until: Date().addingTimeInterval(0.05))
+        }
+        return false
     }
     private func openDeveloper(_ app: XCUIApplication) {
         let entry = app.descendants(matching: .any).matching(identifier: "developer-entry").firstMatch

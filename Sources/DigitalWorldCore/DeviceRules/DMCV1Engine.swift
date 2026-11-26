@@ -59,6 +59,7 @@ public enum DMCV1Engine {
             state.pets[i].stats.weight = 5; state.pets[i].stats.dp = 0
             state.pets[i].dmc!.hungerCall = deadline; state.pets[i].dmc!.strengthCall = deadline
             state.pets[i].record("hatch","孵化 · 黑球兽",at: deadline)
+            state.pets[i].appearances = [SpeciesAppearance("botamon",at: deadline)]
             state.dex["botamon"] = .raised; state.lastTick = deadline; report.hatchings = 1
         }
         let seconds = now.timeIntervalSince(state.lastTick)
@@ -180,6 +181,7 @@ public enum DMCV1Engine {
         state.pets[i].developerTuning = nil
         state.pets[i].stats.dp = next.maxDP; state.pets[i].stats.weight = max(next.minimumWeight,state.pet.stats.weight)
         state.pets[i].stats.injured = false; state.pets[i].evolutionHistory.append(target)
+        state.pets[i].appearances = (state.pets[i].appearances ?? []) + [SpeciesAppearance(target,at: date)]
         state.pets[i].record("evolution","进化 · \(target)",at: date); state.dex[target] = .raised
         state.training = nil; state.dmc!.trainingChoices = []; state.dmc!.trainingHits = []
         if target == "shinmonzaemon" { state.dmc!.backgrounds.insert("25th-anniversary") }
@@ -258,7 +260,7 @@ public enum DMCV1Engine {
         sync(&result.pets[result.activeIndex]); state = result
     }
     static func addEgg(_ state: inout GameState,at now: Date) throws {
-        guard state.pets.count < 32 else { throw GameError.cannotAct("档案已达32只，请先导出保存") }
+        try LifecycleManager.makeRoom(&state)
         var pet = Pet(speciesID: "botamon",eggID: "dmc-v1-egg")
         pet.dmc = DMCCareState(eggStartedAt: now,traited: state.dmc!.nextEggTraited)
         pet.stats.dp = 0; sync(&pet); pet.record("egg","Ver.1 数码蛋 · 8秒孵化",at: now)

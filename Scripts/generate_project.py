@@ -21,9 +21,9 @@ test_files=sorted(str(p.relative_to(ROOT)) for p in (ROOT/'iOSUITests').rglob('*
 for file in app_files+test_files:
     obj('ref:'+file,f'isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = {q(file)}; sourceTree = SOURCE_ROOT;')
     obj('build:'+file,f'isa = PBXBuildFile; fileRef = {uid("ref:"+file)};')
-resources=['iOS/Resources/Assets.xcassets','iOS/Resources/PrivacyInfo.xcprivacy']
+resources=['iOS/Resources/Assets.xcassets','iOS/Resources/PrivacyInfo.xcprivacy'] + sorted(str(p.relative_to(ROOT)) for p in (ROOT/'iOS/Resources/Fonts').glob('*.ttf')) + ['iOS/Resources/FontLicenses']
 for file in resources:
-    filetype='folder.assetcatalog' if file.endswith('xcassets') else 'text.xml'
+    filetype='folder.assetcatalog' if file.endswith('xcassets') else 'file' if file.endswith('ttf') else 'folder' if file.endswith('FontLicenses') else 'text.xml'
     obj('ref:'+file,f'isa = PBXFileReference; lastKnownFileType = {filetype}; path = {q(file)}; sourceTree = SOURCE_ROOT;')
     obj('build:'+file,f'isa = PBXBuildFile; fileRef = {uid("ref:"+file)};')
 obj('product:app','isa = PBXFileReference; explicitFileType = wrapper.application; path = DigitalWorld.app; sourceTree = BUILT_PRODUCTS_DIR;')
@@ -58,7 +58,7 @@ for config in ['Debug','Release']:
     obj('config:project:'+config,f'isa = XCBuildConfiguration; buildSettings = {settings(common)}; name = {config};')
     for target in ['app','uitest']:
         values=dict(PRODUCT_NAME='$(TARGET_NAME)',PRODUCT_BUNDLE_IDENTIFIER='org.digitalworld.pet'+('.uitests' if target=='uitest' else ''),
-                    CURRENT_PROJECT_VERSION='5',MARKETING_VERSION='0.5.0',CODE_SIGN_STYLE='Automatic',
+                    CURRENT_PROJECT_VERSION='6',MARKETING_VERSION='0.6.0',CODE_SIGN_STYLE='Automatic',
                     TARGETED_DEVICE_FAMILY='1,2',SWIFT_EMIT_LOC_STRINGS='YES',
                     SUPPORTED_PLATFORMS='iphoneos iphonesimulator',SUPPORTS_MACCATALYST='NO')
         if target=='app':

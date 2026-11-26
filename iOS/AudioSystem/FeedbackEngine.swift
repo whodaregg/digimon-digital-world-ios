@@ -9,11 +9,11 @@ final class FeedbackEngine {
         // .ambient respects the silent switch and allows other audio to keep playing.
         try? AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default)
     }
-    func play(sound: Bool, haptics: Bool) {
+    func play(sound: Bool, haptics: Bool,volume: Double = 0.55) {
         if haptics { haptic.impactOccurred(intensity: 0.65) }
         guard sound else { return }
         if player == nil { player = try? AVAudioPlayer(data: Self.tone()) }
-        player?.currentTime = 0; player?.play()
+        player?.volume = Float(min(1,max(0,volume))); player?.currentTime = 0; player?.play()
     }
     private static func tone() -> Data {
         let rate = 22050, samples = 1102

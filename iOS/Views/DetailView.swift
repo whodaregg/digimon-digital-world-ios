@@ -17,7 +17,7 @@ struct DetailView: View {
                 case .digidex: DigidexView(model: model)
                 case .storage: storage
                 case .settings: settings
-                case .devices: devices
+                case .devices: DeviceCollectionView(model: model)
                 case .developer: DeveloperToolsView(model: model)
                 case .call:
                     Panel(title: "CALL / 养成呼叫") {
@@ -55,9 +55,11 @@ struct DetailView: View {
                     HeartReadout(name: "努力",value: care.effortHearts)
                     Readout(name: "DP",value: "\(game.pet.stats.dp)")
                     Readout(name: "战斗 / 通算胜率",value: "\(game.pet.stats.battles) / \(Int(game.pet.stats.winRate*100))%")
+                    if !model.isClassic {
                     Readout(name: "本阶段训练",value: "\(care.stageTrainings)")
                     Readout(name: "本阶段照顾失误",value: "\(care.stageMistakes)")
                     Readout(name: "本阶段满腹 / 睡眠打扰",value: "\(care.overfeeds) / \(care.sleepDisturbances)")
+                    }
                     Readout(name: "废物",value: "\(game.pet.stats.waste)")
                     Readout(name: "伤势",value: game.pet.stats.injured ? "需继续治疗" : "无伤")
                 }
@@ -177,6 +179,7 @@ struct DetailView: View {
     }
     @ViewBuilder private var settings: some View {
         if let game = model.state {
+            PlaySettingsView(model: model)
             Panel(title: "DISPLAY / 像素显示") {
                 displayChoice("复古彩色",mode: .color)
                 displayChoice("高级彩色",mode: .advanced)

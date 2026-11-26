@@ -42,6 +42,15 @@ public struct SpriteManifest: Codable, Sendable {
     }
 }
 public enum SpriteLibrary {
+    private struct Source: Decodable { var files: [String:File] }
+    private struct File: Decodable { var availableFrameIndices: [Int] }
+    private static let originals: [String:Set<Int>] = {
+        guard let url = Bundle.module.url(forResource: "sprite-sources",withExtension: "json"),
+              let bytes = try? Data(contentsOf: url),let source = try? JSONDecoder().decode(Source.self,from: bytes) else { return [:] }
+        return source.files.mapValues { Set($0.availableFrameIndices) }
+    }()
+    public static func availableFrames(id: String) -> Set<Int> { originals[id] ?? [] }
+
     public static func manifest() throws -> SpriteManifest {
         guard let url = Bundle.module.url(forResource: "sprites", withExtension: "json") else {
             throw GameError.invalidData("缺少像素动画配置")

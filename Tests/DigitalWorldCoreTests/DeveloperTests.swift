@@ -120,7 +120,7 @@ final class DeveloperTests: XCTestCase {
         let data = try JSONSerialization.data(withJSONObject: payload,options: [.sortedKeys])
         envelope["payload"] = data.base64EncodedString(); envelope["checksum"] = SaveStore.checksum(data)
         let loaded = try store.decode(JSONSerialization.data(withJSONObject: envelope))
-        XCTAssertTrue(loaded.migrated); XCTAssertEqual(loaded.state.schemaVersion,4)
+        XCTAssertTrue(loaded.migrated); XCTAssertEqual(loaded.state.schemaVersion,GameState.currentVersion)
         XCTAssertNil(loaded.state.developerModifiedAt); XCTAssertNil(loaded.state.pet.developerTuning)
     }
 }

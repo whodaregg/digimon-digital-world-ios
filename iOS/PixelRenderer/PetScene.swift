@@ -5,6 +5,10 @@ import DigitalWorldCore
 final class PetScene: SKScene {
     private let pet = PixelActor(size: 192)
     private var signature = ""
+    private var roaming = false
+    private var ambientElapsed: Double = 0
+    private var ambientOrigin: Double = 0
+    private var previousFrame: TimeInterval?
     override init(size: CGSize) {
         super.init(size: size)
         scaleMode = .aspectFit; anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -14,6 +18,7 @@ final class PetScene: SKScene {
     required init?(coder: NSCoder) { fatalError("Storyboard initialization is not supported") }
     func configure(species: Species?, egg: Bool, eggPattern: String, life: LifeState, animation: String,
                    mode: DisplayMode, waste: Int, dark: Bool, night: Bool, reduceMotion: Bool, background: String) {
+        let previousID = pet.speciesID
         let key = "\(species?.id ?? "")-\(egg)-\(eggPattern)-\(life)-\(animation)-\(mode)-\(waste)-\(dark)-\(night)-\(reduceMotion)-\(background)"
         guard key != signature else { return }; signature = key
         children.filter { $0 != pet }.forEach { $0.removeFromParent() }
@@ -89,6 +94,7 @@ final class PetScene: SKScene {
         for i in 0..<min(4,waste) {
             square(CGFloat(70+i*15),-57,10,6,ink,z: 2); square(CGFloat(70+i*15),-52,5,5,ink,z: 2)
         }
+        roaming = false; ambientElapsed = 0; ambientOrigin = Double(pet.position.x)
         pet.removeAllActions(); pet.removeAllChildren()
         pet.color = ink; pet.colorBlendFactor = 0
         pet.shader = lcd ? PixelAtlas.lcdShader : nil
@@ -117,7 +123,8 @@ final class PetScene: SKScene {
         guard let species else { pet.texture = nil; return }
         pet.use(species.spriteID,mode: mode)
         pet.play(animation,animated: !reduceMotion && life != .frozen)
-        if animation == "idle" && life == .alive && !reduceMotion { roam() }
+        event(animation,previousID: previousID,mode: mode,reduced: reduceMotion)
+        if animation == "idle" && life == .alive && !reduceMotion { roaming = true }
         if mode == .advanced && !reduceMotion {
             for i in 0..<7 {
                 let n = SKSpriteNode(color: UIColor(red: 0.8,green: 0.95,blue: 0.7,alpha: 0.7),size: CGSize(width: 2,height: 2))
@@ -126,20 +133,43 @@ final class PetScene: SKScene {
             }
         }
     }
-    // Separate movement and pose actions: care animations interrupt roaming immediately.
-    private func roam() {
-        func pose(_ name: String,_ right: Bool) -> SKAction {
-            .run { [weak self] in self?.pet.face(right: right); self?.pet.play(name) }
+    private func event(_ action: String,previousID: String,mode: DisplayMode,reduced: Bool) {
+        let ink = mode == .lcd ? UIColor.darkGray : UIColor.white
+        if action == "clean" {
+            let water = SKSpriteNode(color: mode == .lcd ? ink.withAlphaComponent(0.4) : UIColor.cyan.withAlphaComponent(0.6),size: CGSize(width: 320,height: 14))
+            water.position.y = 80; water.zPosition = 5; addChild(water)
+            if !reduced { water.run(.sequence([.moveTo(y: -96,duration: 0.7),.removeFromParent()])) }
         }
-        let start = Double(abs(64-pet.position.x))/36
-        pet.run(.sequence([
-            pose("walk",true),.moveTo(x: 64,duration: start),pose("idle",false),.wait(forDuration: 0.8),
-            .repeatForever(.sequence([
-                pose("walk",false),.moveTo(x: -64,duration: 3.6),pose("idle",true),.wait(forDuration: 0.8),
-                pose("happy",true),.wait(forDuration: 0.8),pose("walk",true),.moveTo(x: 64,duration: 3.6),
-                pose("idle",false),.wait(forDuration: 1.1)
-            ]))
-        ]),withKey: "roam")
+        if action == "medicine" || action == "injured" || action == "sleep" {
+            let id = action == "sleep" ? "zzz" : "MEDICAL"
+            let symbol = PixelSymbols.node(id,color: action == "sleep" ? ink : mode == .lcd ? ink : .systemRed,scale: 3)
+            symbol.position = CGPoint(x: 95,y: 54); symbol.zPosition = 5; addChild(symbol)
+            if !reduced { symbol.run(.repeatForever(.sequence([.moveBy(x: 0,y: 5,duration: 0.5),.moveBy(x: 0,y: -5,duration: 0.5)]))) }
+        }
+        if action == "death" || action == "defeat" {
+            let grave = PixelSymbols.node("grave",color: ink,scale: 4); grave.position = CGPoint(x: 90,y: -48); grave.zPosition = 5; addChild(grave)
+        }
+        if action == "evolution",!previousID.isEmpty,previousID != pet.speciesID {
+            let old = PixelActor(size: 192); old.use(previousID,mode: mode); old.play("idle",animated: false)
+            old.position = pet.position; old.zPosition = 6; addChild(old)
+            if !reduced {
+                pet.alpha = 0
+                old.run(.sequence([.wait(forDuration: 0.4),.fadeOut(withDuration: 0.5),.removeFromParent()]))
+                pet.run(.sequence([.wait(forDuration: 0.8),.fadeIn(withDuration: 0.4)]))
+            } else { old.removeFromParent() }
+        }
+    }
+    override func update(_ currentTime: TimeInterval) {
+        let delta = previousFrame.map { min(0.25,max(0,currentTime-$0)) } ?? 0
+        previousFrame = currentTime
+        if roaming {
+            ambientElapsed += delta
+            let pose = AmbientPetTimeline.sample(seconds: ambientElapsed,originX: ambientOrigin)
+            pet.position = CGPoint(x: pose.x,y: 6+pose.yOffset)
+            pet.face(right: pose.facesRight)
+            if pet.pose != pose.action { pet.play(pose.action) }
+        }
+        pet.tick(delta)
     }
     #if DEBUG
     var diagnostics: String {
@@ -170,6 +200,7 @@ struct PetScreen: View {
     }
     private func configured(at date: Date) -> PetScene {
         guard let state = model.state else { return scene }
+        let date = SandboxEngine.date(for: state,wallTime: date)
         var c = Calendar(identifier: .gregorian); c.timeZone = TimeZone(identifier: state.homeTimeZone) ?? .current
         let hour = c.component(.hour, from: date)
         scene.configure(species: model.species, egg: state.pet.isEgg,
