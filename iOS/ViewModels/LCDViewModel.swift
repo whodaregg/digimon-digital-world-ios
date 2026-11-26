@@ -21,7 +21,12 @@ extension WorldViewModel {
             _ = lcd.keyUp(key,at: Date(),state: state,availableAreas: 8); finishLCDQuest(); return
         }
         let previous = lcd.screen
-        performLCD(lcd.keyUp(key,at: Date(),state: state,availableAreas: min(8,(state.dmc?.clearedAreas.max() ?? 0)+1)))
+        let action = lcd.keyUp(key,at: Date(),state: state,availableAreas: min(8,(state.dmc?.clearedAreas.max() ?? 0)+1))
+        if lcd.screen == .settingValue, lcd.setting == 2, previous != .settingValue {
+            lcd.choice = Int((audioAssets.settings(for: state.deviceID).volume(.sfx) * 4).rounded())
+        }
+        performLCD(action)
+        guard action != .none else { return }
         if previous == .displayOff && lcd.screen != .displayOff { emitAudio(.powerOn) }
         else if previous != .displayOff && lcd.screen == .displayOff { emitAudio(.powerOff) }
         else if key == .a { emitAudio(.menuSelect) }
@@ -31,8 +36,7 @@ extension WorldViewModel {
     }
     func performLCD(_ action: LCDCommand) {
         switch action {
-        case .none: return
-        case .feedback: feedbackTap(); return
+        case .none, .feedback: return
         case .feed(let id):
             guard !isFeeding else { return }
             feedingFoodID = id; care(.feed(id))

@@ -84,6 +84,9 @@ final class OriginalAudioPlayer {
             endEvolution()
             stopAll()
         } else {
+            for (channel, track) in tracks where channel != .bgm {
+                track.player.setVolume(Float(track.asset.mapping.volume * preferences.volume(channel)), fadeDuration: 0.15)
+            }
             updateMusic()
             preload()
         }
