@@ -102,6 +102,12 @@ struct ColorDeviceView: View {
             case .areas: areas
             case .battle: battle
             case .power: menu([model.text(.lights),model.text(.cold),model.text(.backup)])
+            case .clockEdit:
+                VStack(spacing: 14) {
+                    Text(String(format: "%02d:%02d",model.lcd.clockHour,model.lcd.clockMinute)).font(PixelFont.font(28,language: .english))
+                    Text("A HOUR · B MIN").font(PixelFont.font(10,language: .english))
+                    Text("C OK").font(PixelFont.font(10,language: .english))
+                }
             case .clock:
                 TimelineView(.periodic(from: .now,by: 1)) { _ in
                     VStack(spacing: 12) {
@@ -122,7 +128,7 @@ struct ColorDeviceView: View {
     }
     private var clockString: String {
         let f = DateFormatter(); f.dateFormat = "HH:mm:ss"; f.timeZone = TimeZone(identifier: model.state?.homeTimeZone ?? "UTC")
-        return f.string(from: model.simulationDate)
+        return f.string(from: model.state.map { DeviceClock.displayedDate(for: $0,at: model.simulationDate) } ?? model.simulationDate)
     }
     @ViewBuilder private var status: some View {
         if let game = model.state {

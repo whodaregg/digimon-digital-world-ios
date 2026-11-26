@@ -73,3 +73,22 @@ final class SaveBoundaryAndHardwareTests: XCTestCase {
         XCTAssertEqual(game.dex["botamon"],.raised); XCTAssertEqual(game.lifecycles?.first?.id,id)
     }
 }
+
+final class DeviceClockTests: XCTestCase {
+    func testDeviceTimeChangesSleepButCannotFastForwardGrowth() throws {
+        let db = try ContentDatabase.bundled(),now = Date(timeIntervalSince1970: 1_800_446_400)
+        var game = try DeviceRegistry.newGame(database: db,deviceID: "dmc-ver1",eggID: "dmc-v1-egg",now: now)
+        game.pets[0].isEgg = false; game.pets[0].speciesID = "agumon"; game.pets[0].stats.weight = 20
+        let baseline = game
+        try DeviceClock.set(hour: 22,minute: 0,state: &game,at: now)
+        XCTAssertEqual(game.highWatermark,baseline.highWatermark); XCTAssertEqual(game.pet.activeMinutes,0)
+        try TimeEngine.advance(&game,to: now.addingTimeInterval(60),database: db)
+        XCTAssertTrue(game.pet.sleeping); XCTAssertEqual(game.pet.activeMinutes,1)
+        try DeviceClock.set(hour: 8,minute: 0,state: &game,at: now.addingTimeInterval(60))
+        try TimeEngine.advance(&game,to: now.addingTimeInterval(120),database: db)
+        XCTAssertFalse(game.pet.sleeping); XCTAssertEqual(game.pet.activeMinutes,2)
+        let saved = game
+        XCTAssertThrowsError(try DeviceClock.set(hour: 24,minute: 0,state: &game,at: game.highWatermark))
+        XCTAssertEqual(game,saved)
+    }
+}

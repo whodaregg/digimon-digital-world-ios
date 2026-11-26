@@ -2,11 +2,11 @@ import Foundation
 
 public enum DeviceKey: String, Codable, CaseIterable, Hashable, Sendable { case a = "A", b = "B", c = "C" }
 public enum LCDScreen: String, Sendable {
-    case home, status, food, training, areas, battle, power, clock, sound, confirmBackup, confirmRebirth, deviceSettings, settingValue, displayOff
+    case home, status, food, training, areas, battle, power, clock, sound, confirmBackup, confirmRebirth, deviceSettings, settingValue, displayOff, clockEdit
 }
 public enum LCDCommand: Equatable, Sendable {
     case none, feedback, feed(String), beginTraining, train(String), cancelTraining, quest(Int), clean, medicine
-    case lights, cold, backup, rebirth, sound(Bool), skipBattle, brightness(Double), volume(Double), background(String)
+    case lights, cold, backup, rebirth, sound(Bool), skipBattle, brightness(Double), volume(Double), background(String), clock(Int,Int)
 }
 public struct DeviceInputRouter: Sendable {
     public var screen: LCDScreen = .home
@@ -15,6 +15,7 @@ public struct DeviceInputRouter: Sendable {
     public var statusPage = 0
     public var setting = 0
     public var choice = 0
+    public var clockHour = 0, clockMinute = 0
     private var pressed: [DeviceKey:Date] = [:]
     private var consumed: Set<DeviceKey> = []
     private var lastReleased: Date?
@@ -36,6 +37,12 @@ public struct DeviceInputRouter: Sendable {
     public mutating func keyDown(_ key: DeviceKey,at date: Date,state: GameState? = nil) -> LCDCommand {
         guard pressed[key] == nil else { return .none }
         pressed[key] = date
+        if screen == .clock,let state,pressed[.a] != nil,pressed[.c] != nil {
+            consumed.formUnion([.a,.c]); screen = .clockEdit
+            var calendar = Calendar(identifier: .gregorian); calendar.timeZone = TimeZone(identifier: state.homeTimeZone) ?? .current
+            let value = calendar.dateComponents([.hour,.minute],from: DeviceClock.displayedDate(for: state,at: SandboxEngine.date(for: state,wallTime: date)))
+            clockHour = value.hour ?? 0; clockMinute = value.minute ?? 0; return .feedback
+        }
         if screen == .home,let state,state.pet.life == .dead,pressed[.a] != nil,pressed[.b] != nil {
             consumed.formUnion([.a,.b]); return .rebirth
         }
@@ -72,6 +79,7 @@ public struct DeviceInputRouter: Sendable {
             return .feedback
         }
         if screen == .battle { return key == .b && state.playStyle != .classic ? .skipBattle : .none }
+        if screen == .clockEdit && key == .c { screen = .clock; return .clock(clockHour,clockMinute) }
         if key == .c {
             if screen == .settingValue { screen = .deviceSettings; return .feedback }
             let cancel = screen == .training && state.training != nil
@@ -79,6 +87,11 @@ public struct DeviceInputRouter: Sendable {
             return cancel ? .cancelTraining : .feedback
         }
         switch screen {
+        case .clock:
+            if key == .b { screen = .home }
+        case .clockEdit:
+            if key == .a { clockHour = (clockHour+1)%24 }
+            if key == .b { clockMinute = (clockMinute+1)%60 }
         case .deviceSettings:
             if key == .a { item = (item+1)%4 }
             if key == .b {

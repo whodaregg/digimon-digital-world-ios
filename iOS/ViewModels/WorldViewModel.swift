@@ -112,7 +112,7 @@ final class WorldViewModel: ObservableObject {
     var isOriginal: Bool { state?.deviceID == DMCV1Engine.deviceID }
     var hatchRemainingSeconds: Int {
         guard let care = state?.pet.dmc else { return 0 }
-        return max(0,Int(ceil(care.eggStartedAt.addingTimeInterval(8).timeIntervalSinceNow)))
+        return max(0,Int(ceil(care.eggStartedAt.addingTimeInterval(8).timeIntervalSince(simulationDate))))
     }
     var callMessage: String {
         guard let p = state?.pet, let c = p.dmc else { return "没有呼叫" }
@@ -288,6 +288,9 @@ final class WorldViewModel: ObservableObject {
     }
     @discardableResult func saveConnection(_ result: ConnectionBattleResult,player: ConnectionFighter,opponent: ConnectionFighter) -> Bool {
         command { game,content,now in _ = try ConnectionEngine.apply(result,player: player,opponent: opponent,state: &game,database: content,at: now) }
+    }
+    func setDeviceClock(hour: Int,minute: Int) {
+        command { game,_,now in try DeviceClock.set(hour: hour,minute: minute,state: &game,at: now) }
     }
     func move(dx: Int, dy: Int) {
         command { game, content, now in

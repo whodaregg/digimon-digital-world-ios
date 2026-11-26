@@ -73,11 +73,11 @@ public enum DMCV1Engine {
             var p = state.pet
             let s = try rules.species(p.speciesID)
             p.activeMinutes += 1; p.stageMinutes += 1
-            let hour = calendar.component(.hour,from: date)
+            let hour = calendar.component(.hour,from: DeviceClock.displayedDate(for: state,at: date))
             let scheduled = s.sleepHour.map { TimeEngine.isSleepHour(hour,sleep: $0,wake: 8) } ?? false
             let wasSleeping = p.sleeping
             let intervalStart = date.addingTimeInterval(-60)
-            let intervalHour = calendar.component(.hour,from: intervalStart)
+            let intervalHour = calendar.component(.hour,from: DeviceClock.displayedDate(for: state,at: intervalStart))
             let intervalSleeping = (s.sleepHour.map { TimeEngine.isSleepHour(intervalHour,sleep: $0,wake: 8) } ?? false) &&
                 !(p.dmc!.awakeUntil.map { intervalStart < $0 } ?? false)
             if intervalSleeping {

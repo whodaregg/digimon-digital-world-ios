@@ -201,7 +201,7 @@ struct PetScreen: View {
     }
     private func configured(at date: Date) -> PetScene {
         guard let state = model.state else { return scene }
-        let date = SandboxEngine.date(for: state,wallTime: date)
+        let date = DeviceClock.displayedDate(for: state,at: SandboxEngine.date(for: state,wallTime: date))
         var c = Calendar(identifier: .gregorian); c.timeZone = TimeZone(identifier: state.homeTimeZone) ?? .current
         let hour = c.component(.hour, from: date)
         scene.configure(species: model.species, egg: state.pet.isEgg,

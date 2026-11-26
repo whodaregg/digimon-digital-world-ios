@@ -65,7 +65,9 @@ struct DetailView: View {
                     Readout(name: "战斗 / 通算胜率",value: "\(game.pet.stats.battles) / \(Int(game.pet.stats.winRate*100))%")
                     if !model.isClassic {
                     Readout(name: "阶段成长时间",value: "\(game.pet.stageMinutes) MIN")
-                    Readout(name: "距离本阶段进化判定",value: "\(max(0,(model.database?.dmcV1?.roster[game.pet.speciesID]?.evolutionMinutes ?? 0)-game.pet.stageMinutes)) MIN")
+                    if let minutes = model.database?.dmcV1?.roster[game.pet.speciesID]?.evolutionMinutes,minutes > 0 {
+                        Readout(name: "距离本阶段进化判定",value: care.evolutionChecked ? "本阶段已判定" : "\(max(0,minutes-game.pet.stageMinutes)) MIN")
+                    } else { Text("当前阶段无计时普通进化").font(.caption) }
                     Text("COLOR Ver.1不使用HP、等级或经验值。") .font(.caption).foregroundStyle(Palette.muted)
                     Readout(name: "本阶段训练",value: "\(care.stageTrainings)")
                     Readout(name: "本阶段照顾失误",value: "\(care.stageMistakes)")

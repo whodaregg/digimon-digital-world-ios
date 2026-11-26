@@ -49,7 +49,7 @@ public enum TimeEngine {
                     continue
                 }
                 let species = try database.species(p.speciesID)
-                let hour = calendar.component(.hour, from: date)
+                let hour = calendar.component(.hour, from: DeviceClock.displayedDate(for: state,at: date))
                 let scheduledSleep = isSleepHour(hour, sleep: species.sleepHour, wake: species.wakeHour)
                 p.sleeping = scheduledSleep || p.manualRest
                 if p.sleeping {

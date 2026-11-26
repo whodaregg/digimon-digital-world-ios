@@ -125,10 +125,12 @@ struct WorldView: View {
                 if let state = model.state {
                     if model.isOriginal { ColorDeviceView(model: model) } else { device(state) }
                     if let care = state.pet.dmc {
+                        if !model.isClassic {
                         VStack(spacing: 10) {
                             HeartReadout(name: "饱食",value: care.hungerHearts)
                             HeartReadout(name: "力量",value: care.strengthHearts)
                             HeartReadout(name: "努力",value: care.effortHearts)
+                        }
                         }
                     } else {
                     HStack(spacing: 18) {
@@ -160,7 +162,7 @@ struct WorldView: View {
                     }
                     }
                     if model.isOriginal {
-                        if model.hasCall { Text(model.callMessage).font(.caption).foregroundStyle(Palette.amber) }
+                        if model.hasCall && !model.isClassic { Text(model.callMessage).font(.caption).foregroundStyle(Palette.amber) }
                         HStack {
                             utility("DIGIDEX",model.text(.digidex),page: .digidex)
                             utility("STORAGE",model.text(.history),page: .storage)

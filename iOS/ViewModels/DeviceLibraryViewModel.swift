@@ -79,7 +79,7 @@ extension WorldViewModel {
             let now = max(simulationDate,old.highWatermark)
             var archived = old; LifecycleManager.archiveBeforeReset(&archived,at: now)
             var game = try DeviceRegistry.newGame(database: database,deviceID: old.deviceID,eggID: egg,now: now,timeZone: old.homeTimeZone)
-            game.settings = old.settings; game.sessionStyle = old.playStyle; game.sandboxOffsetSeconds = old.sandboxOffsetSeconds
+            game.settings = old.settings; game.clockOffsetSeconds = old.clockOffsetSeconds; game.sessionStyle = old.playStyle; game.sandboxOffsetSeconds = old.sandboxOffsetSeconds
             game.dex = old.dex; game.lifecycles = archived.lifecycles
             if old.playStyle == .sandbox { game.developerModifiedAt = game.highWatermark }
             let path = store.directory.appendingPathComponent("world.before-reset.\(UUID().uuidString).json")

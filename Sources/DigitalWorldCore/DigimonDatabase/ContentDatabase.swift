@@ -90,6 +90,7 @@ public struct ContentDatabase: Codable, Sendable {
         guard state.schemaVersion == GameState.currentVersion else {
             throw GameError.futureSave(state.schemaVersion)
         }
+        guard (-86_399...86_399).contains(state.clockOffsetSeconds ?? 0) else { throw GameError.invalidData("设备时钟偏移无效") }
         let ui = state.settings.presentation
         guard ui.volume.isFinite,(0...1).contains(ui.volume),ui.contrast.isFinite,(0.5...1.5).contains(ui.contrast),
               ui.brightness.isFinite,(0.3...1).contains(ui.brightness),["brown","gray","blue","white"].contains(ui.shell),

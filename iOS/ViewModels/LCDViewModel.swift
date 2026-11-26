@@ -41,6 +41,7 @@ extension WorldViewModel {
         case .brightness(let value): editPresentation { $0.brightness = value }
         case .volume(let value): editPresentation { $0.volume = value }
         case .background(let id): selectBackground(id)
+        case .clock(let hour,let minute): setDeviceClock(hour: hour,minute: minute)
         }
         if let failure = alert {
             alert = nil; lcdNotice = failure
