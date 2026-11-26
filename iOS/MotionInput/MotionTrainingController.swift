@@ -29,15 +29,18 @@ final class MotionTrainingController: ObservableObject {
     func stop() { manager.stopAccelerometerUpdates(); running = false }
 }
 struct MotionTrainingView: View {
+    @Environment(\.gameLanguage) private var uiLanguage
+    private func l(_ source: String) -> String { GameLocalization.text(source,language: uiLanguage) }
+
     @ObservedObject var model: WorldViewModel
     @StateObject private var motion = MotionTrainingController()
     @Environment(\.scenePhase) private var phase
     var body: some View {
         Panel(title: "SANDBOX / 摇晃输入测试") {
-            Text("这是手机加速度输入辅助，不是已完成的Pendulum机型规则。仅用于独立Sandbox；A/B按钮可代替摇晃。")
+            Text(l("这是手机加速度输入辅助，不是已完成的Pendulum机型规则。仅用于独立Sandbox；A/B按钮可代替摇晃。"))
                 .font(.footnote).foregroundStyle(Palette.muted)
-            Text(motion.notice).font(.caption)
-            Text("\(model.state?.dmc?.trainingChoices.count ?? 0) / 5 · \(motion.count) SHAKES").font(.headline)
+            Text(l(motion.notice)).font(.caption)
+            Text(l("\(model.state?.dmc?.trainingChoices.count ?? 0) / 5 · \(motion.count) SHAKES")).font(.headline)
             if model.state?.training == nil {
                 GameButton(title: "开始摇晃测试") {
                     guard model.isSandbox else { return }
@@ -47,10 +50,10 @@ struct MotionTrainingView: View {
                     motion.start()
                 }
             } else {
-                HStack { Button("A / 上段") { model.originalTraining("A") }; Button("B / 下段") { model.originalTraining("B") } }
-                Button("停止并取消") { motion.stop(); model.cancelTraining() }
+                HStack { Button(l("A / 上段")) { model.originalTraining("A") }; Button(l("B / 下段")) { model.originalTraining("B") } }
+                Button(l("停止并取消")) { motion.stop(); model.cancelTraining() }
             }
-            if let result = model.trainingScore { Text("\(result)/5 · \(result >= 3 ? "SUCCESS" : "FAIL")") }
+            if let result = model.trainingScore { Text(l("\(result)/5 · \(result >= 3 ? "SUCCESS" : "FAIL")")) }
         }.onChange(of: model.state?.training?.id) { _,id in if id == nil { motion.stop() } }
             .onChange(of: phase) { _,value in if value != .active { motion.stop() } }
             .onDisappear { motion.stop(); if model.state?.training != nil { model.cancelTraining() } }

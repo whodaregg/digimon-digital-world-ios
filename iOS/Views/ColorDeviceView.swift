@@ -3,6 +3,9 @@ import SpriteKit
 import DigitalWorldCore
 
 struct ColorDeviceView: View {
+    @Environment(\.gameLanguage) private var uiLanguage
+    private func l(_ source: String) -> String { GameLocalization.text(source,language: uiLanguage) }
+
     @ObservedObject var model: WorldViewModel
     @StateObject private var replay = QuestPlaybackController()
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -11,15 +14,15 @@ struct ColorDeviceView: View {
     private var ink: Color { Palette.screenInk(model.display) }
     var body: some View {
         VStack(spacing: 8) {
-            Text("DIGITAL MONSTER COLOR").font(PixelFont.font(12,language: .english)).foregroundStyle(.black.opacity(0.65))
+            Text(l("DIGITAL MONSTER COLOR")).font(PixelFont.font(12,language: .english)).foregroundStyle(.black.opacity(0.65))
             HStack(spacing: 12) {
                 VStack(spacing: 0) {
                     icons(0..<4)
                     HStack {
-                        Text(model.state?.pet.isEgg == true ? model.text(.egg) : model.species?.localizedName(model.language) ?? "")
+                        Text(l(model.state?.pet.isEgg == true ? model.text(.egg) : model.species?.localizedName(model.language) ?? ""))
                             .lineLimit(1).minimumScaleFactor(0.6)
                         Spacer(minLength: 2)
-                        Text(model.isSandbox ? "TEST" : "Ver.1")
+                        Text(l(model.isSandbox ? "TEST" : "Ver.1"))
                     }.font(PixelFont.font(10,language: model.language)).padding(.horizontal,6).padding(.top,4)
                     Rectangle().fill(Palette.screenSurface(model.display))
                         .aspectRatio(4/3,contentMode: .fit)
@@ -40,7 +43,7 @@ struct ColorDeviceView: View {
             }
             HStack {
                 Circle().fill(.black.opacity(0.5)).frame(width: 5,height: 5)
-                Spacer(); Text("A SELECT  B OK  C BACK").font(PixelFont.font(8,language: .english)).foregroundStyle(.black.opacity(0.6)); Spacer()
+                Spacer(); Text(l("A SELECT  B OK  C BACK")).font(PixelFont.font(8,language: .english)).foregroundStyle(.black.opacity(0.6)); Spacer()
                 Circle().fill(.black.opacity(0.5)).frame(width: 5,height: 5)
             }
         }.padding(14)
@@ -68,7 +71,7 @@ struct ColorDeviceView: View {
                         PixelGlyph(id: iconIDs[i],color: model.hasCall ? .red : ink.opacity(0.22))
                             .opacity(model.hasCall && !reduceMotion && Int(context.date.timeIntervalSince1970*2)%2 == 0 ? 0.3 : 1)
                             .frame(width: 18,height: 18).frame(maxWidth: .infinity,minHeight: 24)
-                            .accessibilityLabel(model.text(.call)).accessibilityValue(model.hasCall ? model.text(.on) : model.text(.off))
+                            .accessibilityLabel(l(model.text(.call))).accessibilityValue(l(model.hasCall ? model.text(.on) : model.text(.off)))
                     }
                 } else {
                     Button { model.lcdTouch(i) } label: {
@@ -78,7 +81,7 @@ struct ColorDeviceView: View {
                             .overlay(Rectangle().stroke(model.lcd.selectedIcon == i ? ink : .clear,lineWidth: 1))
                             .contentShape(Rectangle())
                     }.buttonStyle(.plain).disabled(!model.touchEnabled || model.state?.pet.life == .dead)
-                        .accessibilityLabel(model.text(labels[i])).accessibilityIdentifier("action-\(iconIDs[i])")
+                        .accessibilityLabel(l(model.text(labels[i]))).accessibilityIdentifier("action-\(iconIDs[i])")
                 }
             }
         }.padding(.horizontal,4)
@@ -90,10 +93,10 @@ struct ColorDeviceView: View {
             case .deviceSettings: menu(["BACKGROUND",model.text(.brightness),model.text(.volume),"SCREEN OFF"])
             case .settingValue:
                 VStack(spacing: 14) {
-                    Text(model.lcd.setting == 0 ? "BACKGROUND" : model.text(model.lcd.setting == 1 ? .brightness : .volume))
-                    if model.lcd.setting == 0 { Text((model.state?.dmc?.backgrounds.sorted() ?? ["grasslands"])[model.lcd.choice]).font(PixelFont.font(12,language: .english)) }
-                    else { Text("\(model.lcd.choice+1) / 5").font(PixelFont.font(24,language: .english)) }
-                    Text("A SELECT · B OK").font(PixelFont.font(9,language: .english))
+                    Text(l(model.lcd.setting == 0 ? "BACKGROUND" : model.text(model.lcd.setting == 1 ? .brightness : .volume)))
+                    if model.lcd.setting == 0 { Text(l((model.state?.dmc?.backgrounds.sorted() ?? ["grasslands"])[model.lcd.choice])).font(PixelFont.font(12,language: .english)) }
+                    else { Text(l("\(model.lcd.choice+1) / 5")).font(PixelFont.font(24,language: .english)) }
+                    Text(l("A SELECT · B OK")).font(PixelFont.font(9,language: .english))
                 }
             case .displayOff: Color.black
             case .status: status
@@ -104,15 +107,15 @@ struct ColorDeviceView: View {
             case .power: menu([model.text(.lights),model.text(.cold),model.text(.backup)])
             case .clockEdit:
                 VStack(spacing: 14) {
-                    Text(String(format: "%02d:%02d",model.lcd.clockHour,model.lcd.clockMinute)).font(PixelFont.font(28,language: .english))
-                    Text("A HOUR · B MIN").font(PixelFont.font(10,language: .english))
-                    Text("C OK").font(PixelFont.font(10,language: .english))
+                    Text(l(String(format: "%02d:%02d",model.lcd.clockHour,model.lcd.clockMinute))).font(PixelFont.font(28,language: .english))
+                    Text(l("A HOUR · B MIN")).font(PixelFont.font(10,language: .english))
+                    Text(l("C OK")).font(PixelFont.font(10,language: .english))
                 }
             case .clock:
                 TimelineView(.periodic(from: .now,by: 1)) { _ in
                     VStack(spacing: 12) {
-                        Text(model.text(.clock))
-                        Text(clockString).font(PixelFont.font(24,language: .english))
+                        Text(l(model.text(.clock)))
+                        Text(l(clockString)).font(PixelFont.font(24,language: .english))
                     }.accessibilityIdentifier("lcdClock")
                 }
             case .sound: menu([model.text(.sound)+" "+model.text(.on),model.text(.sound)+" "+model.text(.off)])
@@ -120,7 +123,7 @@ struct ColorDeviceView: View {
             case .confirmRebirth: confirmation(model.text(.egg))
             }
             if let notice = model.lcdNotice {
-                VStack { Spacer(); Text(notice).font(PixelFont.font(11,language: model.language)).lineLimit(3)
+                VStack { Spacer(); Text(l(notice)).font(PixelFont.font(11,language: model.language)).lineLimit(3)
                     .padding(4).frame(maxWidth: .infinity).background(Palette.screenSurface(model.display).opacity(0.95)) }
                     .accessibilityIdentifier("lcdNotice")
             }
@@ -134,7 +137,7 @@ struct ColorDeviceView: View {
         if let game = model.state {
             let p = game.pet, page = model.lcd.statusPage
             VStack(spacing: 8) {
-                Text("\(page+1) / \(model.isClassic ? 6 : 8)").font(PixelFont.font(10,language: .english))
+                Text(l("\(page+1) / \(model.isClassic ? 6 : 8)")).font(PixelFont.font(10,language: .english))
                 switch page {
                 case 0:
                     readout(.age,"\(p.activeMinutes/1440) "+model.text(.days)); readout(.weight,"\(p.stats.weight)g")
@@ -150,27 +153,27 @@ struct ColorDeviceView: View {
         }
     }
     private func readout(_ key: DeviceText,_ value: String) -> some View {
-        HStack { Text(model.text(key)); Spacer(minLength: 4); Text(value).lineLimit(1).minimumScaleFactor(0.5) }
+        HStack { Text(l(model.text(key))); Spacer(minLength: 4); Text(l(value)).lineLimit(1).minimumScaleFactor(0.5) }
     }
     private func hearts(_ title: DeviceText,_ count: Int) -> some View {
         VStack(spacing: 16) {
-            Text(model.text(title))
+            Text(l(model.text(title)))
             HStack(spacing: 8) { ForEach(0..<4,id: \.self) { i in
                 PixelGlyph(id: i < count ? "heart" : "heartOutline",color: i < count && model.display != .lcd ? .red : ink).frame(width: 22,height: 22)
             } }
-        }.accessibilityElement(children: .ignore).accessibilityLabel(model.text(title)).accessibilityValue("\(count) / 4")
+        }.accessibilityElement(children: .ignore).accessibilityLabel(l(model.text(title))).accessibilityValue(l("\(count) / 4"))
     }
     private var food: some View {
         VStack(spacing: 8) {
             PixelGlyph(id: model.lcd.item == 0 ? "meat" : "protein",color: model.lcd.item == 0 && model.display != .lcd ? .brown : ink).frame(width: 42,height: 42)
-            Text(model.text(model.lcd.item == 0 ? .meat : .protein))
+            Text(l(model.text(model.lcd.item == 0 ? .meat : .protein)))
             if model.touchEnabled {
                 HStack {
-                    Button("A") { model.lcd.item = (model.lcd.item+1)%2 }
-                    Button(model.text(.confirm)) { model.performLCD(.feed(model.lcd.item == 0 ? "meat" : "protein")) }
+                    Button(l("A")) { model.lcd.item = (model.lcd.item+1)%2 }
+                    Button(l(model.text(.confirm))) { model.performLCD(.feed(model.lcd.item == 0 ? "meat" : "protein")) }
                         .accessibilityIdentifier("lcdFeed")
                 }.buttonStyle(.borderless)
-            } else { Text("A SELECT · B FEED").font(PixelFont.font(9,language: .english)) }
+            } else { Text(l("A SELECT · B FEED")).font(PixelFont.font(9,language: .english)) }
         }
         .overlay(alignment: .bottomTrailing) {
             if model.animation == "eat" || model.animation == "refuse" { PetScreen(model: model).frame(width: 95,height: 60).allowsHitTesting(false) }
@@ -180,28 +183,28 @@ struct ColorDeviceView: View {
         VStack(spacing: 4) {
             TrainingPixelScreen(model: model)
             if model.state?.training != nil {
-                Text("\(model.state?.dmc?.trainingChoices.count ?? 0) / 5")
+                Text(l("\(model.state?.dmc?.trainingChoices.count ?? 0) / 5"))
                 if model.touchEnabled {
                     HStack {
-                        Button("A ↑") { model.performLCD(.train("A")) }.accessibilityIdentifier("training-A")
+                        Button(l("A ↑")) { model.performLCD(.train("A")) }.accessibilityIdentifier("training-A")
                         Spacer()
-                        Button("B ↓") { model.performLCD(.train("B")) }.accessibilityIdentifier("training-B")
+                        Button(l("B ↓")) { model.performLCD(.train("B")) }.accessibilityIdentifier("training-B")
                     }.padding(.horizontal,14)
                 }
             } else {
-                if let score = model.trainingScore { Text("\(score)/5 "+model.text(score >= 3 ? .success : .fail)).accessibilityIdentifier("lcdTrainingResult") }
-                Button(model.text(.start)) { model.performLCD(.beginTraining) }.accessibilityIdentifier("beginTraining").disabled(!model.touchEnabled)
+                if let score = model.trainingScore { Text(l("\(score)/5 "+model.text(score >= 3 ? .success : .fail))).accessibilityIdentifier("lcdTrainingResult") }
+                Button(l(model.text(.start))) { model.performLCD(.beginTraining) }.accessibilityIdentifier("beginTraining").disabled(!model.touchEnabled)
             }
         }.font(PixelFont.font(11,language: model.language))
     }
     private var areas: some View {
         VStack(spacing: 12) {
-            Text("AREA \(model.lcd.item == 7 ? "F" : String(model.lcd.item+1))").font(PixelFont.font(24,language: .english))
-            Text("\((model.database?.dmcV1?.areas[model.lcd.item].opponents.count) ?? 0) BATTLES")
+            Text(l("AREA \(model.lcd.item == 7 ? "F" : String(model.lcd.item+1))")).font(PixelFont.font(24,language: .english))
+            Text(l("\((model.database?.dmcV1?.areas[model.lcd.item].opponents.count) ?? 0) BATTLES"))
             if model.touchEnabled {
                 HStack {
-                    Button("◀") { let n = min(8,(model.state?.dmc?.clearedAreas.max() ?? 0)+1); model.lcd.item = (model.lcd.item+1)%max(1,n) }
-                    Button(model.text(.start)) { model.performLCD(.quest(model.lcd.item+1)) }.accessibilityIdentifier("lcdQuestStart")
+                    Button(l("◀")) { let n = min(8,(model.state?.dmc?.clearedAreas.max() ?? 0)+1); model.lcd.item = (model.lcd.item+1)%max(1,n) }
+                    Button(l(model.text(.start))) { model.performLCD(.quest(model.lcd.item+1)) }.accessibilityIdentifier("lcdQuestStart")
                 }
             }
         }
@@ -211,17 +214,17 @@ struct ColorDeviceView: View {
             ZStack(alignment: .bottom) {
                 SpriteView(scene: replay.scene,preferredFramesPerSecond: 30).accessibilityIdentifier("questArena")
                 VStack {
-                    HStack { Text("\(replay.battle+1)/\(result.area.opponents.count)").accessibilityIdentifier("questBattleNumber"); Spacer(); Text("\(replay.playerHits) : \(replay.enemyHits)") }
+                    HStack { Text(l("\(replay.battle+1)/\(result.area.opponents.count)")).accessibilityIdentifier("questBattleNumber"); Spacer(); Text(l("\(replay.playerHits) : \(replay.enemyHits)")) }
                     Spacer()
                     if replay.finished {
-                        Button(model.text(.confirm)) { model.finishLCDQuest() }.accessibilityIdentifier("lcdQuestReturn").disabled(!model.touchEnabled)
+                        Button(l(model.text(.confirm))) { model.finishLCDQuest() }.accessibilityIdentifier("lcdQuestReturn").disabled(!model.touchEnabled)
                     }
                 }.padding(4).font(PixelFont.font(10,language: .english))
             }
             #if DEBUG
             if ProcessInfo.processInfo.arguments.contains("--ui-testing") {
                 TimelineView(.periodic(from: .now,by: 0.1)) { _ in
-                    Text(replay.scene.diagnostics).font(.system(size: 1)).frame(height: 1).accessibilityIdentifier("questAnimationProbe")
+                    Text(l(replay.scene.diagnostics)).font(.system(size: 1)).frame(height: 1).accessibilityIdentifier("questAnimationProbe")
                 }
             }
             #endif
@@ -230,12 +233,12 @@ struct ColorDeviceView: View {
     private func menu(_ items: [String]) -> some View {
         VStack(alignment: .leading,spacing: 12) {
             ForEach(items.indices,id: \.self) { i in
-                Text((model.lcd.item == i ? "> " : "  ")+items[i]).frame(maxWidth: .infinity,alignment: .leading)
+                Text(l((model.lcd.item == i ? "> " : "  ")+items[i])).frame(maxWidth: .infinity,alignment: .leading)
             }
         }.padding(12)
     }
     private func confirmation(_ title: String) -> some View {
-        VStack(spacing: 12) { Text(title+"?"); Text((model.lcd.item == 0 ? "> " : "")+model.text(.no)+"   "+(model.lcd.item == 1 ? "> " : "")+model.text(.yes)) }
+        VStack(spacing: 12) { Text(l(title+"?")); Text(l((model.lcd.item == 0 ? "> " : "")+model.text(.no)+"   "+(model.lcd.item == 1 ? "> " : "")+model.text(.yes))) }
     }
     private func beginReplay() {
         guard let result = model.lastQuest,model.lcd.screen == .battle else { return }

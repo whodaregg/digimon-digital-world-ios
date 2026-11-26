@@ -1,0 +1,6021 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "source": " · 过量喂食",
+      "values": {
+        "zh-Hant": " · 過量餵食",
+        "en": "· Overfeeding",
+        "ja": "· 過給"
+      }
+    },
+    {
+      "source": " 暴击",
+      "values": {
+        "zh-Hant": " 暴擊",
+        "en": "critical hit",
+        "ja": "クリティカルヒット"
+      }
+    },
+    {
+      "source": "17种养成角色及最终区Alter-S。附近手机通信已接入；联展和其他版本名单尚待接入。",
+      "values": {
+        "zh-Hant": "17種養成角色及最終區Alter-S。附近手機通信已接入；聯展和其他版本名單尚待接入。",
+        "en": "17 types of development characters and the final area Alter-S. The nearby mobile phone communication has been connected; the joint exhibition and other versions of the list are yet to be connected.",
+        "ja": "17種類の育成キャラクターと最終エリアAlter-S。近くの携帯電話通信が接続されました。共同展示会と他のバージョンのリストはまだ関連付けられていません。"
+      }
+    },
+    {
+      "source": "25周年",
+      "values": {
+        "zh-Hant": "25週年",
+        "en": "25th anniversary",
+        "ja": "25周年"
+      }
+    },
+    {
+      "source": "8 秒孵化 · 幼年期 I",
+      "values": {
+        "zh-Hant": "8 秒孵化 · 幼年期 I",
+        "en": "8 seconds hatch · Juvenile stage I",
+        "ja": "8秒ハッチ・幼体期I"
+      }
+    },
+    {
+      "source": "A / 上段",
+      "values": {
+        "zh-Hant": "A / 上段",
+        "en": "A / upper section",
+        "ja": "A/上部"
+      }
+    },
+    {
+      "source": "A 攻击上段，B 攻击下段。每组5次，命中至少3次成功；完成整组无论成败都计入训练与努力，取消不计数。",
+      "values": {
+        "zh-Hant": "A 攻擊上段，B 攻擊下段。每組5次，命中至少3次成功；完成整組無論成敗都計入訓練與努力，取消不計數。",
+        "en": "A attacks the upper section, and B attacks the lower section. Each set is 5 times, with at least 3 successful hits; success or failure in completing the entire set will be counted as training and effort, and cancellation will not count.",
+        "ja": "A は上部を攻撃し、B は下部を攻撃します。各セットは 5 回で、少なくとも 3 回のヒットが成功します。セット全体を完了する成功または失敗はトレーニングと努力としてカウントされ、キャンセルはカウントされません。"
+      }
+    },
+    {
+      "source": "ACTIVE / 可游玩",
+      "values": {
+        "zh-Hant": "ACTIVE / 可遊玩",
+        "en": "ACTIVE / playable",
+        "ja": "アクティブ / プレイ可能"
+      }
+    },
+    {
+      "source": "A选择 · B确认 · C返回；C长按2秒打开LCD设置，A＋C切换音效，死亡时A＋B重新孵化。按键支持多指组合与防重复触发。",
+      "values": {
+        "zh-Hant": "A選擇 · B確認 · C返回；C長按2秒打開LCD設置，A＋C切換音效，死亡時A＋B重新孵化。按鍵支持多指組合與防重複觸發。",
+        "en": "A select · B confirm · C return; C press and hold for 2 seconds to open LCD settings, A+C switches sound effects, and A+B re-hatches when dead. The buttons support multi-finger combinations and anti-repetitive triggering.",
+        "ja": "A 選択 · B 確認 · C 戻る; Cを2秒間押し続けるとLCD設定が開き、A+Cは効果音を切り替え、死亡するとA+Bが再孵化します。ボタンは、複数の指の組み合わせと反復トリガーの防止をサポートしています。"
+      }
+    },
+    {
+      "source": "B / 下段",
+      "values": {
+        "zh-Hant": "B / 下段",
+        "en": "B / lower section",
+        "ja": "B / 下段"
+      }
+    },
+    {
+      "source": "B / 确认时机",
+      "values": {
+        "zh-Hant": "B / 確認時機",
+        "en": "B / Confirm timing",
+        "ja": "B / タイミング確認"
+      }
+    },
+    {
+      "source": "BACKGROUND / 屏幕背景",
+      "values": {
+        "zh-Hant": "BACKGROUND / 屏幕背景",
+        "en": "BACKGROUND / screen background",
+        "ja": "BACKGROUND / 画面の背景"
+      }
+    },
+    {
+      "source": "BOSS登场",
+      "values": {
+        "zh-Hant": "BOSS登場",
+        "en": "BOSS appears",
+        "ja": "BOSS登場"
+      }
+    },
+    {
+      "source": "BOSS警告",
+      "values": {
+        "zh-Hant": "BOSS警告",
+        "en": "BOSS warning",
+        "ja": "ボス警告"
+      }
+    },
+    {
+      "source": "BRANCHES / 条件",
+      "values": {
+        "zh-Hant": "BRANCHES / 條件",
+        "en": "BRANCHES / Conditions",
+        "ja": "分岐 / 条件"
+      }
+    },
+    {
+      "source": "CALL / 养成呼叫",
+      "values": {
+        "zh-Hant": "CALL / 養成呼叫",
+        "en": "CALL / Nurture call",
+        "ja": "CALL / 育成コール"
+      }
+    },
+    {
+      "source": "CARE / 养成数值",
+      "values": {
+        "zh-Hant": "CARE / 養成數值",
+        "en": "CARE / development value",
+        "ja": "CARE / 開発価値"
+      }
+    },
+    {
+      "source": "CLOCK / 时钟",
+      "values": {
+        "zh-Hant": "CLOCK / 時鐘",
+        "en": "CLOCK / clock",
+        "ja": "CLOCK / 時計"
+      }
+    },
+    {
+      "source": "COLOR Ver.1 规则结构错误",
+      "values": {
+        "zh-Hant": "COLOR Ver.1 規則結構錯誤",
+        "en": "COLOR Ver.1 rule structure error",
+        "ja": "COLOR Ver.1ルール構造エラー"
+      }
+    },
+    {
+      "source": "COLOR Ver.1 角色参数错误",
+      "values": {
+        "zh-Hant": "COLOR Ver.1 角色參數錯誤",
+        "en": "COLOR Ver.1 character parameter error",
+        "ja": "COLOR Ver.1文字パラメータエラー"
+      }
+    },
+    {
+      "source": "COLOR Ver.1不使用HP、等级或经验值。",
+      "values": {
+        "zh-Hant": "COLOR Ver.1不使用HP、等級或經驗值。",
+        "en": "COLOR Ver.1 does not use HP, level or experience points.",
+        "ja": "COLOR Ver.1ではHP、レベル、経験値を消費しません。"
+      }
+    },
+    {
+      "source": "COLOR标志",
+      "values": {
+        "zh-Hant": "COLOR標誌",
+        "en": "COLOR logo",
+        "ja": "カラーロゴ"
+      }
+    },
+    {
+      "source": "CONNECTION / 手机连接",
+      "values": {
+        "zh-Hant": "CONNECTION / 手機連接",
+        "en": "CONNECTION / mobile phone connection",
+        "ja": "CONNECTION / 携帯電話接続"
+      }
+    },
+    {
+      "source": "Cold · 暂停成长",
+      "values": {
+        "zh-Hant": "Cold · 暫停成長",
+        "en": "Cold · Pause growth",
+        "ja": "寒さ・成長の一時停止"
+      }
+    },
+    {
+      "source": "Cold暂停",
+      "values": {
+        "zh-Hant": "Cold暫停",
+        "en": "Cold Pause",
+        "ja": "コールド一時停止"
+      }
+    },
+    {
+      "source": "DISPLAY / 像素显示",
+      "values": {
+        "zh-Hant": "DISPLAY / 像素顯示",
+        "en": "DISPLAY / pixel display",
+        "ja": "DISPLAY / ピクセル表示"
+      }
+    },
+    {
+      "source": "DP上限",
+      "values": {
+        "zh-Hant": "DP上限",
+        "en": "DP upper limit",
+        "ja": "DP上限"
+      }
+    },
+    {
+      "source": "EVOLUTION / 旧版实验分支",
+      "values": {
+        "zh-Hant": "EVOLUTION / 舊版實驗分支",
+        "en": "EVOLUTION / Old version experimental branch",
+        "ja": "EVOLUTION / 旧バージョン実験ブランチ"
+      }
+    },
+    {
+      "source": "FEED / 食物",
+      "values": {
+        "zh-Hant": "FEED / 食物",
+        "en": "FEED / food",
+        "ja": "フィード / 食品"
+      }
+    },
+    {
+      "source": "FEEDBACK / 声音与触觉",
+      "values": {
+        "zh-Hant": "FEEDBACK / 聲音與觸覺",
+        "en": "FEEDBACK / Sound and Touch",
+        "ja": "フィードバック / サウンドとタッチ"
+      }
+    },
+    {
+      "source": "Game Center 在线匹配",
+      "values": {
+        "zh-Hant": "Game Center 在線匹配",
+        "en": "Game Center Online Matching",
+        "ja": "ゲームセンターオンラインマッチング"
+      }
+    },
+    {
+      "source": "HP / 攻击 / 防御",
+      "values": {
+        "zh-Hant": "HP / 攻擊 / 防禦",
+        "en": "HP / Attack / Defense",
+        "ja": "HP/攻撃/防御"
+      }
+    },
+    {
+      "source": "JOURNAL / 成长日志",
+      "values": {
+        "zh-Hant": "JOURNAL / 成長日誌",
+        "en": "JOURNAL / Growth Journal",
+        "ja": "ジャーナル / 成長ジャーナル"
+      }
+    },
+    {
+      "source": "ORIGINAL / 资料核验队列",
+      "values": {
+        "zh-Hant": "ORIGINAL / 資料覈驗隊列",
+        "en": "ORIGINAL / Data verification queue",
+        "ja": "ORIGINAL / データ検証キュー"
+      }
+    },
+    {
+      "source": "Original Mode 未完成说明书核验",
+      "values": {
+        "zh-Hant": "Original Mode 未完成說明書覈驗",
+        "en": "Original Mode Instruction verification has not been completed",
+        "ja": "オリジナルモード命令の検証が完了していません"
+      }
+    },
+    {
+      "source": "PVE / 原创离线规则",
+      "values": {
+        "zh-Hant": "PVE / 原創離線規則",
+        "en": "PVE / Original offline rules",
+        "ja": "PVE / オリジナルオフラインルール"
+      }
+    },
+    {
+      "source": "QUEST / 顺序闯关",
+      "values": {
+        "zh-Hant": "QUEST / 順序闖關",
+        "en": "QUEST / Pass through levels sequentially",
+        "ja": "クエスト / レベルを順番に通過します"
+      }
+    },
+    {
+      "source": "Quest 区域",
+      "values": {
+        "zh-Hant": "Quest 區域",
+        "en": "Quest area",
+        "ja": "クエストエリア"
+      }
+    },
+    {
+      "source": "Quest 敌人数量错误",
+      "values": {
+        "zh-Hant": "Quest 敵人數量錯誤",
+        "en": "Quest The number of enemies is wrong",
+        "ja": "クエスト 敵の数が間違っています"
+      }
+    },
+    {
+      "source": "Quest 闯关",
+      "values": {
+        "zh-Hant": "Quest 闖關",
+        "en": "Quest",
+        "ja": "クエスト"
+      }
+    },
+    {
+      "source": "Quest回合数量错误",
+      "values": {
+        "zh-Hant": "Quest回合數量錯誤",
+        "en": "Quest round number is wrong",
+        "ja": "クエストのラウンド番号が間違っています"
+      }
+    },
+    {
+      "source": "Quest战斗演出",
+      "values": {
+        "zh-Hant": "Quest戰鬥演出",
+        "en": "Quest battle show",
+        "ja": "クエストバトルショー"
+      }
+    },
+    {
+      "source": "Quest需要成长期以上、无伤且DP至少1",
+      "values": {
+        "zh-Hant": "Quest需要成長期以上、無傷且DP至少1",
+        "en": "Quest needs to be above the growth stage, free from injuries and with a DP of at least 1",
+        "ja": "クエストは成長段階を超え、怪我がなく、DP が少なくとも 1 である必要があります"
+      }
+    },
+    {
+      "source": "RECORD / 最近战绩",
+      "values": {
+        "zh-Hant": "RECORD / 最近戰績",
+        "en": "RECORD / Recent results",
+        "ja": "記録 / 最近の結果"
+      }
+    },
+    {
+      "source": "REMINDERS / 本地提醒",
+      "values": {
+        "zh-Hant": "REMINDERS / 本地提醒",
+        "en": "REMINDERS / Local Reminders",
+        "ja": "リマインダー / ローカル リマインダー"
+      }
+    },
+    {
+      "source": "SANDBOX / 摇晃输入测试",
+      "values": {
+        "zh-Hant": "SANDBOX / 搖晃輸入測試",
+        "en": "SANDBOX / Shake input test",
+        "ja": "SANDBOX / シェイク入力テスト"
+      }
+    },
+    {
+      "source": "SANDBOX / 独立测试档",
+      "values": {
+        "zh-Hant": "SANDBOX / 獨立測試檔",
+        "en": "SANDBOX / Independent test file",
+        "ja": "SANDBOX / 独立したテスト ファイル"
+      }
+    },
+    {
+      "source": "SANDBOX图鉴 · 不计入正式收藏",
+      "values": {
+        "zh-Hant": "SANDBOX圖鑑 · 不計入正式收藏",
+        "en": "SANDBOX illustrated book · Not included in the official collection",
+        "ja": "SANDBOX図鑑・公式コレクションには未収録"
+      }
+    },
+    {
+      "source": "SAVE / 本地自动存档",
+      "values": {
+        "zh-Hant": "SAVE / 本地自動存檔",
+        "en": "SAVE / local automatic archive",
+        "ja": "SAVE / ローカル自動アーカイブ"
+      }
+    },
+    {
+      "source": "STORAGE / {0} 条养成档案",
+      "values": {
+        "zh-Hant": "STORAGE / {0} 條養成檔案",
+        "en": "STORAGE / {0} development files",
+        "ja": "ストレージ / {0} 開発ファイル"
+      }
+    },
+    {
+      "source": "Sandbox只允许与Sandbox连接，且双方须为不同伙伴",
+      "values": {
+        "zh-Hant": "Sandbox只允許與Sandbox連接，且雙方須爲不同夥伴",
+        "en": "Sandbox can only be connected to Sandbox, and both parties must be different partners",
+        "ja": "サンドボックスはサンドボックスにのみ接続でき、両方の当事者は異なるパートナーである必要があります"
+      }
+    },
+    {
+      "source": "Sandbox已推进{0}分钟",
+      "values": {
+        "zh-Hant": "Sandbox已推進{0}分鐘",
+        "en": "Sandbox has been advanced for {0} minutes",
+        "ja": "サンドボックスは {0} 分間進められました"
+      }
+    },
+    {
+      "source": "Sandbox来源设备无效",
+      "values": {
+        "zh-Hant": "Sandbox來源設備無效",
+        "en": "Sandbox source device is invalid",
+        "ja": "サンドボックス ソース デバイスが無効です"
+      }
+    },
+    {
+      "source": "Sandbox虚拟时间偏移已达到十年上限",
+      "values": {
+        "zh-Hant": "Sandbox虛擬時間偏移已達到十年上限",
+        "en": "Sandbox virtual time offset has reached the ten-year limit",
+        "ja": "サンドボックスの仮想時間オフセットが 10 年の制限に達しました"
+      }
+    },
+    {
+      "source": "TIMING / 精准训练",
+      "values": {
+        "zh-Hant": "TIMING / 精準訓練",
+        "en": "TIMING / precision training",
+        "ja": "タイミング / 精密トレーニング"
+      }
+    },
+    {
+      "source": "TRAINING / 上下段攻击",
+      "values": {
+        "zh-Hant": "TRAINING / 上下段攻擊",
+        "en": "TRAINING / upper and lower attack",
+        "ja": "TRAINING / 上下攻撃"
+      }
+    },
+    {
+      "source": "Ver.1 / 开始原味养成",
+      "values": {
+        "zh-Hant": "Ver.1 / 開始原味養成",
+        "en": "Ver.1 / Start developing the original flavor",
+        "ja": "Ver.1 / オリジナルフレーバーの開発開始"
+      }
+    },
+    {
+      "source": "Ver.1 / 条件",
+      "values": {
+        "zh-Hant": "Ver.1 / 條件",
+        "en": "Ver.1 / Conditions",
+        "ja": "Ver.1 / 条件"
+      }
+    },
+    {
+      "source": "Ver.1 养成数据无效",
+      "values": {
+        "zh-Hant": "Ver.1 養成數據無效",
+        "en": "Ver.1 development data is invalid",
+        "ja": "Ver.1の開発データが不正です"
+      }
+    },
+    {
+      "source": "Ver.1 只有肉和蛋白质",
+      "values": {
+        "zh-Hant": "Ver.1 只有肉和蛋白質",
+        "en": "Ver.1 Only meat and protein",
+        "ja": "Ver.1 肉とタンパク質のみ"
+      }
+    },
+    {
+      "source": "Ver.1 孵化已开始 · 8 秒后诞生",
+      "values": {
+        "zh-Hant": "Ver.1 孵化已開始 · 8 秒後誕生",
+        "en": "Ver.1 Incubation has started · Born in 8 seconds",
+        "ja": "Ver.1 孵化開始・8秒で誕生"
+      }
+    },
+    {
+      "source": "Ver.1 按作息自动入睡；暂停成长请使用 Cold",
+      "values": {
+        "zh-Hant": "Ver.1 按作息自動入睡；暫停成長請使用 Cold",
+        "en": "Ver.1 Automatically falls asleep according to schedule; please use Cold to pause growth",
+        "ja": "Ver.1 スケジュールに従って自動的にスリープします。成長を一時停止するにはColdを使用してください"
+      }
+    },
+    {
+      "source": "Ver.1 数码蛋",
+      "values": {
+        "zh-Hant": "Ver.1 數碼蛋",
+        "en": "Ver.1 Digital Egg",
+        "ja": "Ver.1 デジタルエッグ"
+      }
+    },
+    {
+      "source": "Ver.1 数码蛋 · 8秒孵化",
+      "values": {
+        "zh-Hant": "Ver.1 數碼蛋 · 8秒孵化",
+        "en": "Ver.1 Digital Egg · 8 seconds hatching",
+        "ja": "Ver.1 デジタルタマゴ・8秒孵化"
+      }
+    },
+    {
+      "source": "Ver.1 设备进度无效",
+      "values": {
+        "zh-Hant": "Ver.1 設備進度無效",
+        "en": "Ver.1 device progress is invalid",
+        "ja": "Ver.1 デバイスの進行状況が無効です"
+      }
+    },
+    {
+      "source": "Ver.1 请使用 A/B 上下段训练",
+      "values": {
+        "zh-Hant": "Ver.1 請使用 A/B 上下段訓練",
+        "en": "Ver.1 Please use A/B upper and lower training",
+        "ja": "Ver.1 A/B上下トレーニングをご利用ください。"
+      }
+    },
+    {
+      "source": "Ver.1 请进入 Quest 顺序闯关",
+      "values": {
+        "zh-Hant": "Ver.1 請進入 Quest 順序闖關",
+        "en": "Ver.1 Please enter Quest to complete the levels in order",
+        "ja": "Ver.1 クエストに入って順番にレベルをクリアしてください"
+      }
+    },
+    {
+      "source": "Ver.1 通过 Quest 顺序闯关",
+      "values": {
+        "zh-Hant": "Ver.1 通過 Quest 順序闖關",
+        "en": "Ver.1 Complete levels through Quest sequence",
+        "ja": "Ver.1 クエストシーケンスを通じてレベルを完了する"
+      }
+    },
+    {
+      "source": "Ver.1战斗使用力量与三次命中判定。睡眠和隐藏进化条件依公开资料实现，尚待实体机复核。",
+      "values": {
+        "zh-Hant": "Ver.1戰鬥使用力量與三次命中判定。睡眠和隱藏進化條件依公開資料實現，尚待實體機複覈。",
+        "en": "Ver.1 uses strength and three hit determinations in battle. Sleep and hidden evolution conditions are implemented based on public information and are yet to be reviewed by the physical machine.",
+        "ja": "Ver.1では戦闘で力と3ヒット判定を使用します。睡眠と隠れた進化の条件は公開情報に基づいて実装されており、物理マシンによるレビューはまだ行われていません。"
+      }
+    },
+    {
+      "source": "{0} 天 {1} 小时",
+      "values": {
+        "zh-Hant": "{0} 天 {1} 小時",
+        "en": "{0} days {1} hours",
+        "ja": "{0} 日 {1} 時間"
+      }
+    },
+    {
+      "source": "{0} 次",
+      "values": {
+        "zh-Hant": "{0} 次",
+        "en": "{0} times",
+        "ja": "{0} 回"
+      }
+    },
+    {
+      "source": "{0} 的攻击被闪避",
+      "values": {
+        "zh-Hant": "{0} 的攻擊被閃避",
+        "en": "{0}'s attack was dodged",
+        "ja": "{0} の攻撃は回避されました"
+      }
+    },
+    {
+      "source": "{0} 通关",
+      "values": {
+        "zh-Hant": "{0} 通關",
+        "en": "{0} cleared",
+        "ja": "{0} がクリアされました"
+      }
+    },
+    {
+      "source": "{0} 邀请你连接",
+      "values": {
+        "zh-Hant": "{0} 邀請你連接",
+        "en": "{0} invites you to connect",
+        "ja": "{0} があなたを接続に招待しています"
+      }
+    },
+    {
+      "source": "{0}超出允许范围",
+      "values": {
+        "zh-Hant": "{0}超出允許範圍",
+        "en": "{0} exceeds the allowed range",
+        "ja": "{0} が許容範囲を超えています"
+      }
+    },
+    {
+      "source": "{0}键",
+      "values": {
+        "zh-Hant": "{0}鍵",
+        "en": "{0} key",
+        "ja": "{0} キー"
+      }
+    },
+    {
+      "source": "{0}键，{1}",
+      "values": {
+        "zh-Hant": "{0}鍵，{1}",
+        "en": "{0} key, {1}",
+        "ja": "{0} キー、{1}"
+      }
+    },
+    {
+      "source": "{0}须为整数",
+      "values": {
+        "zh-Hant": "{0}須爲整數",
+        "en": "{0} must be an integer",
+        "ja": "{0} は整数でなければなりません"
+      }
+    },
+    {
+      "source": "{0}，{1}颗心，满值4",
+      "values": {
+        "zh-Hant": "{0}，{1}顆心，滿值4",
+        "en": "{0}, {1} hearts, full value 4",
+        "ja": "{0}、ハート {1} 個、完全な値 4"
+      }
+    },
+    {
+      "source": "{0}，{1}，满值100",
+      "values": {
+        "zh-Hant": "{0}，{1}，滿值100",
+        "en": "{0}, {1}, full value 100",
+        "ja": "{0}、{1}、完全な値 100"
+      }
+    },
+    {
+      "source": "一个小小的屏幕。\n一个持续生长的世界。",
+      "values": {
+        "zh-Hant": "一個小小的屏幕。\n一個持續生長的世界。",
+        "en": "A small screen.\nA world that continues to grow.",
+        "ja": "小さい画面。\n成長を続ける世界。"
+      }
+    },
+    {
+      "source": "上/下段训练 · 命中{0}/5 · {1}",
+      "values": {
+        "zh-Hant": "上/下段訓練 · 命中{0}/5 · {1}",
+        "en": "Upper/lower section training · Hit {0}/5 · {1}",
+        "ja": "上部/下部セクションのトレーニング · {0}/5 · {1} をヒット"
+      }
+    },
+    {
+      "source": "下一位敌人即将登场…",
+      "values": {
+        "zh-Hant": "下一位敵人即將登場…",
+        "en": "The next enemy is about to appear...",
+        "ja": "次の敵が現れようとしています..."
+      }
+    },
+    {
+      "source": "不属于 COLOR Ver.1：{0}",
+      "values": {
+        "zh-Hant": "不屬於 COLOR Ver.1：{0}",
+        "en": "does not belong to COLOR Ver.1: {0}",
+        "ja": "は COLOR Ver.1 に属しません: {0}"
+      }
+    },
+    {
+      "source": "不限",
+      "values": {
+        "zh-Hant": "不限",
+        "en": "No limit",
+        "ja": "制限なし"
+      }
+    },
+    {
+      "source": "与备份伙伴交换",
+      "values": {
+        "zh-Hant": "與備份夥伴交換",
+        "en": "Exchange with backup partner",
+        "ja": "バックアップパートナーとの交換"
+      }
+    },
+    {
+      "source": "主存档损坏，已恢复上次备份；损坏文件将保留。",
+      "values": {
+        "zh-Hant": "主存檔損壞，已恢復上次備份；損壞文件將保留。",
+        "en": "The main archive is damaged, the last backup has been restored; damaged files will be retained.",
+        "ja": "メイン アーカイブが破損しています。最後のバックアップが復元されました。破損したファイルは保持されます。"
+      }
+    },
+    {
+      "source": "云端备份与同步",
+      "values": {
+        "zh-Hant": "雲端備份與同步",
+        "en": "Cloud backup and synchronization",
+        "ja": "クラウドのバックアップと同期"
+      }
+    },
+    {
+      "source": "云端备份失败：{0}",
+      "values": {
+        "zh-Hant": "雲端備份失敗：{0}",
+        "en": "Cloud backup failed: {0}",
+        "ja": "クラウド バックアップに失敗しました: {0}"
+      }
+    },
+    {
+      "source": "亚古兽",
+      "values": {
+        "zh-Hant": "亞古獸",
+        "en": "Agumon",
+        "ja": "アグモン"
+      }
+    },
+    {
+      "source": "亞古獸",
+      "values": {
+        "zh-Hant": "亞古獸",
+        "en": "Agumon",
+        "ja": "アグモン"
+      }
+    },
+    {
+      "source": "交换后饱食与力量归零；体重、努力及成长记录保留。",
+      "values": {
+        "zh-Hant": "交換後飽食與力量歸零；體重、努力及成長記錄保留。",
+        "en": "After the exchange, satiety and strength return to zero; weight, effort and growth records are retained.",
+        "ja": "交換後、満腹感と体力はゼロに戻ります。体重、努力、成長の記録が保持されます。"
+      }
+    },
+    {
+      "source": "亲密度",
+      "values": {
+        "zh-Hant": "親密度",
+        "en": "Intimacy",
+        "ja": "親密さ"
+      }
+    },
+    {
+      "source": "仅在伙伴死亡后重新孵化 Ver.1 蛋",
+      "values": {
+        "zh-Hant": "僅在夥伴死亡後重新孵化 Ver.1 蛋",
+        "en": "Only re-hatch Ver.1 eggs after death of partner",
+        "ja": "パートナー死亡後のみVer.1のタマゴを再孵化させる"
+      }
+    },
+    {
+      "source": "仅独立Sandbox允许推进测试时间",
+      "values": {
+        "zh-Hant": "僅獨立Sandbox允許推進測試時間",
+        "en": "Only standalone Sandbox is allowed to advance the test time",
+        "ja": "テスト時間を延長できるのはスタンドアロン サンドボックスのみです"
+      }
+    },
+    {
+      "source": "从一枚蛋开始。喂食、清洁、互动训练，让你的照顾方式决定它的成长。离开后时间仍然流逝。",
+      "values": {
+        "zh-Hant": "從一枚蛋開始。餵食、清潔、互動訓練，讓你的照顧方式決定它的成長。離開後時間仍然流逝。",
+        "en": "starts with an egg. Feeding, cleaning, interactive training, let the way you care for it determine its growth. Time still passes after leaving.",
+        "ja": "は卵から始まります。餌をあげたり、掃除をしたり、インタラクティブなトレーニングをしたり、あなたの世話の仕方がその成長を左右します。出発後も時間が経ちます。"
+      }
+    },
+    {
+      "source": "从备份文件恢复",
+      "values": {
+        "zh-Hant": "從備份文件恢復",
+        "en": "Restore from backup file",
+        "ja": "バックアップファイルから復元"
+      }
+    },
+    {
+      "source": "以 Digital Monster COLOR Ver.1 为基准：四心养成、A/B 上下段训练、8区顺序闯关。原版角色像素，默认彩色；设置可切换经典灰绿色 LCD。",
+      "values": {
+        "zh-Hant": "以 Digital Monster COLOR Ver.1 爲基準：四心養成、A/B 上下段訓練、8區順序闖關。原版角色像素，默認彩色；設置可切換經典灰綠色 LCD。",
+        "en": "is based on Digital Monster COLOR Ver.1: four-heart development, A/B upper and lower section training, and 8-area sequential pass. Original character pixels, default color; settings can switch classic gray-green LCD.",
+        "ja": "は、デジタルモンスター COLOR Ver.1 に基づいており、4 つの心臓の開発、A/B の上下セクションのトレーニング、および 8 エリアのシーケンシャルパスに基づいています。元の文字のピクセル、デフォルトの色。設定により、クラシックな灰緑色の LCD を切り替えることができます。"
+      }
+    },
+    {
+      "source": "以Ver.1说明书操作及社区实测数据实现彩色养成与8区顺序Quest；隐藏参数仍有待实体机复核。",
+      "values": {
+        "zh-Hant": "以Ver.1說明書操作及社區實測數據實現彩色養成與8區順序Quest；隱藏參數仍有待實體機複覈。",
+        "en": "uses Ver.1 manual operation and community measured data to achieve color development and 8-area sequential Quest; the hidden parameters still need to be reviewed by the physical machine.",
+        "ja": "は、Ver.1 の手動操作とコミュニティ測定データを使用して、発色と 8 エリアのシーケンシャル クエストを実現します。隠しパラメータは物理マシンで確認する必要があります。"
+      }
+    },
+    {
+      "source": "以下为待开发目录，尚不支持切换。每种机型需独立核实说明书、角色名单和养成规则。",
+      "values": {
+        "zh-Hant": "以下爲待開發目錄，尚不支持切換。每種機型需獨立覈實說明書、角色名單和養成規則。",
+        "en": "The following is a directory to be developed and switching is not supported yet. Each model needs to independently verify the instructions, character list and development rules.",
+        "ja": "以下は開発対象のディレクトリであり、切り替えはまだサポートされていません。各モデルは、指示、キャラクターリスト、開発ルールを独自に検証する必要があります。"
+      }
+    },
+    {
+      "source": "任务完成 · 获得进化芯片和特别食物",
+      "values": {
+        "zh-Hant": "任務完成 · 獲得進化芯片和特別食物",
+        "en": "Mission completed · Obtain evolution chips and special food",
+        "ja": "ミッション完了・進化チップと特別フードを入手"
+      }
+    },
+    {
+      "source": "任务目标不可达",
+      "values": {
+        "zh-Hant": "任務目標不可達",
+        "en": "The task target is unreachable",
+        "ja": "タスクのターゲットに到達できません"
+      }
+    },
+    {
+      "source": "休息中",
+      "values": {
+        "zh-Hant": "休息中",
+        "en": "is resting",
+        "ja": "は休んでいます"
+      }
+    },
+    {
+      "source": "休息中，恢复能量",
+      "values": {
+        "zh-Hant": "休息中，恢復能量",
+        "en": "Resting and recovering energy",
+        "ja": "休息とエネルギーの回復"
+      }
+    },
+    {
+      "source": "优先级 {0}，健康且无伤病时检查",
+      "values": {
+        "zh-Hant": "優先級 {0}，健康且無傷病時檢查",
+        "en": "Priority {0}, check when healthy and without injuries",
+        "ja": "優先度 {0}、健康で怪我がないことを確認してください"
+      }
+    },
+    {
+      "source": "伙伴仍在成长，请继续照顾它",
+      "values": {
+        "zh-Hant": "夥伴仍在成長，請繼續照顧它",
+        "en": "Partner is still growing, please continue to take care of it",
+        "ja": "パートナーはまだまだ成長中です、これからもよろしくお願いします"
+      }
+    },
+    {
+      "source": "伙伴力量不足，请训练或喂蛋白质",
+      "values": {
+        "zh-Hant": "夥伴力量不足，請訓練或喂蛋白質",
+        "en": "Partner is not strong enough, please train or feed protein",
+        "ja": "パートナーは十分に強くありません。トレーニングするかプロテインを与えてください。"
+      }
+    },
+    {
+      "source": "伙伴受伤，请先治疗",
+      "values": {
+        "zh-Hant": "夥伴受傷，請先治療",
+        "en": "Partner is injured, please treat him first",
+        "ja": "パートナーが負傷しています。まず治療してください"
+      }
+    },
+    {
+      "source": "伙伴命中",
+      "values": {
+        "zh-Hant": "夥伴命中",
+        "en": "partner hit",
+        "ja": "パートナー ヒット"
+      }
+    },
+    {
+      "source": "伙伴回归数据，记录已保留",
+      "values": {
+        "zh-Hant": "夥伴迴歸數據，記錄已保留",
+        "en": "Partner return data, the record has been retained",
+        "ja": "パートナーの返品データ、記録は保持されています"
+      }
+    },
+    {
+      "source": "伙伴回避",
+      "values": {
+        "zh-Hant": "夥伴迴避",
+        "en": "partner avoidance",
+        "ja": "パートナー回避"
+      }
+    },
+    {
+      "source": "伙伴已变化，请重新载入当前数值",
+      "values": {
+        "zh-Hant": "夥伴已變化，請重新載入當前數值",
+        "en": "The partner has changed, please reload the current value.",
+        "ja": "パートナーが変更されました。現在の値を再ロードしてください。"
+      }
+    },
+    {
+      "source": "伙伴很健康，无需用药",
+      "values": {
+        "zh-Hant": "夥伴很健康，無需用藥",
+        "en": "My partner is healthy and does not need medication.",
+        "ja": "私のパートナーは健康で、薬を必要としません。"
+      }
+    },
+    {
+      "source": "伙伴攻击",
+      "values": {
+        "zh-Hant": "夥伴攻擊",
+        "en": "Partner attack",
+        "ja": "パートナー攻撃"
+      }
+    },
+    {
+      "source": "伙伴档案",
+      "values": {
+        "zh-Hant": "夥伴檔案",
+        "en": "Partner Profile",
+        "ja": "パートナー プロフィール"
+      }
+    },
+    {
+      "source": "伙伴状态",
+      "values": {
+        "zh-Hant": "夥伴狀態",
+        "en": "Partner status",
+        "ja": "パートナーステータス"
+      }
+    },
+    {
+      "source": "伙伴状态已变化，请重新连接",
+      "values": {
+        "zh-Hant": "夥伴狀態已變化，請重新連接",
+        "en": "Partner status has changed, please reconnect.",
+        "ja": "パートナーのステータスが変更されました。再接続してください。"
+      }
+    },
+    {
+      "source": "伙伴的环境需要清洁",
+      "values": {
+        "zh-Hant": "夥伴的環境需要清潔",
+        "en": "Partner’s environment needs to be cleaned",
+        "ja": "パートナーの環境をクリーンアップする必要があります"
+      }
+    },
+    {
+      "source": "伙伴空腹，请及时喂肉",
+      "values": {
+        "zh-Hant": "夥伴空腹，請及時喂肉",
+        "en": "Your partner is on an empty stomach, please feed meat in time",
+        "ja": "パートナーはお腹が空いています。時間内に肉を与えてください"
+      }
+    },
+    {
+      "source": "伙伴进化了！",
+      "values": {
+        "zh-Hant": "夥伴進化了！",
+        "en": "Partner has evolved!",
+        "ja": "パートナーが進化！"
+      }
+    },
+    {
+      "source": "伙伴需要喂食",
+      "values": {
+        "zh-Hant": "夥伴需要餵食",
+        "en": "Partner needs feeding",
+        "ja": "パートナーは給餌が必要です"
+      }
+    },
+    {
+      "source": "伙伴需要睡眠，请关灯",
+      "values": {
+        "zh-Hant": "夥伴需要睡眠，請關燈",
+        "en": "Partner needs to sleep, please turn off the light",
+        "ja": "パートナーは寝る必要があります。電気を消してください。"
+      }
+    },
+    {
+      "source": "伙伴：{0}\n存档时间：{1}\n当前进度会先保存为独立备份。恢复后将结算离线经过的时间。",
+      "values": {
+        "zh-Hant": "夥伴：{0}\n存檔時間：{1}\n當前進度會先保存爲獨立備份。恢復後將結算離線經過的時間。",
+        "en": "Partner: {0}\nArchive time: {1}\nThe current progress will be saved as an independent backup first. The time elapsed offline will be accounted for after restoration.",
+        "ja": "パートナー: {0}\nアーカイブ時間: {1}\n現在の進行状況は、最初に独立したバックアップとして保存されます。オフラインでの経過時間は復元後に考慮されます。"
+      }
+    },
+    {
+      "source": "伤势",
+      "values": {
+        "zh-Hant": "傷勢",
+        "en": "Injury",
+        "ja": "怪我"
+      }
+    },
+    {
+      "source": "伤势已恢复",
+      "values": {
+        "zh-Hant": "傷勢已恢復",
+        "en": "The injury has recovered",
+        "ja": "怪我は回復しました"
+      }
+    },
+    {
+      "source": "伤势持续计时",
+      "values": {
+        "zh-Hant": "傷勢持續計時",
+        "en": "Injury duration timer",
+        "ja": "負傷期間タイマー"
+      }
+    },
+    {
+      "source": "体力",
+      "values": {
+        "zh-Hant": "體力",
+        "en": "physical strength",
+        "ja": "体力"
+      }
+    },
+    {
+      "source": "体重",
+      "values": {
+        "zh-Hant": "體重",
+        "en": "weight",
+        "ja": "重量"
+      }
+    },
+    {
+      "source": "体重条件无效",
+      "values": {
+        "zh-Hant": "體重條件無效",
+        "en": "Invalid weight condition",
+        "ja": "無効な重み条件です"
+      }
+    },
+    {
+      "source": "作为独立设备恢复",
+      "values": {
+        "zh-Hant": "作爲獨立設備恢復",
+        "en": "restored as a standalone device",
+        "ja": "がスタンドアロン デバイスとして復元されました"
+      }
+    },
+    {
+      "source": "使用",
+      "values": {
+        "zh-Hant": "使用",
+        "en": "use",
+        "ja": "使用"
+      }
+    },
+    {
+      "source": "供应充足",
+      "values": {
+        "zh-Hant": "供應充足",
+        "en": "is in sufficient supply",
+        "ja": "は十分に供給されています"
+      }
+    },
+    {
+      "source": "依角色就寝时间自动入睡，08:00醒来。连续睡眠8小时恢复全部DP；睡眠仍计入进化时间。Cold暂停成长，备份交换只保存一只伙伴。",
+      "values": {
+        "zh-Hant": "依角色就寢時間自動入睡，08:00醒來。連續睡眠8小時恢復全部DP；睡眠仍計入進化時間。Cold暫停成長，備份交換隻保存一隻夥伴。",
+        "en": "automatically falls asleep according to the character's bedtime and wakes up at 08:00. Sleeping for 8 hours continuously restores all DP; sleep still counts towards evolution time. Cold pauses growth, and backup exchange only saves one partner.",
+        "ja": "はキャラクターの就寝時間に合わせて自動的に眠りに就き、08:00 に目覚めます。 8時間睡眠を続けるとDPが全回復します。睡眠は依然として進化時間にカウントされます。コールドにより成長が停止し、バックアップ交換により救われるのは 1 つのパートナーのみです。"
+      }
+    },
+    {
+      "source": "保存会写回全部草稿数值；需要最新计时可先重新载入。",
+      "values": {
+        "zh-Hant": "保存會寫回全部草稿數值；需要最新計時可先重新載入。",
+        "en": "Saving will write back all draft values; you can reload first if you need the latest timing.",
+        "ja": "保存すると、すべてのドラフト値が書き戻されます。最新のタイミングが必要な場合は、最初にリロードできます。"
+      }
+    },
+    {
+      "source": "保存数值",
+      "values": {
+        "zh-Hant": "保存數值",
+        "en": "Save value",
+        "ja": "値を保存"
+      }
+    },
+    {
+      "source": "保留最近 300 条详细事件及完整进化顺序。",
+      "values": {
+        "zh-Hant": "保留最近 300 條詳細事件及完整進化順序。",
+        "en": "retains the latest 300 detailed events and the complete evolution sequence.",
+        "ja": "は、最新の 300 件の詳細なイベントと完全な進化シーケンスを保持します。"
+      }
+    },
+    {
+      "source": "信号之蛋",
+      "values": {
+        "zh-Hant": "信號之蛋",
+        "en": "Signal Egg",
+        "ja": "シグナルエッグ"
+      }
+    },
+    {
+      "source": "信号花园 · 原创关卡",
+      "values": {
+        "zh-Hant": "信號花園 · 原創關卡",
+        "en": "Signal Garden · Original Level",
+        "ja": "シグナルガーデン・オリジナルレベル"
+      }
+    },
+    {
+      "source": "修改会写入当前存档。首次修改前自动保留独立备份，可在本页恢复。",
+      "values": {
+        "zh-Hant": "修改會寫入當前存檔。首次修改前自動保留獨立備份，可在本頁恢復。",
+        "en": "modifications will be written to the current archive. An independent backup is automatically retained before the first modification and can be restored on this page.",
+        "ja": "の変更は現在のアーカイブに書き込まれます。最初の変更の前に独立したバックアップが自動的に保持され、このページで復元できます。"
+      }
+    },
+    {
+      "source": "修改过的档案只能在Sandbox参与测试对战",
+      "values": {
+        "zh-Hant": "修改過的檔案只能在Sandbox參與測試對戰",
+        "en": "Modified files can only participate in test battles in Sandbox",
+        "ja": "変更されたファイルはサンドボックスのテスト戦闘にのみ参加できます"
+      }
+    },
+    {
+      "source": "停止并取消",
+      "values": {
+        "zh-Hant": "停止並取消",
+        "en": "Stop and Cancel",
+        "ja": "停止とキャンセル"
+      }
+    },
+    {
+      "source": "健康",
+      "values": {
+        "zh-Hant": "健康",
+        "en": "Health",
+        "ja": "健康"
+      }
+    },
+    {
+      "source": "健康 HEALTH",
+      "values": {
+        "zh-Hant": "健康 HEALTH",
+        "en": "HEALTH",
+        "ja": "健康"
+      }
+    },
+    {
+      "source": "健康 ≥{0} · 体重 {1}…{2}g · 亲密 ≥{3}",
+      "values": {
+        "zh-Hant": "健康 ≥{0} · 體重 {1}…{2}g · 親密 ≥{3}",
+        "en": "Health ≥{0} · Weight {1}…{2}g · Intimacy ≥{3}",
+        "ja": "体力 ≥{0} · 体重 {1}…{2}g · 親密度 ≥{3}"
+      }
+    },
+    {
+      "source": "像素伙伴 {0}",
+      "values": {
+        "zh-Hant": "像素夥伴 {0}",
+        "en": "Pixel Partner {0}",
+        "ja": "Pixel パートナー {0}"
+      }
+    },
+    {
+      "source": "像素图集版本无效",
+      "values": {
+        "zh-Hant": "像素圖集版本無效",
+        "en": "The pixel atlas version is invalid",
+        "ja": "ピクセル アトラスのバージョンが無効です"
+      }
+    },
+    {
+      "source": "像素图集结构无效",
+      "values": {
+        "zh-Hant": "像素圖集結構無效",
+        "en": "The pixel atlas structure is invalid",
+        "ja": "ピクセル アトラス構造が無効です"
+      }
+    },
+    {
+      "source": "像素素材缺失",
+      "values": {
+        "zh-Hant": "像素素材缺失",
+        "en": "Pixel material is missing",
+        "ja": "ピクセル マテリアルがありません"
+      }
+    },
+    {
+      "source": "允许养成提醒",
+      "values": {
+        "zh-Hant": "允許養成提醒",
+        "en": "Allow cultivation reminder",
+        "ja": "栽培リマインダーを許可する"
+      }
+    },
+    {
+      "source": "先完成前一区域",
+      "values": {
+        "zh-Hant": "先完成前一區域",
+        "en": "Complete the previous area first",
+        "ja": "まず前のエリアを完了してください"
+      }
+    },
+    {
+      "source": "全部属性",
+      "values": {
+        "zh-Hant": "全部屬性",
+        "en": "All attributes",
+        "ja": "すべての属性"
+      }
+    },
+    {
+      "source": "全部阶段",
+      "values": {
+        "zh-Hant": "全部階段",
+        "en": "all stages",
+        "ja": "全ステージ"
+      }
+    },
+    {
+      "source": "关灯",
+      "values": {
+        "zh-Hant": "關燈",
+        "en": "Turn off the lights",
+        "ja": "ライトを消してください"
+      }
+    },
+    {
+      "source": "养成呼叫",
+      "values": {
+        "zh-Hant": "養成呼叫",
+        "en": "development call",
+        "ja": "開発コール"
+      }
+    },
+    {
+      "source": "养成呼叫已点亮",
+      "values": {
+        "zh-Hant": "養成呼叫已點亮",
+        "en": "Development call is lit",
+        "ja": "開発コールが点灯します"
+      }
+    },
+    {
+      "source": "养成呼叫未点亮",
+      "values": {
+        "zh-Hant": "養成呼叫未點亮",
+        "en": "Development call is not lit",
+        "ja": "開発コールが点灯しない"
+      }
+    },
+    {
+      "source": "养成数据越界",
+      "values": {
+        "zh-Hant": "養成數據越界",
+        "en": "Development data out of bounds",
+        "ja": "開発データが範囲外です"
+      }
+    },
+    {
+      "source": "养成时区",
+      "values": {
+        "zh-Hant": "養成時區",
+        "en": "Develop time zone",
+        "ja": "開発タイムゾーン"
+      }
+    },
+    {
+      "source": "养成由照顾失误、训练、满腹、睡眠打扰和战绩决定；不使用经验升级。",
+      "values": {
+        "zh-Hant": "養成由照顧失誤、訓練、滿腹、睡眠打擾和戰績決定；不使用經驗升級。",
+        "en": "development is determined by care errors, training, full stomach, sleep disturbance and record; no experience is used to upgrade.",
+        "ja": "発達はケアミス、トレーニング、満腹、睡眠障害、記録によって決まります。アップグレードに経験は使用されません。"
+      }
+    },
+    {
+      "source": "养成间隔无效",
+      "values": {
+        "zh-Hant": "養成間隔無效",
+        "en": "The development interval is invalid",
+        "ja": "開発間隔が無効です"
+      }
+    },
+    {
+      "source": "内容 ID 重复",
+      "values": {
+        "zh-Hant": "內容 ID 重複",
+        "en": "Duplicate content ID",
+        "ja": "コンテンツ ID が重複しています"
+      }
+    },
+    {
+      "source": "内容数据库",
+      "values": {
+        "zh-Hant": "內容數據庫",
+        "en": "content database",
+        "ja": "コンテンツ データベース"
+      }
+    },
+    {
+      "source": "内容数据库不可用，无法验证备份",
+      "values": {
+        "zh-Hant": "內容數據庫不可用，無法驗證備份",
+        "en": "The content database is unavailable and the backup cannot be verified.",
+        "ja": "コンテンツ データベースが利用できないため、バックアップを検証できません。"
+      }
+    },
+    {
+      "source": "内容版本或基本内容无效",
+      "values": {
+        "zh-Hant": "內容版本或基本內容無效",
+        "en": "The content version or basic content is invalid",
+        "ja": "コンテンツのバージョンまたは基本コンテンツが無効です"
+      }
+    },
+    {
+      "source": "冒险",
+      "values": {
+        "zh-Hant": "冒險",
+        "en": "Adventure",
+        "ja": "アドベンチャー"
+      }
+    },
+    {
+      "source": "冒险需要清醒、健康、拥有能量的成长期伙伴",
+      "values": {
+        "zh-Hant": "冒險需要清醒、健康、擁有能量的成長期夥伴",
+        "en": "Adventure requires a sober, healthy, and energetic growth partner",
+        "ja": "冒険には、冷静で健康的で精力的な成長パートナーが必要です"
+      }
+    },
+    {
+      "source": "冲洗完成",
+      "values": {
+        "zh-Hant": "沖洗完成",
+        "en": "flushing completed",
+        "ja": "フラッシュが完了しました"
+      }
+    },
+    {
+      "source": "冷冻会暂停年龄与养成消耗。死亡后可从数码蛋开始新生命，图鉴和历史仍然保留。",
+      "values": {
+        "zh-Hant": "冷凍會暫停年齡與養成消耗。死亡後可從數碼蛋開始新生命，圖鑑和歷史仍然保留。",
+        "en": "Freezing will suspend age and development consumption. After death, you can start a new life from the Digital Egg, and the illustrations and history will still be retained.",
+        "ja": "凍結すると、年齢と開発の消費が停止されます。死後もデジタルエッグから新たな人生をスタートでき、イラストや歴史はそのまま残ります。"
+      }
+    },
+    {
+      "source": "冷冻当前伙伴",
+      "values": {
+        "zh-Hant": "冷凍當前夥伴",
+        "en": "Freeze current partner",
+        "ja": "現在のパートナーを凍結します"
+      }
+    },
+    {
+      "source": "冷冻成长",
+      "values": {
+        "zh-Hant": "冷凍成長",
+        "en": "frozen growth",
+        "ja": "凍結された成長"
+      }
+    },
+    {
+      "source": "准备",
+      "values": {
+        "zh-Hant": "準備",
+        "en": "preparation",
+        "ja": "の準備"
+      }
+    },
+    {
+      "source": "准备下一场",
+      "values": {
+        "zh-Hant": "準備下一場",
+        "en": "Prepare for the next game",
+        "ja": "次のゲームに備える"
+      }
+    },
+    {
+      "source": "准备后伙伴信息发生变化，请重新连接",
+      "values": {
+        "zh-Hant": "準備後夥伴信息發生變化，請重新連接",
+        "en": "The partner information has changed after preparation, please reconnect.",
+        "ja": "準備後にパートナー情報が変更されましたので、再接続してください。"
+      }
+    },
+    {
+      "source": "切换",
+      "values": {
+        "zh-Hant": "切換",
+        "en": "switch",
+        "ja": "スイッチ"
+      }
+    },
+    {
+      "source": "刷新云端快照",
+      "values": {
+        "zh-Hant": "刷新雲端快照",
+        "en": "Refresh cloud snapshot",
+        "ja": "クラウド スナップショットを更新"
+      }
+    },
+    {
+      "source": "前方无法通行",
+      "values": {
+        "zh-Hant": "前方無法通行",
+        "en": "The front is impassable",
+        "ja": "前面通行不可"
+      }
+    },
+    {
+      "source": "剩余 HP",
+      "values": {
+        "zh-Hant": "剩餘 HP",
+        "en": "Remaining HP",
+        "ja": "残りHP"
+      }
+    },
+    {
+      "source": "剩余 {0} 秒",
+      "values": {
+        "zh-Hant": "剩餘 {0} 秒",
+        "en": "{0} seconds remaining",
+        "ja": "残り {0} 秒"
+      }
+    },
+    {
+      "source": "剩余治疗次数",
+      "values": {
+        "zh-Hant": "剩餘治療次數",
+        "en": "Number of remaining treatments",
+        "ja": "残りの治療回数"
+      }
+    },
+    {
+      "source": "力量",
+      "values": {
+        "zh-Hant": "力量",
+        "en": "Power",
+        "ja": "パワー"
+      }
+    },
+    {
+      "source": "力量下降计时",
+      "values": {
+        "zh-Hant": "力量下降計時",
+        "en": "Power drop timing",
+        "ja": "電源低下のタイミング"
+      }
+    },
+    {
+      "source": "力量不足：请训练或喂蛋白质",
+      "values": {
+        "zh-Hant": "力量不足：請訓練或喂蛋白質",
+        "en": "Insufficient strength: please train or feed protein",
+        "ja": "体力が不足しています: トレーニングするかプロテインを与えてください"
+      }
+    },
+    {
+      "source": "力量值",
+      "values": {
+        "zh-Hant": "力量值",
+        "en": "strength value",
+        "ja": "強度値"
+      }
+    },
+    {
+      "source": "力量呼叫十分钟未回应",
+      "values": {
+        "zh-Hant": "力量呼叫十分鐘未回應",
+        "en": "No response to power call for ten minutes",
+        "ja": "10 分間電源呼び出しに応答しませんでした"
+      }
+    },
+    {
+      "source": "力量心",
+      "values": {
+        "zh-Hant": "力量心",
+        "en": "Power Heart",
+        "ja": "パワーハート"
+      }
+    },
+    {
+      "source": "力量＋1心 · 体重＋2g",
+      "values": {
+        "zh-Hant": "力量＋1心 · 體重＋2g",
+        "en": "Strength +1 heart · Weight +2g",
+        "ja": "強さ+1ハート・重量+2g"
+      }
+    },
+    {
+      "source": "办公室",
+      "values": {
+        "zh-Hant": "辦公室",
+        "en": "Office",
+        "ja": "オフィス"
+      }
+    },
+    {
+      "source": "动作预览",
+      "values": {
+        "zh-Hant": "動作預覽",
+        "en": "action preview",
+        "ja": "アクション プレビュー"
+      }
+    },
+    {
+      "source": "动画帧越界",
+      "values": {
+        "zh-Hant": "動畫幀越界",
+        "en": "animation frame out of bounds",
+        "ja": "アニメーション フレームが範囲外です"
+      }
+    },
+    {
+      "source": "动画配置无效",
+      "values": {
+        "zh-Hant": "動畫配置無效",
+        "en": "animation configuration is invalid",
+        "ja": "アニメーション設定が無効です"
+      }
+    },
+    {
+      "source": "努力",
+      "values": {
+        "zh-Hant": "努力",
+        "en": "hard work",
+        "ja": "ご苦労さま"
+      }
+    },
+    {
+      "source": "包含Ver.1的17种养成角色及最终区Alter-S，使用有来源记录的原版彩色角色像素。附近手机通信已接入，双机待验收，联展未开放；部分动作采用已有姿势回退。",
+      "values": {
+        "zh-Hant": "包含Ver.1的17種養成角色及最終區Alter-S，使用有來源記錄的原版彩色角色像素。附近手機通信已接入，雙機待驗收，聯展未開放；部分動作採用已有姿勢回退。",
+        "en": "includes 17 developed characters from Ver.1 and the final zone Alter-S, using original color character pixels with provenance records. The nearby mobile phone communication has been connected, the two machines are waiting for acceptance, and the joint exhibition is not open; some actions are reverted using existing postures.",
+        "ja": "には、Ver.1と最終ゾーンAlter-Sの開発キャラクター17体が収録されており、出自記録付きのオリジナルカラーキャラクターピクセルを使用しています。近くの携帯電話通信は接続されており、2 台のマシンは受付を待っており、共同展示会は開いていません。一部のアクションは、既存の姿勢を使用して元に戻されます。"
+      }
+    },
+    {
+      "source": "包装主题",
+      "values": {
+        "zh-Hant": "包裝主題",
+        "en": "packaging theme",
+        "ja": "パッケージテーマ"
+      }
+    },
+    {
+      "source": "区域通关",
+      "values": {
+        "zh-Hant": "區域通關",
+        "en": "regional customs clearance",
+        "ja": "地域通関"
+      }
+    },
+    {
+      "source": "医疗",
+      "values": {
+        "zh-Hant": "醫療",
+        "en": "Medical",
+        "ja": "医療"
+      }
+    },
+    {
+      "source": "历史",
+      "values": {
+        "zh-Hant": "歷史",
+        "en": "History",
+        "ja": "の歴史"
+      }
+    },
+    {
+      "source": "双指缩放、上下左右拖动。以下为本游戏养成路线，并非实体机官方条件。",
+      "values": {
+        "zh-Hant": "雙指縮放、上下左右拖動。以下爲本遊戲養成路線，並非實體機官方條件。",
+        "en": "Use two fingers to zoom and drag up, down, left and right. The following is the development route for this game and is not the official condition of the physical machine.",
+        "ja": "2 本の指を使用してズームし、上下左右にドラッグします。以下は本ゲームの開発ルートであり、実機の正式な条件ではありません。"
+      }
+    },
+    {
+      "source": "双方信息已收到，双方确认后开始对战",
+      "values": {
+        "zh-Hant": "雙方信息已收到，雙方確認後開始對戰",
+        "en": "The information from both parties has been received. The battle will begin after both parties confirm.",
+        "ja": "双方からの情報を受信しました。双方の確認後に戦闘が開始されます。"
+      }
+    },
+    {
+      "source": "双方必须是不同伙伴，且Sandbox与正式养成不能混战",
+      "values": {
+        "zh-Hant": "雙方必須是不同夥伴，且Sandbox與正式養成不能混戰",
+        "en": "Both parties must be different partners, and Sandbox and formal training cannot fight.",
+        "ja": "双方が異なるパートナーである必要があり、サンドボックスと正式なトレーニングでは戦うことができません。"
+      }
+    },
+    {
+      "source": "双方打开附近连接、互相接受邀请，再分别确认对战。正式养成只能与正式养成连接，Sandbox只能与Sandbox连接。",
+      "values": {
+        "zh-Hant": "雙方打開附近連接、互相接受邀請，再分別確認對戰。正式養成只能與正式養成連接，Sandbox只能與Sandbox連接。",
+        "en": "Both parties open nearby connections, accept each other's invitations, and then confirm the battle separately. Formal cultivation can only be connected to formal cultivation, and Sandbox can only be connected to Sandbox.",
+        "ja": "双方が近くの接続を開き、お互いの招待を受け入れてから、個別に戦闘を確認します。正式な栽培は正式な栽培にのみ接続でき、サンドボックスはサンドボックスにのみ接続できます。"
+      }
+    },
+    {
+      "source": "发放数量",
+      "values": {
+        "zh-Hant": "發放數量",
+        "en": "issued quantity",
+        "ja": "発行数量"
+      }
+    },
+    {
+      "source": "发放道具",
+      "values": {
+        "zh-Hant": "發放道具",
+        "en": "distribute props",
+        "ja": "小道具を配布します"
+      }
+    },
+    {
+      "source": "发现野生伙伴 · {0}",
+      "values": {
+        "zh-Hant": "發現野生夥伴 · {0}",
+        "en": "Discover wild companions · {0}",
+        "ja": "野生の仲間を発見 · {0}"
+      }
+    },
+    {
+      "source": "取消",
+      "values": {
+        "zh-Hant": "取消",
+        "en": "Cancel",
+        "ja": "キャンセル"
+      }
+    },
+    {
+      "source": "受伤",
+      "values": {
+        "zh-Hant": "受傷",
+        "en": "injured",
+        "ja": "負傷"
+      }
+    },
+    {
+      "source": "受伤（通算）",
+      "values": {
+        "zh-Hant": "受傷（通算）",
+        "en": "injured (general calculation)",
+        "ja": "負傷者（一般的な計算）"
+      }
+    },
+    {
+      "source": "受伤：请治疗",
+      "values": {
+        "zh-Hant": "受傷：請治療",
+        "en": "Injured: Please treat",
+        "ja": "負傷者: 治療してください"
+      }
+    },
+    {
+      "source": "受到攻击",
+      "values": {
+        "zh-Hant": "受到攻擊",
+        "en": "is under attack",
+        "ja": "が攻撃を受けています"
+      }
+    },
+    {
+      "source": "受到攻击 · {0}：{1}",
+      "values": {
+        "zh-Hant": "受到攻擊 · {0}：{1}",
+        "en": "is under attack · {0}:{1}",
+        "ja": "が攻撃を受けています · {0}:{1}"
+      }
+    },
+    {
+      "source": "可挑战",
+      "values": {
+        "zh-Hant": "可挑戰",
+        "en": "can challenge",
+        "ja": "は挑戦可能"
+      }
+    },
+    {
+      "source": "可缩放的原创进化路线图",
+      "values": {
+        "zh-Hant": "可縮放的原創進化路線圖",
+        "en": "Scalable original evolutionary roadmap",
+        "ja": "スケーラブルな独自の進化ロードマップ"
+      }
+    },
+    {
+      "source": "呼叫",
+      "values": {
+        "zh-Hant": "呼叫",
+        "en": "call",
+        "ja": "コール"
+      }
+    },
+    {
+      "source": "命中 {0} / 5 · {1}",
+      "values": {
+        "zh-Hant": "命中 {0} / 5 · {1}",
+        "en": "hits {0} / 5 · {1}",
+        "ja": "は {0} / 5 · {1} にヒットしました"
+      }
+    },
+    {
+      "source": "命中记录与胜负不一致",
+      "values": {
+        "zh-Hant": "命中記錄與勝負不一致",
+        "en": "Hit record is inconsistent with victory or defeat",
+        "ja": "安打記録が勝敗と一致しません"
+      }
+    },
+    {
+      "source": "喂食",
+      "values": {
+        "zh-Hant": "餵食",
+        "en": "Feeding",
+        "ja": "給餌"
+      }
+    },
+    {
+      "source": "喂食完成",
+      "values": {
+        "zh-Hant": "餵食完成",
+        "en": "Feeding completed",
+        "ja": "給電完了"
+      }
+    },
+    {
+      "source": "喂食次数",
+      "values": {
+        "zh-Hant": "餵食次數",
+        "en": "Feeding times",
+        "ja": "授乳時間"
+      }
+    },
+    {
+      "source": "四心养成 · A/B上下段训练 · 8区顺序Quest · Cold · 一只备份",
+      "values": {
+        "zh-Hant": "四心養成 · A/B上下段訓練 · 8區順序Quest · Cold · 一隻備份",
+        "en": "Four Heart Development · A/B Upper and Lower Section Training · 8 Area Sequential Quest · Cold · One Backup",
+        "ja": "4つの心臓開発・A/B上部および下部セクショントレーニング・8エリア連続クエスト・コールド・1つのバックアップ"
+      }
+    },
+    {
+      "source": "回合",
+      "values": {
+        "zh-Hant": "回合",
+        "en": "round",
+        "ja": "ラウンド"
+      }
+    },
+    {
+      "source": "回归数据，养成记录已保留",
+      "values": {
+        "zh-Hant": "迴歸數據，養成記錄已保留",
+        "en": "regression data, development records have been retained",
+        "ja": "回帰データ、開発記録は保持されています"
+      }
+    },
+    {
+      "source": "图鉴",
+      "values": {
+        "zh-Hant": "圖鑑",
+        "en": "illustrated book",
+        "ja": "図鑑"
+      }
+    },
+    {
+      "source": "在光标进入绿色目标区时按下确认。共 3 次，平均准确度达到 60 分才算训练成功。每次开始消耗 5 能量。",
+      "values": {
+        "zh-Hant": "在光標進入綠色目標區時按下確認。共 3 次，平均準確度達到 60 分纔算訓練成功。每次開始消耗 5 能量。",
+        "en": "Press OK when the cursor enters the green target area. A total of 3 times, the training is considered successful when the average accuracy reaches 60 points. Costs 5 energy each time.",
+        "ja": "カーソルが緑色のターゲット領域に入ったら、[OK] を押します。合計 3 回の平均精度が 60 ポイントに達すると、トレーニングは成功したとみなされます。毎回5エネルギー消費します。"
+      }
+    },
+    {
+      "source": "在线匹配需配置Game Center开发团队能力；本构建尚未启用。",
+      "values": {
+        "zh-Hant": "在線匹配需配置Game Center開發團隊能力；本構建尚未啓用。",
+        "en": "Online matching requires the Game Center development team capability; this build has not yet been enabled.",
+        "ja": "オンライン マッチングには、Game Center 開発チームの能力が必要です。このビルドはまだ有効になっていません。"
+      }
+    },
+    {
+      "source": "在线对方已离开",
+      "values": {
+        "zh-Hant": "在線對方已離開",
+        "en": "The online party has left",
+        "ja": "オンライン パーティーが退席しました"
+      }
+    },
+    {
+      "source": "在线连接失败",
+      "values": {
+        "zh-Hant": "在線連接失敗",
+        "en": "Online connection failed",
+        "ja": "オンライン接続に失敗しました"
+      }
+    },
+    {
+      "source": "地图不存在",
+      "values": {
+        "zh-Hant": "地圖不存在",
+        "en": "map does not exist",
+        "ja": "マップは存在しません"
+      }
+    },
+    {
+      "source": "地图为空",
+      "values": {
+        "zh-Hant": "地圖爲空",
+        "en": "map is empty",
+        "ja": "マップは空です"
+      }
+    },
+    {
+      "source": "地图出生点不可通行",
+      "values": {
+        "zh-Hant": "地圖出生點不可通行",
+        "en": "The birth point of the map is inaccessible",
+        "ja": "マップの誕生地点にアクセスできません"
+      }
+    },
+    {
+      "source": "地图行宽不一致",
+      "values": {
+        "zh-Hant": "地圖行寬不一致",
+        "en": "Map line width is inconsistent",
+        "ja": "マップの線幅が一貫していません"
+      }
+    },
+    {
+      "source": "增强模式沿用Ver.1养成规则，增加触屏、图鉴与历史辅助。",
+      "values": {
+        "zh-Hant": "增強模式沿用Ver.1養成規則，增加觸屏、圖鑑與歷史輔助。",
+        "en": "Enhanced mode follows the development rules of Ver.1 and adds touch screen, illustrations and historical assistance.",
+        "ja": "エンハンスドモードは、Ver.1の開発ルールを踏襲し、タッチスクリーンやイラスト、歴史支援などを追加しています。"
+      }
+    },
+    {
+      "source": "备份",
+      "values": {
+        "zh-Hant": "備份",
+        "en": "backup",
+        "ja": "バックアップ"
+      }
+    },
+    {
+      "source": "备份 / 调试前存档",
+      "values": {
+        "zh-Hant": "備份 / 調試前存檔",
+        "en": "Backup/Archive before debugging",
+        "ja": "デバッグ前のバックアップ/アーカイブ"
+      }
+    },
+    {
+      "source": "备份伙伴不存在",
+      "values": {
+        "zh-Hant": "備份夥伴不存在",
+        "en": "Backup partner does not exist",
+        "ja": "バックアップ パートナーが存在しません"
+      }
+    },
+    {
+      "source": "备份已恢复为独立设备档案，正在结算离线时间",
+      "values": {
+        "zh-Hant": "備份已恢復爲獨立設備檔案，正在結算離線時間",
+        "en": "The backup has been restored to an independent device file and the offline time is being settled.",
+        "ja": "バックアップは独立したデバイス ファイルに復元され、オフライン時間が解決されています。"
+      }
+    },
+    {
+      "source": "备份当前伙伴并开始新蛋",
+      "values": {
+        "zh-Hant": "備份當前夥伴並開始新蛋",
+        "en": "Back up the current partner and start a new egg",
+        "ja": "現在のパートナーをバックアップし、新しいエッグを開始します"
+      }
+    },
+    {
+      "source": "备份旧档并开始 Ver.1",
+      "values": {
+        "zh-Hant": "備份舊檔並開始 Ver.1",
+        "en": "Back up old files and start Ver.1",
+        "ja": "古いファイルをバックアップして Ver.1 を起動します"
+      }
+    },
+    {
+      "source": "备份来自另一机型，请通过导入创建独立设备",
+      "values": {
+        "zh-Hant": "備份來自另一機型，請通過導入創建獨立設備",
+        "en": "The backup is from another model, please create an independent device by importing it.",
+        "ja": "バックアップは別のモデルからのものです。インポートして独立したデバイスを作成してください。"
+      }
+    },
+    {
+      "source": "复古彩色",
+      "values": {
+        "zh-Hant": "復古彩色",
+        "en": "retro color",
+        "ja": "レトロカラー"
+      }
+    },
+    {
+      "source": "失误≤3、训练≤31",
+      "values": {
+        "zh-Hant": "失誤≤3、訓練≤31",
+        "en": "errors ≤ 3, training ≤ 31",
+        "ja": "エラー ≤ 3、トレーニング ≤ 31"
+      }
+    },
+    {
+      "source": "失误≤3、训练≤47",
+      "values": {
+        "zh-Hant": "失誤≤3、訓練≤47",
+        "en": "errors ≤ 3, training ≤ 47",
+        "ja": "エラー ≤ 3、トレーニング ≤ 47"
+      }
+    },
+    {
+      "source": "失误≤3、训练≥32",
+      "values": {
+        "zh-Hant": "失誤≤3、訓練≥32",
+        "en": "errors ≤ 3, training ≥ 32",
+        "ja": "エラー ≤ 3、トレーニング ≥ 32"
+      }
+    },
+    {
+      "source": "失误≤3、训练≥48",
+      "values": {
+        "zh-Hant": "失誤≤3、訓練≥48",
+        "en": "errors ≤ 3, training ≥ 48",
+        "ja": "エラー ≤ 3、トレーニング ≥ 48"
+      }
+    },
+    {
+      "source": "失误≥4、训练5～15、满腹≥3、睡眠打扰4～5",
+      "values": {
+        "zh-Hant": "失誤≥4、訓練5～15、滿腹≥3、睡眠打擾4～5",
+        "en": "Mistakes ≥ 4, training 5 to 15, full stomach ≥ 3, sleep disturbance 4 to 5",
+        "ja": "間違い ≥ 4、トレーニング 5 ～ 15、満腹 ≥ 3、睡眠障害 4 ～ 5"
+      }
+    },
+    {
+      "source": "失误≥4、训练8～31、满腹≤3、睡眠打扰≥9",
+      "values": {
+        "zh-Hant": "失誤≥4、訓練8～31、滿腹≤3、睡眠打擾≥9",
+        "en": "Mistakes ≥ 4, training 8 to 31, full stomach ≤ 3, sleep disturbance ≥ 9",
+        "ja": "ミス 4 回以上、トレーニング 8 ～ 31 回、満腹 3 回以下、睡眠障害 9 回以上"
+      }
+    },
+    {
+      "source": "失误≥4、训练8～31、满腹≥4、睡眠打扰≤8",
+      "values": {
+        "zh-Hant": "失誤≥4、訓練8～31、滿腹≥4、睡眠打擾≤8",
+        "en": "Mistakes ≥ 4, training 8 to 31, full stomach ≥ 4, sleep disturbance ≤ 8",
+        "ja": "ミス ≥ 4、トレーニング 8 ～ 31、満腹 ≥ 4、睡眠障害 ≤ 8"
+      }
+    },
+    {
+      "source": "失误≥4、训练≥16、满腹≥3、睡眠打扰≥6",
+      "values": {
+        "zh-Hant": "失誤≥4、訓練≥16、滿腹≥3、睡眠打擾≥6",
+        "en": "Mistakes ≥ 4, training ≥ 16, full stomach ≥ 3, sleep disturbance ≥ 6",
+        "ja": "間違い ≥ 4、トレーニング ≥ 16、満腹 ≥ 3、睡眠障害 ≥ 6"
+      }
+    },
+    {
+      "source": "失误≥4且未满足其他分支",
+      "values": {
+        "zh-Hant": "失誤≥4且未滿足其他分支",
+        "en": "errors ≥ 4 and other branches are not met",
+        "ja": "エラー ≥ 4 および他のブランチが満たされていない"
+      }
+    },
+    {
+      "source": "失败",
+      "values": {
+        "zh-Hant": "失敗",
+        "en": "failed",
+        "ja": "が失敗しました"
+      }
+    },
+    {
+      "source": "失败，训练次数已记录",
+      "values": {
+        "zh-Hant": "失敗，訓練次數已記錄",
+        "en": "failed, the number of training times has been recorded",
+        "ja": "が失敗しました。トレーニング回数が記録されました"
+      }
+    },
+    {
+      "source": "奥米加兽 Alter-S",
+      "values": {
+        "zh-Hant": "奧米加獸 Alter-S",
+        "en": "Omegamon Alter-S",
+        "ja": "オメガモン Alter-S"
+      }
+    },
+    {
+      "source": "奧米加獸 Alter-S",
+      "values": {
+        "zh-Hant": "奧米加獸 Alter-S",
+        "en": "Omegamon Alter-S",
+        "ja": "オメガモンオルタ-S"
+      }
+    },
+    {
+      "source": "始源之蛋",
+      "values": {
+        "zh-Hant": "始源之蛋",
+        "en": "Egg of Origin",
+        "ja": "起源の卵"
+      }
+    },
+    {
+      "source": "存档写入失败：{0}",
+      "values": {
+        "zh-Hant": "存檔寫入失敗：{0}",
+        "en": "Archive writing failed: {0}",
+        "ja": "アーカイブの書き込みに失敗しました: {0}"
+      }
+    },
+    {
+      "source": "存档已完成版本升级",
+      "values": {
+        "zh-Hant": "存檔已完成版本升級",
+        "en": "archive version upgrade completed",
+        "ja": "アーカイブのバージョンアップが完了しました"
+      }
+    },
+    {
+      "source": "存档校验失败。原文件已保留，请恢复备份。",
+      "values": {
+        "zh-Hant": "存檔校驗失敗。原文件已保留，請恢復備份。",
+        "en": "Archive verification failed. The original file has been retained, please restore the backup.",
+        "ja": "アーカイブの検証に失敗しました。元のファイルは保持されています。バックアップを復元してください。"
+      }
+    },
+    {
+      "source": "存档格式",
+      "values": {
+        "zh-Hant": "存檔格式",
+        "en": "archive format",
+        "ja": "アーカイブ形式"
+      }
+    },
+    {
+      "source": "存档版本 {0} 高于当前版本，请先更新游戏。",
+      "values": {
+        "zh-Hant": "存檔版本 {0} 高於當前版本，請先更新遊戲。",
+        "en": "archived version {0} is higher than the current version, please update the game first.",
+        "ja": "アーカイブ バージョン {0} は現在のバージョンよりも新しいです。最初にゲームを更新してください。"
+      }
+    },
+    {
+      "source": "存档目录不可用",
+      "values": {
+        "zh-Hant": "存檔目錄不可用",
+        "en": "Archive directory is unavailable",
+        "ja": "アーカイブ ディレクトリが使用できません"
+      }
+    },
+    {
+      "source": "存档结构或内容版本不兼容",
+      "values": {
+        "zh-Hant": "存檔結構或內容版本不兼容",
+        "en": "Archive structure or content version is incompatible",
+        "ja": "アーカイブ構造またはコンテンツのバージョンに互換性がありません"
+      }
+    },
+    {
+      "source": "存档达到容量上限，请先导出完整档案；原存档保持原样",
+      "values": {
+        "zh-Hant": "存檔達到容量上限，請先導出完整檔案；原存檔保持原樣",
+        "en": "The archive has reached the capacity limit. Please export the complete file first; the original archive remains intact.",
+        "ja": "アーカイブが容量制限に達しました。まず完全なファイルをエクスポートしてください。元のアーカイブはそのまま残ります。"
+      }
+    },
+    {
+      "source": "孵化 · {0}",
+      "values": {
+        "zh-Hant": "孵化 · {0}",
+        "en": "hatching · {0}",
+        "ja": "孵化 · {0}"
+      }
+    },
+    {
+      "source": "孵化 · 黑球兽",
+      "values": {
+        "zh-Hant": "孵化 · 黑球獸",
+        "en": "Hatching · Black Ball Beast",
+        "ja": "孵化・黒玉獣"
+      }
+    },
+    {
+      "source": "孵化中",
+      "values": {
+        "zh-Hant": "孵化中",
+        "en": "incubating",
+        "ja": "孵化中"
+      }
+    },
+    {
+      "source": "孵化中的数码蛋",
+      "values": {
+        "zh-Hant": "孵化中的數碼蛋",
+        "en": "The hatching digital egg",
+        "ja": "孵化したデジタル卵"
+      }
+    },
+    {
+      "source": "孵化后 10 分钟",
+      "values": {
+        "zh-Hant": "孵化後 10 分鐘",
+        "en": "10 minutes after hatching",
+        "ja": "孵化後10分"
+      }
+    },
+    {
+      "source": "孵化这枚数码蛋",
+      "values": {
+        "zh-Hant": "孵化這枚數碼蛋",
+        "en": "Hatching this digital egg",
+        "ja": "このデジタル卵を孵化させます"
+      }
+    },
+    {
+      "source": "安静开始 {0}:00",
+      "values": {
+        "zh-Hant": "安靜開始 {0}:00",
+        "en": "Quiet start {0}:00",
+        "ja": "静かなスタート {0}:00"
+      }
+    },
+    {
+      "source": "安静结束 {0}:00",
+      "values": {
+        "zh-Hant": "安靜結束 {0}:00",
+        "en": "Quiet end {0}:00",
+        "ja": "静かな終了 {0}:00"
+      }
+    },
+    {
+      "source": "完全体15战采用NHOKO的成长期与成熟期合计；究极体须在完全体阶段另战15次。",
+      "values": {
+        "zh-Hant": "完全體15戰採用NHOKO的成長期與成熟期合計；究極體須在完全體階段另戰15次。",
+        "en": "The 15th battle of the complete body uses the total of NHOKO's growth and maturity stages; the ultimate body must fight another 15 times in the complete body stage.",
+        "ja": "完全体の15番目の戦いは、NHOKOの成長段階と成熟段階の合計を使用します。究極の体は完全体の段階でさらに15回戦わなければなりません。"
+      }
+    },
+    {
+      "source": "完全体进化战斗计数",
+      "values": {
+        "zh-Hant": "完全體進化戰鬥計數",
+        "en": "Complete evolution battle count",
+        "ja": "完全進化戦闘回数"
+      }
+    },
+    {
+      "source": "完成",
+      "values": {
+        "zh-Hant": "完成",
+        "en": "Done",
+        "ja": "完了"
+      }
+    },
+    {
+      "source": "官方角色资料",
+      "values": {
+        "zh-Hant": "官方角色資料",
+        "en": "official character information",
+        "ja": "公式キャラクター情報"
+      }
+    },
+    {
+      "source": "官方资料已核验字段：{0}",
+      "values": {
+        "zh-Hant": "官方資料已覈驗字段：{0}",
+        "en": "official information verified fields: {0}",
+        "ja": "公式情報の検証済みフィールド: {0}"
+      }
+    },
+    {
+      "source": "实体机通信与联展尚未实现；手机同版本对战由独立通信模块处理；奥米加兽Alter-S仅作为最终关敌人，不会通过普通养成赠送。",
+      "values": {
+        "zh-Hant": "實體機通信與聯展尚未實現；手機同版本對戰由獨立通信模塊處理；奧米加獸Alter-S僅作爲最終關敵人，不會通過普通養成贈送。",
+        "en": "Physical machine communication and joint exhibition have not yet been implemented; mobile phone battles of the same version are handled by independent communication modules; Omegamon Alter-S is only the final enemy and will not be given away through ordinary development.",
+        "ja": "物理マシン通信と共同展示はまだ実装されていません。同じバージョンの携帯電話での戦闘は、独立した通信モジュールによって処理されます。オメガモンオルタ-Sは最後の敵のみであり、通常の開発では配布されません。"
+      }
+    },
+    {
+      "source": "对战",
+      "values": {
+        "zh-Hant": "對戰",
+        "en": "Versus",
+        "ja": "対"
+      }
+    },
+    {
+      "source": "对战胜利 · 恢复食物 +1",
+      "values": {
+        "zh-Hant": "對戰勝利 · 恢復食物 +1",
+        "en": "Victory in battle·Recover food +1",
+        "ja": "戦闘勝利・食料回復+1"
+      }
+    },
+    {
+      "source": "对战需要成长至成长期，保持清醒健康，能量与体力不少于 15",
+      "values": {
+        "zh-Hant": "對戰需要成長至成長期，保持清醒健康，能量與體力不少於 15",
+        "en": "To compete, you need to grow to the growth stage, stay awake and healthy, and have energy and physical strength of no less than 15",
+        "ja": "競争するには、成長段階まで成長し、目覚めて健康で、15 以上の気力と体力が必要です。"
+      }
+    },
+    {
+      "source": "对方的通信协议、机型或角色不受支持",
+      "values": {
+        "zh-Hant": "對方的通信協議、機型或角色不受支持",
+        "en": "The other party's communication protocol, model or role is not supported.",
+        "ja": "相手の通信プロトコル、モデル、ロールがサポートされていません。"
+      }
+    },
+    {
+      "source": "导出切换前档案",
+      "values": {
+        "zh-Hant": "導出切換前檔案",
+        "en": "Export the file before switching",
+        "ja": "切り替える前にファイルをエクスポートする"
+      }
+    },
+    {
+      "source": "导出备份",
+      "values": {
+        "zh-Hant": "導出備份",
+        "en": "Export backup",
+        "ja": "バックアップのエクスポート"
+      }
+    },
+    {
+      "source": "导出完整存档",
+      "values": {
+        "zh-Hant": "導出完整存檔",
+        "en": "Export complete archive",
+        "ja": "完全なアーカイブをエクスポート"
+      }
+    },
+    {
+      "source": "导出调试前备份",
+      "values": {
+        "zh-Hant": "導出調試前備份",
+        "en": "Backup before exporting and debugging",
+        "ja": "エクスポートおよびデバッグ前のバックアップ"
+      }
+    },
+    {
+      "source": "尚无调试修改备份",
+      "values": {
+        "zh-Hant": "尚無調試修改備份",
+        "en": "There is no debugging modification backup yet",
+        "ja": "デバッグ変更のバックアップはまだありません"
+      }
+    },
+    {
+      "source": "尚未开始搜索",
+      "values": {
+        "zh-Hant": "尚未開始搜索",
+        "en": "Search has not started yet",
+        "ja": "検索はまだ開始されていません"
+      }
+    },
+    {
+      "source": "尚未登录Game Center",
+      "values": {
+        "zh-Hant": "尚未登錄Game Center",
+        "en": "has not logged into Game Center yet",
+        "ja": "はまだ Game Center にログインしていません"
+      }
+    },
+    {
+      "source": "就寝 / 起床",
+      "values": {
+        "zh-Hant": "就寢 / 起牀",
+        "en": "Go to bed / wake up",
+        "ja": "寝る/起きる"
+      }
+    },
+    {
+      "source": "属性",
+      "values": {
+        "zh-Hant": "屬性",
+        "en": "Properties",
+        "ja": "プロパティ"
+      }
+    },
+    {
+      "source": "巨龍獸",
+      "values": {
+        "zh-Hant": "巨龍獸",
+        "en": "Dragon Beast",
+        "ja": "竜獣"
+      }
+    },
+    {
+      "source": "巨龙兽",
+      "values": {
+        "zh-Hant": "巨龍獸",
+        "en": "Tyrannomon",
+        "ja": "ティラノモン"
+      }
+    },
+    {
+      "source": "已保存{0}台设备的云端快照；系统云盘负责上传同步。",
+      "values": {
+        "zh-Hant": "已保存{0}臺設備的雲端快照；系統雲盤負責上傳同步。",
+        "en": "has saved cloud snapshots of {0} devices; the system cloud disk is responsible for uploading and synchronizing.",
+        "ja": "は、{0} デバイスのクラウド スナップショットを保存しました。システム クラウド ディスクはアップロードと同期を担当します。"
+      }
+    },
+    {
+      "source": "已保留原存档。请检查存储空间或恢复文件后重新启动。为保护养成记录，此时不会创建新存档。",
+      "values": {
+        "zh-Hant": "已保留原存檔。請檢查存儲空間或恢復文件後重新啓動。爲保護養成記錄，此時不會創建新存檔。",
+        "en": "has retained the original archive. Please check the storage space or restore files and then restart. To protect cultivation records, no new archives will be created at this time.",
+        "ja": "は元のアーカイブを保持しています。ストレージ容量を確認するか、ファイルを復元してから再起動してください。栽培記録を保護するため、現時点では新しいアーカイブは作成されません。"
+      }
+    },
+    {
+      "source": "已养成",
+      "values": {
+        "zh-Hant": "已養成",
+        "en": "has been developed",
+        "ja": "を開発しました"
+      }
+    },
+    {
+      "source": "已养成完成度",
+      "values": {
+        "zh-Hant": "已養成完成度",
+        "en": "has developed a degree of completion",
+        "ja": "はある程度の完成度を開発しました"
+      }
+    },
+    {
+      "source": "已切换查看的伙伴",
+      "values": {
+        "zh-Hant": "已切換查看的夥伴",
+        "en": "Switched viewing partners",
+        "ja": "視聴パートナーを切り替えました"
+      }
+    },
+    {
+      "source": "已创建独立设备档案",
+      "values": {
+        "zh-Hant": "已創建獨立設備檔案",
+        "en": "An independent device profile has been created",
+        "ja": "独立したデバイス プロファイルが作成されました"
+      }
+    },
+    {
+      "source": "已发放 {0} × {1}",
+      "values": {
+        "zh-Hant": "已發放 {0} × {1}",
+        "en": "Granted {0} × {1}",
+        "ja": "{1}を{0}個付与しました"
+      }
+    },
+    {
+      "source": "已发现",
+      "values": {
+        "zh-Hant": "已發現",
+        "en": "found",
+        "ja": "が見つかりました"
+      }
+    },
+    {
+      "source": "已完成{0}次攻击，命中{1}次",
+      "values": {
+        "zh-Hant": "已完成{0}次攻擊，命中{1}次",
+        "en": "has completed {0} attacks and hit {1} times",
+        "ja": "は {0} 回の攻撃を完了し、{1} 回攻撃しました"
+      }
+    },
+    {
+      "source": "已恢复调试前存档",
+      "values": {
+        "zh-Hant": "已恢復調試前存檔",
+        "en": "The archive before debugging has been restored",
+        "ja": "デバッグ前のアーカイブが復元されました"
+      }
+    },
+    {
+      "source": "已指定 {0}",
+      "values": {
+        "zh-Hant": "已指定 {0}",
+        "en": "Selected {0}",
+        "ja": "{0}を選択しました"
+      }
+    },
+    {
+      "source": "已有伙伴正在成长或冷冻中，请先切换回当前伙伴",
+      "values": {
+        "zh-Hant": "已有夥伴正在成長或冷凍中，請先切換回當前夥伴",
+        "en": "There is already a partner that is growing or freezing. Please switch back to the current partner first.",
+        "ja": "成長中または凍結中のパートナーがすでに存在します。まず現在のパートナーに切り替えてください。"
+      }
+    },
+    {
+      "source": "已经吃饱，拒绝继续进食",
+      "values": {
+        "zh-Hant": "已經喫飽，拒絕繼續進食",
+        "en": "is full and refuses to continue eating",
+        "ja": "は満腹で食事を続けることを拒否します"
+      }
+    },
+    {
+      "source": "已结束手动休息；作息时间内仍会睡眠",
+      "values": {
+        "zh-Hant": "已結束手動休息；作息時間內仍會睡眠",
+        "en": "Manual rest has ended; will still sleep during work and rest hours",
+        "ja": "手動レストが終了しました。仕事中も休憩時間も寝ます"
+      }
+    },
+    {
+      "source": "已解锁背景",
+      "values": {
+        "zh-Hant": "已解鎖背景",
+        "en": "Unlocked background",
+        "ja": "ロック解除された背景"
+      }
+    },
+    {
+      "source": "已进入独立Sandbox，正式养成和收藏保持隔离",
+      "values": {
+        "zh-Hant": "已進入獨立Sandbox，正式養成和收藏保持隔離",
+        "en": "has entered the independent Sandbox, and its formal cultivation and collection are kept separate.",
+        "ja": "は独立したサンドボックスに入り、正式な栽培と収集は分離されています。"
+      }
+    },
+    {
+      "source": "已连接云盘文件夹；其它手机选择同一文件夹即可读取快照。",
+      "values": {
+        "zh-Hant": "已連接雲盤文件夾；其它手機選擇同一文件夾即可讀取快照。",
+        "en": "has connected to the cloud disk folder; other phones can select the same folder to read the snapshot.",
+        "ja": "はクラウド ディスク フォルダーに接続しました。他の電話でも同じフォルダを選択してスナップショットを読み取ることができます。"
+      }
+    },
+    {
+      "source": "已连接，正在交换机型与伙伴信息",
+      "values": {
+        "zh-Hant": "已連接，正在交換機型與夥伴信息",
+        "en": "is connected, exchanging model and partner information",
+        "ja": "が接続され、モデルとパートナー情報を交換します"
+      }
+    },
+    {
+      "source": "已选择",
+      "values": {
+        "zh-Hant": "已選擇",
+        "en": "selected",
+        "ja": "が選択されました"
+      }
+    },
+    {
+      "source": "已通关",
+      "values": {
+        "zh-Hant": "已通關",
+        "en": "cleared",
+        "ja": "クリアされました"
+      }
+    },
+    {
+      "source": "已遭遇",
+      "values": {
+        "zh-Hant": "已遭遇",
+        "en": "has encountered",
+        "ja": "が遭遇しました"
+      }
+    },
+    {
+      "source": "已邀请 {0}，等待对方接受",
+      "values": {
+        "zh-Hant": "已邀請 {0}，等待對方接受",
+        "en": "has invited {0} and is waiting for the other party to accept it",
+        "ja": "が {0} を招待し、相手が承諾するのを待っています"
+      }
+    },
+    {
+      "source": "年龄",
+      "values": {
+        "zh-Hant": "年齡",
+        "en": "age",
+        "ja": "年齢"
+      }
+    },
+    {
+      "source": "年龄（分钟）",
+      "values": {
+        "zh-Hant": "年齡（分鐘）",
+        "en": "Age (minutes)",
+        "ja": "経過時間 (分)"
+      }
+    },
+    {
+      "source": "幸福",
+      "values": {
+        "zh-Hant": "幸福",
+        "en": "happiness",
+        "ja": "幸福"
+      }
+    },
+    {
+      "source": "幼年期Ⅰ不睡眠",
+      "values": {
+        "zh-Hant": "幼年期Ⅰ不睡眠",
+        "en": "No sleep in childhood stage I",
+        "ja": "小児期ステージ I では眠れない"
+      }
+    },
+    {
+      "source": "库存 {0}",
+      "values": {
+        "zh-Hant": "庫存 {0}",
+        "en": "Stock {0}",
+        "ja": "在庫 {0}"
+      }
+    },
+    {
+      "source": "废物",
+      "values": {
+        "zh-Hant": "廢物",
+        "en": "Waste",
+        "ja": "廃棄物"
+      }
+    },
+    {
+      "source": "开发测试",
+      "values": {
+        "zh-Hant": "開發測試",
+        "en": "development test",
+        "ja": "開発テスト"
+      }
+    },
+    {
+      "source": "开发测试 / 本机存档",
+      "values": {
+        "zh-Hant": "開發測試 / 本機存檔",
+        "en": "development test/local archive",
+        "ja": "開発テスト/ローカル アーカイブ"
+      }
+    },
+    {
+      "source": "开发测试 / 访问验证",
+      "values": {
+        "zh-Hant": "開發測試 / 訪問驗證",
+        "en": "development test/access verification",
+        "ja": "開発テスト/アクセス検証"
+      }
+    },
+    {
+      "source": "开发测试 · 修改数值",
+      "values": {
+        "zh-Hant": "開發測試 · 修改數值",
+        "en": "development test · Modify value",
+        "ja": "開発テスト・値の変更"
+      }
+    },
+    {
+      "source": "开发测试 · 指定角色：{0}",
+      "values": {
+        "zh-Hant": "開發測試 · 指定角色：{0}",
+        "en": "Development and testing · Specified role: {0}",
+        "ja": "開発とテスト · 指定されたロール: {0}"
+      }
+    },
+    {
+      "source": "开发测试 · 道具 {0} ＋{1}",
+      "values": {
+        "zh-Hant": "開發測試 · 道具 {0} ＋{1}",
+        "en": "Development Test · Props {0} +{1}",
+        "ja": "開発テスト · 小道具 {0} +{1}"
+      }
+    },
+    {
+      "source": "开发测试修改已保存",
+      "values": {
+        "zh-Hant": "開發測試修改已保存",
+        "en": "Development and testing modifications have been saved",
+        "ja": "開発およびテストの変更が保存されました"
+      }
+    },
+    {
+      "source": "开发测试已解锁",
+      "values": {
+        "zh-Hant": "開發測試已解鎖",
+        "en": "development test has been unlocked",
+        "ja": "開発テストがロック解除されました"
+      }
+    },
+    {
+      "source": "开发测试档",
+      "values": {
+        "zh-Hant": "開發測試檔",
+        "en": "development test file",
+        "ja": "開発テストファイル"
+      }
+    },
+    {
+      "source": "开始摇晃测试",
+      "values": {
+        "zh-Hant": "開始搖晃測試",
+        "en": "Start shaking test",
+        "ja": "振動試験開始"
+      }
+    },
+    {
+      "source": "开始训练",
+      "values": {
+        "zh-Hant": "開始訓練",
+        "en": "Start training",
+        "ja": "トレーニングを開始する"
+      }
+    },
+    {
+      "source": "强力蛋加成",
+      "values": {
+        "zh-Hant": "強力蛋加成",
+        "en": "Powerful egg bonus",
+        "ja": "強力タマゴボーナス"
+      }
+    },
+    {
+      "source": "当前DP",
+      "values": {
+        "zh-Hant": "當前DP",
+        "en": "Current DP",
+        "ja": "現在のDP"
+      }
+    },
+    {
+      "source": "当前不能喂食",
+      "values": {
+        "zh-Hant": "當前不能餵食",
+        "en": "cannot be fed at the moment",
+        "ja": "は現在フィードできません"
+      }
+    },
+    {
+      "source": "当前为旧版实验档。开始Ver.1前会单独保存完整旧档，可随时导入恢复。",
+      "values": {
+        "zh-Hant": "當前爲舊版實驗檔。開始Ver.1前會單獨保存完整舊檔，可隨時導入恢復。",
+        "en": "is currently an old version of the experimental file. Before starting Ver.1, the complete old files will be saved separately and can be imported and restored at any time.",
+        "ja": "は現在、実験用ファイルの古いバージョンです。 Ver.1 を開始する前に、完全な古いファイルが別途保存され、いつでもインポートして復元できます。"
+      }
+    },
+    {
+      "source": "当前伙伴",
+      "values": {
+        "zh-Hant": "當前夥伴",
+        "en": "Current Partner",
+        "ja": "現在のパートナー"
+      }
+    },
+    {
+      "source": "当前伙伴档位已满，请先处理正在成长或Cold中的伙伴",
+      "values": {
+        "zh-Hant": "當前夥伴檔位已滿，請先處理正在成長或Cold中的夥伴",
+        "en": "The current partner slot is full, please deal with partners who are growing or cold first.",
+        "ja": "現在のパートナー スロットは満員です。成長中またはコールドのパートナーを最初に処理してください。"
+      }
+    },
+    {
+      "source": "当前内容 / 开发中",
+      "values": {
+        "zh-Hant": "當前內容 / 開發中",
+        "en": "Current content / Under development",
+        "ja": "現在の内容 / 開発中"
+      }
+    },
+    {
+      "source": "当前存档不可用",
+      "values": {
+        "zh-Hant": "當前存檔不可用",
+        "en": "The current archive is unavailable",
+        "ja": "現在のアーカイブは利用できません"
+      }
+    },
+    {
+      "source": "当前无法交换备份",
+      "values": {
+        "zh-Hant": "當前無法交換備份",
+        "en": "Currently cannot swap backups",
+        "ja": "現在、バックアップを交換できません"
+      }
+    },
+    {
+      "source": "当前无法使用 Cold",
+      "values": {
+        "zh-Hant": "當前無法使用 Cold",
+        "en": "Cold is currently unavailable",
+        "ja": "Cold は現在利用できません"
+      }
+    },
+    {
+      "source": "当前无法照顾，请结束训练或恢复成长",
+      "values": {
+        "zh-Hant": "當前無法照顧，請結束訓練或恢復成長",
+        "en": "cannot be taken care of at the moment. Please end training or resume growth.",
+        "ja": "は現在お取り扱いできません。トレーニングを終了するか、成長を再開してください。"
+      }
+    },
+    {
+      "source": "当前状态不支持冷冻",
+      "values": {
+        "zh-Hant": "當前狀態不支持冷凍",
+        "en": "The current status does not support freezing",
+        "ja": "現在のステータスではフリーズをサポートしていません"
+      }
+    },
+    {
+      "source": "当前疾病 / 受伤",
+      "values": {
+        "zh-Hant": "當前疾病 / 受傷",
+        "en": "Current illness/injury",
+        "ja": "現在の病気/怪我"
+      }
+    },
+    {
+      "source": "当前设备无加速度传感器，请使用A/B辅助按钮",
+      "values": {
+        "zh-Hant": "當前設備無加速度傳感器，請使用A/B輔助按鈕",
+        "en": "The current device does not have an acceleration sensor, please use the A/B auxiliary button",
+        "ja": "現在のデバイスには加速度センサーがありません。A/B 補助ボタンを使用してください。"
+      }
+    },
+    {
+      "source": "当前阶段无计时普通进化",
+      "values": {
+        "zh-Hant": "當前階段無計時普通進化",
+        "en": "Normal evolution without timing at the current stage",
+        "ja": "現段階ではタイミングなしで通常進化"
+      }
+    },
+    {
+      "source": "待核验",
+      "values": {
+        "zh-Hant": "待覈驗",
+        "en": "To be verified",
+        "ja": "要確認"
+      }
+    },
+    {
+      "source": "必杀技",
+      "values": {
+        "zh-Hant": "必殺技",
+        "en": "nirvana",
+        "ja": "涅槃"
+      }
+    },
+    {
+      "source": "忠诚度",
+      "values": {
+        "zh-Hant": "忠誠度",
+        "en": "Loyalty",
+        "ja": "忠誠心"
+      }
+    },
+    {
+      "source": "性格",
+      "values": {
+        "zh-Hant": "性格",
+        "en": "Character",
+        "ja": "キャラクター"
+      }
+    },
+    {
+      "source": "恢复云端设备合集？",
+      "values": {
+        "zh-Hant": "恢復雲端設備合集？",
+        "en": "Restore cloud device collection?",
+        "ja": "クラウド デバイス コレクションを復元しますか?"
+      }
+    },
+    {
+      "source": "恢复切换前档案",
+      "values": {
+        "zh-Hant": "恢復切換前檔案",
+        "en": "Restore the files before switching",
+        "ja": "切り替える前にファイルを復元します"
+      }
+    },
+    {
+      "source": "恢复前也会保存当前档案；养成时间继续按各档记录结算。",
+      "values": {
+        "zh-Hant": "恢復前也會保存當前檔案；養成時間繼續按各檔記錄結算。",
+        "en": "The current file will also be saved before restoration; the development time will continue to be settled according to each file record.",
+        "ja": "現在のファイルも復元前に保存されます。開発時間は引き続き各ファイルレコードに応じて精算されます。"
+      }
+    },
+    {
+      "source": "恢复失败：{0}",
+      "values": {
+        "zh-Hant": "恢復失敗：{0}",
+        "en": "Recovery failed: {0}",
+        "ja": "リカバリに失敗しました: {0}"
+      }
+    },
+    {
+      "source": "恢复已验证的备份？",
+      "values": {
+        "zh-Hant": "恢復已驗證的備份？",
+        "en": "Restore a verified backup?",
+        "ja": "検証済みのバックアップを復元しますか?"
+      }
+    },
+    {
+      "source": "恢复成长",
+      "values": {
+        "zh-Hant": "恢復成長",
+        "en": "resumes growth",
+        "ja": "が成長を再開"
+      }
+    },
+    {
+      "source": "恢复此备份",
+      "values": {
+        "zh-Hant": "恢復此備份",
+        "en": "Restore this backup",
+        "ja": "このバックアップを復元します"
+      }
+    },
+    {
+      "source": "恢复调试前存档",
+      "values": {
+        "zh-Hant": "恢復調試前存檔",
+        "en": "Restore the archive before debugging",
+        "ja": "デバッグ前にアーカイブを復元します"
+      }
+    },
+    {
+      "source": "恢复食物",
+      "values": {
+        "zh-Hant": "恢復食物",
+        "en": "recovery food",
+        "ja": "回復食"
+      }
+    },
+    {
+      "source": "恶魔兽",
+      "values": {
+        "zh-Hant": "惡魔獸",
+        "en": "Devimon",
+        "ja": "デビモン"
+      }
+    },
+    {
+      "source": "惡魔獸",
+      "values": {
+        "zh-Hant": "惡魔獸",
+        "en": "Demon Beast",
+        "ja": "魔獣"
+      }
+    },
+    {
+      "source": "成功",
+      "values": {
+        "zh-Hant": "成功",
+        "en": "Success",
+        "ja": "成功"
+      }
+    },
+    {
+      "source": "成功，力量＋1心",
+      "values": {
+        "zh-Hant": "成功，力量＋1心",
+        "en": "Success, strength +1 heart",
+        "ja": "成功、体力+1ハート"
+      }
+    },
+    {
+      "source": "成长中",
+      "values": {
+        "zh-Hant": "成長中",
+        "en": "Growing",
+        "ja": "成長中"
+      }
+    },
+    {
+      "source": "成长已恢复",
+      "values": {
+        "zh-Hant": "成長已恢復",
+        "en": "Growth has resumed",
+        "ja": "成長が再開しました"
+      }
+    },
+    {
+      "source": "成长已暂停",
+      "values": {
+        "zh-Hant": "成長已暫停",
+        "en": "Growth has been paused",
+        "ja": "成長は一時停止しました"
+      }
+    },
+    {
+      "source": "成长暂停",
+      "values": {
+        "zh-Hant": "成長暫停",
+        "en": "Growth paused",
+        "ja": "成長は一時停止"
+      }
+    },
+    {
+      "source": "成长期起累计至少15战；依通算胜率判定",
+      "values": {
+        "zh-Hant": "成長期起累計至少15戰；依通算勝率判定",
+        "en": "has accumulated at least 15 battles since the growth period; determined by the general winning rate",
+        "ja": "は成長期以降、少なくとも 15 回の戦闘を蓄積しています。一般的な勝率で決まる"
+      }
+    },
+    {
+      "source": "战斗 / 胜率",
+      "values": {
+        "zh-Hant": "戰鬥 / 勝率",
+        "en": "Battle/Winning Rate",
+        "ja": "対戦/勝率"
+      }
+    },
+    {
+      "source": "战斗 / 通算胜率",
+      "values": {
+        "zh-Hant": "戰鬥 / 通算勝率",
+        "en": "battle / general winning rate",
+        "ja": "バトル/総合勝率"
+      }
+    },
+    {
+      "source": "战斗HP",
+      "values": {
+        "zh-Hant": "戰鬥HP",
+        "en": "Battle HP",
+        "ja": "戦闘HP"
+      }
+    },
+    {
+      "source": "战斗力量",
+      "values": {
+        "zh-Hant": "戰鬥力量",
+        "en": "combat power",
+        "ja": "戦闘力"
+      }
+    },
+    {
+      "source": "战斗开始",
+      "values": {
+        "zh-Hant": "戰鬥開始",
+        "en": "The battle begins",
+        "ja": "戦いが始まります"
+      }
+    },
+    {
+      "source": "战斗数值无效",
+      "values": {
+        "zh-Hant": "戰鬥數值無效",
+        "en": "The combat value is invalid",
+        "ja": "戦闘値が無効です"
+      }
+    },
+    {
+      "source": "战斗结束后仍有多余回合",
+      "values": {
+        "zh-Hant": "戰鬥結束後仍有多餘回合",
+        "en": "There are still extra rounds after the battle.",
+        "ja": "戦闘後にはまだ追加ラウンドが残っています。"
+      }
+    },
+    {
+      "source": "战斗（通算）",
+      "values": {
+        "zh-Hant": "戰鬥（通算）",
+        "en": "battle (general calculation)",
+        "ja": "戦（一般的な計算）"
+      }
+    },
+    {
+      "source": "战果已共同确定",
+      "values": {
+        "zh-Hant": "戰果已共同確定",
+        "en": "The outcome of the battle has been jointly determined",
+        "ja": "戦いの結果は共同で決定されました"
+      }
+    },
+    {
+      "source": "手动休息",
+      "values": {
+        "zh-Hant": "手動休息",
+        "en": "manual rest",
+        "ja": "マニュアルレスト"
+      }
+    },
+    {
+      "source": "手机对战请使用连接页面；联展尚未开放。奥米加兽 Alter-S 现为最终区敌人。",
+      "values": {
+        "zh-Hant": "手機對戰請使用連接頁面；聯展尚未開放。奧米加獸 Alter-S 現爲最終區敵人。",
+        "en": "Please use the connection page for mobile battle; the joint exhibition is not yet open. Omegamon Alter-S is now a final area enemy.",
+        "ja": "モバイル対戦用の接続ページをご利用ください。合同展示会はまだ開催されていません。オメガモンオルタ-Sが最終エリアの敵になりました。"
+      }
+    },
+    {
+      "source": "手机连接",
+      "values": {
+        "zh-Hant": "手機連接",
+        "en": "Mobile phone connection",
+        "ja": "携帯電話接続"
+      }
+    },
+    {
+      "source": "手机连接对战",
+      "values": {
+        "zh-Hant": "手機連接對戰",
+        "en": "Mobile phone connection battle",
+        "ja": "携帯電話接続バトル"
+      }
+    },
+    {
+      "source": "找不到伙伴",
+      "values": {
+        "zh-Hant": "找不到夥伴",
+        "en": "Can't find partner",
+        "ja": "パートナーが見つかりません"
+      }
+    },
+    {
+      "source": "找到数据碎片 · 水果 +2，蔬菜、能量饮料和恢复食物各 +1",
+      "values": {
+        "zh-Hant": "找到數據碎片 · 水果 +2，蔬菜、能量飲料和恢復食物各 +1",
+        "en": "Data fragment found · Fruit +2, vegetables, energy drinks and recovery food +1 each",
+        "ja": "データ断片発見・果物+2、野菜、エナジードリンク、回復食各+1"
+      }
+    },
+    {
+      "source": "拒绝",
+      "values": {
+        "zh-Hant": "拒絕",
+        "en": "rejected",
+        "ja": "が拒否されました"
+      }
+    },
+    {
+      "source": "持续空力量计时",
+      "values": {
+        "zh-Hant": "持續空力量計時",
+        "en": "Continuous air force timing",
+        "ja": "連続空軍タイミング"
+      }
+    },
+    {
+      "source": "持续空腹计时",
+      "values": {
+        "zh-Hant": "持續空腹計時",
+        "en": "Continuous fasting timer",
+        "ja": "連続絶食タイマー"
+      }
+    },
+    {
+      "source": "按区域顺序挑战",
+      "values": {
+        "zh-Hant": "按區域順序挑戰",
+        "en": "Challenge in order of regions",
+        "ja": "地域順チャレンジ"
+      }
+    },
+    {
+      "source": "按官方说明书核对操作，隐藏阈值、敌人力量和心值下降周期使用社区实测资料；周期为分钟近似值。",
+      "values": {
+        "zh-Hant": "按官方說明書覈對操作，隱藏閾值、敵人力量和心值下降週期使用社區實測資料；週期爲分鐘近似值。",
+        "en": "Check the operation according to the official instructions. The hidden threshold, enemy strength and heart value drop period use community measured data; the period is an approximate value of minutes.",
+        "ja": "公式の説明書に従って動作を確認してください。隠し閾値、敵の強さ、ハート値の低下期間はコミュニティの測定データを使用します。期間はおおよその分です。"
+      }
+    },
+    {
+      "source": "按键音遵循 iPhone 静音开关。",
+      "values": {
+        "zh-Hant": "按鍵音遵循 iPhone 靜音開關。",
+        "en": "key tone follows iPhone silent switch.",
+        "ja": "キー音はiPhoneのサイレントスイッチに従います。"
+      }
+    },
+    {
+      "source": "挑战 {0}",
+      "values": {
+        "zh-Hant": "挑戰 {0}",
+        "en": "Challenge {0}",
+        "ja": "チャレンジ {0}"
+      }
+    },
+    {
+      "source": "挑战结束，下次从本区首战重新开始",
+      "values": {
+        "zh-Hant": "挑戰結束，下次從本區首戰重新開始",
+        "en": "The challenge is over, start again from the first battle in this area next time",
+        "ja": "チャレンジは終了しました。次回はこのエリアの最初の戦闘からやり直します"
+      }
+    },
+    {
+      "source": "排泄计时",
+      "values": {
+        "zh-Hant": "排泄計時",
+        "en": "Excretion timing",
+        "ja": "排泄タイミング"
+      }
+    },
+    {
+      "source": "探索信号花园",
+      "values": {
+        "zh-Hant": "探索信號花園",
+        "en": "Explore the Signal Garden",
+        "ja": "シグナル ガーデンを探索する"
+      }
+    },
+    {
+      "source": "接受",
+      "values": {
+        "zh-Hant": "接受",
+        "en": "Accept",
+        "ja": "受け入れる"
+      }
+    },
+    {
+      "source": "提示",
+      "values": {
+        "zh-Hant": "提示",
+        "en": "Tips",
+        "ja": "ヒント"
+      }
+    },
+    {
+      "source": "搜索名称 / ID",
+      "values": {
+        "zh-Hant": "搜索名稱 / ID",
+        "en": "Search Name/ID",
+        "ja": "検索名/ID"
+      }
+    },
+    {
+      "source": "搜索数值名称",
+      "values": {
+        "zh-Hant": "搜索數值名稱",
+        "en": "Search numerical name",
+        "ja": "数値名検索"
+      }
+    },
+    {
+      "source": "搜索角色名称或ID",
+      "values": {
+        "zh-Hant": "搜索角色名稱或ID",
+        "en": "Search role name or ID",
+        "ja": "ロール名または ID を検索します"
+      }
+    },
+    {
+      "source": "搜索道具名称或ID",
+      "values": {
+        "zh-Hant": "搜索道具名稱或ID",
+        "en": "Search prop name or ID",
+        "ja": "プロップ名または ID を検索"
+      }
+    },
+    {
+      "source": "搜索附近玩家",
+      "values": {
+        "zh-Hant": "搜索附近玩家",
+        "en": "Search nearby players",
+        "ja": "近くのプレイヤーを検索"
+      }
+    },
+    {
+      "source": "摇晃触发一次输入，方向对应A/B；完成五次后自动停止",
+      "values": {
+        "zh-Hant": "搖晃觸發一次輸入，方向對應A/B；完成五次後自動停止",
+        "en": "Shake to trigger an input, the direction corresponds to A/B; it will automatically stop after completing five times",
+        "ja": "シェイクして入力をトリガーします。方向は A/B に対応します。 5回完了すると自動的に停止します"
+      }
+    },
+    {
+      "source": "摇晃训练输入测试",
+      "values": {
+        "zh-Hant": "搖晃訓練輸入測試",
+        "en": "Shake training input test",
+        "ja": "シェイクトレーニング入力テスト"
+      }
+    },
+    {
+      "source": "收起键盘",
+      "values": {
+        "zh-Hant": "收起鍵盤",
+        "en": "Hide keyboard",
+        "ja": "キーボードを非表示にする"
+      }
+    },
+    {
+      "source": "攻击",
+      "values": {
+        "zh-Hant": "攻擊",
+        "en": "attack",
+        "ja": "攻撃"
+      }
+    },
+    {
+      "source": "攻击命中",
+      "values": {
+        "zh-Hant": "攻擊命中",
+        "en": "attack hit",
+        "ja": "攻撃ヒット"
+      }
+    },
+    {
+      "source": "攻击命中 · {0}：{1}",
+      "values": {
+        "zh-Hant": "攻擊命中 · {0}：{1}",
+        "en": "attack hit · {0}: {1}",
+        "ja": "攻撃ヒット · {0}: {1}"
+      }
+    },
+    {
+      "source": "敌人命中",
+      "values": {
+        "zh-Hant": "敵人命中",
+        "en": "enemy hit",
+        "ja": "敵にヒット"
+      }
+    },
+    {
+      "source": "敌人回避",
+      "values": {
+        "zh-Hant": "敵人迴避",
+        "en": "Enemy avoidance",
+        "ja": "敵回避"
+      }
+    },
+    {
+      "source": "敌人攻击",
+      "values": {
+        "zh-Hant": "敵人攻擊",
+        "en": "enemy attack",
+        "ja": "敵の攻撃"
+      }
+    },
+    {
+      "source": "敌人登场",
+      "values": {
+        "zh-Hant": "敵人登場",
+        "en": "The enemy appears",
+        "ja": "敵出現"
+      }
+    },
+    {
+      "source": "数值",
+      "values": {
+        "zh-Hant": "數值",
+        "en": "value",
+        "ja": "値"
+      }
+    },
+    {
+      "source": "数值 / 当前伙伴",
+      "values": {
+        "zh-Hant": "數值 / 當前夥伴",
+        "en": "value / current partner",
+        "ja": "値 / 現在のパートナー"
+      }
+    },
+    {
+      "source": "数值已保存",
+      "values": {
+        "zh-Hant": "數值已保存",
+        "en": "value has been saved",
+        "ja": "値が保存されました"
+      }
+    },
+    {
+      "source": "数据暂时无法载入",
+      "values": {
+        "zh-Hant": "數據暫時無法載入",
+        "en": "data cannot be loaded temporarily",
+        "ja": "データを一時的にロードできません"
+      }
+    },
+    {
+      "source": "数码蛋即将孵化",
+      "values": {
+        "zh-Hant": "數碼蛋即將孵化",
+        "en": "digital egg is about to hatch",
+        "ja": "デジタル卵が孵化しようとしています"
+      }
+    },
+    {
+      "source": "数码蛋尚未解锁",
+      "values": {
+        "zh-Hant": "數碼蛋尚未解鎖",
+        "en": "Digital Egg has not been unlocked yet",
+        "ja": "デジタルエッグはまだロック解除されていません"
+      }
+    },
+    {
+      "source": "数码蛋已孵化，回来看看新伙伴",
+      "values": {
+        "zh-Hant": "數碼蛋已孵化，回來看看新夥伴",
+        "en": "The digital egg has hatched, come back to see your new partner",
+        "ja": "デジタルの卵が孵化しました。新しいパートナーに会いに戻ってきてください"
+      }
+    },
+    {
+      "source": "数码蛋开始孵化",
+      "values": {
+        "zh-Hant": "數碼蛋開始孵化",
+        "en": "digital egg begins to hatch",
+        "ja": "デジタル卵が孵化し始めます"
+      }
+    },
+    {
+      "source": "数码蛋必须孵出幼年期 I",
+      "values": {
+        "zh-Hant": "數碼蛋必須孵出幼年期 I",
+        "en": "The digital egg must be hatched to the juvenile stage I",
+        "ja": "デジタル卵は幼若期 I まで孵化する必要があります"
+      }
+    },
+    {
+      "source": "整区结果已保存；关闭页面或跳过演出不会重抽战果。",
+      "values": {
+        "zh-Hant": "整區結果已保存；關閉頁面或跳過演出不會重抽戰果。",
+        "en": "The results of the entire area have been saved; closing the page or skipping the performance will not redraw the results.",
+        "ja": "エリア全体の結果が保存されました。ページを閉じたり、パフォーマンスをスキップしたりしても、結果は再描画されません。"
+      }
+    },
+    {
+      "source": "断开云盘文件夹",
+      "values": {
+        "zh-Hant": "斷開雲盤文件夾",
+        "en": "Disconnect the cloud disk folder",
+        "ja": "クラウド ディスク フォルダーを切断します"
+      }
+    },
+    {
+      "source": "断开连接",
+      "values": {
+        "zh-Hant": "斷開連接",
+        "en": "disconnected",
+        "ja": "が切断されました"
+      }
+    },
+    {
+      "source": "新增独立设备",
+      "values": {
+        "zh-Hant": "新增獨立設備",
+        "en": "Add independent device",
+        "ja": "独立したデバイスを追加"
+      }
+    },
+    {
+      "source": "新数码蛋开始孵化",
+      "values": {
+        "zh-Hant": "新數碼蛋開始孵化",
+        "en": "The new digital egg begins to hatch",
+        "ja": "新しいデジタル卵が孵化し始めます"
+      }
+    },
+    {
+      "source": "新游戏默认彩色。彩色模式显示原图配色，高级彩色加入动态光点；经典模式显示灰绿色单色像素。选择会随存档保存。",
+      "values": {
+        "zh-Hant": "新遊戲默認彩色。彩色模式顯示原圖配色，高級彩色加入動態光點；經典模式顯示灰綠色單色像素。選擇會隨存檔保存。",
+        "en": "New game default color. The color mode displays the color matching of the original image, and advanced color adds dynamic light spots; the classic mode displays gray-green monochrome pixels. The selection is saved with the archive.",
+        "ja": "新しいゲームのデフォルト色。カラー モードでは元の画像のカラー マッチングが表示され、アドバンスト カラーでは動的なライト スポットが追加されます。クラシック モードでは、灰緑色のモノクロ ピクセルが表示されます。選択内容はアーカイブとともに保存されます。"
+      }
+    },
+    {
+      "source": "新生命诞生，开始照顾它吧",
+      "values": {
+        "zh-Hant": "新生命誕生，開始照顧它吧",
+        "en": "A new life is born, start taking care of it",
+        "ja": "新しい命が生まれる、大事に育てよう"
+      }
+    },
+    {
+      "source": "新背景已解锁，可在设置选择",
+      "values": {
+        "zh-Hant": "新背景已解鎖，可在設置選擇",
+        "en": "new background has been unlocked and can be selected in settings",
+        "ja": "新しい背景のロックが解除され、設定で選択できるようになりました"
+      }
+    },
+    {
+      "source": "无伤",
+      "values": {
+        "zh-Hant": "無傷",
+        "en": "No damage",
+        "ja": "ダメージなし"
+      }
+    },
+    {
+      "source": "无法保存战果",
+      "values": {
+        "zh-Hant": "無法保存戰果",
+        "en": "Unable to save victory results",
+        "ja": "勝利結果を保存できません"
+      }
+    },
+    {
+      "source": "无法创建独立Sandbox档案",
+      "values": {
+        "zh-Hant": "無法創建獨立Sandbox檔案",
+        "en": "Unable to create independent Sandbox file",
+        "ja": "独立したサンドボックス ファイルを作成できません"
+      }
+    },
+    {
+      "source": "无法打开在线匹配",
+      "values": {
+        "zh-Hant": "無法打開在線匹配",
+        "en": "Unable to open online matching",
+        "ja": "オンライン マッチングを開けません"
+      }
+    },
+    {
+      "source": "无法读取云盘：{0}",
+      "values": {
+        "zh-Hant": "無法讀取雲盤：{0}",
+        "en": "Unable to read cloud disk: {0}",
+        "ja": "クラウド ディスクを読み取れません: {0}"
+      }
+    },
+    {
+      "source": "无疾病",
+      "values": {
+        "zh-Hant": "無疾病",
+        "en": "No disease",
+        "ja": "病気はありません"
+      }
+    },
+    {
+      "source": "日本語",
+      "values": {
+        "zh-Hant": "日本語",
+        "en": "Japanese",
+        "ja": "日本語"
+      }
+    },
+    {
+      "source": "旧档已独立备份，开始 Ver.1 养成",
+      "values": {
+        "zh-Hant": "舊檔已獨立備份，開始 Ver.1 養成",
+        "en": "旧档已独立备份，开始 Ver.1 养成",
+        "ja": "旧ファイルを独自にバックアップし、Ver.1の開発を開始しました。"
+      }
+    },
+    {
+      "source": "旧档未记录",
+      "values": {
+        "zh-Hant": "舊檔未記錄",
+        "en": "old file not recorded",
+        "ja": "古いファイルは記録されません"
+      }
+    },
+    {
+      "source": "旧档校验失败：{0}",
+      "values": {
+        "zh-Hant": "舊檔校驗失敗：{0}",
+        "en": "Old file verification failed: {0}",
+        "ja": "古いファイルの検証に失敗しました: {0}"
+      }
+    },
+    {
+      "source": "旧版养成档案",
+      "values": {
+        "zh-Hant": "舊版養成檔案",
+        "en": "old version development file",
+        "ja": "旧バージョン開発ファイル"
+      }
+    },
+    {
+      "source": "旧版实验档兼容",
+      "values": {
+        "zh-Hant": "舊版實驗檔兼容",
+        "en": "old version experimental file compatible",
+        "ja": "旧バージョン実験ファイル互換"
+      }
+    },
+    {
+      "source": "旧版实验规则",
+      "values": {
+        "zh-Hant": "舊版實驗規則",
+        "en": "Old version of experimental rules",
+        "ja": "古いバージョンの実験ルール"
+      }
+    },
+    {
+      "source": "旧版实验规则不支持经典模式",
+      "values": {
+        "zh-Hant": "舊版實驗規則不支持經典模式",
+        "en": "旧版实验规则不支持经典模式",
+        "ja": "古いバージョンの実験的ルールはクラシック モードをサポートしていません"
+      }
+    },
+    {
+      "source": "旧版实验规则：21:00–07:00自然睡眠，手动休息恢复能量。",
+      "values": {
+        "zh-Hant": "舊版實驗規則：21:00–07:00自然睡眠，手動休息恢復能量。",
+        "en": "Old version of the experimental rules: 21:00–07:00 natural sleep, manual rest to restore energy.",
+        "ja": "古いバージョンの実験ルール: 21:00 ～ 07:00 の自然な睡眠、エネルギーを回復するための手動休憩。"
+      }
+    },
+    {
+      "source": "时机尚需练习 · 本次尝试已记录",
+      "values": {
+        "zh-Hant": "時機尚需練習 · 本次嘗試已記錄",
+        "en": "时机尚需练习 · 本次尝试已记录",
+        "ja": "タイミングはまだ練習が必要です · この試みは記録されています"
+      }
+    },
+    {
+      "source": "时钟",
+      "values": {
+        "zh-Hant": "時鐘",
+        "en": "clock",
+        "ja": "時計"
+      }
+    },
+    {
+      "source": "时钟设置无效或系统时间发生倒退",
+      "values": {
+        "zh-Hant": "時鐘設置無效或系統時間發生倒退",
+        "en": "时钟设置无效或系统时间发生倒退",
+        "ja": "時計設定が無効であるか、システム時刻が逆になっています"
+      }
+    },
+    {
+      "source": "时间无效",
+      "values": {
+        "zh-Hant": "時間無效",
+        "en": "time is invalid",
+        "ja": "時間が無効です"
+      }
+    },
+    {
+      "source": "时间跨度超出支持范围",
+      "values": {
+        "zh-Hant": "時間跨度超出支持範圍",
+        "en": "The time span exceeds the supported range",
+        "ja": "時間範囲がサポートされている範囲を超えています"
+      }
+    },
+    {
+      "source": "显示完整记录",
+      "values": {
+        "zh-Hant": "顯示完整記錄",
+        "en": "Show full record",
+        "ja": "完全なレコードを表示"
+      }
+    },
+    {
+      "source": "显示设置或Sandbox隔离标记无效",
+      "values": {
+        "zh-Hant": "顯示設置或Sandbox隔離標記無效",
+        "en": "Invalid display settings or Sandbox isolation flag",
+        "ja": "無効な表示設定またはサンドボックス分離フラグ"
+      }
+    },
+    {
+      "source": "普通进化必须提升阶段",
+      "values": {
+        "zh-Hant": "普通進化必須提升階段",
+        "en": "Normal evolution must be upgraded to a stage",
+        "ja": "通常進化は段階アップが必要です"
+      }
+    },
+    {
+      "source": "暴击率",
+      "values": {
+        "zh-Hant": "暴擊率",
+        "en": "critical hit rate",
+        "ja": "クリティカル率"
+      }
+    },
+    {
+      "source": "暴击率无效",
+      "values": {
+        "zh-Hant": "暴擊率無效",
+        "en": "Critical hit rate is invalid",
+        "ja": "クリティカル率が無効です"
+      }
+    },
+    {
+      "source": "暴龍獸",
+      "values": {
+        "zh-Hant": "暴龍獸",
+        "en": "Greymon",
+        "ja": "グレイモン"
+      }
+    },
+    {
+      "source": "暴龙兽",
+      "values": {
+        "zh-Hant": "暴龍獸",
+        "en": "Greymon",
+        "ja": "グレイモン"
+      }
+    },
+    {
+      "source": "最低体重",
+      "values": {
+        "zh-Hant": "最低體重",
+        "en": "minimum weight",
+        "ja": "最小重量"
+      }
+    },
+    {
+      "source": "最后结算",
+      "values": {
+        "zh-Hant": "最後結算",
+        "en": "final settlement",
+        "ja": "最終決済"
+      }
+    },
+    {
+      "source": "最大DP",
+      "values": {
+        "zh-Hant": "最大DP",
+        "en": "Maximum DP",
+        "ja": "最大DP"
+      }
+    },
+    {
+      "source": "未及时响应养成呼叫",
+      "values": {
+        "zh-Hant": "未及時響應養成呼叫",
+        "en": "Failure to respond to the development call in time",
+        "ja": "開発呼び出しに時間内に応答できませんでした"
+      }
+    },
+    {
+      "source": "未发现",
+      "values": {
+        "zh-Hant": "未發現",
+        "en": "not found",
+        "ja": "が見つかりません"
+      }
+    },
+    {
+      "source": "未知数码蛋：{0}",
+      "values": {
+        "zh-Hant": "未知數碼蛋：{0}",
+        "en": "Unknown digital egg: {0}",
+        "ja": "不明なデジタルエッグ: {0}"
+      }
+    },
+    {
+      "source": "未知机型：{0}",
+      "values": {
+        "zh-Hant": "未知機型：{0}",
+        "en": "Unknown model: {0}",
+        "ja": "不明なモデル: {0}"
+      }
+    },
+    {
+      "source": "未知角色：{0}",
+      "values": {
+        "zh-Hant": "未知角色：{0}",
+        "en": "Unknown character: {0}",
+        "ja": "不明な文字: {0}"
+      }
+    },
+    {
+      "source": "未知通信消息",
+      "values": {
+        "zh-Hant": "未知通信消息",
+        "en": "Unknown communication message",
+        "ja": "不明な通信メッセージ"
+      }
+    },
+    {
+      "source": "未经核实的规则不能声明为官方规则",
+      "values": {
+        "zh-Hant": "未經覈實的規則不能聲明爲官方規則",
+        "en": "Unverified rules cannot be declared as official rules",
+        "ja": "未検証のルールは公式ルールとして宣言できません"
+      }
+    },
+    {
+      "source": "未解锁",
+      "values": {
+        "zh-Hant": "未解鎖",
+        "en": "not unlocked",
+        "ja": "はロックが解除されていません"
+      }
+    },
+    {
+      "source": "未选择",
+      "values": {
+        "zh-Hant": "未選擇",
+        "en": "Not selected",
+        "ja": "未選択"
+      }
+    },
+    {
+      "source": "本区通关，进度已保存",
+      "values": {
+        "zh-Hant": "本區通關，進度已保存",
+        "en": "This area has been cleared and the progress has been saved.",
+        "ja": "この領域はクリアされ、進行状況が保存されました。"
+      }
+    },
+    {
+      "source": "本次挑战结束；再挑战将从本区首战开始",
+      "values": {
+        "zh-Hant": "本次挑戰結束；再挑戰將從本區首戰開始",
+        "en": "This challenge is over; another challenge will start from the first battle in this area",
+        "ja": "このチャレンジは終了しました。このエリアの最初の戦闘から新たな挑戦が始まります"
+      }
+    },
+    {
+      "source": "本阶段受伤次数",
+      "values": {
+        "zh-Hant": "本階段受傷次數",
+        "en": "Number of injuries in this stage",
+        "ja": "この段階での怪我の数"
+      }
+    },
+    {
+      "source": "本阶段失误≤1、至少15战；依通算胜率判定",
+      "values": {
+        "zh-Hant": "本階段失誤≤1、至少15戰；依通算勝率判定",
+        "en": "Errors at this stage are ≤ 1, at least 15 games; determined by the total winning rate",
+        "ja": "この段階でのエラーは 1 以下、少なくとも 15 ゲームです。合計勝率で決まる"
+      }
+    },
+    {
+      "source": "本阶段已判定",
+      "values": {
+        "zh-Hant": "本階段已判定",
+        "en": "has been determined at this stage",
+        "ja": "はこの段階で決定されています"
+      }
+    },
+    {
+      "source": "本阶段已判定进化",
+      "values": {
+        "zh-Hant": "本階段已判定進化",
+        "en": "has been determined to evolve at this stage",
+        "ja": "は現段階で進化することが決定されています"
+      }
+    },
+    {
+      "source": "本阶段成长（分钟）",
+      "values": {
+        "zh-Hant": "本階段成長（分鐘）",
+        "en": "Growth at this stage (minutes)",
+        "ja": "この段階での増加量 (分)"
+      }
+    },
+    {
+      "source": "本阶段战斗",
+      "values": {
+        "zh-Hant": "本階段戰鬥",
+        "en": "This stage of the battle",
+        "ja": "戦闘のこの段階"
+      }
+    },
+    {
+      "source": "本阶段满腹 / 睡眠打扰",
+      "values": {
+        "zh-Hant": "本階段滿腹 / 睡眠打擾",
+        "en": "Full stomach/sleep disturbed at this stage",
+        "ja": "この段階では満腹/睡眠障害"
+      }
+    },
+    {
+      "source": "本阶段照顾失误",
+      "values": {
+        "zh-Hant": "本階段照顧失誤",
+        "en": "Care error at this stage",
+        "ja": "この段階でのケアエラー"
+      }
+    },
+    {
+      "source": "本阶段训练",
+      "values": {
+        "zh-Hant": "本階段訓練",
+        "en": "Training at this stage",
+        "ja": "この段階のトレーニング"
+      }
+    },
+    {
+      "source": "本阶段训练（每4次加1努力心）",
+      "values": {
+        "zh-Hant": "本階段訓練（每4次加1努力心）",
+        "en": "This stage of training (add 1 effort every 4 times)",
+        "ja": "トレーニングのこの段階 (4 回ごとに 1 努力を追加)"
+      }
+    },
+    {
+      "source": "机型",
+      "values": {
+        "zh-Hant": "機型",
+        "en": "model",
+        "ja": "モデル"
+      }
+    },
+    {
+      "source": "机型与规则",
+      "values": {
+        "zh-Hant": "機型與規則",
+        "en": "model and rules\nModel",
+        "ja": "モデルとルール\nモデル"
+      }
+    },
+    {
+      "source": "机型含未知食物",
+      "values": {
+        "zh-Hant": "機型含未知食物",
+        "en": "contains unknown food",
+        "ja": "には未知の食品が含まれています"
+      }
+    },
+    {
+      "source": "机械暴龙兽",
+      "values": {
+        "zh-Hant": "機械暴龍獸",
+        "en": "MetalGreymon",
+        "ja": "メタルグレイモン"
+      }
+    },
+    {
+      "source": "查看当前伙伴数据",
+      "values": {
+        "zh-Hant": "查看當前夥伴數據",
+        "en": "View current partner data",
+        "ja": "現在のパートナー データを表示する"
+      }
+    },
+    {
+      "source": "查看机型与规则状态",
+      "values": {
+        "zh-Hant": "查看機型與規則狀態",
+        "en": "View model and rule status",
+        "ja": "モデルとルールのステータスを表示する"
+      }
+    },
+    {
+      "source": "档案",
+      "values": {
+        "zh-Hant": "檔案",
+        "en": "File",
+        "ja": "ファイル"
+      }
+    },
+    {
+      "source": "档案仅供查看；请通过备份交换恢复另一只伙伴",
+      "values": {
+        "zh-Hant": "檔案僅供查看；請通過備份交換恢復另一隻夥伴",
+        "en": "file is for viewing only; please restore another partner via backup exchange",
+        "ja": "ファイルは表示専用です。バックアップ交換経由で別のパートナーを復元してください"
+      }
+    },
+    {
+      "source": "检测到设备时间倒退，请恢复正确时间",
+      "values": {
+        "zh-Hant": "檢測到設備時間倒退，請恢復正確時間",
+        "en": "It is detected that the device time has gone backwards. Please restore the correct time.",
+        "ja": "デバイスの時刻が逆行していることが検出されました。正しい時刻に戻してください。"
+      }
+    },
+    {
+      "source": "機械暴龍獸",
+      "values": {
+        "zh-Hant": "機械暴龍獸",
+        "en": "Mechanical Greymon",
+        "ja": "メカニカルグレイモン"
+      }
+    },
+    {
+      "source": "欢迎回来，伙伴一直在成长",
+      "values": {
+        "zh-Hant": "歡迎回來，夥伴一直在成長",
+        "en": "Welcome back, partners are always growing",
+        "ja": "おかえりなさい、パートナーは常に成長しています"
+      }
+    },
+    {
+      "source": "欢迎来到数码世界",
+      "values": {
+        "zh-Hant": "歡迎來到數碼世界",
+        "en": "Welcome to the digital world",
+        "ja": "デジタルの世界へようこそ"
+      }
+    },
+    {
+      "source": "正在搜索附近玩家；双方需打开此页面并允许本地网络",
+      "values": {
+        "zh-Hant": "正在搜索附近玩家；雙方需打開此頁面並允許本地網絡",
+        "en": "is searching for nearby players; both parties need to open this page and allow local networks",
+        "ja": "は近くのプレイヤーを検索しています。双方がこのページを開いてローカル ネットワークを許可する必要があります"
+      }
+    },
+    {
+      "source": "正在睡觉：请关灯",
+      "values": {
+        "zh-Hant": "正在睡覺：請關燈",
+        "en": "is sleeping: please turn off the lights",
+        "ja": "は寝ています: 電気を消してください"
+      }
+    },
+    {
+      "source": "此动作使用已有原图姿势回退，非新增官方动画帧。",
+      "values": {
+        "zh-Hant": "此動作使用已有原圖姿勢回退，非新增官方動畫幀。",
+        "en": "This action uses the existing original image pose to revert, and is not a new official animation frame.",
+        "ja": "このアクションは、元のイメージの既存のポーズを使用して元に戻すものであり、新しい公式アニメーション フレームではありません。"
+      }
+    },
+    {
+      "source": "此存档采用早期实验规则。开始 Ver.1 后即可按实体机形式养成和顺序闯关，当前档案会另存备份。",
+      "values": {
+        "zh-Hant": "此存檔採用早期實驗規則。開始 Ver.1 後即可按實體機形式養成和順序闖關，當前檔案會另存備份。",
+        "en": "This archive uses early experimental rules. After starting Ver.1, you can develop and progress through levels in the physical form, and the current file will be saved and backed up.",
+        "ja": "このアーカイブは初期の実験的なルールを使用しています。 Ver.1 を開始すると、物理的な形式でレベルを開発および進行することができ、現在のファイルが保存およびバックアップされます。"
+      }
+    },
+    {
+      "source": "此导入Sandbox未记录来源，请在设备收藏中选择正式设备",
+      "values": {
+        "zh-Hant": "此導入Sandbox未記錄來源，請在設備收藏中選擇正式設備",
+        "en": "This import Sandbox does not record the source, please select the official device in the device collection",
+        "ja": "このインポート サンドボックスはソースを記録しません。デバイス コレクション内の公式デバイスを選択してください"
+      }
+    },
+    {
+      "source": "此快照包含{0}台设备。当前进度不会被覆盖。",
+      "values": {
+        "zh-Hant": "此快照包含{0}臺設備。當前進度不會被覆蓋。",
+        "en": "This snapshot contains {0} devices. Current progress will not be overwritten.",
+        "ja": "このスナップショットには {0} 個のデバイスが含まれています。現在の進行状況は上書きされません。"
+      }
+    },
+    {
+      "source": "此构建未配置Game Center；需开发团队启用能力并注册Bundle ID",
+      "values": {
+        "zh-Hant": "此構建未配置Game Center；需開發團隊啓用能力並註冊Bundle ID",
+        "en": "Game Center is not configured for this build; development team needs to enable capabilities and register Bundle ID",
+        "ja": "Game Center はこのビルド用に構成されていません。開発チームは機能を有効にしてバンドル ID を登録する必要があります"
+      }
+    },
+    {
+      "source": "此页旧版规则数值为实验平衡参数。",
+      "values": {
+        "zh-Hant": "此頁舊版規則數值爲實驗平衡參數。",
+        "en": "The old rule values on this page are experimental equilibrium parameters.",
+        "ja": "このページの古いルール値は実験的な平衡パラメーターです。"
+      }
+    },
+    {
+      "source": "死亡",
+      "values": {
+        "zh-Hant": "死亡",
+        "en": "death",
+        "ja": "の死"
+      }
+    },
+    {
+      "source": "每区固定连续战斗；先命中3次获胜。全胜解锁下一区，落败后需从本区首战重来。每次整区挑战消耗1 DP、减重6g。",
+      "values": {
+        "zh-Hant": "每區固定連續戰鬥；先命中3次獲勝。全勝解鎖下一區，落敗後需從本區首戰重來。每次整區挑戰消耗1 DP、減重6g。",
+        "en": "Fixed continuous battle in each area; the first to hit 3 times wins. A complete victory unlocks the next area. If you lose, you need to start over from the first battle in this area. Each area challenge consumes 1 DP and reduces weight by 6g.",
+        "ja": "各エリアでの連続戦闘を修正しました。先に3回打った方が勝ちです。完全に勝利すると、次のエリアのロックが解除されます。負けた場合は、このエリアの最初の戦闘からやり直す必要があります。エリアチャレンジごとにDPを1消費し、重量が6g減少します。"
+      }
+    },
+    {
+      "source": "每台设备独立保存；切换时结算对应档案的离线成长。Sandbox与正式收藏隔离。",
+      "values": {
+        "zh-Hant": "每臺設備獨立保存；切換時結算對應檔案的離線成長。Sandbox與正式收藏隔離。",
+        "en": "Each device is saved independently; the offline growth of the corresponding file is settled when switching. The sandbox is isolated from the official collection.",
+        "ja": "各デバイスは個別に保存されます。対応するファイルのオフライン増加は、切り替え時に解決されます。サンドボックスは公式コレクションから分離されています。"
+      }
+    },
+    {
+      "source": "每次备份生成独立版本，不覆盖另一台手机的进度。恢复先验证全部设备，再作为新设备导入，当前设备保持保留；请选择需要继续养成的版本，避免同时操作同一伙伴。",
+      "values": {
+        "zh-Hant": "每次備份生成獨立版本，不覆蓋另一臺手機的進度。恢復先驗證全部設備，再作爲新設備導入，當前設備保持保留；請選擇需要繼續養成的版本，避免同時操作同一夥伴。",
+        "en": "Each backup generates an independent version and does not cover the progress of another mobile phone. When restoring, verify all devices first and then import them as new devices. The current devices will be retained; please select the version you want to continue developing to avoid operating the same partner at the same time.",
+        "ja": "各バックアップは独立したバージョンを生成し、別の携帯電話の進行状況はカバーしません。復元するときは、最初にすべてのデバイスを確認してから、新しいデバイスとしてインポートします。現在のデバイスは保持されます。同じパートナーを同時に操作しないように、開発を継続したいバージョンを選択してください。"
+      }
+    },
+    {
+      "source": "每次对战消耗 15 能量与体力。属性、速度、训练、健康和 DP 参与计算；败北可能受伤。结果会立即保存，再播放战斗记录。",
+      "values": {
+        "zh-Hant": "每次對戰消耗 15 能量與體力。屬性、速度、訓練、健康和 DP 參與計算；敗北可能受傷。結果會立即保存，再播放戰鬥記錄。",
+        "en": "Each battle consumes 15 energy and stamina. Attributes, speed, training, health, and DP are involved in the calculation; defeat may result in injuries. The results are saved immediately and the battle record is played again.",
+        "ja": "各戦闘は 15 エネルギーとスタミナを消費します。属性、スピード、トレーニング、健康状態、DP が計算に関係します。負けると怪我をする可能性があります。結果はすぐに保存され、戦績が再度再生されます。"
+      }
+    },
+    {
+      "source": "每次操作后原子写入，保留上一次有效备份。云端合集另存全部设备，恢复时不会覆盖当前档案。",
+      "values": {
+        "zh-Hant": "每次操作後原子寫入，保留上一次有效備份。雲端合集另存全部設備，恢復時不會覆蓋當前檔案。",
+        "en": "writes atomically after each operation, retaining the last valid backup. The cloud collection saves all devices, and the current file will not be overwritten when restoring.",
+        "ja": "は各操作の後にアトミックに書き込み、最後の有効なバックアップを保持します。クラウド コレクションにはすべてのデバイスが保存され、復元時に現在のファイルは上書きされません。"
+      }
+    },
+    {
+      "source": "每次移动一格",
+      "values": {
+        "zh-Hant": "每次移動一格",
+        "en": "moves one frame at a time",
+        "ja": "は一度に 1 フレームずつ移動します"
+      }
+    },
+    {
+      "source": "每次解锁后的首次成功修改前保留一次快照；后续发放和数值修改不会轮换掉这份快照。",
+      "values": {
+        "zh-Hant": "每次解鎖後的首次成功修改前保留一次快照；後續發放和數值修改不會輪換掉這份快照。",
+        "en": "retains a snapshot before the first successful modification after each unlock; subsequent issuance and value modification will not rotate this snapshot.",
+        "ja": "は、ロックを解除するたびに、最初に変更が成功する前のスナップショットを保持します。その後の発行と値の変更では、このスナップショットはローテーションされません。"
+      }
+    },
+    {
+      "source": "水果",
+      "values": {
+        "zh-Hant": "水果",
+        "en": "Fruit",
+        "ja": "フルーツ"
+      }
+    },
+    {
+      "source": "没有匹配角色，请调整筛选条件。",
+      "values": {
+        "zh-Hant": "沒有匹配角色，請調整篩選條件。",
+        "en": "There is no matching role, please adjust the filter conditions.",
+        "ja": "一致するロールがありません。フィルター条件を調整してください。"
+      }
+    },
+    {
+      "source": "没有受伤",
+      "values": {
+        "zh-Hant": "沒有受傷",
+        "en": "not injured",
+        "ja": "は怪我なし"
+      }
+    },
+    {
+      "source": "没有可恢复的Sandbox调试备份",
+      "values": {
+        "zh-Hant": "沒有可恢復的Sandbox調試備份",
+        "en": "There is no recoverable Sandbox debugging backup",
+        "ja": "回復可能なサンドボックス デバッグ バックアップがありません"
+      }
+    },
+    {
+      "source": "没有呼叫",
+      "values": {
+        "zh-Hant": "沒有呼叫",
+        "en": "No call",
+        "ja": "電話がありません"
+      }
+    },
+    {
+      "source": "治疗完成",
+      "values": {
+        "zh-Hant": "治療完成",
+        "en": "treatment completed",
+        "ja": "治療完了"
+      }
+    },
+    {
+      "source": "治疗完成，请保持环境清洁",
+      "values": {
+        "zh-Hant": "治療完成，請保持環境清潔",
+        "en": "Treatment completed, please keep the environment clean",
+        "ja": "治療は完了しました。環境を清潔に保ってください。"
+      }
+    },
+    {
+      "source": "测试战斗数值无效",
+      "values": {
+        "zh-Hant": "測試戰鬥數值無效",
+        "en": "Test combat value is invalid",
+        "ja": "テスト戦闘値が無効です"
+      }
+    },
+    {
+      "source": "测试覆盖数值无效",
+      "values": {
+        "zh-Hant": "測試覆蓋數值無效",
+        "en": "Invalid test coverage value",
+        "ja": "無効なテスト カバレッジ値です"
+      }
+    },
+    {
+      "source": "测试记录时间无效",
+      "values": {
+        "zh-Hant": "測試記錄時間無效",
+        "en": "Test recording time is invalid",
+        "ja": "テスト記録時間が無効です"
+      }
+    },
+    {
+      "source": "海龍獸",
+      "values": {
+        "zh-Hant": "海龍獸",
+        "en": "Seadramon",
+        "ja": "シードラモン"
+      }
+    },
+    {
+      "source": "海龙兽",
+      "values": {
+        "zh-Hant": "海龍獸",
+        "en": "Seadramon",
+        "ja": "シードラモン"
+      }
+    },
+    {
+      "source": "清洁",
+      "values": {
+        "zh-Hant": "清潔",
+        "en": "Clean",
+        "ja": "クリーン"
+      }
+    },
+    {
+      "source": "清理完成",
+      "values": {
+        "zh-Hant": "清理完成",
+        "en": "Cleanup completed",
+        "ja": "クリーンアップが完了しました"
+      }
+    },
+    {
+      "source": "清醒",
+      "values": {
+        "zh-Hant": "清醒",
+        "en": "wake up",
+        "ja": "起きてください"
+      }
+    },
+    {
+      "source": "滚球兽",
+      "values": {
+        "zh-Hant": "滾球獸",
+        "en": "Koromon",
+        "ja": "コロモン"
+      }
+    },
+    {
+      "source": "满心后的肉",
+      "values": {
+        "zh-Hant": "滿心後的肉",
+        "en": "The meat after the heart is full",
+        "ja": "心満たされた後のお肉"
+      }
+    },
+    {
+      "source": "满腹次数",
+      "values": {
+        "zh-Hant": "滿腹次數",
+        "en": "full belly times",
+        "ja": "満腹時間"
+      }
+    },
+    {
+      "source": "滾球獸",
+      "values": {
+        "zh-Hant": "滾球獸",
+        "en": "Rolling Ball Beast",
+        "ja": "ローリングボールビースト"
+      }
+    },
+    {
+      "source": "火焰兽",
+      "values": {
+        "zh-Hant": "火焰獸",
+        "en": "Meramon",
+        "ja": "メラモン"
+      }
+    },
+    {
+      "source": "火焰獸",
+      "values": {
+        "zh-Hant": "火焰獸",
+        "en": "Flame Beast",
+        "ja": "炎の獣"
+      }
+    },
+    {
+      "source": "灯光已关闭",
+      "values": {
+        "zh-Hant": "燈光已關閉",
+        "en": "light is off",
+        "ja": "ライトが消えています"
+      }
+    },
+    {
+      "source": "灯光已开启",
+      "values": {
+        "zh-Hant": "燈光已開啓",
+        "en": "light is on",
+        "ja": "ライトが点灯します"
+      }
+    },
+    {
+      "source": "照顾失误",
+      "values": {
+        "zh-Hant": "照顧失誤",
+        "en": "Care error",
+        "ja": "ケアエラー"
+      }
+    },
+    {
+      "source": "照顾失误 0～3 次",
+      "values": {
+        "zh-Hant": "照顧失誤 0～3 次",
+        "en": "Care errors 0 to 3 times",
+        "ja": "ケアエラー 0 ～ 3 回"
+      }
+    },
+    {
+      "source": "照顾失误至少 4 次",
+      "values": {
+        "zh-Hant": "照顧失誤至少 4 次",
+        "en": "Care mistakes at least 4 times",
+        "ja": "少なくとも 4 回のケアミス"
+      }
+    },
+    {
+      "source": "照顾失误（通算）",
+      "values": {
+        "zh-Hant": "照顧失誤（通算）",
+        "en": "Care error (General Accounting)",
+        "ja": "ケアエラー (一般会計)"
+      }
+    },
+    {
+      "source": "熊仔兽",
+      "values": {
+        "zh-Hant": "熊仔獸",
+        "en": "Monzaemon",
+        "ja": "もんざえモン"
+      }
+    },
+    {
+      "source": "熊仔獸",
+      "values": {
+        "zh-Hant": "熊仔獸",
+        "en": "Bear Beast",
+        "ja": "クマ獣"
+      }
+    },
+    {
+      "source": "特别食物",
+      "values": {
+        "zh-Hant": "特別食物",
+        "en": "Special food",
+        "ja": "スペシャルフード"
+      }
+    },
+    {
+      "source": "状态",
+      "values": {
+        "zh-Hant": "狀態",
+        "en": "status",
+        "ja": "ステータス"
+      }
+    },
+    {
+      "source": "独立测试副本：角色、数值与时间修改不计入正式收藏。",
+      "values": {
+        "zh-Hant": "獨立測試副本：角色、數值與時間修改不計入正式收藏。",
+        "en": "Independent test copy: Character, value and time modifications are not included in the official collection.",
+        "ja": "独立したテスト コピー: 文字、値、時間の変更は公式コレクションには含まれていません。"
+      }
+    },
+    {
+      "source": "环境不洁，需要治疗",
+      "values": {
+        "zh-Hant": "環境不潔，需要治療",
+        "en": "The environment is unclean and needs treatment",
+        "ja": "環境は不潔なので治療が必要です"
+      }
+    },
+    {
+      "source": "环境已经很干净",
+      "values": {
+        "zh-Hant": "環境已經很乾淨",
+        "en": "The environment is already very clean",
+        "ja": "環境はすでに非常にきれいです"
+      }
+    },
+    {
+      "source": "环境废物",
+      "values": {
+        "zh-Hant": "環境廢物",
+        "en": "Environmental waste",
+        "ja": "環境廃棄物"
+      }
+    },
+    {
+      "source": "环境清理完成",
+      "values": {
+        "zh-Hant": "環境清理完成",
+        "en": "Environment cleanup completed",
+        "ja": "環境のクリーンアップが完了しました"
+      }
+    },
+    {
+      "source": "生命周期数据无效",
+      "values": {
+        "zh-Hant": "生命週期數據無效",
+        "en": "life cycle data is invalid",
+        "ja": "ライフサイクル データが無効です"
+      }
+    },
+    {
+      "source": "生命周期结束",
+      "values": {
+        "zh-Hant": "生命週期結束",
+        "en": "end of life cycle",
+        "ja": "ライフサイクルの終了"
+      }
+    },
+    {
+      "source": "生命周期记录越界或重复",
+      "values": {
+        "zh-Hant": "生命週期記錄越界或重複",
+        "en": "The life cycle record is out of bounds or duplicated",
+        "ja": "ライフサイクル レコードが範囲外または重複しています"
+      }
+    },
+    {
+      "source": "生命周期超出支持范围",
+      "values": {
+        "zh-Hant": "生命週期超出支持範圍",
+        "en": "life cycle exceeds support range",
+        "ja": "ライフサイクルがサポート範囲を超えています"
+      }
+    },
+    {
+      "source": "生命状态",
+      "values": {
+        "zh-Hant": "生命狀態",
+        "en": "life status",
+        "ja": "ライフステータス"
+      }
+    },
+    {
+      "source": "生病",
+      "values": {
+        "zh-Hant": "生病",
+        "en": "sick",
+        "ja": "病気です"
+      }
+    },
+    {
+      "source": "生病 / 受伤次数",
+      "values": {
+        "zh-Hant": "生病 / 受傷次數",
+        "en": "Number of illnesses/injuries",
+        "ja": "病気/怪我の数"
+      }
+    },
+    {
+      "source": "生病（通算）",
+      "values": {
+        "zh-Hant": "生病（通算）",
+        "en": "Sick (General Accounting)",
+        "ja": "病気 (一般会計)"
+      }
+    },
+    {
+      "source": "电光暴龙兽",
+      "values": {
+        "zh-Hant": "電光暴龍獸",
+        "en": "BlitzGreymon",
+        "ja": "ブリッツグレイモン"
+      }
+    },
+    {
+      "source": "电光暴龙兽＋Ver.2偃月加鲁鲁兽的联展未开放；Alter-S不会通过普通进化获得。",
+      "values": {
+        "zh-Hant": "電光暴龍獸＋Ver.2偃月加魯魯獸的聯展未開放；Alter-S不會通過普通進化獲得。",
+        "en": "The joint exhibition of LightningGreymon + Ver.2 YanzukiGarurumon is not open; Alter-S cannot be obtained through normal evolution.",
+        "ja": "ライトニンググレイモン + Ver.2 ヤンズキガルルモン 合同展示会は開催しておりません。アルターSは通常進化では入手できません。"
+      }
+    },
+    {
+      "source": "电子按键音",
+      "values": {
+        "zh-Hant": "電子按鍵音",
+        "en": "electronic key tone",
+        "ja": "電子キー音"
+      }
+    },
+    {
+      "source": "番長豆豆獸",
+      "values": {
+        "zh-Hant": "番長豆豆獸",
+        "en": "Banchan Beanmon",
+        "ja": "バンチャンビーンモン"
+      }
+    },
+    {
+      "source": "番长豆豆兽",
+      "values": {
+        "zh-Hant": "番長豆豆獸",
+        "en": "BanchoMamemon",
+        "ja": "バンチョーマメモン"
+      }
+    },
+    {
+      "source": "目前没有养成呼叫",
+      "values": {
+        "zh-Hant": "目前沒有養成呼叫",
+        "en": "There are currently no training calls",
+        "ja": "現在トレーニング コールはありません"
+      }
+    },
+    {
+      "source": "直接指定当前伙伴，包括仅用于关卡的角色；该操作属于开发测试。",
+      "values": {
+        "zh-Hant": "直接指定當前夥伴，包括僅用於關卡的角色；該操作屬於開發測試。",
+        "en": "Directly specify the current partner, including characters used only for levels; this operation is a development test.",
+        "ja": "レベルのみに使用される文字を含む、現在のパートナーを直接指定します。この操作は開発テストです。"
+      }
+    },
+    {
+      "source": "真熊仔兽",
+      "values": {
+        "zh-Hant": "真熊仔獸",
+        "en": "ShinMonzaemon",
+        "ja": "しんもんざえモン"
+      }
+    },
+    {
+      "source": "真熊仔獸",
+      "values": {
+        "zh-Hant": "真熊仔獸",
+        "en": "Real Bear Beast",
+        "ja": "リアルベアビースト"
+      }
+    },
+    {
+      "source": "睡眠",
+      "values": {
+        "zh-Hant": "睡眠",
+        "en": "sleep",
+        "ja": "睡眠"
+      }
+    },
+    {
+      "source": "睡眠与休息",
+      "values": {
+        "zh-Hant": "睡眠與休息",
+        "en": "Sleep and rest",
+        "ja": "睡眠と休息"
+      }
+    },
+    {
+      "source": "睡眠呼叫一小时未关灯",
+      "values": {
+        "zh-Hant": "睡眠呼叫一小時未關燈",
+        "en": "Sleep call did not turn off the light for an hour",
+        "ja": "スリープ コールで 1 時間消灯しませんでした"
+      }
+    },
+    {
+      "source": "睡眠打扰",
+      "values": {
+        "zh-Hant": "睡眠打擾",
+        "en": "sleep disturbance",
+        "ja": "睡眠障害"
+      }
+    },
+    {
+      "source": "睡眠打扰 · 暂时清醒十分钟",
+      "values": {
+        "zh-Hant": "睡眠打擾 · 暫時清醒十分鐘",
+        "en": "Sleep disturbance · Temporarily awake for ten minutes",
+        "ja": "睡眠障害・10分間一時的に目が覚める"
+      }
+    },
+    {
+      "source": "睡眠时间无效",
+      "values": {
+        "zh-Hant": "睡眠時間無效",
+        "en": "Sleep time is invalid",
+        "ja": "スリープ時間が無効です"
+      }
+    },
+    {
+      "source": "睡眠期间未关灯",
+      "values": {
+        "zh-Hant": "睡眠期間未關燈",
+        "en": "The light is not turned off during sleep",
+        "ja": "スリープ中に照明が消えない"
+      }
+    },
+    {
+      "source": "知道了",
+      "values": {
+        "zh-Hant": "知道了",
+        "en": "Got it",
+        "ja": "分かりました"
+      }
+    },
+    {
+      "source": "破壳倒计时 {0} MIN",
+      "values": {
+        "zh-Hant": "破殼倒計時 {0} MIN",
+        "en": "Countdown to shell breaking {0} MIN",
+        "ja": "砲弾破壊までのカウントダウン: {0} 分"
+      }
+    },
+    {
+      "source": "破壳倒计时 {0} SEC",
+      "values": {
+        "zh-Hant": "破殼倒計時 {0} SEC",
+        "en": "Countdown to shell breaking {0} SEC",
+        "ja": "砲弾破壊までのカウントダウン: {0}秒"
+      }
+    },
+    {
+      "source": "确认 / 时钟",
+      "values": {
+        "zh-Hant": "確認 / 時鐘",
+        "en": "Confirm/Clock",
+        "ja": "確認/時計"
+      }
+    },
+    {
+      "source": "确认对战",
+      "values": {
+        "zh-Hant": "確認對戰",
+        "en": "confirmed battle",
+        "ja": "確定戦闘"
+      }
+    },
+    {
+      "source": "确认重置",
+      "values": {
+        "zh-Hant": "確認重置",
+        "en": "Confirm reset",
+        "ja": "リセットの確認"
+      }
+    },
+    {
+      "source": "确认重置当前设备？",
+      "values": {
+        "zh-Hant": "確認重置當前設備？",
+        "en": "Are you sure to reset the current device?",
+        "ja": "現在のデバイスをリセットしてもよろしいですか?"
+      }
+    },
+    {
+      "source": "种族",
+      "values": {
+        "zh-Hant": "種族",
+        "en": "race",
+        "ja": "レース"
+      }
+    },
+    {
+      "source": "究极体进化战斗计数",
+      "values": {
+        "zh-Hant": "究極體進化戰鬥計數",
+        "en": "Ultimate Evolution Battle Count",
+        "ja": "究極進化バトル回数"
+      }
+    },
+    {
+      "source": "空腹呼叫十分钟未回应",
+      "values": {
+        "zh-Hant": "空腹呼叫十分鐘未回應",
+        "en": "No response to fasting call for ten minutes",
+        "ja": "10 分間断食通話に応答なし"
+      }
+    },
+    {
+      "source": "空腹或力量呼叫须在10分钟内回应；睡眠呼叫须在1小时内关灯。",
+      "values": {
+        "zh-Hant": "空腹或力量呼叫須在10分鐘內回應；睡眠呼叫須在1小時內關燈。",
+        "en": "Fasting or strength calls must be responded to within 10 minutes; sleeping calls must turn off the lights within 1 hour.",
+        "ja": "絶食または強度の呼びかけには 10 分以内に応答する必要があります。寝電話の場合は 1 時間以内に照明を消す必要があります。"
+      }
+    },
+    {
+      "source": "空腹：请喂肉",
+      "values": {
+        "zh-Hant": "空腹：請喂肉",
+        "en": "Fasting: Please feed meat",
+        "ja": "断食: 肉を食べさせてください"
+      }
+    },
+    {
+      "source": "立即备份全部设备",
+      "values": {
+        "zh-Hant": "立即備份全部設備",
+        "en": "Back up all devices immediately",
+        "ja": "すべてのデバイスをすぐにバックアップします"
+      }
+    },
+    {
+      "source": "第 {0} / 5 次攻击",
+      "values": {
+        "zh-Hant": "第 {0} / 5 次攻擊",
+        "en": "{0}/5th attack",
+        "ja": "{0}/5 回目の攻撃"
+      }
+    },
+    {
+      "source": "第 {0} / {1} 战",
+      "values": {
+        "zh-Hant": "第 {0} / {1} 戰",
+        "en": "Battle {0}/{1}",
+        "ja": "バトル {0}/{1}"
+      }
+    },
+    {
+      "source": "第四轮 · {0}",
+      "values": {
+        "zh-Hant": "第四輪 · {0}",
+        "en": "Fourth round · {0}",
+        "ja": "第 4 ラウンド · {0}"
+      }
+    },
+    {
+      "source": "等待对方确认",
+      "values": {
+        "zh-Hant": "等待對方確認",
+        "en": "Waiting for confirmation from the other party",
+        "ja": "相手からの確認待ち"
+      }
+    },
+    {
+      "source": "简体中文",
+      "values": {
+        "zh-Hant": "簡體中文",
+        "en": "Simplified Chinese",
+        "ja": "簡体字中国語"
+      }
+    },
+    {
+      "source": "精准训练 {0} 分 · {1}",
+      "values": {
+        "zh-Hant": "精準訓練 {0} 分 · {1}",
+        "en": "Precision Training {0} points · {1}",
+        "ja": "プレシジョン トレーニング {0} ポイント · {1}"
+      }
+    },
+    {
+      "source": "系统时间早于Sandbox记录，请先恢复系统时间",
+      "values": {
+        "zh-Hant": "系統時間早於Sandbox記錄，請先恢復系統時間",
+        "en": "The system time is earlier than the Sandbox record. Please restore the system time first.",
+        "ja": "システム時刻がサンドボックス レコードより前です。まずシステム時間を復元してください。"
+      }
+    },
+    {
+      "source": "累计清醒（分钟）",
+      "values": {
+        "zh-Hant": "累計清醒（分鐘）",
+        "en": "Cumulative wakefulness (minutes)",
+        "ja": "累積覚醒時間 (分)"
+      }
+    },
+    {
+      "source": "繁體中文",
+      "values": {
+        "zh-Hant": "繁體中文",
+        "en": "Traditional Chinese",
+        "ja": "繁体字中国語"
+      }
+    },
+    {
+      "source": "经典模式仅使用A/B/C进行LCD养成，不公开隐藏进化条件或照顾失误。",
+      "values": {
+        "zh-Hant": "經典模式僅使用A/B/C進行LCD養成，不公開隱藏進化條件或照顧失誤。",
+        "en": "Classic mode only uses A/B/C for LCD development, and does not disclose hidden evolution conditions or care errors.",
+        "ja": "クラシック モードでは、LCD の展開に A/B/C のみが使用され、隠れた進化条件やケア エラーは公開されません。"
+      }
+    },
+    {
+      "source": "经典灰绿色 LCD",
+      "values": {
+        "zh-Hant": "經典灰綠色 LCD",
+        "en": "classic gray green LCD",
+        "ja": "クラシック グレー グリーン LCD"
+      }
+    },
+    {
+      "source": "结束本次训练",
+      "values": {
+        "zh-Hant": "結束本次訓練",
+        "en": "ends this training",
+        "ja": "はこのトレーニングを終了します"
+      }
+    },
+    {
+      "source": "继承图鉴，重新开始",
+      "values": {
+        "zh-Hant": "繼承圖鑑，重新開始",
+        "en": "Inherit the illustrated book and start over",
+        "ja": "図鑑を引き継いでやり直す"
+      }
+    },
+    {
+      "source": "继续努力",
+      "values": {
+        "zh-Hant": "繼續努力",
+        "en": "Keep up the good work",
+        "ja": "これからも頑張ってください"
+      }
+    },
+    {
+      "source": "继续治疗",
+      "values": {
+        "zh-Hant": "繼續治療",
+        "en": "Continue treatment",
+        "ja": "治療を続ける"
+      }
+    },
+    {
+      "source": "缺少 COLOR Ver.1 规则",
+      "values": {
+        "zh-Hant": "缺少 COLOR Ver.1 規則",
+        "en": "Missing COLOR Ver.1 rules",
+        "ja": "Missing COLOR Ver.1 ルール"
+      }
+    },
+    {
+      "source": "缺少 Ver.1 数据",
+      "values": {
+        "zh-Hant": "缺少 Ver.1 數據",
+        "en": "Missing Ver.1 data",
+        "ja": "Ver.1 データがありません"
+      }
+    },
+    {
+      "source": "缺少 database.json",
+      "values": {
+        "zh-Hant": "缺少 database.json",
+        "en": "database.json is missing",
+        "ja": "データベース.json がありません"
+      }
+    },
+    {
+      "source": "缺少像素动画配置",
+      "values": {
+        "zh-Hant": "缺少像素動畫配置",
+        "en": "Missing pixel animation configuration",
+        "ja": "ピクセル アニメーション設定がありません"
+      }
+    },
+    {
+      "source": "缺少像素素材：{0}",
+      "values": {
+        "zh-Hant": "缺少像素素材：{0}",
+        "en": "Missing pixel material: {0}",
+        "ja": "ピクセル マテリアルが見つかりません: {0}"
+      }
+    },
+    {
+      "source": "缺少逐型号核验的规则、角色名单、训练/战斗参数或原版素材，尚不能创建正式养成。目录不代表已实现该型号。",
+      "values": {
+        "zh-Hant": "缺少逐型號覈驗的規則、角色名單、訓練/戰鬥參數或原版素材，尚不能創建正式養成。目錄不代表已實現該型號。",
+        "en": "lacks model-by-model verified rules, character lists, training/combat parameters, or original materials, and cannot yet create a formal development. The catalog does not imply that the model has been implemented.",
+        "ja": "には、モデルごとに検証されたルール、キャラクター リスト、トレーニング/戦闘パラメーター、またはオリジナルのマテリアルが不足しており、まだ正式な開発を作成できません。カタログは、モデルが実装されていることを意味するものではありません。"
+      }
+    },
+    {
+      "source": "网格",
+      "values": {
+        "zh-Hant": "網格",
+        "en": "grid",
+        "ja": "グリッド"
+      }
+    },
+    {
+      "source": "肉",
+      "values": {
+        "zh-Hant": "肉",
+        "en": "meat",
+        "ja": "肉"
+      }
+    },
+    {
+      "source": "肉与蛋白质、A/B五次攻击训练、四心养成、Cold与一只备份、8区固定顺序Quest。隐藏参数来自有出处的社区实测，仍待实体机逐项复核。",
+      "values": {
+        "zh-Hant": "肉與蛋白質、A/B五次攻擊訓練、四心養成、Cold與一隻備份、8區固定順序Quest。隱藏參數來自有出處的社區實測，仍待實體機逐項複覈。",
+        "en": "Meat and protein, A/B five attack training, four heart development, Cold and one backup, 8-area fixed order Quest. The hidden parameters come from actual community measurements with provenance, and are still to be reviewed one by one with physical machines.",
+        "ja": "肉とタンパク質、A/B 5 つの攻撃トレーニング、4 つの心臓開発、風邪と 1 つのバックアップ、8 エリアの固定順序クエスト。隠されたパラメータは、出所を伴う実際のコミュニティ測定から取得されており、物理マシンを使用して 1 つずつ確認する必要があります。"
+      }
+    },
+    {
+      "source": "肉与蛋白质不限量供应；其他食物来自旧版实验玩法。",
+      "values": {
+        "zh-Hant": "肉與蛋白質不限量供應；其他食物來自舊版實驗玩法。",
+        "en": "Unlimited supply of meat and protein; other foods come from the old experimental gameplay.",
+        "ja": "肉とタンパク質の無制限の供給。他の食べ物は古い実験的なゲームプレイから来ています。"
+      }
+    },
+    {
+      "source": "肉和蛋白质在原味玩法中不限量；其他道具或自定义ID只设置库存，不会自动增加尚未实现的效果。",
+      "values": {
+        "zh-Hant": "肉和蛋白質在原味玩法中不限量；其他道具或自定義ID只設置庫存，不會自動增加尚未實現的效果。",
+        "en": "Meat and protein are unlimited in the original gameplay; other props or custom IDs only have inventory settings, and will not automatically add effects that have not yet been realized.",
+        "ja": "オリジナルのゲームプレイでは肉とタンパク質は無制限です。他のプロップまたはカスタム ID にはインベントリ設定のみがあり、まだ実現されていないエフェクトは自動的に追加されません。"
+      }
+    },
+    {
+      "source": "肉恢复1颗饱食心、增重1g；蛋白质恢复1颗力量心、增重2g，每4份恢复1 DP。满腹与蛋白质过量会影响养成。",
+      "values": {
+        "zh-Hant": "肉恢復1顆飽食心、增重1g；蛋白質恢復1顆力量心、增重2g，每4份恢復1 DP。滿腹與蛋白質過量會影響養成。",
+        "en": "Meat restores 1 satiety heart and gains 1g of weight; protein restores 1 strength heart and gains 2g of weight, and 1 DP is restored for every 4 servings. A full stomach and excess protein will affect growth.",
+        "ja": "肉は満腹ハートを 1 つ回復し、体重が 1g 増加します。プロテインは心臓の強さを 1 回復し、体重を 2 g 増加させ、4 食分ごとに 1 DP を回復します。満腹や過剰なタンパク質は成長に影響を与えます。"
+      }
+    },
+    {
+      "source": "背包中没有这种食物",
+      "values": {
+        "zh-Hant": "揹包中沒有這種食物",
+        "en": "There is no such food in the backpack",
+        "ja": "バックパックにはそのような食べ物はありません"
+      }
+    },
+    {
+      "source": "背包或地图数据无效",
+      "values": {
+        "zh-Hant": "揹包或地圖數據無效",
+        "en": "Invalid backpack or map data",
+        "ja": "バックパックまたは地図データが無効です"
+      }
+    },
+    {
+      "source": "背景尚未解锁",
+      "values": {
+        "zh-Hant": "背景尚未解鎖",
+        "en": "background has not been unlocked yet",
+        "ja": "背景はまだロック解除されていません"
+      }
+    },
+    {
+      "source": "胜利",
+      "values": {
+        "zh-Hant": "勝利",
+        "en": "Victory",
+        "ja": "勝利"
+      }
+    },
+    {
+      "source": "胜利不可超过战斗，训练成功不可超过尝试，当前DP不可超过DP上限。正常进化会恢复新形态的默认战斗参数。",
+      "values": {
+        "zh-Hant": "勝利不可超過戰鬥，訓練成功不可超過嘗試，當前DP不可超過DP上限。正常進化會恢復新形態的默認戰鬥參數。",
+        "en": "The victory cannot exceed the battle, the training success cannot exceed the attempt, and the current DP cannot exceed the DP upper limit. Normal evolution restores the new form's default combat parameters.",
+        "ja": "勝利は戦闘を超えることはできません、トレーニングの成功は試行を超えることはできません、現在の DP は DP 上限を超えることはできません。通常の進化では、新しいフォームのデフォルトの戦闘パラメーターが復元されます。"
+      }
+    },
+    {
+      "source": "胜利（通算）",
+      "values": {
+        "zh-Hant": "勝利（通算）",
+        "en": "Victory (General Accounting)",
+        "ja": "勝利（一般会計）"
+      }
+    },
+    {
+      "source": "胜率 ≥{0}% · 失误 {1}…{2}",
+      "values": {
+        "zh-Hant": "勝率 ≥{0}% · 失誤 {1}…{2}",
+        "en": "winning rate ≥{0}% · mistakes {1}…{2}",
+        "ja": "勝率 ≥{0}% · ミス {1}…{2}"
+      }
+    },
+    {
+      "source": "胜率60～69%的进化概率资料有分歧：本配置采用Humulos的50%，NHOKO记为25%，尚待实体机复核。",
+      "values": {
+        "zh-Hant": "勝率60～69%的進化概率資料有分歧：本配置採用Humulos的50%，NHOKO記爲25%，尚待實體機複覈。",
+        "en": "There are differences in the evolution probability data of the winning rate of 60 to 69%: this configuration uses 50% of Humulos, and NHOKO records it as 25%, which has yet to be reviewed by the physical machine.",
+        "ja": "勝率60～69％の進化確率データには差異があり、この構成ではフムロスを50％使用していますが、NHOKOでは実機レビューが未確認の25％と記録しています。"
+      }
+    },
+    {
+      "source": "胜率条件无效",
+      "values": {
+        "zh-Hant": "勝率條件無效",
+        "en": "The winning rate condition is invalid",
+        "ja": "勝率条件が無効です"
+      }
+    },
+    {
+      "source": "能量",
+      "values": {
+        "zh-Hant": "能量",
+        "en": "Energy",
+        "ja": "エネルギー"
+      }
+    },
+    {
+      "source": "能量 ENERGY",
+      "values": {
+        "zh-Hant": "能量 ENERGY",
+        "en": "Energy ENERGY",
+        "ja": "エネルギー ENERGY"
+      }
+    },
+    {
+      "source": "能量饮料",
+      "values": {
+        "zh-Hant": "能量飲料",
+        "en": "energy drink",
+        "ja": "エナジードリンク"
+      }
+    },
+    {
+      "source": "自动保存云端快照",
+      "values": {
+        "zh-Hant": "自動保存雲端快照",
+        "en": "Automatically save cloud snapshots",
+        "ja": "クラウド スナップショットを自動的に保存します"
+      }
+    },
+    {
+      "source": "草原",
+      "values": {
+        "zh-Hant": "草原",
+        "en": "grassland",
+        "ja": "草原"
+      }
+    },
+    {
+      "source": "获得日期无效",
+      "values": {
+        "zh-Hant": "獲得日期無效",
+        "en": "The acquisition date is invalid",
+        "ja": "取得日が無効です"
+      }
+    },
+    {
+      "source": "蔬菜",
+      "values": {
+        "zh-Hant": "蔬菜",
+        "en": "vegetables",
+        "ja": "野菜"
+      }
+    },
+    {
+      "source": "蛋白质",
+      "values": {
+        "zh-Hant": "蛋白質",
+        "en": "protein",
+        "ja": "プロテイン"
+      }
+    },
+    {
+      "source": "蛋白质计数",
+      "values": {
+        "zh-Hant": "蛋白質計數",
+        "en": "protein counting",
+        "ja": "タンパク質のカウント"
+      }
+    },
+    {
+      "source": "蛋白质过量等级",
+      "values": {
+        "zh-Hant": "蛋白質過量等級",
+        "en": "protein excess level",
+        "ja": "タンパク質過剰レベル"
+      }
+    },
+    {
+      "source": "蝌蚪兽",
+      "values": {
+        "zh-Hant": "蝌蚪獸",
+        "en": "Betamon",
+        "ja": "ベタモン"
+      }
+    },
+    {
+      "source": "蝌蚪獸",
+      "values": {
+        "zh-Hant": "蝌蚪獸",
+        "en": "Tadpole Beast",
+        "ja": "オタマジャクシ獣"
+      }
+    },
+    {
+      "source": "角色",
+      "values": {
+        "zh-Hant": "角色",
+        "en": "role",
+        "ja": "役割"
+      }
+    },
+    {
+      "source": "角色 / {0} 种",
+      "values": {
+        "zh-Hant": "角色 / {0} 種",
+        "en": "role / {0} types",
+        "ja": "ロール / {0} タイプ"
+      }
+    },
+    {
+      "source": "角色编号",
+      "values": {
+        "zh-Hant": "角色編號",
+        "en": "character number",
+        "ja": "文字番号"
+      }
+    },
+    {
+      "source": "解锁",
+      "values": {
+        "zh-Hant": "解鎖",
+        "en": "Unlock",
+        "ja": "ロック解除"
+      }
+    },
+    {
+      "source": "解除 Cold",
+      "values": {
+        "zh-Hant": "解除 Cold",
+        "en": "Remove Cold",
+        "ja": "コールドの削除"
+      }
+    },
+    {
+      "source": "触觉反馈",
+      "values": {
+        "zh-Hant": "觸覺反饋",
+        "en": "tactile feedback",
+        "ja": "触覚フィードバック"
+      }
+    },
+    {
+      "source": "计划目录；版本名单、说明书、规则与素材尚待逐项核实，暂不可游玩。",
+      "values": {
+        "zh-Hant": "計劃目錄；版本名單、說明書、規則與素材尚待逐項覈實，暫不可遊玩。",
+        "en": "project directory; version list, instructions, rules and materials have yet to be verified one by one, and are temporarily unavailable for play.",
+        "ja": "プロジェクト ディレクトリ。バージョンリスト、説明書、ルール、マテリアルはまだ一つ一つ確認されていないため、一時的にプレイできません。"
+      }
+    },
+    {
+      "source": "训练",
+      "values": {
+        "zh-Hant": "訓練",
+        "en": "training",
+        "ja": "トレーニング"
+      }
+    },
+    {
+      "source": "训练尚未开始或已失效",
+      "values": {
+        "zh-Hant": "訓練尚未開始或已失效",
+        "en": "Training has not started or has expired",
+        "ja": "トレーニングが開始されていないか、期限が切れています"
+      }
+    },
+    {
+      "source": "训练尝试（通算）",
+      "values": {
+        "zh-Hant": "訓練嘗試（通算）",
+        "en": "training attempt (general calculation)",
+        "ja": "トレーニング試行 (一般的な計算)"
+      }
+    },
+    {
+      "source": "训练已开始",
+      "values": {
+        "zh-Hant": "訓練已開始",
+        "en": "training has started",
+        "ja": "トレーニングが開始されました"
+      }
+    },
+    {
+      "source": "训练已开始，请完成或取消",
+      "values": {
+        "zh-Hant": "訓練已開始，請完成或取消",
+        "en": "Training has started, please complete or cancel",
+        "ja": "トレーニングが開始されました。完了するかキャンセルしてください。"
+      }
+    },
+    {
+      "source": "训练已结束或失效",
+      "values": {
+        "zh-Hant": "訓練已結束或失效",
+        "en": "Training has ended or expired",
+        "ja": "トレーニングは終了したか期限切れになりました"
+      }
+    },
+    {
+      "source": "训练成功 / 尝试",
+      "values": {
+        "zh-Hant": "訓練成功 / 嘗試",
+        "en": "Training successful/attempted",
+        "ja": "トレーニングが成功/試行されました"
+      }
+    },
+    {
+      "source": "训练成功 · 力量与亲密度提升",
+      "values": {
+        "zh-Hant": "訓練成功 · 力量與親密度提升",
+        "en": "Training successful · Improved strength and intimacy",
+        "ja": "トレーニングが成功しました · 強さと親密度が向上しました"
+      }
+    },
+    {
+      "source": "训练成功（通算）",
+      "values": {
+        "zh-Hant": "訓練成功（通算）",
+        "en": "training successful (general calculation)",
+        "ja": "トレーニング成功 (一般的な計算)"
+      }
+    },
+    {
+      "source": "训练超时，请重新开始",
+      "values": {
+        "zh-Hant": "訓練超時，請重新開始",
+        "en": "Training timed out, please start again.\nThe",
+        "ja": "トレーニングがタイムアウトしました。もう一度開始してください。"
+      }
+    },
+    {
+      "source": "设备合集已恢复为独立档案，原设备和云端版本均已保留。",
+      "values": {
+        "zh-Hant": "設備合集已恢復爲獨立檔案，原設備和雲端版本均已保留。",
+        "en": "device collection has been restored to an independent file, and both the original device and the cloud version have been retained.",
+        "ja": "デバイス コレクションは独立したファイルに復元され、元のデバイスとクラウド バージョンの両方が保持されました。"
+      }
+    },
+    {
+      "source": "设备合集超过备份容量上限，请分别导出设备",
+      "values": {
+        "zh-Hant": "設備合集超過備份容量上限，請分別導出設備",
+        "en": "The device collection exceeds the upper limit of backup capacity. Please export the devices separately.",
+        "ja": "デバイスのコレクションがバックアップ容量の上限を超えています。デバイスを個別にエクスポートしてください。"
+      }
+    },
+    {
+      "source": "设备已切换，已结算该设备离线时间",
+      "values": {
+        "zh-Hant": "設備已切換，已結算該設備離線時間",
+        "en": "The device has been switched and the offline time of the device has been settled.",
+        "ja": "デバイスが切り替えられ、デバイスのオフライン時間が確定しました。"
+      }
+    },
+    {
+      "source": "设备已重置，重置前档案已单独保留",
+      "values": {
+        "zh-Hant": "設備已重置，重置前檔案已單獨保留",
+        "en": "The device has been reset and the files before reset have been kept separately.",
+        "ja": "デバイスはリセットされており、リセット前のファイルは別に保存されています。"
+      }
+    },
+    {
+      "source": "设备收藏档位不足，未覆盖现有设备",
+      "values": {
+        "zh-Hant": "設備收藏檔位不足，未覆蓋現有設備",
+        "en": "There are insufficient gears in the device collection and the existing devices are not covered.",
+        "ja": "デバイス コレクションにギアが不足しているため、既存のデバイスはカバーされていません。"
+      }
+    },
+    {
+      "source": "设备收藏档位已满",
+      "values": {
+        "zh-Hant": "設備收藏檔位已滿",
+        "en": "The equipment collection slot is full",
+        "ja": "装備収集枠がいっぱいです"
+      }
+    },
+    {
+      "source": "设备时钟偏移无效",
+      "values": {
+        "zh-Hant": "設備時鐘偏移無效",
+        "en": "Device clock offset is invalid",
+        "ja": "デバイスのクロック オフセットが無効です"
+      }
+    },
+    {
+      "source": "设备时钟已设置；成长仍按真实经过时间计算",
+      "values": {
+        "zh-Hant": "設備時鐘已設置；成長仍按真實經過時間計算",
+        "en": "The device clock has been set; growth is still calculated based on real elapsed time",
+        "ja": "デバイスのクロックが設定されました。成長率は実際の経過時間に基づいて計算されます"
+      }
+    },
+    {
+      "source": "设备时间早于存档时间，请恢复正确时间",
+      "values": {
+        "zh-Hant": "設備時間早於存檔時間，請恢復正確時間",
+        "en": "The device time is earlier than the archive time, please restore the correct time.",
+        "ja": "デバイスの時刻がアーカイブ時刻より前です。正しい時刻を復元してください。"
+      }
+    },
+    {
+      "source": "设备时间早于已保存时间，请恢复正确时间",
+      "values": {
+        "zh-Hant": "設備時間早於已保存時間，請恢復正確時間",
+        "en": "The device time is earlier than the saved time. Please restore the correct time.",
+        "ja": "デバイスの時刻が保存された時刻より前です。正しい時刻に戻してください。"
+      }
+    },
+    {
+      "source": "设备档案与索引不一致",
+      "values": {
+        "zh-Hant": "設備檔案與索引不一致",
+        "en": "The device file is inconsistent with the index",
+        "ja": "デバイス ファイルがインデックスと矛盾しています"
+      }
+    },
+    {
+      "source": "设备档案缺失，已保留其他存档",
+      "values": {
+        "zh-Hant": "設備檔案缺失，已保留其他存檔",
+        "en": "The device file is missing and other files have been reserved.",
+        "ja": "デバイス ファイルが見つからず、他のファイルが予約されています。"
+      }
+    },
+    {
+      "source": "设备档案缺失，无法创建完整备份",
+      "values": {
+        "zh-Hant": "設備檔案缺失，無法創建完整備份",
+        "en": "The device file is missing and a full backup cannot be created.",
+        "ja": "デバイス ファイルが見つからないため、完全バックアップを作成できません。"
+      }
+    },
+    {
+      "source": "设置",
+      "values": {
+        "zh-Hant": "設置",
+        "en": "settings",
+        "ja": "の設定"
+      }
+    },
+    {
+      "source": "访问码",
+      "values": {
+        "zh-Hant": "訪問碼",
+        "en": "access code",
+        "ja": "アクセスコード"
+      }
+    },
+    {
+      "source": "访问码不正确",
+      "values": {
+        "zh-Hant": "訪問碼不正確",
+        "en": "Incorrect access code",
+        "ja": "アクセスコードが正しくありません"
+      }
+    },
+    {
+      "source": "该型号的规则或原版素材尚待核验，暂不能创建养成档案",
+      "values": {
+        "zh-Hant": "該型號的規則或原版素材尚待覈驗，暫不能創建養成檔案",
+        "en": "The rules or original materials of this model have yet to be verified, and development files cannot be created yet.",
+        "ja": "このモデルはルールや元素材が未検証のため、開発ファイルがまだ作成できません。"
+      }
+    },
+    {
+      "source": "该数码蛋尚未解锁",
+      "values": {
+        "zh-Hant": "該數碼蛋尚未解鎖",
+        "en": "This digital egg has not been unlocked yet",
+        "ja": "このデジタルエッグはまだロックが解除されていません"
+      }
+    },
+    {
+      "source": "该机型不使用此数值",
+      "values": {
+        "zh-Hant": "該機型不使用此數值",
+        "en": "This model does not use this value",
+        "ja": "このモデルではこの値を使用しません"
+      }
+    },
+    {
+      "source": "该机型不支持手动休息",
+      "values": {
+        "zh-Hant": "該機型不支持手動休息",
+        "en": "This model does not support manual rest",
+        "ja": "このモデルは手動レストをサポートしていません"
+      }
+    },
+    {
+      "source": "该机型不支持此数码蛋或时区无效",
+      "values": {
+        "zh-Hant": "該機型不支持此數碼蛋或時區無效",
+        "en": "This model does not support this digital egg or the time zone is invalid",
+        "ja": "このモデルはこのデジタルエッグをサポートしていないか、タイムゾーンが無効です"
+      }
+    },
+    {
+      "source": "该机型尚未完成实体机说明书核验",
+      "values": {
+        "zh-Hant": "該機型尚未完成實體機說明書覈驗",
+        "en": "This model has not yet completed the physical machine manual verification",
+        "ja": "このモデルは物理マシンの手動検証をまだ完了していません"
+      }
+    },
+    {
+      "source": "该设备档案缺失，其他存档保持原样",
+      "values": {
+        "zh-Hant": "該設備檔案缺失，其他存檔保持原樣",
+        "en": "The device file is missing, other files remain intact",
+        "ja": "デバイス ファイルが見つかりません。他のファイルはそのまま残ります"
+      }
+    },
+    {
+      "source": "该设备没有可用数码蛋",
+      "values": {
+        "zh-Hant": "該設備沒有可用數碼蛋",
+        "en": "There is no digital egg available for this device",
+        "ja": "このデバイスで利用できるデジタル エッグはありません"
+      }
+    },
+    {
+      "source": "请先完成或取消训练",
+      "values": {
+        "zh-Hant": "請先完成或取消訓練",
+        "en": "Please complete or cancel training first",
+        "ja": "まずトレーニングを完了するかキャンセルしてください"
+      }
+    },
+    {
+      "source": "请先开始训练",
+      "values": {
+        "zh-Hant": "請先開始訓練",
+        "en": "Please start training first",
+        "ja": "まずはトレーニングを開始してください"
+      }
+    },
+    {
+      "source": "请先开灯",
+      "values": {
+        "zh-Hant": "請先開燈",
+        "en": "Please turn on the light first",
+        "ja": "まずライトをつけてください"
+      }
+    },
+    {
+      "source": "请先治疗",
+      "values": {
+        "zh-Hant": "請先治療",
+        "en": "Please treat first",
+        "ja": "まずは治療してください"
+      }
+    },
+    {
+      "source": "请先结束训练",
+      "values": {
+        "zh-Hant": "請先結束訓練",
+        "en": "Please end training first",
+        "ja": "まずトレーニングを終了してください"
+      }
+    },
+    {
+      "source": "请先解锁开发测试入口",
+      "values": {
+        "zh-Hant": "請先解鎖開發測試入口",
+        "en": "Please unlock the development and test entrance first",
+        "ja": "まず開発とテストの入り口のロックを解除してください"
+      }
+    },
+    {
+      "source": "请先连接云盘文件夹",
+      "values": {
+        "zh-Hant": "請先連接雲盤文件夾",
+        "en": "Please connect to the cloud disk folder first",
+        "ja": "まずクラウド ディスク フォルダーに接続してください"
+      }
+    },
+    {
+      "source": "请先通关前一区域",
+      "values": {
+        "zh-Hant": "請先通關前一區域",
+        "en": "Please clear the previous area first",
+        "ja": "まずは前のエリアをクリアしてください"
+      }
+    },
+    {
+      "source": "请恢复正确设备时间",
+      "values": {
+        "zh-Hant": "請恢復正確設備時間",
+        "en": "Please restore the correct device time",
+        "ja": "正しいデバイス時刻を復元してください"
+      }
+    },
+    {
+      "source": "请等待下一次时机",
+      "values": {
+        "zh-Hant": "請等待下一次時機",
+        "en": "Please wait for the next opportunity",
+        "ja": "次回の機会をお待ちください"
+      }
+    },
+    {
+      "source": "请等待孵化或恢复成长",
+      "values": {
+        "zh-Hant": "請等待孵化或恢復成長",
+        "en": "Please wait for hatching or recovery of growth",
+        "ja": "孵化または成長の回復をお待ちください"
+      }
+    },
+    {
+      "source": "请等待数码蛋孵化。",
+      "values": {
+        "zh-Hant": "請等待數碼蛋孵化。",
+        "en": "Please wait for the digital egg to hatch.",
+        "ja": "デジタルタマゴが孵化するまでお待ちください。"
+      }
+    },
+    {
+      "source": "请输入整数数量",
+      "values": {
+        "zh-Hant": "請輸入整數數量",
+        "en": "Please enter the integer quantity",
+        "ja": "整数の数量を入力してください"
+      }
+    },
+    {
+      "source": "豆豆兽",
+      "values": {
+        "zh-Hant": "豆豆獸",
+        "en": "Mamemon",
+        "ja": "マメモン"
+      }
+    },
+    {
+      "source": "豆豆獸",
+      "values": {
+        "zh-Hant": "豆豆獸",
+        "en": "Doudoumon",
+        "ja": "ドゥドゥモン"
+      }
+    },
+    {
+      "source": "败北",
+      "values": {
+        "zh-Hant": "敗北",
+        "en": "defeated",
+        "ja": "敗北"
+      }
+    },
+    {
+      "source": "距离本阶段进化判定",
+      "values": {
+        "zh-Hant": "距離本階段進化判定",
+        "en": "Distance to this stage of evolution determination",
+        "ja": "進化決定のこの段階までの距離"
+      }
+    },
+    {
+      "source": "跳过本战演出",
+      "values": {
+        "zh-Hant": "跳過本戰演出",
+        "en": "Skip this show",
+        "ja": "この番組をスキップする"
+      }
+    },
+    {
+      "source": "返回",
+      "values": {
+        "zh-Hant": "返回",
+        "en": "Return",
+        "ja": "戻る"
+      }
+    },
+    {
+      "source": "返回区域选择",
+      "values": {
+        "zh-Hant": "返回區域選擇",
+        "en": "Return to area selection",
+        "ja": "エリア選択に戻る"
+      }
+    },
+    {
+      "source": "这不是Quest命中记录",
+      "values": {
+        "zh-Hant": "這不是Quest命中記錄",
+        "en": "This is not a Quest hit record",
+        "ja": "これはクエスト ヒット レコードではありません"
+      }
+    },
+    {
+      "source": "这是iPhone之间的连接，不代表可以直接连接实体暴龙机。附近双机与Game Center实机联调仍需完成。",
+      "values": {
+        "zh-Hant": "這是iPhone之間的連接，不代表可以直接連接實體暴龍機。附近雙機與Game Center實機聯調仍需完成。",
+        "en": "This is a connection between iPhones. It does not mean that the physical Tyrannosaurus Rex can be directly connected. The joint debugging of nearby two machines and Game Center real machine still needs to be completed.",
+        "ja": "iPhone同士の接続です。物理的なティラノサウルスが直接接続できるわけではありません。近くの 2 台のマシンと Game Center の実機の共同デバッグをまだ完了する必要があります。"
+      }
+    },
+    {
+      "source": "这是手机加速度输入辅助，不是已完成的Pendulum机型规则。仅用于独立Sandbox；A/B按钮可代替摇晃。",
+      "values": {
+        "zh-Hant": "這是手機加速度輸入輔助，不是已完成的Pendulum機型規則。僅用於獨立Sandbox；A/B按鈕可代替搖晃。",
+        "en": "This is a mobile phone acceleration input assist, not a completed Pendulum model rule. Only for standalone Sandbox; A/B buttons can be used instead of shaking.",
+        "ja": "これは携帯電話の加速度入力補助であり、完成した振り子モデルのルールではありません。スタンドアロン サンドボックスのみ。シェイクの代わりにA/Bボタンを使用することもできます。"
+      }
+    },
+    {
+      "source": "进化 · {0}",
+      "values": {
+        "zh-Hant": "進化 · {0}",
+        "en": "Evolution · {0}",
+        "ja": "進化 · {0}"
+      }
+    },
+    {
+      "source": "进化条件无效",
+      "values": {
+        "zh-Hant": "進化條件無效",
+        "en": "The evolution condition is invalid",
+        "ja": "進化条件が無効です"
+      }
+    },
+    {
+      "source": "进化芯片",
+      "values": {
+        "zh-Hant": "進化芯片",
+        "en": "evolution chip",
+        "ja": "進化チップ"
+      }
+    },
+    {
+      "source": "进化规则 ID 重复",
+      "values": {
+        "zh-Hant": "進化規則 ID 重複",
+        "en": "Evolution Rule ID Duplicate",
+        "ja": "進化ルール ID の重複"
+      }
+    },
+    {
+      "source": "连接已断开",
+      "values": {
+        "zh-Hant": "連接已斷開",
+        "en": "connection has been disconnected",
+        "ja": "接続が切断されました"
+      }
+    },
+    {
+      "source": "连接已断开；已保存战果不会重复发放",
+      "values": {
+        "zh-Hant": "連接已斷開；已保存戰果不會重複發放",
+        "en": "The connection has been disconnected; the saved results will not be reissued.",
+        "ja": "接続が切断されました。保存された結果は再発行されません。"
+      }
+    },
+    {
+      "source": "连续睡眠计时",
+      "values": {
+        "zh-Hant": "連續睡眠計時",
+        "en": "Continuous sleep timer",
+        "ja": "連続スリープタイマー"
+      }
+    },
+    {
+      "source": "选择",
+      "values": {
+        "zh-Hant": "選擇",
+        "en": "Select",
+        "ja": "選択"
+      }
+    },
+    {
+      "source": "选择iCloud Drive或云盘文件夹",
+      "values": {
+        "zh-Hant": "選擇iCloud Drive或雲盤文件夾",
+        "en": "Select iCloud Drive or cloud disk folder",
+        "ja": "iCloud Driveまたはクラウドディスクフォルダーを選択してください"
+      }
+    },
+    {
+      "source": "选择iCloud Drive或其它云盘文件夹，保存不可覆盖的设备合集快照。",
+      "values": {
+        "zh-Hant": "選擇iCloud Drive或其它雲盤文件夾，保存不可覆蓋的設備合集快照。",
+        "en": "Select iCloud Drive or other cloud disk folders to save device collection snapshots that cannot be overwritten.",
+        "ja": "iCloud Drive または他のクラウド ディスク フォルダーを選択して、上書きできないデバイス コレクションのスナップショットを保存します。"
+      }
+    },
+    {
+      "source": "选择下一位对手",
+      "values": {
+        "zh-Hant": "選擇下一位對手",
+        "en": "Choose the next opponent",
+        "ja": "次の対戦相手を選択してください"
+      }
+    },
+    {
+      "source": "通信对战 · 前三轮双方命中",
+      "values": {
+        "zh-Hant": "通信對戰 · 前三輪雙方命中",
+        "en": "Communication battle · Both sides hit in the first three rounds",
+        "ja": "通信バトル・最初の3ラウンドで双方ヒット"
+      }
+    },
+    {
+      "source": "通信对战胜利",
+      "values": {
+        "zh-Hant": "通信對戰勝利",
+        "en": "Communication battle victory",
+        "ja": "通信バトル勝利"
+      }
+    },
+    {
+      "source": "通信对战败北",
+      "values": {
+        "zh-Hant": "通信對戰敗北",
+        "en": "Lost the communication battle",
+        "ja": "通信バトルに負けました"
+      }
+    },
+    {
+      "source": "通信战果不一致或已经保存，不能重复领奖",
+      "values": {
+        "zh-Hant": "通信戰果不一致或已經保存，不能重複領獎",
+        "en": "The communication results are inconsistent or have been saved, and the prize cannot be claimed repeatedly.",
+        "ja": "通信結果が不一致または保存されており、賞品を繰り返し受け取ることはできません。"
+      }
+    },
+    {
+      "source": "通信收据重复或越界",
+      "values": {
+        "zh-Hant": "通信收據重複或越界",
+        "en": "Communication receipt is duplicated or out of bounds",
+        "ja": "通信受信が重複しているか範囲外です"
+      }
+    },
+    {
+      "source": "通信数据过大或内容库不可用",
+      "values": {
+        "zh-Hant": "通信數據過大或內容庫不可用",
+        "en": "The communication data is too large or the content library is unavailable",
+        "ja": "通信データが大きすぎるか、コンテンツ ライブラリが利用できません"
+      }
+    },
+    {
+      "source": "通信记录容量已满，请先导出完整档案",
+      "values": {
+        "zh-Hant": "通信記錄容量已滿，請先導出完整檔案",
+        "en": "The communication record capacity is full, please export the complete file first",
+        "ja": "通信記録の容量がいっぱいです。最初に完全なファイルをエクスポートしてください。"
+      }
+    },
+    {
+      "source": "通信随机标识重复",
+      "values": {
+        "zh-Hant": "通信隨機標識重複",
+        "en": "Communication random identifier is repeated",
+        "ja": "通信ランダム識別子が繰り返されます"
+      }
+    },
+    {
+      "source": "通信需要清醒、无伤、DP至少1的成长期以上伙伴",
+      "values": {
+        "zh-Hant": "通信需要清醒、無傷、DP至少1的成長期以上夥伴",
+        "en": "Communication requires a partner who is awake, uninjured, and has a DP of at least 1 and above in the growth stage.",
+        "ja": "コミュニケーションには、覚醒していて怪我がなく、成長段階で少なくとも 1 以上の DP を持つパートナーが必要です。"
+      }
+    },
+    {
+      "source": "通关区域1、4、F可解锁背景主题；养成真熊仔兽另有纪念主题。",
+      "values": {
+        "zh-Hant": "通關區域1、4、F可解鎖背景主題；養成真熊仔獸另有紀念主題。",
+        "en": "The background theme can be unlocked by clearing areas 1, 4, and F; there is also a commemorative theme for growing a real bear cub.",
+        "ja": "背景テーマは、エリア 1、4、および F をクリアするとロックを解除できます。本物の子熊を育てる記念テーマもあります。"
+      }
+    },
+    {
+      "source": "通知为辅助提醒，养成结算独立于通知和后台运行。系统可能延迟通知。",
+      "values": {
+        "zh-Hant": "通知爲輔助提醒，養成結算獨立於通知和後臺運行。系統可能延遲通知。",
+        "en": "notification is an auxiliary reminder, and settlement is independent of notification and background operation. The system may delay notifications.",
+        "ja": "通知は補助的なリマインダーであり、決済は通知やバックグラウンド動作とは独立しています。システムにより通知が遅れる場合があります。"
+      }
+    },
+    {
+      "source": "通知权限未开启，可在 iOS 设置中修改。养成功能仍可离线使用。",
+      "values": {
+        "zh-Hant": "通知權限未開啓，可在 iOS 設置中修改。養成功能仍可離線使用。",
+        "en": "Notification permission is not enabled and can be modified in iOS settings. The cultivation function can still be used offline.",
+        "ja": "通知権限が有効になっていないため、iOS 設定で変更できます。栽培機能はオフラインでもご利用いただけます。"
+      }
+    },
+    {
+      "source": "速度",
+      "values": {
+        "zh-Hant": "速度",
+        "en": "speed",
+        "ja": "速度"
+      }
+    },
+    {
+      "source": "道具",
+      "values": {
+        "zh-Hant": "道具",
+        "en": "props",
+        "ja": "小道具"
+      }
+    },
+    {
+      "source": "道具 / 库存测试",
+      "values": {
+        "zh-Hant": "道具 / 庫存測試",
+        "en": "props/inventory test",
+        "ja": "小道具/在庫テスト"
+      }
+    },
+    {
+      "source": "道具ID须为字母、数字、短横线或下划线；数量须在1～999999内且不超过库存上限",
+      "values": {
+        "zh-Hant": "道具ID須爲字母、數字、短橫線或下劃線；數量須在1～999999內且不超過庫存上限",
+        "en": "The prop ID must be letters, numbers, dashes or underlines; the quantity must be between 1 and 999999 and not exceed the inventory limit",
+        "ja": "小道具 ID は文字、数字、ダッシュ、または下線である必要があります。数量は 1 ～ 999999 の範囲であり、在庫制限を超えてはなりません"
+      }
+    },
+    {
+      "source": "道具ID（也可输入自定义ID）",
+      "values": {
+        "zh-Hant": "道具ID（也可輸入自定義ID）",
+        "en": "prop ID (custom ID can also be entered)",
+        "ja": "プロップ ID (カスタム ID も入力可能)"
+      }
+    },
+    {
+      "source": "邀请 ",
+      "values": {
+        "zh-Hant": "邀請 ",
+        "en": "invitation",
+        "ja": "招待状"
+      }
+    },
+    {
+      "source": "采用 Digital Monster COLOR 角色像素图集的原创融合养成规则；不是实体机规则的精确模拟。",
+      "values": {
+        "zh-Hant": "採用 Digital Monster COLOR 角色像素圖集的原創融合養成規則；不是實體機規則的精確模擬。",
+        "en": "adopts the original fusion development rules of the Digital Monster COLOR character pixel atlas; it is not an exact simulation of the physical machine rules.",
+        "ja": "は、デジタルモンスター COLOR キャラクターピクセルアトラスの独自の融合開発ルールを採用しています。これは、物理マシンのルールを正確にシミュレーションしたものではありません。"
+      }
+    },
+    {
+      "source": "重新孵化",
+      "values": {
+        "zh-Hant": "重新孵化",
+        "en": "re-hatching",
+        "ja": "再孵化"
+      }
+    },
+    {
+      "source": "重新载入当前数值",
+      "values": {
+        "zh-Hant": "重新載入當前數值",
+        "en": "Reload the current value",
+        "ja": "現在値をリロードします"
+      }
+    },
+    {
+      "source": "重置前会另存完整快照，并保留已解锁图鉴。确认后当前设备重新孵化，其他设备不受影响。",
+      "values": {
+        "zh-Hant": "重置前會另存完整快照，並保留已解鎖圖鑑。確認後當前設備重新孵化，其他設備不受影響。",
+        "en": "will save a complete snapshot before resetting and retain the unlocked illustrations. After confirmation, the current device will be re-incubated, and other devices will not be affected.",
+        "ja": "は、リセットする前に完全なスナップショットを保存し、ロック解除されたイラストを保持します。確認後、現在のデバイスは再インキュベートされ、他のデバイスは影響を受けません。"
+      }
+    },
+    {
+      "source": "重置前归档",
+      "values": {
+        "zh-Hant": "重置前歸檔",
+        "en": "Archive before reset",
+        "ja": "リセット前のアーカイブ"
+      }
+    },
+    {
+      "source": "锁定开发测试",
+      "values": {
+        "zh-Hant": "鎖定開發測試",
+        "en": "locked development test",
+        "ja": "ロックされた開発テスト"
+      }
+    },
+    {
+      "source": "防御",
+      "values": {
+        "zh-Hant": "防禦",
+        "en": "Defense",
+        "ja": "防御"
+      }
+    },
+    {
+      "source": "阶段",
+      "values": {
+        "zh-Hant": "階段",
+        "en": "stage",
+        "ja": "ステージ"
+      }
+    },
+    {
+      "source": "阶段成长 ≥{0} 分钟 · 训练 ≥{1} · 战斗 ≥{2}",
+      "values": {
+        "zh-Hant": "階段成長 ≥{0} 分鐘 · 訓練 ≥{1} · 戰鬥 ≥{2}",
+        "en": "Stage growth ≥{0} minutes · Training ≥{1} · Combat ≥{2}",
+        "ja": "ステージ成長 ≥{0} 分 · トレーニング ≥{1} · 戦闘 ≥{2}"
+      }
+    },
+    {
+      "source": "阶段成长时间",
+      "values": {
+        "zh-Hant": "階段成長時間",
+        "en": "stage growth time",
+        "ja": "ステージ成長時間"
+      }
+    },
+    {
+      "source": "隐藏开发入口提供角色、道具与数值编辑；这里的时间推进调用同一养成引擎，不改变系统时钟。",
+      "values": {
+        "zh-Hant": "隱藏開發入口提供角色、道具與數值編輯；這裏的時間推進調用同一養成引擎，不改變系統時鐘。",
+        "en": "The hidden development entrance provides editing of characters, props and values; the time advancement here calls the same development engine and does not change the system clock.",
+        "ja": "非表示の開発入口では、キャラクター、小道具、および値の編集が可能です。ここでの時間の進行は同じ開発エンジンを呼び出し、システム クロックを変更しません。"
+      }
+    },
+    {
+      "source": "電光暴龍獸",
+      "values": {
+        "zh-Hant": "電光暴龍獸",
+        "en": "Electric Greymon",
+        "ja": "エレクトリックグレイモン"
+      }
+    },
+    {
+      "source": "需养成 {0} 种角色",
+      "values": {
+        "zh-Hant": "需養成 {0} 種角色",
+        "en": "needs to develop {0} characters",
+        "ja": "は {0} 人のキャラクターを開発する必要があります"
+      }
+    },
+    {
+      "source": "需继续治疗",
+      "values": {
+        "zh-Hant": "需繼續治療",
+        "en": "needs to continue treatment",
+        "ja": "は治療を続ける必要があります"
+      }
+    },
+    {
+      "source": "需要已孵化且正在成长的伙伴",
+      "values": {
+        "zh-Hant": "需要已孵化且正在成長的夥伴",
+        "en": "needs incubated and growing partners",
+        "ja": "には育成され成長するパートナーが必要です"
+      }
+    },
+    {
+      "source": "需要治疗",
+      "values": {
+        "zh-Hant": "需要治療",
+        "en": "needs treatment",
+        "ja": "は治療が必要です"
+      }
+    },
+    {
+      "source": "需要清醒、健康且能量不少于 10 的伙伴",
+      "values": {
+        "zh-Hant": "需要清醒、健康且能量不少於 10 的夥伴",
+        "en": "needs a partner who is awake, healthy and has no less than 10 energy",
+        "ja": "には、目覚めていて健康で、エネルギーが 10 以上あるパートナーが必要です"
+      }
+    },
+    {
+      "source": "需要跨版本通信联展，目前仅作为Quest最终敌人。",
+      "values": {
+        "zh-Hant": "需要跨版本通信聯展，目前僅作爲Quest最終敵人。",
+        "en": "requires cross-version communication joint exhibition, and is currently only the final enemy of Quest.",
+        "ja": "はバージョン間通信共同出品が必要で、現状クエストの最後の敵のみ。"
+      }
+    },
+    {
+      "source": "需要道具：{0}",
+      "values": {
+        "zh-Hant": "需要道具：{0}",
+        "en": "Requires props: {0}",
+        "ja": "小道具が必要です: {0}"
+      }
+    },
+    {
+      "source": "飛龍獸",
+      "values": {
+        "zh-Hant": "飛龍獸",
+        "en": "Flying Dragon Beast",
+        "ja": "飛竜獣"
+      }
+    },
+    {
+      "source": "飞龙兽",
+      "values": {
+        "zh-Hant": "飛龍獸",
+        "en": "Airdramon",
+        "ja": "エアドラモン"
+      }
+    },
+    {
+      "source": "饱食",
+      "values": {
+        "zh-Hant": "飽食",
+        "en": "full",
+        "ja": "フル"
+      }
+    },
+    {
+      "source": "饱食 +{0}  力量 +{1}  体重 +{2}g",
+      "values": {
+        "zh-Hant": "飽食 +{0}  力量 +{1}  體重 +{2}g",
+        "en": "Fullness +{0} Strength +{1} Weight +{2}g",
+        "ja": "満腹度 +{0} 筋力 +{1} 体重 +{2}g"
+      }
+    },
+    {
+      "source": "饱食 FULL",
+      "values": {
+        "zh-Hant": "飽食 FULL",
+        "en": "FULL",
+        "ja": "フル"
+      }
+    },
+    {
+      "source": "饱食下降计时",
+      "values": {
+        "zh-Hant": "飽食下降計時",
+        "en": "Satiety decline timer",
+        "ja": "満腹感低下タイマー"
+      }
+    },
+    {
+      "source": "饱食度",
+      "values": {
+        "zh-Hant": "飽食度",
+        "en": "satiety",
+        "ja": "満腹感"
+      }
+    },
+    {
+      "source": "饱食心",
+      "values": {
+        "zh-Hant": "飽食心",
+        "en": "Full heart",
+        "ja": "ハートフル"
+      }
+    },
+    {
+      "source": "饱食＋1心 · 体重＋1g",
+      "values": {
+        "zh-Hant": "飽食＋1心 · 體重＋1g",
+        "en": "Full meal + 1 heart · Weight + 1g",
+        "ja": "満腹+ハート1個・重量+1g"
+      }
+    },
+    {
+      "source": "首次登场",
+      "values": {
+        "zh-Hant": "首次登場",
+        "en": "first appearance",
+        "ja": "初登場"
+      }
+    },
+    {
+      "source": "高级彩色",
+      "values": {
+        "zh-Hant": "高級彩色",
+        "en": "Advanced color",
+        "ja": "アドバンスカラー"
+      }
+    },
+    {
+      "source": "高阶进化依通算胜率判定：40%起25%、60%起50%、80%起必定。60～69%区间资料存在分歧，待实体机复核。",
+      "values": {
+        "zh-Hant": "高階進化依通算勝率判定：40%起25%、60%起50%、80%起必定。60～69%區間資料存在分歧，待實體機複覈。",
+        "en": "High-level evolution is determined based on the general winning rate: 25% from 40%, 50% from 60%, and certain from 80%. There are differences in the data in the 60-69% interval, which needs to be reviewed by the physical machine.",
+        "ja": "上位進化は一般勝率40％から25％、60％から50％、80％から確変で決定される。 60 ～ 69% の間隔でデータに差異があるため、物理マシンで確認する必要があります。"
+      }
+    },
+    {
+      "source": "黑球兽",
+      "values": {
+        "zh-Hant": "黑球獸",
+        "en": "Botamon",
+        "ja": "ボタモン"
+      }
+    },
+    {
+      "source": "黑球獸",
+      "values": {
+        "zh-Hant": "黑球獸",
+        "en": "Black Ball Beast",
+        "ja": "黒玉獣"
+      }
+    },
+    {
+      "source": "鼻涕兽",
+      "values": {
+        "zh-Hant": "鼻涕獸",
+        "en": "Numemon",
+        "ja": "ヌメモン"
+      }
+    },
+    {
+      "source": "鼻涕獸",
+      "values": {
+        "zh-Hant": "鼻涕獸",
+        "en": "Snot Beast",
+        "ja": "鼻水野獣"
+      }
+    }
+  ]
+}

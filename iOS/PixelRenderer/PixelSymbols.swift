@@ -35,6 +35,9 @@ enum PixelSymbols {
     }
 }
 struct PixelGlyph: View {
+    @Environment(\.gameLanguage) private var uiLanguage
+    private func l(_ source: String) -> String { GameLocalization.text(source,language: uiLanguage) }
+
     let id: String
     var color: Color = .primary
     var body: some View {

@@ -30,6 +30,7 @@ final class WorldViewModel: ObservableObject {
     private var lastPersist = Date.distantPast
     private var feedback = FeedbackEngine()
     private let notifications = NotificationCoordinator()
+    let cloud = CloudBackupCoordinator()
     private var animationTask: Task<Void, Never>?
 
     init() {

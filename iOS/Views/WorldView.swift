@@ -25,6 +25,9 @@ enum WorldPage: String, Identifiable, CaseIterable {
 }
 
 struct WorldView: View {
+    @Environment(\.gameLanguage) private var uiLanguage
+    private func l(_ source: String) -> String { GameLocalization.text(source,language: uiLanguage) }
+
     @ObservedObject var model: WorldViewModel
     @State private var page: WorldPage?
     @State private var selected: Int?
@@ -52,9 +55,9 @@ struct WorldView: View {
             if let failure = model.fatalError {
                 VStack(spacing: 20) {
                     Image(systemName: "externaldrive.badge.exclamationmark").font(.largeTitle).foregroundStyle(Palette.amber)
-                    Text("数据暂时无法载入").font(.title2.bold())
-                    Text(failure).foregroundStyle(Palette.muted)
-                    Text("已保留原存档。请检查存储空间或恢复文件后重新启动。为保护养成记录，此时不会创建新存档。")
+                    Text(l("数据暂时无法载入")).font(.title2.bold())
+                    Text(l(failure)).foregroundStyle(Palette.muted)
+                    Text(l("已保留原存档。请检查存储空间或恢复文件后重新启动。为保护养成记录，此时不会创建新存档。"))
                         .font(.subheadline)
                     if model.database != nil { BackupRestoreView(model: model) }
                 }.padding(28)
@@ -71,9 +74,9 @@ struct WorldView: View {
             NavigationStack {
                 DetailView(page: value,model: model)
                     .background(Palette.background)
-                    .navigationTitle(value.title).navigationBarTitleDisplayMode(.inline)
+                    .navigationTitle(l(value.title)).navigationBarTitleDisplayMode(.inline)
                     .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) { Button("完成") { model.cancelTrainingIfNeeded(value); page = nil } }
+                        ToolbarItem(placement: .topBarTrailing) { Button(l("完成")) { model.cancelTrainingIfNeeded(value); page = nil }.accessibilityIdentifier("pageDone") }
                     }
             }.presentationDragIndicator(.visible)
                 .onDisappear {
@@ -81,38 +84,38 @@ struct WorldView: View {
                     model.lockDeveloper()
                 }
         }
-        .alert("提示",isPresented: Binding(get: { model.alert != nil },set: { if !$0 { model.alert = nil } })) {
-            Button("知道了",role: .cancel) { model.alert = nil }
-        } message: { Text(model.alert ?? "") }
+        .alert(l("提示"),isPresented: Binding(get: { model.alert != nil },set: { if !$0 { model.alert = nil } })) {
+            Button(l("知道了"),role: .cancel) { model.alert = nil }
+        } message: { Text(l(model.alert ?? "")) }
     }
 
     private var welcome: some View {
         ScrollView {
             VStack(alignment: .leading,spacing: 30) {
                 header
-                Text("一个小小的屏幕。\n一个持续生长的世界。")
+                Text(l("一个小小的屏幕。\n一个持续生长的世界。"))
                     .font(.system(.largeTitle,design: .monospaced,weight: .bold)).foregroundStyle(Palette.mint)
                 Panel(title: "01 / CHOOSE YOUR BEGINNING") {
                     HStack {
                         Image(systemName: "circle.dotted.circle.fill").font(.system(size: 68)).foregroundStyle(Palette.mint)
                             .frame(width: 100,height: 100).background(Palette.background,in: RoundedRectangle(cornerRadius: 14))
                         VStack(alignment: .leading,spacing: 8) {
-                            Text("始源之蛋").font(.title2.bold())
-                            Text("8 秒孵化 · 幼年期 I").font(.caption).foregroundStyle(Palette.muted)
-                            Text("Digital Monster COLOR Ver.1").font(.system(.caption2,design: .monospaced)).foregroundStyle(Palette.amber)
+                            Text(l("始源之蛋")).font(.title2.bold())
+                            Text(l("8 秒孵化 · 幼年期 I")).font(.caption).foregroundStyle(Palette.muted)
+                            Text(l("Digital Monster COLOR Ver.1")).font(.system(.caption2,design: .monospaced)).foregroundStyle(Palette.amber)
                         }
                     }
-                    Text("从一枚蛋开始。喂食、清洁、互动训练，让你的照顾方式决定它的成长。离开后时间仍然流逝。")
+                    Text(l("从一枚蛋开始。喂食、清洁、互动训练，让你的照顾方式决定它的成长。离开后时间仍然流逝。"))
                         .font(.subheadline).foregroundStyle(Palette.muted)
                     GameButton(title: "孵化这枚数码蛋") { model.start(eggID: "dmc-v1-egg") }
                         .accessibilityIdentifier("startHatching")
                 }
                 Panel(title: "当前内容 / 开发中") {
-                    Text("以 Digital Monster COLOR Ver.1 为基准：四心养成、A/B 上下段训练、8区顺序闯关。原版角色像素，默认彩色；设置可切换经典灰绿色 LCD。")
+                    Text(l("以 Digital Monster COLOR Ver.1 为基准：四心养成、A/B 上下段训练、8区顺序闯关。原版角色像素，默认彩色；设置可切换经典灰绿色 LCD。"))
                         .font(.footnote).foregroundStyle(Palette.muted)
-                    Button("查看机型与规则状态") { page = .devices }
+                    Button(l("查看机型与规则状态")) { page = .devices }
                 }
-                Text("OFFLINE FIRST  ·  NO ADS  ·  REAL TIME")
+                Text(l("OFFLINE FIRST  ·  NO ADS  ·  REAL TIME"))
                     .font(.system(.caption2,design: .monospaced)).tracking(1).foregroundStyle(Palette.muted)
             }.pageStyle().padding(.top,20)
         }
@@ -141,7 +144,7 @@ struct WorldView: View {
                     }
                     HStack(spacing: 10) {
                         Circle().fill(Palette.mint).frame(width: 5,height: 5)
-                        Text(model.message).font(.system(.caption,design: .monospaced)).foregroundStyle(Palette.muted).lineLimit(2)
+                        Text(l(model.message)).font(.system(.caption,design: .monospaced)).foregroundStyle(Palette.muted).lineLimit(2)
                         Spacer(minLength: 0)
                     }.frame(minHeight: 30).accessibilityIdentifier("worldMessage")
                     if !model.isOriginal {
@@ -150,38 +153,38 @@ struct WorldView: View {
                             Button { selected = index; activate(index) } label: {
                                 VStack(spacing: 7) {
                                     Image(systemName: actions[index].2).font(.system(size: 20,weight: .light))
-                                    Text(actions[index].0).font(.system(size: 9,weight: .bold,design: .monospaced)).lineLimit(1).minimumScaleFactor(0.65)
+                                    Text(l(actions[index].0)).font(.system(size: 9,weight: .bold,design: .monospaced)).lineLimit(1).minimumScaleFactor(0.65)
                                 }.frame(maxWidth: .infinity,minHeight: 65)
                                     .foregroundStyle(actions[index].0 == "CALL" && model.hasCall ? Palette.amber : selected == index ? Palette.mint : Palette.muted)
                                     .background(selected == index ? Palette.mint.opacity(0.08) : Palette.panel,in: RoundedRectangle(cornerRadius: 11))
                                     .overlay(RoundedRectangle(cornerRadius: 11).stroke(selected == index ? Palette.mint.opacity(0.65) : Palette.line,lineWidth: 1))
-                            }.buttonStyle(.plain).accessibilityLabel(actions[index].0 == "CALL" ? (model.hasCall ? "养成呼叫已点亮" : "养成呼叫未点亮") : actions[index].1)
+                            }.buttonStyle(.plain).accessibilityLabel(l(actions[index].0 == "CALL" ? (model.hasCall ? "养成呼叫已点亮" : "养成呼叫未点亮") : actions[index].1))
                                 .accessibilityIdentifier("action-\(actions[index].0)")
                                 .disabled(model.isOriginal && actions[index].0 == "CALL")
                         }
                     }
                     }
                     if model.isOriginal {
-                        if model.hasCall && !model.isClassic { Text(model.callMessage).font(.caption).foregroundStyle(Palette.amber) }
+                        if model.hasCall && !model.isClassic { Text(l(model.callMessage)).font(.caption).foregroundStyle(Palette.amber) }
                         HStack {
                             utility("DIGIDEX",model.text(.digidex),page: .digidex)
                             utility("STORAGE",model.text(.history),page: .storage)
                             utility("SETTINGS",model.text(.settings),page: .settings)
                             utility("DIGIVICE",model.text(.devices),page: .devices)
                         }
-                        Button("手机连接对战") { page = .connection }.accessibilityIdentifier("action-CONNECTION")
+                        Button(l("手机连接对战")) { page = .connection }.accessibilityIdentifier("action-CONNECTION")
                     }
                     if !model.isOriginal { hardwareButtons }
                     #if DEBUG
                     if ProcessInfo.processInfo.arguments.contains("--ui-testing") {
-                        Text("meals=\(state.pet.stats.meals);weight=\(state.pet.stats.weight);training=\(state.pet.stats.trainingAttempts);dp=\(state.pet.stats.dp);style=\(state.playStyle.rawValue);offset=\(state.sandboxOffsetSeconds ?? 0);egg=\(state.pet.isEgg);slots=\(model.libraryIndex.slots.count);font=\(UIFont(name: PixelFont.name(model.language),size: 12) != nil)")
+                        Text(l("meals=\(state.pet.stats.meals);weight=\(state.pet.stats.weight);training=\(state.pet.stats.trainingAttempts);dp=\(state.pet.stats.dp);style=\(state.playStyle.rawValue);offset=\(state.sandboxOffsetSeconds ?? 0);egg=\(state.pet.isEgg);slots=\(model.libraryIndex.slots.count);font=\(UIFont(name: PixelFont.name(model.language),size: 12) != nil)"))
                             .font(.system(size: 1)).frame(height: 1).accessibilityIdentifier("gameStateProbe")
                     }
                     #endif
                     HStack {
-                        Text("LOCAL SAVE / AUTO").font(.system(size: 9,design: .monospaced))
+                        Text(l("LOCAL SAVE / AUTO")).font(.system(size: 9,design: .monospaced))
                         Spacer()
-                        Text(model.isSandbox ? "SANDBOX / 独立测试档" : state.developerModifiedAt != nil ? "开发测试档" : model.isOriginal ? "v0.6.0 · COLOR Ver.1" : "旧版实验规则").font(.system(size: 9,design: .monospaced))
+                        Text(l(model.isSandbox ? "SANDBOX / 独立测试档" : state.developerModifiedAt != nil ? "开发测试档" : model.isOriginal ? "v0.6.0 · COLOR Ver.1" : "旧版实验规则")).font(.system(size: 9,design: .monospaced))
                     }.foregroundStyle(Palette.muted.opacity(0.7))
                 }
             }.pageStyle()
@@ -190,18 +193,18 @@ struct WorldView: View {
     private var header: some View {
         HStack(alignment: .center) {
             VStack(alignment: .leading,spacing: 3) {
-                Text("DIGIMON").font(.system(size: 23,weight: .black,design: .monospaced)).tracking(3).foregroundStyle(Palette.mint)
+                Text(l("DIGIMON")).font(.system(size: 23,weight: .black,design: .monospaced)).tracking(3).foregroundStyle(Palette.mint)
                     .contentShape(Rectangle()).onLongPressGesture(minimumDuration: 2) {
                         model.lockDeveloper(); page = .developer
                     }.accessibilityIdentifier("developer-entry")
-                Text("D I G I T A L   W O R L D").font(.system(size: 9,weight: .medium,design: .monospaced)).foregroundStyle(Palette.muted)
+                Text(l("D I G I T A L   W O R L D")).font(.system(size: 9,weight: .medium,design: .monospaced)).foregroundStyle(Palette.muted)
             }
             Spacer()
             VStack(alignment: .trailing,spacing: 4) {
                 TimelineView(.periodic(from: .now,by: 1)) { context in
                     Text(context.date,style: .time).font(.system(.subheadline,design: .monospaced,weight: .semibold))
                 }
-                Text("● OFFLINE READY").font(.system(size: 8,design: .monospaced)).foregroundStyle(Palette.mint)
+                Text(l("● OFFLINE READY")).font(.system(size: 8,design: .monospaced)).foregroundStyle(Palette.mint)
             }
         }.padding(.vertical,12)
     }
@@ -209,26 +212,26 @@ struct WorldView: View {
     private func device(_ state: GameState) -> some View {
         VStack(spacing: 14) {
             HStack {
-                bolt; Spacer(); Text("D I G I T A L   M O N S T E R").font(.system(size: 9,weight: .bold,design: .monospaced)).foregroundStyle(Palette.muted); Spacer(); bolt
+                bolt; Spacer(); Text(l("D I G I T A L   M O N S T E R")).font(.system(size: 9,weight: .bold,design: .monospaced)).foregroundStyle(Palette.muted); Spacer(); bolt
             }
             HStack {
-                Text(model.display == .lcd ? "CLASSIC LCD" : model.isOriginal ? "COLOR Ver.1" : "COLOR LAB").font(.system(size: 10,weight: .black,design: .monospaced)).foregroundStyle(Palette.amber)
+                Text(l(model.display == .lcd ? "CLASSIC LCD" : model.isOriginal ? "COLOR Ver.1" : "COLOR LAB")).font(.system(size: 10,weight: .black,design: .monospaced)).foregroundStyle(Palette.amber)
                 Spacer()
-                Text(state.pet.life == .frozen ? "❄ PAUSED" : state.pet.life == .dead ? "MEMORY" : state.pet.sleeping ? "SLEEPING" : "● LIVE")
+                Text(l(state.pet.life == .frozen ? "❄ PAUSED" : state.pet.life == .dead ? "MEMORY" : state.pet.sleeping ? "SLEEPING" : "● LIVE"))
                     .font(.system(size: 9,weight: .bold,design: .monospaced)).foregroundStyle(Palette.mint)
             }
             VStack(spacing: 0) {
                 HStack {
-                    Text(state.pet.isEgg ? "DIGI-EGG" : model.species?.name.uppercased() ?? "UNKNOWN")
+                    Text(l(state.pet.isEgg ? "DIGI-EGG" : model.species?.name.uppercased() ?? "UNKNOWN"))
                     Spacer()
-                    Text(state.pet.isEgg ? "HATCHING" : "\(state.pet.activeMinutes / 1440) D · \(model.species?.stage.rawValue.uppercased() ?? "")")
+                    Text(l(state.pet.isEgg ? "HATCHING" : "\(state.pet.activeMinutes / 1440) D · \(model.species?.stage.rawValue.uppercased() ?? "")"))
                 }.font(.system(size: 9,weight: .bold,design: .monospaced)).foregroundStyle(Palette.screenInk(model.display))
                     .padding(.horizontal,12).padding(.top,10).background(Palette.screenSurface(model.display))
                 PetScreen(model: model)
                 HStack {
-                    Text(state.pet.isEgg ? (model.isOriginal ? "破壳倒计时 \(model.hatchRemainingSeconds) SEC" : "破壳倒计时 \(model.hatchRemainingMinutes) MIN") : "\(state.pet.stats.weight) g")
+                    Text(l(state.pet.isEgg ? (model.isOriginal ? "破壳倒计时 \(model.hatchRemainingSeconds) SEC" : "破壳倒计时 \(model.hatchRemainingMinutes) MIN") : "\(state.pet.stats.weight) g"))
                     Spacer()
-                    Text("DP \(state.pet.stats.dp)")
+                    Text(l("DP \(state.pet.stats.dp)"))
                 }.font(.system(size: 8,weight: .bold,design: .monospaced)).foregroundStyle(Palette.screenInk(model.display))
                     .padding(10).background(Palette.screenSurface(model.display))
             }.clipShape(RoundedRectangle(cornerRadius: 6))
@@ -258,18 +261,18 @@ struct WorldView: View {
     private func hardware(_ label: String,_ caption: String,action: @escaping () -> Void) -> some View {
         VStack(spacing: 7) {
             Button(action: action) {
-                Text(label).font(.system(size: 19,weight: .bold,design: .monospaced))
+                Text(l(label)).font(.system(size: 19,weight: .bold,design: .monospaced))
                     .foregroundStyle(label == "B" ? Palette.background : Palette.mint)
                     .frame(width: 58,height: 48)
                     .background(label == "B" ? Palette.mint : Palette.panel,in: Capsule())
                     .overlay(Capsule().stroke(Palette.line,lineWidth: 1))
                     .shadow(color: .black.opacity(0.5),radius: 0,x: 0,y: 4)
-            }.buttonStyle(.plain).accessibilityLabel("\(label)键，\(caption)").accessibilityIdentifier("hardware-\(label)")
-            Text(caption).font(.system(size: 9,design: .monospaced)).foregroundStyle(Palette.muted)
+            }.buttonStyle(.plain).accessibilityLabel(l("\(label)键，\(caption)")).accessibilityIdentifier("hardware-\(label)")
+            Text(l(caption)).font(.system(size: 9,design: .monospaced)).foregroundStyle(Palette.muted)
         }
     }
     private func utility(_ id: String,_ title: String,page destination: WorldPage) -> some View {
-        Button(title) { page = destination }.font(.caption)
+        Button(l(title)) { page = destination }.font(.caption)
             .frame(maxWidth: .infinity).accessibilityIdentifier("action-\(id)")
     }
     private func activate(_ index: Int) {

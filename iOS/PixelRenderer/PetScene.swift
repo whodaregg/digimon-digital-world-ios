@@ -181,6 +181,9 @@ final class PetScene: SKScene {
 }
 
 struct PetScreen: View {
+    @Environment(\.gameLanguage) private var uiLanguage
+    private func l(_ source: String) -> String { GameLocalization.text(source,language: uiLanguage) }
+
     @ObservedObject var model: WorldViewModel
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var scene = PetScene(size: CGSize(width: 320,height: 240))
@@ -190,10 +193,10 @@ struct PetScreen: View {
                        options: [.ignoresSiblingOrder])
                 .aspectRatio(4/3,contentMode: .fit)
                 .accessibilityIdentifier("homePetScreen")
-                .accessibilityLabel(model.state?.pet.isEgg == true ? "孵化中的数码蛋" : "像素伙伴 \(model.species?.name ?? "")")
+                .accessibilityLabel(l(model.state?.pet.isEgg == true ? "孵化中的数码蛋" : "像素伙伴 \(model.species?.name ?? "")"))
             #if DEBUG
             if ProcessInfo.processInfo.arguments.contains("--ui-testing") {
-                Text(scene.diagnostics).font(.system(size: 1)).frame(height: 1)
+                Text(l(scene.diagnostics)).font(.system(size: 1)).frame(height: 1)
                     .accessibilityIdentifier("homeMotionProbe")
             }
             #endif

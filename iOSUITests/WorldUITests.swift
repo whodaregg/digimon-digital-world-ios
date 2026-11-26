@@ -1,6 +1,19 @@
 import XCTest
 
 final class WorldUITests: XCTestCase {
+    func testEnglishSettingsAndCloudBackupEntry() throws {
+        let app = launch(); openSettings(app)
+        let language = app.buttons["appLanguage"]
+        scrollTo(language,in: app); language.tap()
+        app.buttons["English"].tap()
+        let cloud = app.buttons["cloudChooseFolder"]
+        scrollTo(cloud,in: app)
+        XCTAssertTrue(cloud.label.contains("iCloud Drive"))
+        XCTAssertFalse(cloud.label.contains("选择"))
+        app.buttons["pageDone"].tap()
+        openSettings(app)
+        XCTAssertTrue(app.buttons["play-style-classic"].label.contains("CLASSIC"))
+    }
     override func setUpWithError() throws { continueAfterFailure = false }
     func testHatchingAndHardwareNavigation() throws {
         let app = launch(hatched: false)

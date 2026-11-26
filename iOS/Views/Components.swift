@@ -17,11 +17,14 @@ enum Palette {
 }
 
 struct Panel<Content: View>: View {
+    @Environment(\.gameLanguage) private var uiLanguage
+    private func l(_ source: String) -> String { GameLocalization.text(source,language: uiLanguage) }
+
     let title: String
     @ViewBuilder var content: Content
     var body: some View {
         VStack(alignment: .leading,spacing: 16) {
-            Text(title).font(.system(.caption,design: .monospaced,weight: .bold)).tracking(2).foregroundStyle(Palette.mint)
+            Text(l(title)).font(.system(.caption,design: .monospaced,weight: .bold)).tracking(2).foregroundStyle(Palette.mint)
             content
         }
         .frame(maxWidth: .infinity,alignment: .leading).padding(20)
@@ -31,15 +34,18 @@ struct Panel<Content: View>: View {
 }
 
 struct Metric: View {
+    @Environment(\.gameLanguage) private var uiLanguage
+    private func l(_ source: String) -> String { GameLocalization.text(source,language: uiLanguage) }
+
     let name: String
     let value: Int
     var color: Color = Palette.mint
     var body: some View {
         VStack(alignment: .leading,spacing: 7) {
             HStack {
-                Text(name).foregroundStyle(Palette.muted)
+                Text(l(name)).foregroundStyle(Palette.muted)
                 Spacer(minLength: 4)
-                Text("\(value)").foregroundStyle(color)
+                Text(l("\(value)")).foregroundStyle(color)
             }.font(.system(.caption2,design: .monospaced,weight: .semibold))
             GeometryReader { proxy in
                 ZStack(alignment: .leading) {
@@ -47,45 +53,54 @@ struct Metric: View {
                     Rectangle().fill(color).frame(width: proxy.size.width * CGFloat(min(100,max(0,value)))/100)
                 }
             }.frame(height: 4)
-        }.accessibilityElement(children: .ignore).accessibilityLabel("\(name)，\(value)，满值100")
+        }.accessibilityElement(children: .ignore).accessibilityLabel(l("\(name)，\(value)，满值100"))
     }
 }
 
 struct Readout: View {
+    @Environment(\.gameLanguage) private var uiLanguage
+    private func l(_ source: String) -> String { GameLocalization.text(source,language: uiLanguage) }
+
     let name: String
     let value: String
     var body: some View {
         HStack(alignment: .firstTextBaseline) {
-            Text(name).foregroundStyle(Palette.muted)
+            Text(l(name)).foregroundStyle(Palette.muted)
             Spacer()
-            Text(value).multilineTextAlignment(.trailing)
+            Text(l(value)).multilineTextAlignment(.trailing)
         }.font(.system(.subheadline,design: .monospaced))
     }
 }
 
 struct HeartReadout: View {
+    @Environment(\.gameLanguage) private var uiLanguage
+    private func l(_ source: String) -> String { GameLocalization.text(source,language: uiLanguage) }
+
     let name: String
     let value: Int
     var body: some View {
         HStack {
-            Text(name).foregroundStyle(Palette.muted)
+            Text(l(name)).foregroundStyle(Palette.muted)
             Spacer()
             ForEach(0..<4,id: \.self) { index in
                 Image(systemName: index < value ? "heart.fill" : "heart")
                     .foregroundStyle(Palette.mint)
             }
         }.font(.subheadline).accessibilityElement(children: .ignore)
-            .accessibilityLabel("\(name)，\(value)颗心，满值4")
+            .accessibilityLabel(l("\(name)，\(value)颗心，满值4"))
     }
 }
 
 struct GameButton: View {
+    @Environment(\.gameLanguage) private var uiLanguage
+    private func l(_ source: String) -> String { GameLocalization.text(source,language: uiLanguage) }
+
     let title: String
     var role: ButtonRole? = nil
     var action: () -> Void
     var body: some View {
         Button(role: role,action: action) {
-            Text(title).font(.system(.subheadline,design: .monospaced,weight: .bold))
+            Text(l(title)).font(.system(.subheadline,design: .monospaced,weight: .bold))
                 .frame(maxWidth: .infinity,minHeight: 28).padding(12)
         }.buttonStyle(.borderedProminent).tint(Palette.mint).foregroundStyle(Palette.background)
     }

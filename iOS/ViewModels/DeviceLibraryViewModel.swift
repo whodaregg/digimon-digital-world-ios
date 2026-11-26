@@ -2,6 +2,18 @@ import Foundation
 import DigitalWorldCore
 
 extension WorldViewModel {
+    func restoreArchive(_ archive: DeviceArchive) {
+        guard let library else { return }
+        do {
+            try saveCurrentSlot()
+            let previous = libraryIndex.activeID
+            let selected = try archive.restore(library: library,index: &libraryIndex,at: Date())
+            // activateSlot must still save the previous device through its original store.
+            libraryIndex.activeID = previous
+            if let selected { activateSlot(selected) }
+            cloud.notice = "设备合集已恢复为独立档案，原设备和云端版本均已保留。"
+        } catch { alert = error.localizedDescription }
+    }
     var activeSlot: DeviceSlot? { libraryIndex.slots.first { $0.id == libraryIndex.activeID } }
     var formalSlots: [DeviceSlot] { libraryIndex.slots.filter { $0.style.isFormal } }
     var isSandbox: Bool { state?.playStyle == .sandbox }

@@ -19,6 +19,9 @@ final class SpeciesPreviewScene: SKScene {
     }
 }
 struct SpeciesPreview: View {
+    @Environment(\.gameLanguage) private var uiLanguage
+    private func l(_ source: String) -> String { GameLocalization.text(source,language: uiLanguage) }
+
     let id: String
     var mode: DisplayMode = .color
     @State private var action = "idle"
@@ -28,9 +31,9 @@ struct SpeciesPreview: View {
     var body: some View {
         VStack {
             SpriteView(scene: configured,options: [.allowsTransparency]).frame(height: 180)
-            Picker("动作预览",selection: $action) { ForEach(actions,id: \.self) { Text($0).tag($0) } }.accessibilityIdentifier("animationPreview")
+            Picker(l("动作预览"),selection: $action) { ForEach(actions,id: \.self) { Text(l($0)).tag($0) } }.accessibilityIdentifier("animationPreview")
             if PixelAtlas.manifest?.sprites[id]?.animations[action] == nil {
-                Text("此动作使用已有原图姿势回退，非新增官方动画帧。")
+                Text(l("此动作使用已有原图姿势回退，非新增官方动画帧。"))
                     .font(.caption2).foregroundStyle(Palette.muted)
             }
         }

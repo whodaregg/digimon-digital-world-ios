@@ -45,6 +45,9 @@ final class TrainingScene: SKScene {
     }
 }
 struct TrainingPixelScreen: View {
+    @Environment(\.gameLanguage) private var uiLanguage
+    private func l(_ source: String) -> String { GameLocalization.text(source,language: uiLanguage) }
+
     @ObservedObject var model: WorldViewModel
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var scene = TrainingScene(size: CGSize(width: 320,height: 160))
