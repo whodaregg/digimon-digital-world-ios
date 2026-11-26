@@ -72,7 +72,6 @@ struct PlaySettingsView: View {
     @ObservedObject var model: WorldViewModel
     @State private var confirmReset = false
     @State private var minutes = 60
-    @State private var showMotion = false
     var body: some View {
         Group {
         if let state = model.state {
@@ -107,7 +106,12 @@ struct PlaySettingsView: View {
                 }
             }
             if model.isOriginal && !model.isClassic {
-                Button("运动输入训练") { showMotion = true }.accessibilityIdentifier("sensorTrainingSettings")
+                NavigationLink("运动输入训练") {
+                    MotionTrainingView(model: model)
+                        .background(Palette.background)
+                        .navigationTitle("运动输入训练")
+                        .navigationBarTitleDisplayMode(.inline)
+                }.accessibilityIdentifier("sensorTrainingSettings")
             }
             if model.isSandbox {
                 Panel(title: "SANDBOX") {
@@ -124,9 +128,6 @@ struct PlaySettingsView: View {
                     .font(.caption).foregroundStyle(Palette.muted)
             }
         }
-        }.sheet(isPresented: $showMotion) {
-            NavigationStack { MotionTrainingView(model: model).padding().background(Palette.background).navigationTitle("运动输入训练")
-                .toolbar { ToolbarItem(placement: .topBarTrailing) { Button(l("完成")) { showMotion = false } } } }
         }
         .confirmationDialog(l("确认重置当前设备？"),isPresented: $confirmReset,titleVisibility: .visible) {
             Button(l("确认重置"),role: .destructive) { model.resetCurrentDevice() }

@@ -17,9 +17,11 @@ final class WorldUITests: XCTestCase {
         let training = app.buttons["sensorTrainingSettings"]
         scrollTo(training, in: app); training.tap()
         let start = app.buttons["beginSensorTraining"]
-        XCTAssertTrue(start.waitForExistence(timeout: 5)); start.tap()
+        XCTAssertTrue(start.waitForExistence(timeout: 5))
+        XCTAssertTrue(start.isHittable && start.isEnabled)
+        start.tap()
         let input = app.buttons["sensorVirtualA"]
-        XCTAssertTrue(input.waitForExistence(timeout: 5))
+        XCTAssertTrue(input.waitForExistence(timeout: 5), app.debugDescription)
         for _ in 0..<5 { input.tap() }
         XCTAssertTrue(app.staticTexts["sensorTrainingResult"].waitForExistence(timeout: 5))
     }

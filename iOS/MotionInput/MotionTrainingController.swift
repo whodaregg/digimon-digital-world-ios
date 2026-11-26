@@ -98,6 +98,7 @@ struct MotionTrainingView: View {
     @Environment(\.scenePhase) private var phase
     @State private var sessionID: UUID?
     @State private var walkingKey = "A"
+    @State private var trainingError: String?
 
     private var mode: SensorTrainingMode { model.state?.settings.presentation.sensorTrainingMode ?? .virtual }
 
@@ -116,6 +117,7 @@ struct MotionTrainingView: View {
                 Text("运动模式仅在训练时使用传感器。虚拟按钮可随时替代；本页只读取运动数据。")
                     .font(.footnote).foregroundStyle(Palette.muted)
                 if !motion.notice.isEmpty { Text(motion.notice).font(.caption) }
+                if let trainingError { Text(trainingError).font(.caption).foregroundStyle(Palette.amber) }
                 if mode == .walking { Text("实测步数 \(motion.steps)").accessibilityIdentifier("realTrainingSteps") }
                 if sessionID == nil {
                     GameButton(title: "开始运动训练") { begin() }
@@ -135,15 +137,19 @@ struct MotionTrainingView: View {
         .onChange(of: model.state?.training?.id) { _, id in
             if let sessionID, id != sessionID { motion.stop(); self.sessionID = nil }
         }
-        .onChange(of: phase) { _, value in if value != .active { abandon() } }
+        .onChange(of: phase) { _, value in if value == .background { abandon() } }
         .onDisappear { abandon() }
     }
 
     private func begin() {
         guard model.isOriginal, !model.isClassic, model.state?.training == nil else { return }
-        model.openCareCommand()
+        trainingError = nil
         model.beginTraining()
-        guard let id = model.state?.training?.id else { return }
+        guard let id = model.state?.training?.id else {
+            trainingError = model.alert
+            model.alert = nil
+            return
+        }
         sessionID = id
         motion.stepKey = walkingKey
         motion.onInput = { [weak model] key in

@@ -80,7 +80,7 @@ struct WorldView: View {
                     }
             }.presentationDragIndicator(.visible)
                 .onDisappear {
-                    if model.state?.training != nil { model.cancelTraining() }
+                    model.cancelTrainingIfNeeded(value)
                     model.lockDeveloper()
                 }
         }
