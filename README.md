@@ -10,13 +10,16 @@ v0.6加入LCD内A/B/C养成、独立设备收藏、经典/增强/Sandbox隔离�
 
 ## 模拟器实测截图
 
-以下为v0.3在iPhone 16 Pro / iOS 18.5的实际界面测试截图，展示默认彩色、固定顺序Quest和可选灰绿色LCD。
+以下为v0.6在iPhone 16 Pro / iOS 18.5的实际界面测试截图，来自已通过的最终源码`f1ff368`，展示大角色、逐战演出与可选灰绿色LCD。角色为原版归档图集，外壳、背景及特效为重绘。
 
 <p>
-<img src="Documentation/Screenshots/ver1-color-home.png" width="220" alt="原版彩色角色与四心养成">
-<img src="Documentation/Screenshots/ver1-quest-areas.png" width="220" alt="Ver.1固定敌人顺序闯关">
-<img src="Documentation/Screenshots/ver1-lcd-preview.png" width="220" alt="三种显示模式直接选择与灰绿色预览">
+<img src="Documentation/Screenshots/lcd-home-walk.png" width="220" alt="彩色LCD大角色与右侧A/B/C">
+<img src="Documentation/Screenshots/lcd-quest-attack-1.png" width="220" alt="首区第一战原版角色出招与技能弹">
+<img src="Documentation/Screenshots/lcd-quest-hit.png" width="220" alt="逐战骷髅命中反馈">
+<img src="Documentation/Screenshots/lcd-gray-green.png" width="220" alt="自由切换经典灰绿色LCD">
 </p>
+
+本轮80项核心、13项原生界面测试及Debug/Release编译全部通过。完整结果、更多截图和真实设备待验范围见[实测记录](Documentation/VALIDATION.md)；旧版截图继续保留供历史对照。
 
 ## 下载IPA
 
@@ -56,6 +59,7 @@ swift test
 python3 Scripts/build_content.py
 python3 Scripts/validate_assets.py
 python3 Scripts/generate_project.py
+python3 Scripts/validate_project.py
 git diff --exit-code
 ```
 

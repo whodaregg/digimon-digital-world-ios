@@ -1,5 +1,37 @@
 # 实测记录
 
+## v0.6 LCD养成、独立设备与动画
+
+记录日期：2026-11-26（Australia/Sydney）。保留既有项目、旧档和原图，在原工程上续做。最终源码为`f1ff3682fcb972536e28248fa0447fd50ee6e8aa`，[最终验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45736796091)已全部通过。其后仅整理文档与实测截图，不修改应用、核心或测试源码。
+
+- 本地Linux / Swift 6.0.3及GitHub macOS 15：**80项核心测试通过，0失败**。
+- Xcode 16.4 / iPhone 16 Pro / iOS 18.5 / arm64：**13项原生UI测试通过，0失败**，用例执行398.603秒，另有模拟器启动和测试基础设施耗时。
+- Debug应用与测试runner、通用iOS Simulator目标的Release构建通过。同型号设备的Sandbox来源由核心测试覆盖；原生用例验证返回时保留经典模式，以及指定角色、道具、力量和恢复调试快照的完整流程。
+- 18份角色PNG的SHA-256、尺寸、非空帧引用均通过，保持归档原始字节；三份像素字体SHA-256与出处记录一致。
+- 内容和Xcode工程重新生成无差异；像素字体注册、字体资源、本地网络和运动权限声明、Game Center默认关闭检查通过。
+
+### 覆盖范围
+
+核心覆盖离线成长与分支、四心喂养/训练/睡眠/伤势/死亡、Cold和备份、逐场Quest与回放、存档迁移/损坏/容量保护、按键组合、独立设备与Sandbox、生命周期/图鉴、通知预测、通信双方一致性与防重放，以及设备钟面不快进成长。
+
+13项原生用例实际操作：经典按键及隐藏数据限制；访问码与后台重新上锁；开发指定角色、道具、力量与恢复；设备新增/切换；动态图鉴；孵化/时钟/状态；大角色走动/转向/开心与真实字体注册；LCD喂食/训练并核对状态；旧实验档备份恢复；三种配色；首区三场连续攻击/回避/命中/胜败；重置取消/确认；Sandbox推进后返回正式设备。
+
+前轮检查曾发现LCD容器覆盖子控件标识、空视图承载弹窗/确认、行点击范围、角色朝向及生成工程丢失字体声明等实际问题，已修复并加入对应验收。早先一次主分支任务在`simctl list`超时，发生于原生编译之前；重跑该iOS任务后13项全部通过，不将基础设施失败误报为应用测试通过。
+
+### 本轮实际截图
+
+下列PNG从最终任务的`native-ios-validation`结果包直接提取，保持测试附件原始字节，未用设计图代替。结果包SHA-256已核对为`79c92e7cdd18b3570a78327a4e037a893173ee91c89a1e7276c79eea6e188796`。
+
+- 主页[走动](Screenshots/lcd-home-walk.png)、[转向](Screenshots/lcd-home-turn.png)、[开心](Screenshots/lcd-home-happy.png)。测试同时读取实际节点位置和朝向，截图只是其中的定格。
+- 首区[第一战](Screenshots/lcd-quest-attack-1.png)、[第二战](Screenshots/lcd-quest-attack-2.png)、[第三战](Screenshots/lcd-quest-attack-3.png)出招，以及[命中标记](Screenshots/lcd-quest-hit.png)、[区域通关](Screenshots/lcd-quest-clear.png)。
+- [灰绿色LCD](Screenshots/lcd-gray-green.png)、[动态图鉴](Screenshots/lcd-digidex.png)、[Sandbox开发数值](Screenshots/lcd-developer-stats.png)、[旧实验档恢复](Screenshots/lcd-legacy-preserved.png)。
+
+### 验证边界
+
+本轮不生成IPA，也未运行真机打包工作流。模拟器编译和交互通过不等于真实iPhone安装验收。两台手机附近连接、Game Center账号匹配、虚拟A/B/C多指与触觉、运动传感器、通知实际送达、iOS17最低版本、多屏幕/无障碍和长期性能仍按[真机清单](DEVICE_CHECKLIST.md)待验。其它世代、联展和完整翻译等未实现项目见[28项状态与依赖](FEATURE_STATUS.md)。
+
+以下v0.4/v0.3均为历史记录，其IPA和截图不代表v0.6。
+
 ## v0.4.0 真机IPA
 
 [真机打包任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45695925289)已成功，构建源码为`2ac41ec9aa1b2fd6cdf4609c2fdcda45ec397e14`；游戏应用、核心与测试源码与下述已验证版本保持一致。
