@@ -1,5 +1,16 @@
 # 实测记录
 
+## v0.7 四语、云盘、Ver.2与喂食显示
+
+记录日期：2026-11-27（Australia/Sydney）。验证源码`8715ccef0c50bfee6c30bf405017236a25dc222f`，[统一验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45845789444)正在运行。
+
+- 本地Linux及GitHub macOS 15：85项核心测试通过，0失败；Debug应用和原生测试runner、Release编译通过。
+- 新增核心覆盖设备合集完整恢复、保留原设备、损坏拒绝、Sandbox来源绑定、插值翻译及原版名称、Ver.2独立蛋与48次训练分支、跨版本双方联展及收据防重放。
+- 35份原版角色PNG通过尺寸、SHA-256和非空帧引用检查；857条翻译/术语通过语言列与插值校验。工程重新生成结果与提交一致。
+- 原生界面包括既有13项、三种非默认语言与字体、云盘入口、Ver.2孵化，以及进食/拒食场景和未多扣食物的检查；最终结果待本任务结束后记录。
+
+云盘真实跨手机同步、Game Center团队/账号/匹配、实体机物理通信及其它世代资料验证不由模拟器结果替代。完整范围见FEATURE_STATUS.md、CLOUD_BACKUP.md及LOCALIZATION.md。本轮未生成新IPA，已发布v0.6.0仍是旧包。
+
 ## v0.6.0 真机IPA
 
 记录日期：2026-11-27（Australia/Sydney）。收到用户“打包”指示后，[真机打包任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45836630755)成功，构建源码为`48be213ff311ec4cccddbd15ade067bb92c4aeab`；应用、核心、工程与测试源码与下述80项核心及13项UI通过的版本一致。本次仅打包和更新文档。
@@ -76,7 +87,7 @@
 
 记录日期：2026-11-26（Australia/Sydney）。本页记录实际执行结果，不代表真机发行或实体机逐项一致性验收完成。
 
-[本轮验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45684163845)，应用及测试源码原验证提交为 `fec9074067f9940ddc115508d2bca81e4f6def62`，在中文提交历史中对应 `dd37719b9c176da139e1c8e8bf009434d4f2ad41`，两者文件树哈希一致。后续截图和文档整理不修改应用、规则或测试源码；提交说明中文化只修改历史提交元数据，并逐提交校验文件树一致。
+[本轮验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45685763845)，应用及测试源码原验证提交为 `fec9074067f9940ddc115508d2bca81e4f6def62`，在中文提交历史中对应 `dd37719b9c176da139e1c8e8bf009434d4f2ad41`，两者文件树哈希一致。后续截图和文档整理不修改应用、规则或测试源码；提交说明中文化只修改历史提交元数据，并逐提交校验文件树一致。
 
 ### 游戏核心与素材
 

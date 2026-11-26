@@ -1,36 +1,294 @@
 {
-  "完成": {"en":"Done","ja":"完了"},
-  "已指定 {0}": {"en":"Selected {0}","ja":"{0}を選択しました"},
-  "已发放 {0} × {1}": {"en":"Granted {0} × {1}","ja":"{1}を{0}個付与しました"},
-  "访问码不正确": {"en":"Incorrect access code","ja":"アクセスコードが正しくありません"},
-  "baby1": {"zh-Hans":"幼年期Ⅰ","zh-Hant":"幼年期Ⅰ","en":"Baby I","ja":"幼年期Ⅰ"},
-  "baby2": {"zh-Hans":"幼年期Ⅱ","zh-Hant":"幼年期Ⅱ","en":"Baby II","ja":"幼年期Ⅱ"},
-  "rookie": {"zh-Hans":"成长期","zh-Hant":"成長期","en":"Rookie","ja":"成長期"},
-  "champion": {"zh-Hans":"成熟期","zh-Hant":"成熟期","en":"Champion","ja":"成熟期"},
-  "ultimate": {"zh-Hans":"完全体","zh-Hant":"完全體","en":"Ultimate","ja":"完全体"},
-  "mega": {"zh-Hans":"究极体","zh-Hant":"究極體","en":"Mega","ja":"究極体"},
-  "ultra": {"zh-Hans":"究极体＋","zh-Hant":"究極體＋","en":"Ultra","ja":"究極体＋"},
-  "vaccine": {"zh-Hans":"疫苗","zh-Hant":"疫苗","en":"Vaccine","ja":"ワクチン"},
-  "data": {"zh-Hans":"数据","zh-Hant":"資料","en":"Data","ja":"データ"},
-  "virus": {"zh-Hans":"病毒","zh-Hant":"病毒","en":"Virus","ja":"ウィルス"},
-  "free": {"zh-Hans":"自由","zh-Hant":"自由","en":"Free","ja":"フリー"},
-  "unknown": {"zh-Hans":"未知","zh-Hant":"未知","en":"Unknown","ja":"不明"},
-  "alive": {"zh-Hans":"成长中","zh-Hant":"成長中","en":"Alive","ja":"育成中"},
-  "frozen": {"zh-Hans":"已冷冻","zh-Hant":"已冷凍","en":"Frozen","ja":"コールド"},
-  "dead": {"zh-Hans":"回归数据","zh-Hant":"回歸資料","en":"Returned to data","ja":"データに還った"},
-  "idle": {"zh-Hans":"待机","zh-Hant":"待機","en":"Idle","ja":"待機"},
-  "walk": {"zh-Hans":"走动","zh-Hant":"走動","en":"Walk","ja":"歩く"},
-  "happy": {"zh-Hans":"开心","zh-Hant":"開心","en":"Happy","ja":"喜ぶ"},
-  "sad": {"zh-Hans":"沮丧","zh-Hant":"沮喪","en":"Sad","ja":"悲しむ"},
-  "eat": {"zh-Hans":"进食","zh-Hant":"進食","en":"Eat","ja":"食べる"},
-  "refuse": {"zh-Hans":"拒绝","zh-Hant":"拒絕","en":"Refuse","ja":"拒否"},
-  "attack": {"zh-Hans":"攻击","zh-Hant":"攻擊","en":"Attack","ja":"攻撃"},
-  "sleep": {"zh-Hans":"睡眠","zh-Hant":"睡眠","en":"Sleep","ja":"睡眠"},
-  "grasslands": {"zh-Hans":"草原","zh-Hant":"草原","en":"Grasslands","ja":"草原"},
-  "office": {"zh-Hans":"办公室","zh-Hant":"辦公室","en":"Office","ja":"オフィス"},
-  "grid": {"zh-Hans":"网格","zh-Hant":"網格","en":"Grid","ja":"グリッド"},
-  "Brown": {"zh-Hans":"棕色","zh-Hant":"棕色","en":"Brown","ja":"ブラウン"},
-  "Gray": {"zh-Hans":"灰色","zh-Hant":"灰色","en":"Gray","ja":"グレー"},
-  "Blue": {"zh-Hans":"蓝色","zh-Hant":"藍色","en":"Blue","ja":"ブルー"},
-  "White": {"zh-Hans":"白色","zh-Hant":"白色","en":"White","ja":"ホワイト"}
+  "完成": {
+    "en": "Done",
+    "ja": "完了"
+  },
+  "已指定 {0}": {
+    "en": "Selected {0}",
+    "ja": "{0}を選択しました"
+  },
+  "已发放 {0} × {1}": {
+    "en": "Granted {0} × {1}",
+    "ja": "{1}を{0}個付与しました"
+  },
+  "访问码不正确": {
+    "en": "Incorrect access code",
+    "ja": "アクセスコードが正しくありません"
+  },
+  "baby1": {
+    "zh-Hans": "幼年期Ⅰ",
+    "zh-Hant": "幼年期Ⅰ",
+    "en": "Baby I",
+    "ja": "幼年期Ⅰ"
+  },
+  "baby2": {
+    "zh-Hans": "幼年期Ⅱ",
+    "zh-Hant": "幼年期Ⅱ",
+    "en": "Baby II",
+    "ja": "幼年期Ⅱ"
+  },
+  "rookie": {
+    "zh-Hans": "成长期",
+    "zh-Hant": "成長期",
+    "en": "Rookie",
+    "ja": "成長期"
+  },
+  "champion": {
+    "zh-Hans": "成熟期",
+    "zh-Hant": "成熟期",
+    "en": "Champion",
+    "ja": "成熟期"
+  },
+  "ultimate": {
+    "zh-Hans": "完全体",
+    "zh-Hant": "完全體",
+    "en": "Ultimate",
+    "ja": "完全体"
+  },
+  "mega": {
+    "zh-Hans": "究极体",
+    "zh-Hant": "究極體",
+    "en": "Mega",
+    "ja": "究極体"
+  },
+  "ultra": {
+    "zh-Hans": "究极体＋",
+    "zh-Hant": "究極體＋",
+    "en": "Ultra",
+    "ja": "究極体＋"
+  },
+  "vaccine": {
+    "zh-Hans": "疫苗",
+    "zh-Hant": "疫苗",
+    "en": "Vaccine",
+    "ja": "ワクチン"
+  },
+  "data": {
+    "zh-Hans": "数据",
+    "zh-Hant": "資料",
+    "en": "Data",
+    "ja": "データ"
+  },
+  "virus": {
+    "zh-Hans": "病毒",
+    "zh-Hant": "病毒",
+    "en": "Virus",
+    "ja": "ウィルス"
+  },
+  "free": {
+    "zh-Hans": "自由",
+    "zh-Hant": "自由",
+    "en": "Free",
+    "ja": "フリー"
+  },
+  "unknown": {
+    "zh-Hans": "未知",
+    "zh-Hant": "未知",
+    "en": "Unknown",
+    "ja": "不明"
+  },
+  "alive": {
+    "zh-Hans": "成长中",
+    "zh-Hant": "成長中",
+    "en": "Alive",
+    "ja": "育成中"
+  },
+  "frozen": {
+    "zh-Hans": "已冷冻",
+    "zh-Hant": "已冷凍",
+    "en": "Frozen",
+    "ja": "コールド"
+  },
+  "dead": {
+    "zh-Hans": "回归数据",
+    "zh-Hant": "回歸資料",
+    "en": "Returned to data",
+    "ja": "データに還った"
+  },
+  "idle": {
+    "zh-Hans": "待机",
+    "zh-Hant": "待機",
+    "en": "Idle",
+    "ja": "待機"
+  },
+  "walk": {
+    "zh-Hans": "走动",
+    "zh-Hant": "走動",
+    "en": "Walk",
+    "ja": "歩く"
+  },
+  "happy": {
+    "zh-Hans": "开心",
+    "zh-Hant": "開心",
+    "en": "Happy",
+    "ja": "喜ぶ"
+  },
+  "sad": {
+    "zh-Hans": "沮丧",
+    "zh-Hant": "沮喪",
+    "en": "Sad",
+    "ja": "悲しむ"
+  },
+  "eat": {
+    "zh-Hans": "进食",
+    "zh-Hant": "進食",
+    "en": "Eat",
+    "ja": "食べる"
+  },
+  "refuse": {
+    "zh-Hans": "拒绝",
+    "zh-Hant": "拒絕",
+    "en": "Refuse",
+    "ja": "拒否"
+  },
+  "attack": {
+    "zh-Hans": "攻击",
+    "zh-Hant": "攻擊",
+    "en": "Attack",
+    "ja": "攻撃"
+  },
+  "sleep": {
+    "zh-Hans": "睡眠",
+    "zh-Hant": "睡眠",
+    "en": "Sleep",
+    "ja": "睡眠"
+  },
+  "grasslands": {
+    "zh-Hans": "草原",
+    "zh-Hant": "草原",
+    "en": "Grasslands",
+    "ja": "草原"
+  },
+  "office": {
+    "zh-Hans": "办公室",
+    "zh-Hant": "辦公室",
+    "en": "Office",
+    "ja": "オフィス"
+  },
+  "grid": {
+    "zh-Hans": "网格",
+    "zh-Hant": "網格",
+    "en": "Grid",
+    "ja": "グリッド"
+  },
+  "Brown": {
+    "zh-Hans": "棕色",
+    "zh-Hant": "棕色",
+    "en": "Brown",
+    "ja": "ブラウン"
+  },
+  "Gray": {
+    "zh-Hans": "灰色",
+    "zh-Hant": "灰色",
+    "en": "Gray",
+    "ja": "グレー"
+  },
+  "Blue": {
+    "zh-Hans": "蓝色",
+    "zh-Hant": "藍色",
+    "en": "Blue",
+    "ja": "ブルー"
+  },
+  "White": {
+    "zh-Hans": "白色",
+    "zh-Hant": "白色",
+    "en": "White",
+    "ja": "ホワイト"
+  },
+  "Slime": {
+    "zh-Hans": "软泥型",
+    "zh-Hant": "軟泥型",
+    "en": "Slime",
+    "ja": "スライム型"
+  },
+  "Lesser": {
+    "zh-Hans": "小型",
+    "zh-Hant": "小型",
+    "en": "Lesser",
+    "ja": "レッサー型"
+  },
+  "Reptile": {
+    "zh-Hans": "爬虫类型",
+    "zh-Hant": "爬蟲類型",
+    "en": "Reptile",
+    "ja": "爬虫類型"
+  },
+  "Amphibian": {
+    "zh-Hans": "两栖类型",
+    "zh-Hant": "兩棲類型",
+    "en": "Amphibian",
+    "ja": "両生類型"
+  },
+  "Dinosaur": {
+    "zh-Hans": "恐龙型",
+    "zh-Hant": "恐龍型",
+    "en": "Dinosaur",
+    "ja": "恐竜型"
+  },
+  "Mollusk": {
+    "zh-Hans": "软体型",
+    "zh-Hant": "軟體型",
+    "en": "Mollusk",
+    "ja": "軟体型"
+  },
+  "Cyborg": {
+    "zh-Hans": "改造型",
+    "zh-Hant": "改造型",
+    "en": "Cyborg",
+    "ja": "サイボーグ型"
+  },
+  "Evil": {
+    "zh-Hans": "恶魔型",
+    "zh-Hant": "惡魔型",
+    "en": "Evil",
+    "ja": "悪魔型"
+  },
+  "Flame": {
+    "zh-Hans": "火焰型",
+    "zh-Hant": "火焰型",
+    "en": "Flame",
+    "ja": "火炎型"
+  },
+  "Mythical Beast": {
+    "zh-Hans": "幻兽型",
+    "zh-Hant": "幻獸型",
+    "en": "Mythical Beast",
+    "ja": "幻獣型"
+  },
+  "Aquatic": {
+    "zh-Hans": "水栖型",
+    "zh-Hant": "水棲型",
+    "en": "Aquatic",
+    "ja": "水棲型"
+  },
+  "Mutant": {
+    "zh-Hans": "突变型",
+    "zh-Hant": "突變型",
+    "en": "Mutant",
+    "ja": "突然変異型"
+  },
+  "Puppet": {
+    "zh-Hans": "玩偶型",
+    "zh-Hant": "玩偶型",
+    "en": "Puppet",
+    "ja": "パペット型"
+  },
+  "Holy Knight": {
+    "zh-Hans": "圣骑士型",
+    "zh-Hant": "聖騎士型",
+    "en": "Holy Knight",
+    "ja": "聖騎士型"
+  },
+  "DEVICE PROFILES": {
+    "zh-Hans": "设备型号",
+    "zh-Hant": "設備型號",
+    "en": "DEVICE PROFILES",
+    "ja": "デバイス一覧"
+  },
+  "RESET": {
+    "zh-Hans": "重置",
+    "zh-Hant": "重置",
+    "en": "RESET",
+    "ja": "リセット"
+  }
 }

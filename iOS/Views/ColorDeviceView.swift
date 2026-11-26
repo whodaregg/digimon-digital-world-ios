@@ -123,8 +123,12 @@ struct ColorDeviceView: View {
             case .confirmRebirth: confirmation(model.text(.egg))
             }
             if let notice = model.lcdNotice {
-                VStack { Spacer(); Text(l(notice)).font(PixelFont.font(11,language: model.language)).lineLimit(3)
-                    .padding(4).frame(maxWidth: .infinity).background(Palette.screenSurface(model.display).opacity(0.95)) }
+                VStack {
+                    if model.lcd.screen != .food { Spacer() }
+                    Text(l(notice)).font(PixelFont.font(11,language: model.language)).lineLimit(3)
+                        .padding(4).frame(maxWidth: .infinity).background(Palette.screenSurface(model.display).opacity(0.95))
+                    if model.lcd.screen == .food { Spacer() }
+                }
                     .accessibilityIdentifier("lcdNotice")
             }
         }.font(PixelFont.font(14,language: model.language))

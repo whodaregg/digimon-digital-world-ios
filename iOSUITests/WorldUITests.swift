@@ -14,7 +14,13 @@ final class WorldUITests: XCTestCase {
             XCTAssertTrue(probe.label.contains("petWithin=true;foodWithin=true"))
             XCTAssertFalse(app.buttons["lcdFeed"].isEnabled)
             attachScreenshot(refusing ? "food-refusal-layout" : "food-eating-layout")
-            XCTAssertTrue(app.buttons["lcdFeed"].waitForExistence(timeout: 4))
+            let enabled = NSPredicate { _,_ in app.buttons["lcdFeed"].isEnabled }
+            XCTAssertEqual(XCTWaiter.wait(for: [expectation(for: enabled,evaluatedWith: app)],timeout: 5),.completed)
+            if refusing {
+                // The refusal notice must not intercept the food button after the animation ends.
+                app.buttons["lcdFeed"].tap()
+                XCTAssertTrue(probe.waitForExistence(timeout: 2)); XCTAssertTrue(probe.label.contains("pose=refuse"))
+            }
             app.buttons["hardware-C"].tap()
             XCTAssertTrue(app.staticTexts["gameStateProbe"].label.contains(refusing ? "meals=0;weight=20;" : "meals=1;weight=21;"))
             app.terminate()
@@ -29,18 +35,19 @@ final class WorldUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Ver.2"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["普尼兽"].waitForExistence(timeout: 12))
     }
-    func testFourLanguagesSettingsAndCloudBackupEntry() throws {
+    func testEnglishSettingsAndCloudBackupEntry() throws { verifyLanguageAndCloud("English") }
+    func testJapaneseSettingsAndCloudBackupEntry() throws { verifyLanguageAndCloud("日本語") }
+    func testTraditionalSettingsAndCloudBackupEntry() throws { verifyLanguageAndCloud("繁體中文") }
+    private func verifyLanguageAndCloud(_ languageName: String) {
         let app = launch()
-        for languageName in ["English","日本語","繁體中文"] {
-            openSettings(app)
-            let language = app.buttons["appLanguage"]
-            scrollTo(language,in: app); language.tap(); app.buttons[languageName].tap()
-            let cloud = app.buttons["cloudChooseFolder"]; scrollTo(cloud,in: app)
-            XCTAssertTrue(cloud.label.contains("iCloud Drive"))
-            if languageName == "English" { XCTAssertFalse(cloud.label.contains("选择")) }
-            app.buttons["pageDone"].tap()
-            XCTAssertTrue(app.staticTexts["gameStateProbe"].label.contains("font=true"))
-        }
+        openSettings(app)
+        let language = app.buttons["appLanguage"]
+        scrollTo(language,in: app); language.tap(); app.buttons[languageName].tap()
+        let cloud = app.buttons["cloudChooseFolder"]; scrollTo(cloud,in: app)
+        XCTAssertTrue(cloud.label.contains("iCloud Drive"))
+        if languageName == "English" { XCTAssertFalse(cloud.label.contains("选择")) }
+        app.buttons["pageDone"].tap()
+        XCTAssertTrue(app.staticTexts["gameStateProbe"].label.contains("font=true"))
     }
     override func setUpWithError() throws { continueAfterFailure = false }
     func testHatchingAndHardwareNavigation() throws {

@@ -4,7 +4,7 @@ import DigitalWorldCore
 
 /// A single LCD scene keeps food and the original character in the same coordinate system.
 final class FeedingScene: SKScene {
-    private let actor = PixelActor(size: 144)
+    private let actor = PixelActor(size: 128)
     private let food = SKCropNode()
     private let mask = SKSpriteNode(color: .white,size: CGSize(width: 36,height: 36))
     private var signature = ""
@@ -15,7 +15,7 @@ final class FeedingScene: SKScene {
     private var remaining: Double = 1
     override init(size: CGSize) {
         super.init(size: size); anchorPoint = CGPoint(x: 0.5,y: 0.5); scaleMode = .aspectFit
-        actor.position = CGPoint(x: 48,y: 24); addChild(actor)
+        actor.position = CGPoint(x: 48,y: 10); addChild(actor)
         food.position = CGPoint(x: -85,y: 15); food.maskNode = mask; addChild(food)
     }
     required init?(coder: NSCoder) { fatalError("Storyboard initialization is not supported") }

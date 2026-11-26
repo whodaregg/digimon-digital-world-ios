@@ -66,6 +66,24 @@
       }
     },
     {
+      "source": "Amphibian",
+      "values": {
+        "zh-Hans": "两栖类型",
+        "zh-Hant": "兩棲類型",
+        "en": "Amphibian",
+        "ja": "両生類型"
+      }
+    },
+    {
+      "source": "Aquatic",
+      "values": {
+        "zh-Hans": "水栖型",
+        "zh-Hant": "水棲型",
+        "en": "Aquatic",
+        "ja": "水棲型"
+      }
+    },
+    {
       "source": "A选择 · B确认 · C返回；C长按2秒打开LCD设置，A＋C切换音效，死亡时A＋B重新孵化。按键支持多指组合与防重复触发。",
       "values": {
         "zh-Hant": "A選擇 · B確認 · C返回；C長按2秒打開LCD設置，A＋C切換音效，死亡時A＋B重新孵化。按鍵支持多指組合與防重複觸發。",
@@ -260,6 +278,24 @@
       }
     },
     {
+      "source": "Cyborg",
+      "values": {
+        "zh-Hans": "改造型",
+        "zh-Hant": "改造型",
+        "en": "Cyborg",
+        "ja": "サイボーグ型"
+      }
+    },
+    {
+      "source": "DEVICE PROFILES",
+      "values": {
+        "zh-Hans": "设备型号",
+        "zh-Hant": "設備型號",
+        "en": "DEVICE PROFILES",
+        "ja": "デバイス一覧"
+      }
+    },
+    {
       "source": "DISPLAY / 像素显示",
       "values": {
         "zh-Hant": "DISPLAY / 像素顯示",
@@ -276,11 +312,29 @@
       }
     },
     {
+      "source": "Dinosaur",
+      "values": {
+        "zh-Hans": "恐龙型",
+        "zh-Hant": "恐龍型",
+        "en": "Dinosaur",
+        "ja": "恐竜型"
+      }
+    },
+    {
       "source": "EVOLUTION / 旧版实验分支",
       "values": {
         "zh-Hant": "EVOLUTION / 舊版實驗分支",
         "en": "EVOLUTION / Old version experimental branch",
         "ja": "EVOLUTION / 旧バージョン実験ブランチ"
+      }
+    },
+    {
+      "source": "Evil",
+      "values": {
+        "zh-Hans": "恶魔型",
+        "zh-Hant": "惡魔型",
+        "en": "Evil",
+        "ja": "悪魔型"
       }
     },
     {
@@ -297,6 +351,15 @@
         "zh-Hant": "FEEDBACK / 聲音與觸覺",
         "en": "FEEDBACK / Sound and Touch",
         "ja": "フィードバック / サウンドとタッチ"
+      }
+    },
+    {
+      "source": "Flame",
+      "values": {
+        "zh-Hans": "火焰型",
+        "zh-Hant": "火焰型",
+        "en": "Flame",
+        "ja": "火炎型"
       }
     },
     {
@@ -325,11 +388,56 @@
       }
     },
     {
+      "source": "Holy Knight",
+      "values": {
+        "zh-Hans": "圣骑士型",
+        "zh-Hant": "聖騎士型",
+        "en": "Holy Knight",
+        "ja": "聖騎士型"
+      }
+    },
+    {
       "source": "JOURNAL / 成长日志",
       "values": {
         "zh-Hant": "JOURNAL / 成長日誌",
         "en": "JOURNAL / Growth Journal",
         "ja": "ジャーナル / 成長ジャーナル"
+      }
+    },
+    {
+      "source": "Lesser",
+      "values": {
+        "zh-Hans": "小型",
+        "zh-Hant": "小型",
+        "en": "Lesser",
+        "ja": "レッサー型"
+      }
+    },
+    {
+      "source": "Mollusk",
+      "values": {
+        "zh-Hans": "软体型",
+        "zh-Hant": "軟體型",
+        "en": "Mollusk",
+        "ja": "軟体型"
+      }
+    },
+    {
+      "source": "Mutant",
+      "values": {
+        "zh-Hans": "突变型",
+        "zh-Hant": "突變型",
+        "en": "Mutant",
+        "ja": "突然変異型"
+      }
+    },
+    {
+      "source": "Mythical Beast",
+      "values": {
+        "zh-Hans": "幻兽型",
+        "zh-Hant": "幻獸型",
+        "en": "Mythical Beast",
+        "ja": "幻獣型"
       }
     },
     {
@@ -354,6 +462,15 @@
         "zh-Hant": "PVE / 原創離線規則",
         "en": "PVE / Original offline rules",
         "ja": "PVE / オリジナルオフラインルール"
+      }
+    },
+    {
+      "source": "Puppet",
+      "values": {
+        "zh-Hans": "玩偶型",
+        "zh-Hant": "玩偶型",
+        "en": "Puppet",
+        "ja": "パペット型"
       }
     },
     {
@@ -429,6 +546,24 @@
       }
     },
     {
+      "source": "RESET",
+      "values": {
+        "zh-Hans": "重置",
+        "zh-Hant": "重置",
+        "en": "RESET",
+        "ja": "リセット"
+      }
+    },
+    {
+      "source": "Reptile",
+      "values": {
+        "zh-Hans": "爬虫类型",
+        "zh-Hant": "爬蟲類型",
+        "en": "Reptile",
+        "ja": "爬虫類型"
+      }
+    },
+    {
       "source": "SANDBOX / 摇晃输入测试",
       "values": {
         "zh-Hant": "SANDBOX / 搖晃輸入測試",
@@ -498,6 +633,15 @@
         "zh-Hant": "Sandbox虛擬時間偏移已達到十年上限",
         "en": "Sandbox virtual time offset has reached the ten-year limit",
         "ja": "サンドボックスの仮想時間オフセットが 10 年の制限に達しました"
+      }
+    },
+    {
+      "source": "Slime",
+      "values": {
+        "zh-Hans": "软泥型",
+        "zh-Hant": "軟泥型",
+        "en": "Slime",
+        "ja": "スライム型"
       }
     },
     {

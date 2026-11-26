@@ -23,6 +23,8 @@ final class ConnectionCoordinator: NSObject,ObservableObject {
     private var match: GKMatch?
     private var packetSent = false
     private var invitedPeer: MCPeerID?
+    private var generation = UUID()
+    private weak var onlinePicker: GKMatchmakerViewController?
     private struct Packet: Codable { var kind: String; var fighter: ConnectionFighter? }
     func prepare(_ fighter: ConnectionFighter,database: ContentDatabase) { local = fighter; self.database = database; remote = nil; outcome = nil; ready = false; remoteReady = false; packetSent = false }
     func searchNearby() {
@@ -43,6 +45,7 @@ final class ConnectionCoordinator: NSObject,ObservableObject {
         stop(); local = nil; remote = nil; outcome = nil; ready = false; remoteReady = false; packetSent = false; notice = "尚未开始搜索"
     }
     func stop() {
+        generation = UUID(); onlinePicker?.dismiss(animated: true); onlinePicker = nil
         browser?.stopBrowsingForPeers(); advertiser?.stopAdvertisingPeer(); session?.disconnect(); match?.disconnect()
         browser = nil; advertiser = nil; session = nil; match = nil; peers = []; connected = false; invitedPeer = nil
         answerInvitation(false)
@@ -85,15 +88,16 @@ final class ConnectionCoordinator: NSObject,ObservableObject {
     }
     func startOnline(from presenter: UIViewController) {
         guard Bundle.main.object(forInfoDictionaryKey: "GameCenterEnabled") as? Bool == true else { notice = "此构建未配置Game Center；需开发团队启用能力并注册Bundle ID"; return }
+        let expectedGeneration = generation
         GKLocalPlayer.local.authenticateHandler = { [weak self,weak presenter] controller,error in
             Task { @MainActor in
-                guard let self,let presenter else { return }
+                guard let self,let presenter,self.generation == expectedGeneration else { return }
                 if let controller { presenter.present(controller,animated: true); return }
                 if let error { self.notice = error.localizedDescription; return }
                 guard GKLocalPlayer.local.isAuthenticated else { self.notice = "尚未登录Game Center"; return }
                 let request = GKMatchRequest(); request.minPlayers = 2; request.maxPlayers = 2
                 guard let picker = GKMatchmakerViewController(matchRequest: request) else { self.notice = "无法打开在线匹配"; return }
-                picker.matchmakerDelegate = self; presenter.present(picker,animated: true)
+                picker.matchmakerDelegate = self; self.onlinePicker = picker; presenter.present(picker,animated: true)
             }
         }
     }
@@ -125,16 +129,16 @@ extension ConnectionCoordinator: MCNearbyServiceBrowserDelegate,MCNearbyServiceA
     nonisolated func session(_ session: MCSession,didFinishReceivingResourceWithName name: String,fromPeer peerID: MCPeerID,at localURL: URL?,withError error: Error?) {}
 }
 extension ConnectionCoordinator: GKMatchmakerViewControllerDelegate,GKMatchDelegate {
-    nonisolated func matchmakerViewControllerWasCancelled(_ viewController: GKMatchmakerViewController) { Task { @MainActor in viewController.dismiss(animated: true) } }
+    nonisolated func matchmakerViewControllerWasCancelled(_ viewController: GKMatchmakerViewController) { Task { @MainActor in if self.onlinePicker === viewController { self.onlinePicker = nil; viewController.dismiss(animated: true) } } }
     nonisolated func matchmakerViewController(_ viewController: GKMatchmakerViewController,didFailWithError error: Error) {
-        Task { @MainActor in self.notice = error.localizedDescription; viewController.dismiss(animated: true) }
+        Task { @MainActor in guard self.onlinePicker === viewController else { return }; self.onlinePicker = nil; self.notice = error.localizedDescription; viewController.dismiss(animated: true) }
     }
     nonisolated func matchmakerViewController(_ viewController: GKMatchmakerViewController,didFind match: GKMatch) {
-        Task { @MainActor in self.match = match; match.delegate = self; viewController.dismiss(animated: true); if match.expectedPlayerCount == 0 { self.becameConnected() } }
+        Task { @MainActor in guard self.onlinePicker === viewController else { match.disconnect(); return }; self.onlinePicker = nil; self.match = match; match.delegate = self; viewController.dismiss(animated: true); if match.expectedPlayerCount == 0 { self.becameConnected() } }
     }
     nonisolated func match(_ match: GKMatch,didReceive data: Data,fromRemotePlayer player: GKPlayer) { Task { @MainActor in if self.match === match { self.receive(data) } } }
     nonisolated func match(_ match: GKMatch,player: GKPlayer,didChange state: GKPlayerConnectionState) {
-        Task { @MainActor in if state == .connected && match.expectedPlayerCount == 0 { self.becameConnected() }; if state == .disconnected { self.connected = false; self.notice = "在线对方已离开" } }
+        Task { @MainActor in guard self.match === match else { return }; if state == .connected && match.expectedPlayerCount == 0 { self.becameConnected() }; if state == .disconnected { self.connected = false; self.notice = "在线对方已离开" } }
     }
-    nonisolated func match(_ match: GKMatch,didFailWithError error: Error?) { Task { @MainActor in self.notice = error?.localizedDescription ?? "在线连接失败" } }
+    nonisolated func match(_ match: GKMatch,didFailWithError error: Error?) { Task { @MainActor in if self.match === match { self.notice = error?.localizedDescription ?? "在线连接失败" } } }
 }

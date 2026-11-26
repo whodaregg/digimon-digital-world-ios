@@ -1,8 +1,8 @@
 # DIGIMON · DIGITAL WORLD
 
-原生 iOS 17 像素电子宠物工程，使用 SwiftUI、SpriteKit 与独立 Swift 游戏核心。**v0.6 默认以 Digital Monster COLOR Ver.1 为基准：彩色养成＋8区顺序闯关。** 角色采用原版彩色像素归档图集，设置可自由切换复古彩色、高级彩色和经典灰绿色 LCD，并保存选择。
+原生 iOS 17 像素电子宠物工程，使用 SwiftUI、SpriteKit 与独立 Swift 游戏核心。**v0.7 默认以 Digital Monster COLOR Ver.1 为基准：彩色养成＋8区顺序闯关。** 角色采用原版彩色像素归档图集，设置可自由切换复古彩色、高级彩色和经典灰绿色 LCD，并保存选择。
 
-v0.6加入LCD内A/B/C养成、独立设备收藏、经典/增强/Sandbox隔离、真实像素字体与动态图鉴。逐场Quest出招、回避、命中与胜败演出，以及主页大角色走动和日常动作，见[战斗与主页动作](Documentation/BATTLE_PRESENTATION.md)。
+v0.7补齐COLOR Ver.2、跨Ver.1/Ver.2联展、四语显示和云盘设备合集，并修复喂食画面遮挡；保留LCD内A/B/C养成、独立设备、经典/增强/Sandbox、像素字体和动态图鉴。逐场Quest出招、回避、命中与胜败演出，以及主页大角色走动和日常动作，见[战斗与主页动作](Documentation/BATTLE_PRESENTATION.md)。
 
 隐藏的本机开发测试面板现只修改独立Sandbox，可指定已收录角色、发放道具、修改数值，并自动保留调试前快照。功能范围见[开发测试说明](Documentation/DEVELOPER_TOOLS.md)。
 
@@ -23,7 +23,7 @@ v0.6加入LCD内A/B/C养成、独立设备收藏、经典/增强/Sandbox隔离�
 
 ## 下载IPA
 
-已按用户指示发布v0.6.0未签名IPA，包含LCD按键养成、独立设备与Sandbox、主页大角色动作和逐场Quest演出。旧v0.4安装包继续保留在历史发布中。
+当前源码v0.7尚未打包。下方v0.6.0为上轮已发布旧包，包含LCD养成与动画，不包含本轮Ver.2、联展、完整四语、云盘或喂食显示修复；旧v0.4也继续保留。
 
 [下载 v0.6.0 未签名 IPA](https://github.com/whodaregg/digimon-digital-world-ios/releases/download/v0.6.0/DigitalWorld-v0.6.0-unsigned.ipa) · [发布页与校验文件](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.6.0)
 
@@ -48,7 +48,7 @@ Swift Package 位于仓库内，无第三方库依赖。真机需在 Signing & C
 - 按角色作息睡眠、关灯、睡眠打扰、Cold暂停成长、一只伙伴备份交换、清洁和多次治疗。
 - 照顾失误、训练、满腹、睡眠打扰与战绩决定进化；包含Ver.1的17种养成角色。
 - Quest按AREA 1～7、F顺序解锁；每区固定3～5个敌人，连续战斗，先命中三次获胜。失败需从本区首战重来，每次整区消耗1DP、减重6g。
-- Alter-S作为最终区敌人收录；手机通信适配已接入，真实双机仍待验收，联展尚未开放。
+- Alter-S作为最终区敌人收录；手机通信适配已接入，真实双机仍待验收，已支持与Ver.2指定角色联展。
 - 原版角色像素、三种显示模式、可解锁的重绘背景主题、A/B/C按键与触屏快捷操作。
 - 图鉴、中文规则说明、成长日志、本地自动存档与损坏恢复、v1/v2/v3/v4旧档兼容、验证后的文件导入与导出。
 

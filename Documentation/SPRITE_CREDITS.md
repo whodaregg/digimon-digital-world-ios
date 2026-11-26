@@ -21,7 +21,11 @@ v0.2 / v0.3 按用户要求使用 Digital Monster COLOR 的彩色角色像素，
 | numemon | Numemon / 鼻涕兽 | 64×64，13 列 |
 | metalgreymon | Metal Greymon (Virus) / 机械暴龙兽（病毒种） | 64×64，12 列 |
 
-v0.3补齐Ver.1名单：Devimon、Meramon、Airdramon、Seadramon、Mamemon、Monzaemon、Blitz Greymon、Bancho Mamemon、Shin Monzaemon、Omegamon Alter-S，均来自上述同一固定提交。共18份原始PNG；机器可读清单包含每份完整信息。17种可养成，Alter-S现为最终区NPC。
+v0.3补齐Ver.1名单：Devimon、Meramon、Airdramon、Seadramon、Mamemon、Monzaemon、Blitz Greymon、Bancho Mamemon、Shin Monzaemon、Omegamon Alter-S，均来自上述同一固定提交，当时共18份原始PNG。
+
+v0.7从相同固定提交的assets/dmc目录补入17份Ver.2原始PNG，包括Punimon、Tsunomon、Gabumon、Elecmon、Kabuterimon、Garurumon、Angemon、Yukidarumon、Birdramon、Whamon、Vegimon、Skull Greymon、Metal Mamemon、Vademon、Skull Mammon、Cres Garurumon、Ebemon。共用Alter-S后，素材包合计35种角色，Ver.1/Ver.2各17种常规养成角色及共用联展形态。每份PNG的原始哈希、尺寸、非空帧与回退动作在机器可读清单中记录；旧18份字节保持不变。
+
+Alter-S仍是最终区敌人，也可由Ver.1电光暴龙兽与Ver.2偃月加鲁鲁兽的指定通信联展获得，不通过普通养成分支赠送。喂食图标、进食场景、外壳、背景和战斗特效为重绘，角色图集不改色、不重绘。
 
 ## 完整性与动作
 

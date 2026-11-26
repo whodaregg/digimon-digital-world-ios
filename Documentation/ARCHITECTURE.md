@@ -2,7 +2,7 @@
 
 ## 两种存档语义
 
-默认设备`dmc-ver1`使用独立的`DMCV1Engine`和`dmc-ver1.json`。`TimeEngine`、`GameEngine`按设备分派；旧训练/战斗/地图入口拒绝接收Ver.1存档。旧`ultimate-lab`档案继续走原实验规则，避免迁移后重新解释已有养成结果。
+默认设备`dmc-ver1`与新增`dmc-ver2`通过COLOR共用引擎分别读取`dmc-ver1.json`/`dmc-ver2.json`；DMCV1Engine名称保留以兼容既有调用。`TimeEngine`、`GameEngine`按设备分派；旧训练/战斗/地图入口拒绝接收Ver.1存档。旧`ultimate-lab`档案继续走原实验规则，避免迁移后重新解释已有养成结果。
 
 `Species.stats/evolutions/lifespanMinutes`保留旧规则所需字段。Ver.1从`DMCV1Rules`读取力量、作息、DP、进化和固定Quest数据，不套用旧HP伤害、体重进化门槛、亲密度或14天寿命。
 
@@ -63,3 +63,13 @@ AttentionForecast在世界副本上运行同一时间引擎，预测空腹/力�
 MotionInputCounter只负责电话传感器输入的去抖与峰值计数；MotionTrainingController将Sandbox输入送入真实A/B训练，提供按钮替代。它不冒充Pendulum固件或机型规则。
 
 ConnectionEngine验证机型、档案域与过期快照，计算一致战果并用持久化通信收据防重放。ConnectionCoordinator负责Multipeer/GameKit传输；实际结果仍通过同一保存事务落盘后演出。配置与实机依赖见CONNECTION.md。
+
+## v0.7模块补齐
+
+COLOR规则按deviceID分派，初始蛋保存独立种族，心值、作息、分支及Quest读取对应规则。JogressEngine仅在已校验通信战果落盘前应用指定跨版本进化，复用角色身份/获得记录，通信收据防重复。
+
+GameLocalization在展示时翻译模板、角色名与插值，不修改旧日志。SwiftUI环境携带AppLanguage和Locale，系统权限提示提供四语资源；人工术语覆盖与插值校验独立于游戏引擎。
+
+DeviceArchive保存整个设备库的独立快照，验证全部数据后写入新目录再发布索引；CloudBackupCoordinator通过用户选定的文件提供商文件夹同步不可覆盖的版本。自动备份节流，冲突版本保留，由用户确认恢复；不是CloudKit实时合并。
+
+FeedingScene使用独立320×240场景，把原图角色、食物裁切和按钮保留区放入同一坐标系，替代缩小主页覆盖菜单的旧实现。进食/拒绝期间锁定重复输入，C仍可返回；结果由核心先保存，动画不新增喂食记录。
