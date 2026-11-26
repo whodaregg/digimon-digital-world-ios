@@ -39,16 +39,18 @@ struct BattleView: View {
                         GameButton(title: "选择下一位对手") { playback?.cancel(); model.lastBattle = nil }
                     } else { Button(l("显示完整记录")) { playback?.cancel(); revealed = record.log.count } }
                 } else {
-                    ForEach(database.species.filter { $0.stage.order >= Stage.rookie.order }) { species in
-                        HStack {
-                            SpriteThumbnail(id: species.id,size: 48)
-                            VStack(alignment: .leading,spacing: 4) {
-                                Text(l(species.name)).font(.headline)
-                                Text(l("\(species.attribute.rawValue) · HP \(species.stats.hp)")).font(.system(.caption2,design: .monospaced)).foregroundStyle(Palette.muted)
+                    LazyVStack {
+                        ForEach(database.species.filter { $0.stage.order >= Stage.rookie.order }) { species in
+                            HStack {
+                                SpriteThumbnail(id: species.id,size: 48)
+                                VStack(alignment: .leading,spacing: 4) {
+                                    Text(l(species.name)).font(.headline)
+                                    Text(l("\(species.attribute.rawValue) · HP \(species.stats.hp)")).font(.system(.caption2,design: .monospaced)).foregroundStyle(Palette.muted)
+                                }
+                                Spacer()
+                                Button(l("对战")) { model.fight(species.id) }.buttonStyle(.bordered)
+                                    .accessibilityIdentifier("battle-\(species.id)")
                             }
-                            Spacer()
-                            Button(l("对战")) { model.fight(species.id) }.buttonStyle(.bordered)
-                                .accessibilityIdentifier("battle-\(species.id)")
                         }
                     }
                 }

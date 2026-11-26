@@ -70,23 +70,25 @@ struct DigidexView: View {
                     (collectionFilter == "all" || discovery(species.id) != nil && (collectionFilter != "raised" || discovery(species.id) == .raised))
                 }
                 if filtered.isEmpty { Text(l("没有匹配角色，请调整筛选条件。")).font(.footnote).foregroundStyle(Palette.muted) }
-                ForEach(filtered) { species in
-                    let discovery = discovery(species.id)
-                    Button { selected = species } label: {
-                        HStack(spacing: 14) {
-                            SpriteThumbnail(id: species.id,size: 56,silhouette: discovery == nil)
-                                .background(Palette.muted.opacity(0.15),in: RoundedRectangle(cornerRadius: 8))
-                            VStack(alignment: .leading,spacing: 4) {
-                                Text(l(discovery == nil ? "???" : species.localizedName(model.language))).font(.headline)
-                                if discovery != nil && model.language != .english { Text(l(species.name)).font(.caption2) }
-                                Text(l(discovery == nil ? "未发现" : discovery == .raised ? "已养成" : "已遭遇"))
-                                    .font(.system(.caption2,design: .monospaced)).foregroundStyle(Palette.muted)
-                            }
-                            Spacer()
-                            Text(l(species.stage.rawValue.uppercased())).font(.system(size: 8,design: .monospaced)).foregroundStyle(Palette.amber)
-                            Image(systemName: "chevron.right").font(.caption2)
-                        }.padding(.vertical,4).contentShape(Rectangle())
-                    }.buttonStyle(.plain)
+                LazyVStack {
+                    ForEach(filtered) { species in
+                        let discovery = discovery(species.id)
+                        Button { selected = species } label: {
+                            HStack(spacing: 14) {
+                                SpriteThumbnail(id: species.id,size: 56,silhouette: discovery == nil)
+                                    .background(Palette.muted.opacity(0.15),in: RoundedRectangle(cornerRadius: 8))
+                                VStack(alignment: .leading,spacing: 4) {
+                                    Text(l(discovery == nil ? "???" : species.localizedName(model.language))).font(.headline)
+                                    if discovery != nil && model.language != .english { Text(l(species.name)).font(.caption2) }
+                                    Text(l(discovery == nil ? "未发现" : discovery == .raised ? "已养成" : "已遭遇"))
+                                        .font(.system(.caption2,design: .monospaced)).foregroundStyle(Palette.muted)
+                                }
+                                Spacer()
+                                Text(l(species.stage.rawValue.uppercased())).font(.system(size: 8,design: .monospaced)).foregroundStyle(Palette.amber)
+                                Image(systemName: "chevron.right").font(.caption2)
+                            }.padding(.vertical,4).contentShape(Rectangle())
+                        }.buttonStyle(.plain)
+                    }
                 }
             }
             if model.isOriginal && !model.isClassic, let rules = database.colorRules(for: model.state?.deviceID ?? "dmc-ver1") {
