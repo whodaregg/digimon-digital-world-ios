@@ -46,7 +46,7 @@ struct DeviceCollectionView: View {
                             Text(profile.notes).font(.subheadline)
                             if profile.enabled && profile.verifiedOriginal {
                                 Text("四心养成 · A/B上下段训练 · 8区顺序Quest · Cold · 一只备份")
-                                Text("17种养成角色及最终区Alter-S。通信联展及其他版本名单尚待接入。")
+                                Text("17种养成角色及最终区Alter-S。附近手机通信已接入；联展和其他版本名单尚待接入。")
                                     .font(.caption).foregroundStyle(Palette.muted)
                                 GameButton(title: "新增独立设备") { model.createDevice(profile.id); selected = nil }
                                     .accessibilityIdentifier("create-device-\(profile.id)")

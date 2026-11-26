@@ -43,7 +43,7 @@ struct AdventureView: View {
                     }.padding(.vertical,10)
                     Divider().overlay(Palette.line)
                 }
-                Text("通信对战与联展尚未开放。奥米加兽 Alter-S 现为最终区敌人。")
+                Text("手机对战请使用连接页面；联展尚未开放。奥米加兽 Alter-S 现为最终区敌人。")
                     .font(.caption).foregroundStyle(Palette.muted)
             }
         } else {

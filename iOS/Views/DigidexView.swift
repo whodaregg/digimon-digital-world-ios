@@ -106,7 +106,7 @@ struct DigidexView: View {
                 EvolutionTreeView(species: database.species)
             }
             }
-            Text("包含Ver.1的17种养成角色及最终区Alter-S，使用有来源记录的原版彩色角色像素。通信与联展尚未实现；部分动作采用已有姿势回退。")
+            Text("包含Ver.1的17种养成角色及最终区Alter-S，使用有来源记录的原版彩色角色像素。附近手机通信已接入，双机待验收，联展未开放；部分动作采用已有姿势回退。")
                 .font(.caption2).foregroundStyle(Palette.muted)
         }
         }.sheet(item: $selected) { species in
