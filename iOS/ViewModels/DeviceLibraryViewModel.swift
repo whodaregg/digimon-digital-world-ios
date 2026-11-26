@@ -11,6 +11,7 @@ extension WorldViewModel {
         settings { settings in var ui = settings.presentation; change(&ui); settings.interface = ui }
     }
     func setPlayStyle(_ style: PlayStyle) {
+        if style == .classic && !isOriginal { alert = "旧版实验规则不支持经典模式"; return }
         if style == .sandbox { enterSandbox(); return }
         if isSandbox {
             if let formal = formalSlots.first(where: { $0.deviceID == state?.deviceID }) { activateSlot(formal.id) }

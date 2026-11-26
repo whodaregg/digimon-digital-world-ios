@@ -24,7 +24,7 @@ Ver.1的8区固定敌人顺序写入独立数据，每次整区挑战在事务�
 
 ## 存档与恢复
 
-外层信封包含版本、FNV-1a校验及Base64编码的JSON载荷。校验用于意外损坏检测，不是防篡改加密。内层格式v4；v1补齐时间水位，v1/v2/v3解码缺失的原味及测试可选字段为nil，保留原设备与养成语义。未来版本拒绝打开。
+外层信封包含版本、FNV-1a校验及Base64编码的JSON载荷。校验用于意外损坏检测，不是防篡改加密。内层格式v5；v1补齐时间水位，v1/v2/v3/v4解码缺失的原味及测试可选字段为nil，保留原设备与养成语义。未来版本拒绝打开。
 
 写入使用Foundation原子写入；上一版备份只从已验证的主档更新。主档损坏时恢复有效备份并保留损坏文件。导入先验证再恢复，并另存恢复前完整档案。
 
@@ -34,10 +34,32 @@ Ver.1的8区固定敌人顺序写入独立数据，每次整区挑战在事务�
 
 角色PNG保留归档原始字节，64×64画布、12/13列、1行。`sprites.json`为每个角色配置存在的帧及缺失姿势回退，最近邻采样；灰绿色通过显示着色器转换，原图不改色。背景是本工程重绘主题。
 
-`PixelAtlas/PixelActor`共享最近邻纹理缓存、姿势和LCD着色器，主页与战斗使用相同的原图。主页移动和图集帧使用独立动作键，照顾或身体状态变化会中断闲逛；SwiftUI时钟刷新不反复重启动作。系统减弱动态效果关闭位移、循环帧与闪烁。
+`PixelAtlas/PixelActor`共享最近邻纹理缓存、姿势和LCD着色器，主页与战斗使用相同的原图。主页移动使用可测试的AmbientPetTimeline，图集帧使用统一SpriteAnimationClock，照顾或身体状态变化会中断闲逛；SwiftUI时钟刷新不反复重启动作。系统减弱动态效果关闭位移、循环帧与闪烁。
 
 `build_content.py`与`dmc_content.py`生成JSON，`validate_assets.py`核对SHA-256、尺寸、角色引用与非空帧，`generate_project.py`生成本地依赖的Xcode工程。核心、UI和Release由GitHub Actions分别验证。
 
 ## 开发测试
 
 `DeveloperEngine`在事务副本上应用角色、库存或数值修改并通过存档验证后提交。`DeveloperTuning`按伙伴保存战斗覆盖，不修改共享资料；`developerModifiedAt`标记测试档。界面模型每次会话首次写入前保存独立快照，成功落盘后发布新状态。解锁状态仅在内存中，后台和关闭时清除。详见[开发测试说明](DEVELOPER_TOOLS.md)。
+
+## 设备库与三种模式
+
+GameMode继续表示原味/旧实验规则；PlayStyle单独表示classic/enhanced/sandbox，避免把界面模式当成另一套养成数值。DeviceLibraryStore在devices.json保存设备索引，每个UUID拥有独立的SaveStore目录、主档与备份。旧world.json只读迁入独立设备，原文件保留。切换先保存当前设备，再验证/结算目标并更新索引；不覆盖其它设备。
+
+Sandbox首次进入复制当前伙伴到独立文件。DeveloperEngine只通过Sandbox页面调用；正式收藏按CollectionManager过滤Sandbox、旧实验与测试标记。SandboxEngine以持久化时间偏移调用同一TimeEngine，不改系统时间。导入保留前档，并创建独立设备。
+
+生命周期会在死亡时捕获，在32个Pet档位满后将已归档死者移出活动数组，保留独立LifecycleRecord、形态、战绩和日志。重置使用reset原因归档，不伪造死亡。首次获得只使用实际记录的SpeciesAppearance；旧档没有日期时不编造。
+
+## LCD与现代页面导航
+
+WorldView -> ColorDeviceView -> LCD主页/状态分页/食物/训练/区域/对战/电源/时钟/设置。DeviceInputRouter解释真实A/B/C事件，输出命令再由WorldViewModel执行核心和保存；Touch Mode走同一命令。经典模式只有原机公开的状态分页，禁止在连战中取消。
+
+图鉴、设备收藏、档案、设置、开发测试和手机连接使用独立现代页面。完整页面范围和未完成部分见FEATURE_STATUS.md。
+
+## 提醒、运动与连接
+
+AttentionForecast在世界副本上运行同一时间引擎，预测空腹/力量/睡眠等呼叫，不修改真实存档；NotificationCoordinator收集多个正式设备计划并应用安静时间和系统通知数量限制。
+
+MotionInputCounter只负责电话传感器输入的去抖与峰值计数；MotionTrainingController将Sandbox输入送入真实A/B训练，提供按钮替代。它不冒充Pendulum固件或机型规则。
+
+ConnectionEngine验证机型、档案域与过期快照，计算一致战果并用持久化通信收据防重放。ConnectionCoordinator负责Multipeer/GameKit传输；实际结果仍通过同一保存事务落盘后演出。配置与实机依赖见CONNECTION.md。

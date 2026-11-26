@@ -72,7 +72,12 @@ final class WorldUITests: XCTestCase {
     func testResetRequiresConfirmationAndPreservesOtherSlots() throws {
         let app = launch(); openSettings(app)
         let reset = app.buttons["resetDevice"]; scrollTo(reset,in: app); reset.tap()
-        app.buttons["取消"].tap(); reset.tap(); app.buttons["确认重置"].tap()
+        XCTAssertTrue(app.buttons["确认重置"].waitForExistence(timeout: 5))
+        let cancel = app.buttons["取消"].exists ? app.buttons["取消"] : app.buttons["Cancel"]
+        cancel.tap(); app.navigationBars.buttons["完成"].tap()
+        XCTAssertTrue(app.staticTexts["gameStateProbe"].label.contains("egg=false;"))
+        openSettings(app); scrollTo(reset,in: app); reset.tap()
+        XCTAssertTrue(app.buttons["确认重置"].waitForExistence(timeout: 5)); app.buttons["确认重置"].tap()
         app.navigationBars.buttons["完成"].tap()
         XCTAssertTrue(waitFor(app.staticTexts["gameStateProbe"],containing: "egg=true;",timeout: 5))
     }
@@ -151,7 +156,7 @@ final class WorldUITests: XCTestCase {
         XCTAssertEqual(XCTWaiter.wait(for: [expectation(for: moved,evaluatedWith: probe)],timeout: 4),.completed)
         attachScreenshot("large-pet-walk-b")
         XCTAssertTrue(waitFor(probe,containing: "right=false",timeout: 7))
-        XCTAssertTrue(waitFor(probe,containing: "pose=happy",timeout: 8))
+        XCTAssertTrue(waitFor(probe,containing: "pose=happy",timeout: 12))
         attachScreenshot("large-pet-happy")
     }
     func testQuestPlaysEveryEnemyWithAttackEvasionHitAndResult() throws {

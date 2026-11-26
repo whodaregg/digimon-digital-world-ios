@@ -20,8 +20,24 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>GameCenterEnabled</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_world-pets._tcp</string>
+	</array>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>用于发现附近玩家，并在双方确认后进行本地对战。</string>
+	<key>NSMotionUsageDescription</key>
+	<string>仅在主动开始Sandbox摇晃输入测试时读取加速度，数据不上传。</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>fusion-pixel-12px-monospaced-ja.ttf</string>
+		<string>fusion-pixel-12px-monospaced-zh_hans.ttf</string>
+		<string>fusion-pixel-12px-monospaced-zh_hant.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

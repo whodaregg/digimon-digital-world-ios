@@ -1,10 +1,10 @@
 # DIGIMON · DIGITAL WORLD
 
-原生 iOS 17 像素电子宠物工程，使用 SwiftUI、SpriteKit 与独立 Swift 游戏核心。**v0.5 默认以 Digital Monster COLOR Ver.1 为基准：彩色养成＋8区顺序闯关。** 角色采用原版彩色像素归档图集，设置可自由切换复古彩色、高级彩色和经典灰绿色 LCD，并保存选择。
+原生 iOS 17 像素电子宠物工程，使用 SwiftUI、SpriteKit 与独立 Swift 游戏核心。**v0.6 默认以 Digital Monster COLOR Ver.1 为基准：彩色养成＋8区顺序闯关。** 角色采用原版彩色像素归档图集，设置可自由切换复古彩色、高级彩色和经典灰绿色 LCD，并保存选择。
 
-v0.5加入逐场Quest出招、回避、命中与胜败演出，以及主页大角色走动和日常动作，见[战斗与主页动作](Documentation/BATTLE_PRESENTATION.md)。
+v0.6加入LCD内A/B/C养成、独立设备收藏、经典/增强/Sandbox隔离、真实像素字体与动态图鉴。逐场Quest出招、回避、命中与胜败演出，以及主页大角色走动和日常动作，见[战斗与主页动作](Documentation/BATTLE_PRESENTATION.md)。
 
-v0.4新增隐藏的本机开发测试面板，可指定已收录角色、发放道具、修改数值，并自动保留调试前快照。功能范围见[开发测试说明](Documentation/DEVELOPER_TOOLS.md)。
+隐藏的本机开发测试面板现只修改独立Sandbox，可指定已收录角色、发放道具、修改数值，并自动保留调试前快照。功能范围见[开发测试说明](Documentation/DEVELOPER_TOOLS.md)。
 
 目前是开发版本，未完成最初需求中的全部阶段。操作依据官方说明书，隐藏数值参考社区实测；资料分歧和待验证部分见 [规则出处](Documentation/RULE_SOURCES.md)。
 
@@ -20,7 +20,7 @@ v0.4新增隐藏的本机开发测试面板，可指定已收录角色、发放�
 
 ## 下载IPA
 
-当前源码为v0.5；按用户要求，本轮只验证，不自动打包。v0.5尚未生成IPA，下方v0.4安装包不含本轮动画更新。
+当前源码为v0.6；按用户要求，本轮只验证，不自动打包。v0.5/v0.6尚未生成IPA，下方v0.4安装包不含本轮动画更新。
 
 [下载 v0.4.0 未签名 IPA](https://github.com/whodaregg/digimon-digital-world-ios/releases/download/v0.4.0/DigitalWorld-v0.4.0-unsigned.ipa) · [发布页与校验文件](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.4.0)
 
@@ -43,9 +43,9 @@ Swift Package 位于仓库内，无第三方库依赖。真机需在 Signing & C
 - 按角色作息睡眠、关灯、睡眠打扰、Cold暂停成长、一只伙伴备份交换、清洁和多次治疗。
 - 照顾失误、训练、满腹、睡眠打扰与战绩决定进化；包含Ver.1的17种养成角色。
 - Quest按AREA 1～7、F顺序解锁；每区固定3～5个敌人，连续战斗，先命中三次获胜。失败需从本区首战重来，每次整区消耗1DP、减重6g。
-- Alter-S作为最终区敌人收录；通信和联展尚未开放。
+- Alter-S作为最终区敌人收录；手机通信适配已接入，真实双机仍待验收，联展尚未开放。
 - 原版角色像素、三种显示模式、可解锁的重绘背景主题、A/B/C按键与触屏快捷操作。
-- 图鉴、中文规则说明、成长日志、本地自动存档与损坏恢复、v1/v2/v3旧档兼容、验证后的文件导入与导出。
+- 图鉴、中文规则说明、成长日志、本地自动存档与损坏恢复、v1/v2/v3/v4旧档兼容、验证后的文件导入与导出。
 
 原味界面已移除平面上下左右探索。旧版实验存档继续按旧规则读取，可在设置中“备份旧档并开始 Ver.1”；切换前会另存完整旧档，显示设置会保留。设置中可直接恢复或导出切换前档案。
 
@@ -67,6 +67,8 @@ xcodebuild test -project DigitalWorld.xcodeproj -scheme DigitalWorld \
 ```
 
 模拟器名称按 `xcrun simctl list devices available` 调整。GitHub Actions执行核心、原生界面与Release构建检查，实际状态见 [Actions](https://github.com/whodaregg/digimon-digital-world-ios/actions)；已完成验证见 [实测记录](Documentation/VALIDATION.md)。
+
+[28项需求落实与依赖清单](Documentation/FEATURE_STATUS.md)列出已接入功能、未实现模块和需要真实设备/账号配置的部分；它们不等于全部世代已完成。
 
 ## 工程与资料
 

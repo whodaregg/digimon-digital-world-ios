@@ -135,8 +135,8 @@ final class WorldViewModel: ObservableObject {
         guard let p = state?.pet else { return "idle" }
         if p.life == .dead { return "death" }
         if p.sleeping { return "sleep" }
-        if p.stats.injured { return "injured" }
         if animation != "idle" { return animation }
+        if p.stats.injured { return "injured" }
         if p.stats.fullness < 20 { return "hungry" }
         if p.stats.sick { return "sad" }
         return "idle"
@@ -149,10 +149,11 @@ final class WorldViewModel: ObservableObject {
     func refresh(now: Date = Date(), forceSave: Bool = false) {
         guard var game = state, let database, fatalError == nil else { return }
         do {
-            let wasCalling = hasCall
+            let wasCalling = hasCall,wasSleeping = game.pet.sleeping
             let result = try TimeEngine.advance(&game, to: SandboxEngine.date(for: game,wallTime: now), database: database)
             state = game
             if !wasCalling && hasCall { feedback.play(sound: game.settings.sound,haptics: game.settings.haptics,volume: game.settings.presentation.volume,cue: .attention) }
+            if wasSleeping && !game.pet.sleeping && game.pet.life == .alive { play("wake") }
             if result.clockReversed { message = "检测到设备时间倒退，请恢复正确时间" }
             else if result.deaths > 0 { message = "伙伴回归数据，记录已保留"; play("defeat") }
             else if result.evolutions > 0 { message = "伙伴进化了！"; play("evolution") }
@@ -301,7 +302,7 @@ final class WorldViewModel: ObservableObject {
     }
     func setNotifications(_ enabled: Bool) {
         if !enabled {
-            settings { $0.notifications = false }; notifications.cancel(); return
+            settings { $0.notifications = false }; scheduleNotifications(); return
         }
         Task {
             do {

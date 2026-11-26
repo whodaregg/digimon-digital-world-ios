@@ -16,7 +16,10 @@ struct ConnectionView: View {
             Text(connection.notice).accessibilityIdentifier("connectionNotice")
             if connection.outcome != nil && playedID != nil {
                 SpriteView(scene: scene,preferredFramesPerSecond: 30).aspectRatio(4/3,contentMode: .fit)
-                if finished { Text(connection.outcome?.playerWon == true ? model.text(.victory) : model.text(.defeat)).font(.title.bold()) }
+                if finished {
+                    Text(connection.outcome?.playerWon == true ? model.text(.victory) : model.text(.defeat)).font(.title.bold())
+                    Button("准备下一场") { scene.stop(); connection.reset(); playedID = nil; finished = false }
+                }
             } else if connection.connected,let remote = connection.remote {
                 Text((try? model.database?.species(remote.speciesID).localizedName(model.language)) ?? remote.speciesID)
                 GameButton(title: connection.ready ? "等待对方确认" : "确认对战") { connection.confirmBattle() }.disabled(connection.ready)
@@ -31,7 +34,7 @@ struct ConnectionView: View {
                 Text("\(peer.displayName) 邀请你连接")
                 HStack { Button("接受") { connection.answerInvitation(true) }; Button("拒绝") { connection.answerInvitation(false) } }
             }
-            Button("断开连接") { connection.stop() }
+            Button("断开连接") { scene.stop(); connection.reset(); playedID = nil; finished = false }
             Text("这是iPhone之间的连接，不代表可以直接连接实体暴龙机。附近双机与Game Center实机联调仍需完成。")
                 .font(.caption).foregroundStyle(Palette.muted)
         }.onChange(of: connection.outcome?.id) { _,_ in playResult() }
@@ -40,6 +43,7 @@ struct ConnectionView: View {
     private func prepare(online: Bool) {
         guard let state = model.state,let database = model.database else { return }
         do {
+            connection.stop()
             let fighter = try ConnectionEngine.fighter(for: state,database: database)
             connection.prepare(fighter,database: database)
             if online {

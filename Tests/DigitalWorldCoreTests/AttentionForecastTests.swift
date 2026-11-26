@@ -41,3 +41,35 @@ final class MotionAndArchiveTests: XCTestCase {
         XCTAssertEqual(CollectionManager.entries(in: [game]).first?.obtainedCount,1)
     }
 }
+
+final class SaveBoundaryAndHardwareTests: XCTestCase {
+    func testOversizeWriteCannotReplaceAReadableSave() throws {
+        let db = try ContentDatabase.bundled(),now = Date(timeIntervalSince1970: 1_800_446_400)
+        let dir = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: dir) }
+        let store = SaveStore(directory: dir,database: db)
+        var game = try DeviceRegistry.newGame(database: db,deviceID: "dmc-ver1",eggID: "dmc-v1-egg",now: now)
+        try store.save(game); let before = try Data(contentsOf: store.primaryURL)
+        game.pets[0].record("test",String(repeating: "x",count: 13_000_000),at: now)
+        XCTAssertThrowsError(try store.save(game))
+        XCTAssertEqual(try Data(contentsOf: store.primaryURL),before)
+        XCTAssertTrue(try XCTUnwrap(store.load()).state.pet.isEgg)
+    }
+    func testOriginalLongCAndDeathABChordExecuteRealRebirth() throws {
+        let db = try ContentDatabase.bundled(),now = Date(timeIntervalSince1970: 1_800_446_400)
+        var game = try DeviceRegistry.newGame(database: db,deviceID: "dmc-ver1",eggID: "dmc-v1-egg",now: now),router = DeviceInputRouter()
+        game.sessionStyle = .classic
+        _ = router.keyDown(.c,at: now,state: game)
+        _ = router.keyUp(.c,at: now.addingTimeInterval(2.1),state: game,availableAreas: 1)
+        XCTAssertEqual(router.screen,.deviceSettings)
+        router.returnHome()
+        try TimeEngine.advance(&game,to: now.addingTimeInterval(8),database: db)
+        game.pets[0].life = .dead; game.pets[0].record("death","测试死亡状态",at: game.highWatermark)
+        let id = game.pet.id
+        _ = router.keyDown(.a,at: game.highWatermark,state: game)
+        XCTAssertEqual(router.keyDown(.b,at: game.highWatermark.addingTimeInterval(0.1),state: game),.rebirth)
+        try GameEngine.perform(.rebirth("dmc-v1-egg"),state: &game,database: db,at: game.highWatermark)
+        XCTAssertTrue(game.pet.isEgg); XCTAssertNotEqual(game.pet.id,id)
+        XCTAssertEqual(game.dex["botamon"],.raised); XCTAssertEqual(game.lifecycles?.first?.id,id)
+    }
+}

@@ -34,9 +34,12 @@ final class ConnectionCoordinator: NSObject,ObservableObject {
     func invite(_ target: MCPeerID) { guard let session else { return }; browser?.invitePeer(target,to: session,withContext: nil,timeout: 30); notice = "已邀请 \(target.displayName)，等待对方接受" }
     func answerInvitation(_ accepted: Bool) { acceptInvitation?(accepted,accepted ? session : nil); acceptInvitation = nil; invitation = nil }
     func confirmBattle() {
-        guard connected,remote != nil,local != nil else { return }
+        guard connected,!ready,remote != nil,local != nil else { return }
         do { try send(Packet(kind: "ready",fighter: nil)); ready = true; resolveIfReady() }
         catch { notice = error.localizedDescription }
+    }
+    func reset() {
+        stop(); local = nil; remote = nil; outcome = nil; ready = false; remoteReady = false; packetSent = false; notice = "尚未开始搜索"
     }
     func stop() {
         browser?.stopBrowsingForPeers(); advertiser?.stopAdvertisingPeer(); session?.disconnect(); match?.disconnect()
@@ -60,7 +63,10 @@ final class ConnectionCoordinator: NSObject,ObservableObject {
             if packet.kind == "hello",let fighter = packet.fighter {
                 try ConnectionEngine.validate(fighter,database: database)
                 guard local?.sandbox == fighter.sandbox,local?.petID != fighter.petID else { throw GameError.cannotAct("双方必须是不同伙伴，且Sandbox与正式养成不能混战") }
-                guard !ready else { throw GameError.cannotAct("准备后伙伴信息发生变化，请重新连接") }
+                if ready {
+                    guard remote == fighter else { throw GameError.cannotAct("准备后伙伴信息发生变化，请重新连接") }
+                    resolveIfReady(); return
+                }
                 remote = fighter; notice = "双方信息已收到，双方确认后开始对战"
             } else if packet.kind == "ready" { remoteReady = true; resolveIfReady() }
             else { throw GameError.invalidData("未知通信消息") }
@@ -102,11 +108,12 @@ extension ConnectionCoordinator: MCNearbyServiceBrowserDelegate,MCNearbyServiceA
     nonisolated func advertiser(_ advertiser: MCNearbyServiceAdvertiser,didNotStartAdvertisingPeer error: Error) { Task { @MainActor in self.notice = error.localizedDescription } }
     nonisolated func session(_ session: MCSession,peer peerID: MCPeerID,didChange state: MCSessionState) {
         Task { @MainActor in
+            guard self.session === session else { return }
             if state == .connected { self.becameConnected() }
             else if state == .notConnected { self.connected = false; self.notice = "连接已断开；已保存战果不会重复发放" }
         }
     }
-    nonisolated func session(_ session: MCSession,didReceive data: Data,fromPeer peerID: MCPeerID) { Task { @MainActor in self.receive(data) } }
+    nonisolated func session(_ session: MCSession,didReceive data: Data,fromPeer peerID: MCPeerID) { Task { @MainActor in if self.session === session { self.receive(data) } } }
     nonisolated func session(_ session: MCSession,didReceive stream: InputStream,withName streamName: String,fromPeer peerID: MCPeerID) {}
     nonisolated func session(_ session: MCSession,didStartReceivingResourceWithName name: String,fromPeer peerID: MCPeerID,with progress: Progress) {}
     nonisolated func session(_ session: MCSession,didFinishReceivingResourceWithName name: String,fromPeer peerID: MCPeerID,at localURL: URL?,withError error: Error?) {}
@@ -119,7 +126,7 @@ extension ConnectionCoordinator: GKMatchmakerViewControllerDelegate,GKMatchDeleg
     nonisolated func matchmakerViewController(_ viewController: GKMatchmakerViewController,didFind match: GKMatch) {
         Task { @MainActor in self.match = match; match.delegate = self; viewController.dismiss(animated: true); if match.expectedPlayerCount == 0 { self.becameConnected() } }
     }
-    nonisolated func match(_ match: GKMatch,didReceive data: Data,fromRemotePlayer player: GKPlayer) { Task { @MainActor in self.receive(data) } }
+    nonisolated func match(_ match: GKMatch,didReceive data: Data,fromRemotePlayer player: GKPlayer) { Task { @MainActor in if self.match === match { self.receive(data) } } }
     nonisolated func match(_ match: GKMatch,player: GKPlayer,didChange state: GKPlayerConnectionState) {
         Task { @MainActor in if state == .connected && match.expectedPlayerCount == 0 { self.becameConnected() }; if state == .disconnected { self.connected = false; self.notice = "在线对方已离开" } }
     }

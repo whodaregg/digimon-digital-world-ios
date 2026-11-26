@@ -111,6 +111,11 @@ plist=dict(CFBundleDevelopmentRegion='zh-Hans',CFBundleDisplayName='Digital Worl
     CFBundleExecutable='$(EXECUTABLE_NAME)',CFBundleIdentifier='$(PRODUCT_BUNDLE_IDENTIFIER)',
     CFBundleInfoDictionaryVersion='6.0',CFBundleName='$(PRODUCT_NAME)',CFBundlePackageType='APPL',
     CFBundleShortVersionString='$(MARKETING_VERSION)',CFBundleVersion='$(CURRENT_PROJECT_VERSION)',
+    UIAppFonts=[p.name for p in sorted((ROOT/'iOS/Resources/Fonts').glob('*.ttf'))],
+    NSLocalNetworkUsageDescription='用于发现附近玩家，并在双方确认后进行本地对战。',
+    NSBonjourServices=['_world-pets._tcp'],
+    NSMotionUsageDescription='仅在主动开始Sandbox摇晃输入测试时读取加速度，数据不上传。',
+    GameCenterEnabled=False,
     LSRequiresIPhoneOS=True,UIApplicationSceneManifest=dict(UIApplicationSupportsMultipleScenes=False),
     UILaunchScreen={},UISupportedInterfaceOrientations=['UIInterfaceOrientationPortrait'],
     **{'UISupportedInterfaceOrientations~ipad':['UIInterfaceOrientationPortrait','UIInterfaceOrientationLandscapeLeft','UIInterfaceOrientationLandscapeRight']})
