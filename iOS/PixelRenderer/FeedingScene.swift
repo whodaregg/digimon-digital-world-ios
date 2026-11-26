@@ -13,16 +13,18 @@ final class FeedingScene: SKScene {
     private var refusing = false
     private var reduced = false
     private var remaining: Double = 1
+    private var speed = 1.0
     override init(size: CGSize) {
         super.init(size: size); anchorPoint = CGPoint(x: 0.5,y: 0.5); scaleMode = .aspectFit
         actor.position = CGPoint(x: 48,y: 10); addChild(actor)
         food.position = CGPoint(x: -85,y: 15); food.maskNode = mask; addChild(food)
     }
     required init?(coder: NSCoder) { fatalError("Storyboard initialization is not supported") }
-    func configure(speciesID: String,foodID: String,action: String,mode: DisplayMode,reduceMotion: Bool) {
+    func configure(speciesID: String,foodID: String,action: String,mode: DisplayMode,reduceMotion: Bool,duration: Double) {
         let key = "\(speciesID)|\(foodID)|\(action)|\(mode)|\(reduceMotion)"
         guard key != signature else { return }; signature = key
         elapsed = 0; previous = nil; refusing = action == "refuse"; reduced = reduceMotion; remaining = 1
+        speed = 2.4/max(0.1,duration)
         backgroundColor = mode == .lcd ? UIColor(red: 0.66,green: 0.73,blue: 0.52,alpha: 1) : UIColor(red: 0.08,green: 0.19,blue: 0.27,alpha: 1)
         actor.use(speciesID,mode: mode); actor.face(right: false); actor.play(action,animated: !reduceMotion)
         food.removeAllChildren()
@@ -32,7 +34,7 @@ final class FeedingScene: SKScene {
     }
     override func update(_ currentTime: TimeInterval) {
         let delta = min(0.1,max(0,currentTime-(previous ?? currentTime))); previous = currentTime
-        elapsed += delta; actor.tick(delta)
+        elapsed += delta*speed; actor.tick(delta*speed)
         if refusing {
             actor.position.x = 48 + (reduced ? 0 : sin(elapsed*13)*4)
         } else {
@@ -65,7 +67,7 @@ struct FeedingScreen: View {
         }
     }
     private func configured() -> FeedingScene {
-        scene.configure(speciesID: model.species?.spriteID ?? "agumon",foodID: model.feedingFoodID,action: model.animation,mode: model.display,reduceMotion: reduced)
+        scene.configure(speciesID: model.species?.spriteID ?? "agumon",foodID: model.feedingFoodID,action: model.animation,mode: model.display,reduceMotion: reduced,duration: model.feedingDuration)
         return scene
     }
 }

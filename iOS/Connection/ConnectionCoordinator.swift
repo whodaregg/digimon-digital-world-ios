@@ -12,6 +12,7 @@ final class ConnectionCoordinator: NSObject,ObservableObject {
     @Published var notice = "尚未开始搜索"
     @Published var connected = false
     @Published var ready = false
+    @Published private(set) var joiningRoom = false
     private(set) var local: ConnectionFighter?
     private var database: ContentDatabase?
     private let peer = MCPeerID(displayName: "Player-"+String(UUID().uuidString.prefix(6)))
@@ -25,6 +26,8 @@ final class ConnectionCoordinator: NSObject,ObservableObject {
     private var invitedPeer: MCPeerID?
     private var generation = UUID()
     private weak var onlinePicker: GKMatchmakerViewController?
+    private var socket: URLSessionWebSocketTask?
+    private var roomTask: Task<Void,Never>?
     private struct Packet: Codable { var kind: String; var fighter: ConnectionFighter? }
     func prepare(_ fighter: ConnectionFighter,database: ContentDatabase) { local = fighter; self.database = database; remote = nil; outcome = nil; ready = false; remoteReady = false; packetSent = false }
     func searchNearby() {
@@ -46,13 +49,23 @@ final class ConnectionCoordinator: NSObject,ObservableObject {
     }
     func stop() {
         generation = UUID(); onlinePicker?.dismiss(animated: true); onlinePicker = nil
+        roomTask?.cancel(); roomTask = nil; socket?.cancel(with: .goingAway,reason: nil); socket = nil; joiningRoom = false
         browser?.stopBrowsingForPeers(); advertiser?.stopAdvertisingPeer(); session?.disconnect(); match?.disconnect()
         browser = nil; advertiser = nil; session = nil; match = nil; peers = []; connected = false; invitedPeer = nil
         answerInvitation(false)
     }
     private func send(_ packet: Packet) throws {
         let data = try JSONEncoder().encode(packet)
-        if let match { try match.sendData(toAllPlayers: data,with: .reliable) }
+        if let socket {
+            let expected = generation
+            socket.send(.data(data)) { [weak self] error in
+                Task { @MainActor in
+                    guard let self,self.generation == expected,let error else { return }
+                    self.ready = false; self.notice = error.localizedDescription
+                }
+            }
+        }
+        else if let match { try match.sendData(toAllPlayers: data,with: .reliable) }
         else if let session,!session.connectedPeers.isEmpty { try session.send(data,toPeers: session.connectedPeers,with: .reliable) }
         else { throw GameError.unavailable("连接已断开") }
     }
@@ -85,6 +98,36 @@ final class ConnectionCoordinator: NSObject,ObservableObject {
         guard ready,remoteReady,!packetSent,let local,let remote,let database else { return }
         do { outcome = try ConnectionEngine.resolve(player: local,opponent: remote,database: database); packetSent = true; notice = "战果已共同确定" }
         catch { notice = error.localizedDescription }
+    }
+    func startRoom(server: String,code: String) throws {
+        let url = try RoomEndpoint.url(server: server,room: code)
+        var request = URLRequest(url: url); request.timeoutInterval = 20
+        let task = URLSession.shared.webSocketTask(with: request)
+        socket = task; joiningRoom = true; notice = "正在连接房间，等待另一位玩家"
+        let expected = generation
+        task.resume()
+        roomTask = Task { @MainActor [weak self] in
+            while !Task.isCancelled {
+                do {
+                    let message = try await task.receive()
+                    guard let self,self.generation == expected,self.socket === task else { return }
+                    let data: Data
+                    switch message { case .data(let bytes): data = bytes; case .string(let text): data = Data(text.utf8); @unknown default: continue }
+                    guard data.count <= 16_384 else { throw GameError.invalidData("在线消息超过容量上限") }
+                    if let control = try JSONSerialization.jsonObject(with: data) as? [String:Any],let type = control["type"] as? String {
+                        switch type {
+                        case "waiting": self.notice = "房间已创建，等待另一位玩家使用相同房间号进入"
+                        case "ready": self.joiningRoom = false; self.becameConnected()
+                        case "peer-left": self.stop(); self.notice = "对方已离开房间，请重新进入后继续"; return
+                        default: self.stop(); self.notice = "房间服务器拒绝连接"; return
+                        }
+                    } else { self.receive(data) }
+                } catch {
+                    guard let self,self.generation == expected else { return }
+                    self.stop(); self.notice = "在线连接失败：\(error.localizedDescription)"; return
+                }
+            }
+        }
     }
     func startOnline(from presenter: UIViewController) {
         guard Bundle.main.object(forInfoDictionaryKey: "GameCenterEnabled") as? Bool == true else { notice = "此构建未配置Game Center；需开发团队启用能力并注册Bundle ID"; return }

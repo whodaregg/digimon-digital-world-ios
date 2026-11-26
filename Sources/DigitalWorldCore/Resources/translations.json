@@ -1720,6 +1720,14 @@
       }
     },
     {
+      "source": "公网服务器请使用wss加密地址；ws仅用于本机或局域网",
+      "values": {
+        "zh-Hant": "公網服務器請使用wss加密地址；ws僅用於本機或局域網",
+        "en": "Please use wss encrypted address for public network server; ws is only used for local machine or local area network",
+        "ja": "パブリック ネットワーク サーバーには WSS 暗号化アドレスを使用してください。 ws はローカル マシンまたはローカル エリア ネットワークにのみ使用されます"
+      }
+    },
+    {
       "source": "关灯",
       "values": {
         "zh-Hant": "關燈",
@@ -2112,6 +2120,14 @@
       }
     },
     {
+      "source": "双方使用相同服务器和房间号，不需要Apple开发账号。公网须使用wss；服务器程序随工程提供，需部署后填写地址。",
+      "values": {
+        "zh-Hant": "雙方使用相同服務器和房間號，不需要Apple開發賬號。公網須使用wss；服務器程序隨工程提供，需部署後填寫地址。",
+        "en": "Both parties use the same server and room number, and no Apple development account is required. The public network must use wss; the server program is provided with the project, and the address needs to be filled in after deployment.",
+        "ja": "両者は同じサーバーと部屋番号を使用するため、Apple 開発アカウントは必要ありません。パブリック ネットワークでは wss を使用する必要があります。サーバー プログラムはプロジェクトに付属しており、展開後にアドレスを入力する必要があります。"
+      }
+    },
+    {
       "source": "双方信息已收到，双方确认后开始对战",
       "values": {
         "zh-Hant": "雙方信息已收到，雙方確認後開始對戰",
@@ -2336,14 +2352,6 @@
       }
     },
     {
-      "source": "在线匹配需配置Game Center开发团队能力；本构建尚未启用。",
-      "values": {
-        "zh-Hant": "在線匹配需配置Game Center開發團隊能力；本構建尚未啓用。",
-        "en": "Online matching requires the Game Center development team capability; this build has not yet been enabled.",
-        "ja": "オンライン マッチングには、Game Center 開発チームの能力が必要です。このビルドはまだ有効になっていません。"
-      }
-    },
-    {
       "source": "在线对方已离开",
       "values": {
         "zh-Hant": "在線對方已離開",
@@ -2352,11 +2360,43 @@
       }
     },
     {
+      "source": "在线房间（侧装可用）",
+      "values": {
+        "zh-Hant": "在線房間（側裝可用）",
+        "en": "online room (side mounting available)",
+        "ja": "オンラインルーム（側面取付可能）"
+      }
+    },
+    {
+      "source": "在线服务器地址无效",
+      "values": {
+        "zh-Hant": "在線服務器地址無效",
+        "en": "The online server address is invalid",
+        "ja": "オンラインサーバーのアドレスが無効です"
+      }
+    },
+    {
+      "source": "在线消息超过容量上限",
+      "values": {
+        "zh-Hant": "在線消息超過容量上限",
+        "en": "Online messages exceed the capacity limit",
+        "ja": "オンライン メッセージが容量制限を超えています"
+      }
+    },
+    {
       "source": "在线连接失败",
       "values": {
         "zh-Hant": "在線連接失敗",
         "en": "Online connection failed",
         "ja": "オンライン接続に失敗しました"
+      }
+    },
+    {
+      "source": "在线连接失败：{0}",
+      "values": {
+        "zh-Hant": "在線連接失敗：{0}",
+        "en": "Online connection failed: {0}",
+        "ja": "オンライン接続に失敗しました: {0}"
       }
     },
     {
@@ -2821,6 +2861,14 @@
         "zh-Hant": "對戰需要成長至成長期，保持清醒健康，能量與體力不少於 15",
         "en": "To compete, you need to grow to the growth stage, stay awake and healthy, and have energy and physical strength of no less than 15",
         "ja": "競争するには、成長段階まで成長し、目覚めて健康で、15 以上の気力と体力が必要です。"
+      }
+    },
+    {
+      "source": "对方已离开房间，请重新进入后继续",
+      "values": {
+        "zh-Hant": "對方已離開房間，請重新進入後繼續",
+        "en": "The other party has left the room, please re-enter to continue.",
+        "ja": "相手が退室しました。続行するには再入室してください。"
       }
     },
     {
@@ -3648,6 +3696,38 @@
       }
     },
     {
+      "source": "房间号",
+      "values": {
+        "zh-Hant": "房間號",
+        "en": "room number",
+        "ja": "部屋番号"
+      }
+    },
+    {
+      "source": "房间号需为6至32位字母、数字或短横线",
+      "values": {
+        "zh-Hant": "房間號需爲6至32位字母、數字或短橫線",
+        "en": "The room number must be 6 to 32 letters, numbers or dashes",
+        "ja": "部屋番号は 6 ～ 32 文字の文字、数字、またはダッシュである必要があります"
+      }
+    },
+    {
+      "source": "房间已创建，等待另一位玩家使用相同房间号进入",
+      "values": {
+        "zh-Hant": "房間已創建，等待另一位玩家使用相同房間號進入",
+        "en": "The room has been created and is waiting for another player to enter using the same room number.",
+        "ja": "ルームが作成され、同じルーム番号を使用して別のプレイヤーが入るのを待っています。"
+      }
+    },
+    {
+      "source": "房间服务器拒绝连接",
+      "values": {
+        "zh-Hant": "房間服務器拒絕連接",
+        "en": "Room server refuses connection",
+        "ja": "ルームサーバーが接続を拒否しました"
+      }
+    },
+    {
       "source": "手动休息",
       "values": {
         "zh-Hant": "手動休息",
@@ -4312,6 +4392,14 @@
       }
     },
     {
+      "source": "服务器地址，例如wss://relay.example.com",
+      "values": {
+        "zh-Hant": "服務器地址，例如wss://relay.example.com",
+        "en": "server address, such as wss://relay.example.com",
+        "ja": "サーバー アドレス (wss://relay.example.com など)"
+      }
+    },
+    {
       "source": "未及时响应养成呼叫",
       "values": {
         "zh-Hant": "未及時響應養成呼叫",
@@ -4605,6 +4693,14 @@
         "zh-Hant": "正在睡覺：請關燈",
         "en": "is sleeping: please turn off the lights",
         "ja": "は寝ています: 電気を消してください"
+      }
+    },
+    {
+      "source": "正在连接房间，等待另一位玩家",
+      "values": {
+        "zh-Hant": "正在連接房間，等待另一位玩家",
+        "en": "is connecting to the room, waiting for another player",
+        "ja": "はルームに接続し、別のプレイヤーを待っています"
       }
     },
     {
@@ -5117,6 +5213,14 @@
         "zh-Hant": "生命狀態",
         "en": "life status",
         "ja": "ライフステータス"
+      }
+    },
+    {
+      "source": "生成房间号",
+      "values": {
+        "zh-Hant": "生成房間號",
+        "en": "Generate room number",
+        "ja": "部屋番号の生成"
       }
     },
     {
@@ -6240,6 +6344,14 @@
       }
     },
     {
+      "source": "请输入有效的在线服务器地址",
+      "values": {
+        "zh-Hant": "請輸入有效的在線服務器地址",
+        "en": "Please enter a valid online server address",
+        "ja": "有効なオンライン サーバー アドレスを入力してください"
+      }
+    },
+    {
       "source": "豆豆兽",
       "values": {
         "zh-Hant": "豆豆獸",
@@ -6304,19 +6416,19 @@
       }
     },
     {
-      "source": "这是iPhone之间的连接，不代表可以直接连接实体暴龙机。附近双机与Game Center实机联调仍需完成。",
-      "values": {
-        "zh-Hant": "這是iPhone之間的連接，不代表可以直接連接實體暴龍機。附近雙機與Game Center實機聯調仍需完成。",
-        "en": "This is a connection between iPhones. It does not mean that the physical Tyrannosaurus Rex can be directly connected. The joint debugging of nearby two machines and Game Center real machine still needs to be completed.",
-        "ja": "iPhone同士の接続です。物理的なティラノサウルスが直接接続できるわけではありません。近くの 2 台のマシンと Game Center の実機の共同デバッグをまだ完了する必要があります。"
-      }
-    },
-    {
       "source": "这是手机加速度输入辅助，不是已完成的Pendulum机型规则。仅用于独立Sandbox；A/B按钮可代替摇晃。",
       "values": {
         "zh-Hant": "這是手機加速度輸入輔助，不是已完成的Pendulum機型規則。僅用於獨立Sandbox；A/B按鈕可代替搖晃。",
         "en": "This is a mobile phone acceleration input assist, not a completed Pendulum model rule. Only for standalone Sandbox; A/B buttons can be used instead of shaking.",
         "ja": "これは携帯電話の加速度入力補助であり、完成した振り子モデルのルールではありません。スタンドアロン サンドボックスのみ。シェイクの代わりにA/Bボタンを使用することもできます。"
+      }
+    },
+    {
+      "source": "进入在线房间",
+      "values": {
+        "zh-Hant": "進入在線房間",
+        "en": "Enter the online room",
+        "ja": "オンラインルームに入る"
       }
     },
     {
@@ -6669,6 +6781,14 @@
         "zh-Hant": "階段成長時間",
         "en": "stage growth time",
         "ja": "ステージ成長時間"
+      }
+    },
+    {
+      "source": "附近连接与在线房间均用于iPhone之间，不代表可以直接连接实体暴龙机。真实双机仍需验收。",
+      "values": {
+        "zh-Hant": "附近連接與在線房間均用於iPhone之間，不代表可以直接連接實體暴龍機。真實雙機仍需驗收。",
+        "en": "Nearby connection and online room are both used between iPhones, which does not mean that the physical Tyrannosaurus Rex can be directly connected. Real dual machines still need to be inspected and accepted.",
+        "ja": "近くの接続とオンライン ルームは両方とも iPhone 間で使用されます。これは、物理的なティラノサウルス レックスを直接接続できることを意味するものではありません。実際のデュアル マシンはまだ検査して受け入れられる必要があります。"
       }
     },
     {

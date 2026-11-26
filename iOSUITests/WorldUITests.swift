@@ -1,10 +1,19 @@
 import XCTest
 
 final class WorldUITests: XCTestCase {
+    func testSideloadRoomEntryRejectsInsecurePublicAddress() throws {
+        let app = launch(); app.buttons["action-CONNECTION"].tap()
+        let server = app.textFields["roomServer"]
+        XCTAssertTrue(server.waitForExistence(timeout: 5))
+        replaceText(server,with: "ws://example.com"); app.buttons["roomKeyboardDone"].tap()
+        replaceText(app.textFields["roomCode"],with: "ABC123"); app.buttons["roomKeyboardDone"].tap()
+        let join = app.buttons["joinRoom"]; scrollTo(join,in: app); join.tap()
+        XCTAssertTrue(waitFor(app.staticTexts["connectionNotice"],containing: "wss",timeout: 5))
+    }
     func testFeedingAndRefusalKeepFoodAndCharacterInsideLCD() throws {
         for refusing in [false,true] {
             let app = XCUIApplication()
-            app.launchArguments = ["--ui-testing","--ui-testing-hatched"] + (refusing ? ["--ui-testing-feed-refusal"] : [])
+            app.launchArguments = ["--ui-testing","--ui-testing-hatched","--ui-testing-slow-care"] + (refusing ? ["--ui-testing-feed-refusal"] : [])
             app.launch()
             XCTAssertTrue(app.buttons["action-FOOD"].waitForExistence(timeout: 10))
             app.buttons["action-FOOD"].tap(); app.buttons["lcdFeed"].tap()
@@ -15,7 +24,7 @@ final class WorldUITests: XCTestCase {
             XCTAssertFalse(app.buttons["lcdFeed"].isEnabled)
             attachScreenshot(refusing ? "food-refusal-layout" : "food-eating-layout")
             let enabled = NSPredicate { _,_ in app.buttons["lcdFeed"].isEnabled }
-            XCTAssertEqual(XCTWaiter.wait(for: [expectation(for: enabled,evaluatedWith: app)],timeout: 5),.completed)
+            XCTAssertEqual(XCTWaiter.wait(for: [expectation(for: enabled,evaluatedWith: app)],timeout: 10),.completed)
             if refusing {
                 // The refusal notice must not intercept the food button after the animation ends.
                 app.buttons["lcdFeed"].tap()
@@ -31,7 +40,6 @@ final class WorldUITests: XCTestCase {
         app.buttons["action-DIGIVICE"].tap(); app.buttons["profile-dmc-ver2"].tap()
         XCTAssertTrue(app.buttons["create-device-dmc-ver2"].waitForExistence(timeout: 5))
         app.buttons["create-device-dmc-ver2"].tap()
-        if app.buttons["pageDone"].exists { app.buttons["pageDone"].tap() }
         XCTAssertTrue(app.staticTexts["Ver.2"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["普尼兽"].waitForExistence(timeout: 12))
     }

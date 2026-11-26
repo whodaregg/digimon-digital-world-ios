@@ -14,6 +14,12 @@ final class WorldViewModel: ObservableObject {
     @Published var animation = "idle"
     @Published var feedingFoodID = "meat"
     var isFeeding: Bool { animation == "eat" || animation == "refuse" }
+    var feedingDuration: Double {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("--ui-testing-slow-care") { return 8 }
+        #endif
+        return 2.4
+    }
     @Published var lastBattle: BattleRecord?
     @Published var encounter: String?
     @Published var trainingScore: Int?
@@ -403,7 +409,7 @@ final class WorldViewModel: ObservableObject {
         let cue = cues[value]
         if let cue,let game = state { feedback.play(sound: game.settings.sound,haptics: game.settings.haptics,volume: game.settings.presentation.volume,cue: cue) }
         animationTask = Task { [weak self] in
-            try? await Task.sleep(for: .seconds(value == "evolution" ? 3 : (value == "eat" || value == "refuse") ? 2.4 : 1.6))
+            try? await Task.sleep(for: .seconds(value == "evolution" ? 3 : (value == "eat" || value == "refuse") ? self?.feedingDuration ?? 2.4 : 1.6))
             guard !Task.isCancelled else { return }
             self?.animation = "idle"
         }

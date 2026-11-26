@@ -1,6 +1,22 @@
 import XCTest
 @testable import DigitalWorldCore
 
+final class RoomEndpointTests: XCTestCase {
+    func testRoomsAcceptTLSAndPrivateLANWithoutAppleServices() throws {
+        XCTAssertEqual(try RoomEndpoint.url(server: "https://relay.example.com",room: "abc123").absoluteString,"wss://relay.example.com/room/ABC123")
+        XCTAssertEqual(try RoomEndpoint.url(server: "ws://192.168.1.10:8765",room: "ABC123").host,"192.168.1.10")
+        XCTAssertEqual(try RoomEndpoint.url(server: "ws://localhost:8765",room: "ABC123").scheme,"ws")
+    }
+    func testPublicPlaintextCredentialsAndInvalidCodesAreRejected() throws {
+        for server in ["ws://example.com","file:///private","wss://user:password@example.com","wss://example.com?token=secret"] {
+            XCTAssertThrowsError(try RoomEndpoint.url(server: server,room: "ABC123"))
+        }
+        for code in ["short","../../a","房间123",String(repeating: "A",count: 33)] {
+            XCTAssertThrowsError(try RoomEndpoint.url(server: "wss://example.com",room: code))
+        }
+    }
+}
+
 final class ConnectionTests: XCTestCase {
     let now = Date(timeIntervalSince1970: 1_800_446_400)
     func game(_ species: String) throws -> GameState {

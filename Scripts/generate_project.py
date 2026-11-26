@@ -132,6 +132,7 @@ plist=dict(CFBundleDevelopmentRegion='zh-Hans',CFBundleDisplayName='Digital Worl
     UIAppFonts=[p.name for p in sorted((ROOT/'iOS/Resources/Fonts').glob('*.ttf'))],
     NSLocalNetworkUsageDescription='用于发现附近玩家，并在双方确认后进行本地对战。',
     NSBonjourServices=['_world-pets._tcp'],
+    NSAppTransportSecurity={'NSAllowsLocalNetworking':True},
     NSMotionUsageDescription='仅在主动开始Sandbox摇晃输入测试时读取加速度，数据不上传。',
     GameCenterEnabled=capabilities['gameCenter'],
     LSRequiresIPhoneOS=True,UIApplicationSceneManifest=dict(UIApplicationSupportsMultipleScenes=False),

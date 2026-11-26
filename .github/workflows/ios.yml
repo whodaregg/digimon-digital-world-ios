@@ -9,6 +9,7 @@ on:
       - 'iOSUITests/**'
       - 'Scripts/**'
       - 'Configuration/**'
+      - 'Server/**'
       - 'Package.swift'
       - 'DigitalWorld.xcodeproj/**'
       - '.github/workflows/ios.yml'
@@ -25,6 +26,15 @@ concurrency:
   group: ios-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  relay:
+    if: ${{ !inputs.release_only }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify sideload online room relay
+        run: |
+          python3 -m pip install --target "$RUNNER_TEMP/relay-deps" -r Server/requirements.txt
+          PYTHONPATH="$RUNNER_TEMP/relay-deps" python3 -m unittest discover -s Server -p 'test_*.py' -v
   core:
     if: ${{ !inputs.release_only }}
     runs-on: macos-15
