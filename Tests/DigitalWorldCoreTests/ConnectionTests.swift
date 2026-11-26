@@ -8,7 +8,7 @@ final class RoomEndpointTests: XCTestCase {
         XCTAssertEqual(try RoomEndpoint.url(server: "ws://localhost:8765",room: "ABC123").scheme,"ws")
     }
     func testPublicPlaintextCredentialsAndInvalidCodesAreRejected() throws {
-        for server in ["ws://example.com","file:///private","wss://user:password@example.com","wss://example.com?token=secret"] {
+        for server in ["ws://example.com","ws://192.168.1.10.example.com","ws://8.8.8.8","file:///private","wss://user:password@example.com","wss://example.com?token=secret"] {
             XCTAssertThrowsError(try RoomEndpoint.url(server: server,room: "ABC123"))
         }
         for code in ["short","../../a","房间123",String(repeating: "A",count: 33)] {
