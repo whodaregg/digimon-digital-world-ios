@@ -1,7 +1,7 @@
 import Foundation
 
 public struct ConnectionFighter: Codable, Equatable, Sendable {
-    public var protocolVersion = 1
+    public var protocolVersion = 2
     public var petID: UUID
     public var nonce: UUID
     public var deviceID: String
@@ -20,7 +20,7 @@ public struct ConnectionBattleResult: Equatable, Sendable {
 }
 public enum ConnectionEngine {
     public static func fighter(for state: GameState,database: ContentDatabase,nonce: UUID = UUID()) throws -> ConnectionFighter {
-        guard state.deviceID == DMCV1Engine.deviceID,state.pet.life == .alive,!state.pet.isEgg,!state.pet.sleeping,
+        guard DeviceRegistry.isColor(state.deviceID),state.pet.life == .alive,!state.pet.isEgg,!state.pet.sleeping,
               !state.pet.stats.injured,state.pet.stats.dp > 0,state.training == nil,
               try database.species(state.pet.speciesID).stage.order >= Stage.rookie.order else { throw GameError.cannotAct("通信需要清醒、无伤、DP至少1的成长期以上伙伴") }
         guard state.playStyle == .sandbox || state.developerModifiedAt == nil else { throw GameError.cannotAct("修改过的档案只能在Sandbox参与测试对战") }
@@ -28,9 +28,9 @@ public enum ConnectionEngine {
                      strength: state.pet.dmc?.strengthHearts ?? 0,traited: state.pet.dmc?.traited ?? false,sandbox: state.playStyle == .sandbox,powerOverride: state.playStyle == .sandbox ? state.pet.developerTuning?.power : nil)
     }
     public static func validate(_ fighter: ConnectionFighter,database: ContentDatabase) throws {
-        guard fighter.protocolVersion == 1,fighter.deviceID == DMCV1Engine.deviceID,(0...4).contains(fighter.strength),
+        guard fighter.protocolVersion == 2,DeviceRegistry.isColor(fighter.deviceID),(0...4).contains(fighter.strength),
               try database.species(fighter.speciesID).stage.order >= Stage.rookie.order,
-              database.dmcV1?.roster[fighter.speciesID] != nil,
+              database.colorRules(for: fighter.deviceID)?.roster[fighter.speciesID] != nil,
               fighter.sandbox || fighter.powerOverride == nil,
               fighter.powerOverride.map({ (0...1_000_000).contains($0) }) ?? true else { throw GameError.invalidData("对方的通信协议、机型或角色不受支持") }
     }
@@ -43,7 +43,7 @@ public enum ConnectionEngine {
         let seed = UInt64(SaveStore.checksum(Data(identity.utf8)),radix: 16) ?? 1
         var rng = SeededRandom(seed: seed)
         func power(_ fighter: ConnectionFighter) throws -> Int {
-            let s = try database.species(fighter.speciesID),base = try database.dmcV1!.species(fighter.speciesID).power
+            let s = try database.species(fighter.speciesID),base = try database.colorRules(for: fighter.deviceID)!.species(fighter.speciesID).power
             let bonus = s.stage == .rookie ? 5 : s.stage == .champion ? 8 : s.stage == .ultimate ? 15 : 25
             return (fighter.powerOverride ?? base)+(fighter.strength == 4 ? bonus : 0)+(fighter.traited ? bonus : 0)
         }
@@ -65,7 +65,7 @@ public enum ConnectionEngine {
         guard current == player else { throw GameError.cannotAct("伙伴状态已变化，请重新连接") }
         var next = state
         guard (next.connectionReceipts?.count ?? 0) < 100_000 else { throw GameError.cannotAct("通信记录容量已满，请先导出完整档案") }
-        let i = next.activeIndex, rule = try database.dmcV1!.species(player.speciesID),stage = try database.species(player.speciesID).stage
+        let i = next.activeIndex, rule = try database.colorRules(for: player.deviceID)!.species(player.speciesID),stage = try database.species(player.speciesID).stage
         next.pets[i].stats.dp -= 1; next.pets[i].stats.weight = max(rule.minimumWeight,next.pet.stats.weight-6)
         next.pets[i].stats.battles += 1; next.pets[i].dmc!.stageBattles += 1
         if result.playerWon { next.pets[i].stats.wins += 1 }
@@ -79,6 +79,7 @@ public enum ConnectionEngine {
         next.connectionReceipts = (next.connectionReceipts ?? []) + [result.id]
         next.pets[i].record("connection",result.playerWon ? "通信对战胜利" : "通信对战败北",at: date)
         if next.pet.dmc?.stageInjuries ?? 0 >= 15 { DMCV1Engine.die(&next,at: date); LifecycleManager.capture(&next) }
+        else { try JogressEngine.applyAfterConnection(&next,opponent: opponent,database: database,at: date) }
         try database.validateSave(next); state = next; return record
     }
 }

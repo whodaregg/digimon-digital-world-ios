@@ -1,0 +1,816 @@
+{
+  "version": 1,
+  "deviceID": "dmc-ver2",
+  "manualURL": "https://toy.bandai.co.jp/manuals/files/2645513.pdf",
+  "referenceURLs": [
+    "https://nhoko.xxxxxxxx.jp/dc-evo2-list.html",
+    "https://humulos.com/digimon/dmc/quest/",
+    "https://humulos.com/digimon/dmc/manual/"
+  ],
+  "verificationNotes": [
+    "Manual operations share the Ver.1/Ver.2 manual. Hidden stats and evolution thresholds are attributed community measurements; not hardware certification.",
+    "Quest attributes are stage-specific; Garurumon is Data in care and Vaccine as a Quest opponent.",
+    "Training sequence uses the existing shared COLOR sequence; exact timing still needs hardware comparison."
+  ],
+  "hatchSeconds": 8,
+  "trainingPatterns": [
+    "BBBAA",
+    "ABABB",
+    "BABBA",
+    "ABBAB",
+    "AAABA",
+    "BBAAB",
+    "ABBBA",
+    "BAABB",
+    "BABAB",
+    "ABAAA"
+  ],
+  "roster": {
+    "punimon": {
+      "id": "punimon",
+      "minimumWeight": 5,
+      "sleepHour": null,
+      "evolutionMinutes": 10,
+      "heartLossMinutes": 3,
+      "maxDP": 0,
+      "healDoses": 0,
+      "power": 0
+    },
+    "tsunomon": {
+      "id": "tsunomon",
+      "minimumWeight": 10,
+      "sleepHour": 20,
+      "evolutionMinutes": 720,
+      "heartLossMinutes": 30,
+      "maxDP": 0,
+      "healDoses": 1,
+      "power": 0
+    },
+    "gabumon": {
+      "id": "gabumon",
+      "minimumWeight": 20,
+      "sleepHour": 21,
+      "evolutionMinutes": 1440,
+      "heartLossMinutes": 48,
+      "maxDP": 20,
+      "healDoses": 2,
+      "power": 30
+    },
+    "elecmon": {
+      "id": "elecmon",
+      "minimumWeight": 20,
+      "sleepHour": 22,
+      "evolutionMinutes": 1440,
+      "heartLossMinutes": 38,
+      "maxDP": 20,
+      "healDoses": 2,
+      "power": 25
+    },
+    "kabuterimon": {
+      "id": "kabuterimon",
+      "minimumWeight": 30,
+      "sleepHour": 22,
+      "evolutionMinutes": 2160,
+      "heartLossMinutes": 59,
+      "maxDP": 30,
+      "healDoses": 1,
+      "power": 50
+    },
+    "garurumon": {
+      "id": "garurumon",
+      "minimumWeight": 20,
+      "sleepHour": 23,
+      "evolutionMinutes": 2160,
+      "heartLossMinutes": 59,
+      "maxDP": 30,
+      "healDoses": 2,
+      "power": 45
+    },
+    "angemon": {
+      "id": "angemon",
+      "minimumWeight": 20,
+      "sleepHour": 0,
+      "evolutionMinutes": 2160,
+      "heartLossMinutes": 48,
+      "maxDP": 30,
+      "healDoses": 1,
+      "power": 50
+    },
+    "yukidarumon": {
+      "id": "yukidarumon",
+      "minimumWeight": 30,
+      "sleepHour": 22,
+      "evolutionMinutes": 2160,
+      "heartLossMinutes": 48,
+      "maxDP": 30,
+      "healDoses": 2,
+      "power": 45
+    },
+    "birdramon": {
+      "id": "birdramon",
+      "minimumWeight": 30,
+      "sleepHour": 22,
+      "evolutionMinutes": 2160,
+      "heartLossMinutes": 38,
+      "maxDP": 30,
+      "healDoses": 1,
+      "power": 50
+    },
+    "whamon": {
+      "id": "whamon",
+      "minimumWeight": 40,
+      "sleepHour": 21,
+      "evolutionMinutes": 2160,
+      "heartLossMinutes": 38,
+      "maxDP": 30,
+      "healDoses": 2,
+      "power": 45
+    },
+    "vegimon": {
+      "id": "vegimon",
+      "minimumWeight": 10,
+      "sleepHour": 22,
+      "evolutionMinutes": 2160,
+      "heartLossMinutes": 28,
+      "maxDP": 30,
+      "healDoses": 3,
+      "power": 40
+    },
+    "skullgreymon": {
+      "id": "skullgreymon",
+      "minimumWeight": 40,
+      "sleepHour": 22,
+      "evolutionMinutes": 2880,
+      "heartLossMinutes": 59,
+      "maxDP": 40,
+      "healDoses": 1,
+      "power": 100
+    },
+    "metalmamemon": {
+      "id": "metalmamemon",
+      "minimumWeight": 5,
+      "sleepHour": 21,
+      "evolutionMinutes": 2880,
+      "heartLossMinutes": 59,
+      "maxDP": 40,
+      "healDoses": 1,
+      "power": 85
+    },
+    "vademon": {
+      "id": "vademon",
+      "minimumWeight": 20,
+      "sleepHour": 23,
+      "evolutionMinutes": 2880,
+      "heartLossMinutes": 48,
+      "maxDP": 40,
+      "healDoses": 1,
+      "power": 100
+    },
+    "skullmammon": {
+      "id": "skullmammon",
+      "minimumWeight": 5,
+      "sleepHour": 23,
+      "evolutionMinutes": 0,
+      "heartLossMinutes": 59,
+      "maxDP": 50,
+      "healDoses": 1,
+      "power": 170
+    },
+    "cresgarurumon": {
+      "id": "cresgarurumon",
+      "minimumWeight": 50,
+      "sleepHour": 23,
+      "evolutionMinutes": 0,
+      "heartLossMinutes": 59,
+      "maxDP": 50,
+      "healDoses": 1,
+      "power": 150
+    },
+    "ebemon": {
+      "id": "ebemon",
+      "minimumWeight": 30,
+      "sleepHour": 23,
+      "evolutionMinutes": 0,
+      "heartLossMinutes": 48,
+      "maxDP": 50,
+      "healDoses": 2,
+      "power": 170
+    },
+    "omegamon-alter-s": {
+      "id": "omegamon-alter-s",
+      "minimumWeight": 40,
+      "sleepHour": 23,
+      "evolutionMinutes": 0,
+      "heartLossMinutes": 66,
+      "maxDP": 50,
+      "healDoses": 1,
+      "power": 200
+    }
+  },
+  "evolutions": [
+    {
+      "id": "punimon-to-tsunomon",
+      "from": "punimon",
+      "target": "tsunomon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "CM (0, None); TRAIN (0, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 0"
+    },
+    {
+      "id": "tsunomon-to-gabumon",
+      "from": "tsunomon",
+      "target": "gabumon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 3,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "CM (0, 3); TRAIN (0, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 0"
+    },
+    {
+      "id": "tsunomon-to-elecmon",
+      "from": "tsunomon",
+      "target": "elecmon",
+      "priority": 10,
+      "minimumMistakes": 4,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "CM (4, None); TRAIN (0, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 0"
+    },
+    {
+      "id": "gabumon-to-kabuterimon",
+      "from": "gabumon",
+      "target": "kabuterimon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 3,
+      "minimumTraining": 48,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "CM (0, 3); TRAIN (48, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 0"
+    },
+    {
+      "id": "gabumon-to-angemon",
+      "from": "gabumon",
+      "target": "angemon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 3,
+      "minimumTraining": 0,
+      "maximumTraining": 47,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "CM (0, 3); TRAIN (0, 47); OVERFEED (0, None); SLEEP (0, None); BATTLES 0"
+    },
+    {
+      "id": "gabumon-to-garurumon",
+      "from": "gabumon",
+      "target": "garurumon",
+      "priority": 10,
+      "minimumMistakes": 4,
+      "maximumMistakes": null,
+      "minimumTraining": 5,
+      "maximumTraining": 31,
+      "minimumOverfeeds": 3,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 4,
+      "maximumSleepDisturbances": 5,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "CM (4, None); TRAIN (5, 31); OVERFEED (3, None); SLEEP (4, 5); BATTLES 0"
+    },
+    {
+      "id": "gabumon-to-yukidarumon",
+      "from": "gabumon",
+      "target": "yukidarumon",
+      "priority": 10,
+      "minimumMistakes": 4,
+      "maximumMistakes": null,
+      "minimumTraining": 32,
+      "maximumTraining": null,
+      "minimumOverfeeds": 3,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 6,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "CM (4, None); TRAIN (32, None); OVERFEED (3, None); SLEEP (6, None); BATTLES 0"
+    },
+    {
+      "id": "gabumon-to-vegimon",
+      "from": "gabumon",
+      "target": "vegimon",
+      "priority": 0,
+      "minimumMistakes": 4,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "CM (4, None); TRAIN (0, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 0"
+    },
+    {
+      "id": "elecmon-to-angemon",
+      "from": "elecmon",
+      "target": "angemon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 3,
+      "minimumTraining": 48,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "CM (0, 3); TRAIN (48, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 0"
+    },
+    {
+      "id": "elecmon-to-birdramon",
+      "from": "elecmon",
+      "target": "birdramon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 3,
+      "minimumTraining": 0,
+      "maximumTraining": 47,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "CM (0, 3); TRAIN (0, 47); OVERFEED (0, None); SLEEP (0, None); BATTLES 0"
+    },
+    {
+      "id": "elecmon-to-yukidarumon",
+      "from": "elecmon",
+      "target": "yukidarumon",
+      "priority": 10,
+      "minimumMistakes": 4,
+      "maximumMistakes": null,
+      "minimumTraining": 8,
+      "maximumTraining": 31,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": 5,
+      "minimumSleepDisturbances": 6,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "CM (4, None); TRAIN (8, 31); OVERFEED (0, 5); SLEEP (6, None); BATTLES 0"
+    },
+    {
+      "id": "elecmon-to-whamon",
+      "from": "elecmon",
+      "target": "whamon",
+      "priority": 10,
+      "minimumMistakes": 4,
+      "maximumMistakes": null,
+      "minimumTraining": 32,
+      "maximumTraining": null,
+      "minimumOverfeeds": 6,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 4,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "CM (4, None); TRAIN (32, None); OVERFEED (6, None); SLEEP (4, None); BATTLES 0"
+    },
+    {
+      "id": "elecmon-to-vegimon",
+      "from": "elecmon",
+      "target": "vegimon",
+      "priority": 0,
+      "minimumMistakes": 4,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 0,
+      "probabilistic": false,
+      "summary": "CM (4, None); TRAIN (0, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 0"
+    },
+    {
+      "id": "kabuterimon-to-skullgreymon",
+      "from": "kabuterimon",
+      "target": "skullgreymon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "CM (0, None); TRAIN (0, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 15"
+    },
+    {
+      "id": "angemon-to-skullgreymon",
+      "from": "angemon",
+      "target": "skullgreymon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "CM (0, None); TRAIN (0, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 15"
+    },
+    {
+      "id": "birdramon-to-skullgreymon",
+      "from": "birdramon",
+      "target": "skullgreymon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "CM (0, None); TRAIN (0, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 15"
+    },
+    {
+      "id": "garurumon-to-metalmamemon",
+      "from": "garurumon",
+      "target": "metalmamemon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "CM (0, None); TRAIN (0, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 15"
+    },
+    {
+      "id": "yukidarumon-to-metalmamemon",
+      "from": "yukidarumon",
+      "target": "metalmamemon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "CM (0, None); TRAIN (0, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 15"
+    },
+    {
+      "id": "whamon-to-metalmamemon",
+      "from": "whamon",
+      "target": "metalmamemon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "CM (0, None); TRAIN (0, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 15"
+    },
+    {
+      "id": "vegimon-to-vademon",
+      "from": "vegimon",
+      "target": "vademon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": null,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "CM (0, None); TRAIN (0, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 15"
+    },
+    {
+      "id": "skullgreymon-to-skullmammon",
+      "from": "skullgreymon",
+      "target": "skullmammon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 1,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "CM (0, 1); TRAIN (0, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 15"
+    },
+    {
+      "id": "metalmamemon-to-cresgarurumon",
+      "from": "metalmamemon",
+      "target": "cresgarurumon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 1,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "CM (0, 1); TRAIN (0, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 15"
+    },
+    {
+      "id": "vademon-to-ebemon",
+      "from": "vademon",
+      "target": "ebemon",
+      "priority": 10,
+      "minimumMistakes": 0,
+      "maximumMistakes": 1,
+      "minimumTraining": 0,
+      "maximumTraining": null,
+      "minimumOverfeeds": 0,
+      "maximumOverfeeds": null,
+      "minimumSleepDisturbances": 0,
+      "maximumSleepDisturbances": null,
+      "minimumBattles": 15,
+      "probabilistic": true,
+      "summary": "CM (0, 1); TRAIN (0, None); OVERFEED (0, None); SLEEP (0, None); BATTLES 15"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1,
+      "name": "AREA 1",
+      "opponents": [
+        {
+          "speciesID": "elecmon",
+          "attribute": "data",
+          "power": 15
+        },
+        {
+          "speciesID": "gabumon",
+          "attribute": "data",
+          "power": 19
+        },
+        {
+          "speciesID": "yukidarumon",
+          "attribute": "vaccine",
+          "power": 23
+        }
+      ],
+      "backgroundReward": "grid"
+    },
+    {
+      "id": 2,
+      "name": "AREA 2",
+      "opponents": [
+        {
+          "speciesID": "vegimon",
+          "attribute": "virus",
+          "power": 19
+        },
+        {
+          "speciesID": "whamon",
+          "attribute": "vaccine",
+          "power": 23
+        },
+        {
+          "speciesID": "angemon",
+          "attribute": "vaccine",
+          "power": 28
+        }
+      ],
+      "backgroundReward": null
+    },
+    {
+      "id": 3,
+      "name": "AREA 3",
+      "opponents": [
+        {
+          "speciesID": "garurumon",
+          "attribute": "vaccine",
+          "power": 28
+        },
+        {
+          "speciesID": "birdramon",
+          "attribute": "vaccine",
+          "power": 37
+        },
+        {
+          "speciesID": "kabuterimon",
+          "attribute": "vaccine",
+          "power": 45
+        }
+      ],
+      "backgroundReward": null
+    },
+    {
+      "id": 4,
+      "name": "AREA 4",
+      "opponents": [
+        {
+          "speciesID": "whamon",
+          "attribute": "vaccine",
+          "power": 45
+        },
+        {
+          "speciesID": "yukidarumon",
+          "attribute": "vaccine",
+          "power": 55
+        },
+        {
+          "speciesID": "angemon",
+          "attribute": "vaccine",
+          "power": 65
+        },
+        {
+          "speciesID": "metalmamemon",
+          "attribute": "data",
+          "power": 80
+        }
+      ],
+      "backgroundReward": "dmc-logo"
+    },
+    {
+      "id": 5,
+      "name": "AREA 5",
+      "opponents": [
+        {
+          "speciesID": "birdramon",
+          "attribute": "vaccine",
+          "power": 55
+        },
+        {
+          "speciesID": "garurumon",
+          "attribute": "vaccine",
+          "power": 70
+        },
+        {
+          "speciesID": "kabuterimon",
+          "attribute": "vaccine",
+          "power": 85
+        },
+        {
+          "speciesID": "skullgreymon",
+          "attribute": "virus",
+          "power": 105
+        }
+      ],
+      "backgroundReward": null
+    },
+    {
+      "id": 6,
+      "name": "AREA 6",
+      "opponents": [
+        {
+          "speciesID": "yukidarumon",
+          "attribute": "vaccine",
+          "power": 65
+        },
+        {
+          "speciesID": "metalmamemon",
+          "attribute": "data",
+          "power": 80
+        },
+        {
+          "speciesID": "vademon",
+          "attribute": "virus",
+          "power": 95
+        },
+        {
+          "speciesID": "cresgarurumon",
+          "attribute": "data",
+          "power": 120
+        }
+      ],
+      "backgroundReward": null
+    },
+    {
+      "id": 7,
+      "name": "AREA 7",
+      "opponents": [
+        {
+          "speciesID": "vegimon",
+          "attribute": "virus",
+          "power": 75
+        },
+        {
+          "speciesID": "skullgreymon",
+          "attribute": "virus",
+          "power": 90
+        },
+        {
+          "speciesID": "vademon",
+          "attribute": "virus",
+          "power": 110
+        },
+        {
+          "speciesID": "skullmammon",
+          "attribute": "vaccine",
+          "power": 130
+        },
+        {
+          "speciesID": "ebemon",
+          "attribute": "virus",
+          "power": 145
+        }
+      ],
+      "backgroundReward": null
+    },
+    {
+      "id": 8,
+      "name": "AREA F",
+      "opponents": [
+        {
+          "speciesID": "skullgreymon",
+          "attribute": "virus",
+          "power": 85
+        },
+        {
+          "speciesID": "skullmammon",
+          "attribute": "vaccine",
+          "power": 100
+        },
+        {
+          "speciesID": "ebemon",
+          "attribute": "virus",
+          "power": 135
+        },
+        {
+          "speciesID": "cresgarurumon",
+          "attribute": "data",
+          "power": 160
+        },
+        {
+          "speciesID": "omegamon-alter-s",
+          "attribute": "virus",
+          "power": 220
+        }
+      ],
+      "backgroundReward": "box-art"
+    }
+  ]
+}

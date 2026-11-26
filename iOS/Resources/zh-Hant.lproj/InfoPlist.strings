@@ -1,0 +1,2 @@
+"NSLocalNetworkUsageDescription" = "用於尋找附近玩家，並在雙方確認後進行本機對戰。";
+"NSMotionUsageDescription" = "僅在主動開始Sandbox搖晃輸入測試時讀取加速度，資料不會上傳。";

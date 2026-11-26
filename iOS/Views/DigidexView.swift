@@ -89,7 +89,7 @@ struct DigidexView: View {
                     }.buttonStyle(.plain)
                 }
             }
-            if model.isOriginal && !model.isClassic, let rules = database.dmcV1 {
+            if model.isOriginal && !model.isClassic, let rules = database.colorRules(for: model.state?.deviceID ?? "dmc-ver1") {
                 Panel(title: "EVOLUTION / COLOR Ver.1") {
                     Text(l("养成由照顾失误、训练、满腹、睡眠打扰和战绩决定；不使用经验升级。"))
                         .font(.footnote).foregroundStyle(Palette.muted)
@@ -102,7 +102,7 @@ struct DigidexView: View {
                     }
                     Text(l("高阶进化依通算胜率判定：40%起25%、60%起50%、80%起必定。60～69%区间资料存在分歧，待实体机复核。"))
                         .font(.caption2).foregroundStyle(Palette.amber)
-                    Text(l("电光暴龙兽＋Ver.2偃月加鲁鲁兽的联展未开放；Alter-S不会通过普通进化获得。"))
+                    Text(l("电光暴龙兽与Ver.2偃月加鲁鲁兽通信对战后，无论胜败均可联展为Alter-S；不消耗本机备份伙伴。"))
                         .font(.caption2).foregroundStyle(Palette.muted)
                 }
             } else if !model.isOriginal {
@@ -112,7 +112,7 @@ struct DigidexView: View {
                 EvolutionTreeView(species: database.species)
             }
             }
-            Text(l("包含Ver.1的17种养成角色及最终区Alter-S，使用有来源记录的原版彩色角色像素。附近手机通信已接入，双机待验收，联展未开放；部分动作采用已有姿势回退。"))
+            Text(l("包含COLOR Ver.1和Ver.2共35种角色，使用有来源记录的原版彩色图集。跨版本通信联展已接入，真实双机待验收；部分动作使用已有姿势回退。"))
                 .font(.caption2).foregroundStyle(Palette.muted)
         }
         }.sheet(item: $selected) { species in
@@ -136,13 +136,13 @@ struct DigidexView: View {
                                 Readout(name: model.text(.firstObtained),value: entry.firstObtained?.formatted(date: .abbreviated,time: .shortened) ?? "旧档未记录")
                             }
                             Readout(name: "首次登场",value: species.firstAppearance ?? "待核验")
-                            Text(l(model.isOriginal ? "Ver.1战斗使用力量与三次命中判定。睡眠和隐藏进化条件依公开资料实现，尚待实体机复核。" : "此页旧版规则数值为实验平衡参数。"))
+                            Text(l(model.isOriginal ? "COLOR战斗使用力量与三次命中判定。睡眠和隐藏进化条件依公开资料实现，尚待实体机复核。" : "此页旧版规则数值为实验平衡参数。"))
                                 .font(.caption).foregroundStyle(Palette.amber)
                             Text(l("官方资料已核验字段：\(species.verifiedFields.isEmpty ? "待核验" : species.verifiedFields.joined(separator: ", "))"))
                                 .font(.caption).foregroundStyle(Palette.muted)
                             if let source = species.referenceURL, let url = URL(string: source) { Link("官方角色资料",destination: url) }
                         }
-                        if model.isOriginal && !model.isClassic, let rules = model.database?.dmcV1 {
+                        if model.isOriginal && !model.isClassic, let rules = model.database?.colorRules(for: model.state?.deviceID ?? "dmc-ver1") {
                             Panel(title: "Ver.1 / 条件") {
                                 if let stats = rules.roster[species.id] {
                                     Readout(name: "最低体重",value: "\(stats.minimumWeight) g")

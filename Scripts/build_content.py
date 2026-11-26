@@ -4,6 +4,7 @@ import struct
 import zlib
 from pathlib import Path
 from dmc_content import EXTRA, extend
+from color_content import extend_color
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'Sources/DigitalWorldCore/Resources'
@@ -87,6 +88,7 @@ database = dict(version=2, species=species, devices=devices, foods=foods,
             '#...~~....##...#', '#...~~.........#', '#..............#', '################'])])
 OUT.mkdir(parents=True, exist_ok=True)
 extend(database,OUT)
+extend_color(database,OUT)
 (OUT/'database.json').write_text(json.dumps(database,ensure_ascii=False,indent=2)+'\n')
 
 print(f'Built {len(species)} species and content version {database["version"]}. Character PNGs are preserved unchanged.')

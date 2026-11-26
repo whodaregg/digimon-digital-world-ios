@@ -15,10 +15,14 @@ public struct DeviceArchive: Codable, Sendable {
     public static let maximumBytes = 128 * 1024 * 1024
 
     public static func capture(index: DeviceLibraryIndex,library: DeviceLibraryStore,at date: Date) throws -> Self {
+        var total = 0
         let entries = try index.slots.map { slot -> Entry in
             guard let saved = try library.store(for: slot).load() else { throw GameError.invalidData("设备档案缺失，无法创建完整备份") }
             guard saved.state.deviceID == slot.deviceID,saved.state.playStyle.isFormal == slot.style.isFormal else { throw GameError.saveCorrupt }
-            return Entry(slot: slot,save: try library.store(for: slot).encode(saved.state))
+            let data = try library.store(for: slot).encode(saved.state)
+            total += data.count
+            guard total <= maximumBytes/2 else { throw GameError.cannotAct("设备合集超过备份容量上限，请分别导出设备") }
+            return Entry(slot: slot,save: data)
         }
         return .init(id: UUID(),createdAt: date,activeID: index.activeID,entries: entries)
     }

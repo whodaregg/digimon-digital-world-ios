@@ -83,7 +83,7 @@ struct PlaySettingsView: View {
                             .contentShape(Rectangle()).padding(.vertical,6)
                     }.buttonStyle(.plain).accessibilityIdentifier("play-style-\(style.rawValue)")
                 }
-                Text(l(model.isClassic ? "经典模式仅使用A/B/C进行LCD养成，不公开隐藏进化条件或照顾失误。" : model.isSandbox ? "独立测试副本：角色、数值与时间修改不计入正式收藏。" : "增强模式沿用Ver.1养成规则，增加触屏、图鉴与历史辅助。"))
+                Text(l(model.isClassic ? "经典模式仅使用A/B/C进行LCD养成，不公开隐藏进化条件或照顾失误。" : model.isSandbox ? "独立测试副本：角色、数值与时间修改不计入正式收藏。" : "增强模式沿用当前机型养成规则，增加触屏、图鉴与历史辅助。"))
                     .font(.footnote).foregroundStyle(Palette.muted)
             }
             Panel(title: "LCD / INPUT") {
@@ -101,7 +101,7 @@ struct PlaySettingsView: View {
                     Text(l("Brown")).tag("brown"); Text(l("Gray")).tag("gray"); Text(l("Blue")).tag("blue"); Text(l("White")).tag("white")
                 }
                 Picker(l(model.text(.language)),selection: Binding(get: { state.settings.presentation.language },set: { value in model.editPresentation { $0.language = value } })) {
-                    ForEach(AppLanguage.allCases,id: \.self) { language in Text(l(language.title)).tag(language) }
+                    ForEach(AppLanguage.allCases,id: \.self) { language in Text(language.title).tag(language) }
                 }.accessibilityIdentifier("appLanguage")
             }
             if model.isSandbox {

@@ -22,20 +22,21 @@ final class ConnectionCoordinator: NSObject,ObservableObject {
     private var remoteReady = false
     private var match: GKMatch?
     private var packetSent = false
+    private var invitedPeer: MCPeerID?
     private struct Packet: Codable { var kind: String; var fighter: ConnectionFighter? }
     func prepare(_ fighter: ConnectionFighter,database: ContentDatabase) { local = fighter; self.database = database; remote = nil; outcome = nil; ready = false; remoteReady = false; packetSent = false }
     func searchNearby() {
         stop(); notice = "正在搜索附近玩家；双方需打开此页面并允许本地网络"
         let session = MCSession(peer: peer,securityIdentity: nil,encryptionPreference: .required); session.delegate = self; self.session = session
         let browser = MCNearbyServiceBrowser(peer: peer,serviceType: "world-pets"); browser.delegate = self; self.browser = browser
-        let advertiser = MCNearbyServiceAdvertiser(peer: peer,discoveryInfo: ["protocol":"1"],serviceType: "world-pets")
+        let advertiser = MCNearbyServiceAdvertiser(peer: peer,discoveryInfo: ["protocol":"2"],serviceType: "world-pets")
         advertiser.delegate = self; self.advertiser = advertiser; advertiser.startAdvertisingPeer(); browser.startBrowsingForPeers()
     }
-    func invite(_ target: MCPeerID) { guard let session else { return }; browser?.invitePeer(target,to: session,withContext: nil,timeout: 30); notice = "已邀请 \(target.displayName)，等待对方接受" }
+    func invite(_ target: MCPeerID) { guard let session,!connected,invitedPeer == nil,invitation == nil else { return }; invitedPeer = target; browser?.invitePeer(target,to: session,withContext: nil,timeout: 30); notice = "已邀请 \(target.displayName)，等待对方接受" }
     func answerInvitation(_ accepted: Bool) { acceptInvitation?(accepted,accepted ? session : nil); acceptInvitation = nil; invitation = nil }
     func confirmBattle() {
         guard connected,!ready,remote != nil,local != nil else { return }
-        do { try send(Packet(kind: "ready",fighter: nil)); ready = true; resolveIfReady() }
+        do { try send(Packet(kind: "ready",fighter: local)); ready = true; resolveIfReady() }
         catch { notice = error.localizedDescription }
     }
     func reset() {
@@ -43,7 +44,7 @@ final class ConnectionCoordinator: NSObject,ObservableObject {
     }
     func stop() {
         browser?.stopBrowsingForPeers(); advertiser?.stopAdvertisingPeer(); session?.disconnect(); match?.disconnect()
-        browser = nil; advertiser = nil; session = nil; match = nil; peers = []; connected = false
+        browser = nil; advertiser = nil; session = nil; match = nil; peers = []; connected = false; invitedPeer = nil
         answerInvitation(false)
     }
     private func send(_ packet: Packet) throws {
@@ -53,6 +54,7 @@ final class ConnectionCoordinator: NSObject,ObservableObject {
         else { throw GameError.unavailable("连接已断开") }
     }
     private func becameConnected() {
+        browser?.stopBrowsingForPeers(); advertiser?.stopAdvertisingPeer()
         connected = true; notice = "已连接，正在交换机型与伙伴信息"
         do { try send(Packet(kind: "hello",fighter: local)) } catch { notice = error.localizedDescription }
     }
@@ -68,7 +70,11 @@ final class ConnectionCoordinator: NSObject,ObservableObject {
                     resolveIfReady(); return
                 }
                 remote = fighter; notice = "双方信息已收到，双方确认后开始对战"
-            } else if packet.kind == "ready" { remoteReady = true; resolveIfReady() }
+            } else if packet.kind == "ready",let fighter = packet.fighter {
+                try ConnectionEngine.validate(fighter,database: database)
+                guard let remote,remote == fighter else { throw GameError.cannotAct("确认消息与伙伴信息不一致，请重新连接") }
+                remoteReady = true; resolveIfReady()
+            }
             else { throw GameError.invalidData("未知通信消息") }
         } catch { notice = error.localizedDescription }
     }
@@ -95,13 +101,13 @@ final class ConnectionCoordinator: NSObject,ObservableObject {
 
 extension ConnectionCoordinator: MCNearbyServiceBrowserDelegate,MCNearbyServiceAdvertiserDelegate,MCSessionDelegate {
     nonisolated func browser(_ browser: MCNearbyServiceBrowser,foundPeer peerID: MCPeerID,withDiscoveryInfo info: [String:String]?) {
-        Task { @MainActor in if !self.peers.contains(peerID) { self.peers.append(peerID) } }
+        Task { @MainActor in if self.browser === browser,info?["protocol"] == "2",!self.peers.contains(peerID) { self.peers.append(peerID) } }
     }
-    nonisolated func browser(_ browser: MCNearbyServiceBrowser,lostPeer peerID: MCPeerID) { Task { @MainActor in self.peers.removeAll { $0 == peerID } } }
+    nonisolated func browser(_ browser: MCNearbyServiceBrowser,lostPeer peerID: MCPeerID) { Task { @MainActor in if self.browser === browser { self.peers.removeAll { $0 == peerID } } } }
     nonisolated func browser(_ browser: MCNearbyServiceBrowser,didNotStartBrowsingForPeers error: Error) { Task { @MainActor in self.notice = error.localizedDescription } }
     nonisolated func advertiser(_ advertiser: MCNearbyServiceAdvertiser,didReceiveInvitationFromPeer peerID: MCPeerID,withContext context: Data?,invitationHandler: @escaping (Bool,MCSession?) -> Void) {
         Task { @MainActor in
-            guard !self.connected,self.invitation == nil else { invitationHandler(false,nil); return }
+            guard self.advertiser === advertiser,!self.connected,self.invitation == nil,self.invitedPeer == nil else { invitationHandler(false,nil); return }
             self.invitation = peerID; self.acceptInvitation = invitationHandler
         }
     }
@@ -110,10 +116,10 @@ extension ConnectionCoordinator: MCNearbyServiceBrowserDelegate,MCNearbyServiceA
         Task { @MainActor in
             guard self.session === session else { return }
             if state == .connected { self.becameConnected() }
-            else if state == .notConnected { self.connected = false; self.notice = "连接已断开；已保存战果不会重复发放" }
+            else if state == .notConnected { self.connected = false; self.invitedPeer = nil; self.notice = "连接已断开；已保存战果不会重复发放" }
         }
     }
-    nonisolated func session(_ session: MCSession,didReceive data: Data,fromPeer peerID: MCPeerID) { Task { @MainActor in if self.session === session { self.receive(data) } } }
+    nonisolated func session(_ session: MCSession,didReceive data: Data,fromPeer peerID: MCPeerID) { Task { @MainActor in if self.session === session,session.connectedPeers.count == 1,session.connectedPeers.first == peerID { self.receive(data) } } }
     nonisolated func session(_ session: MCSession,didReceive stream: InputStream,withName streamName: String,fromPeer peerID: MCPeerID) {}
     nonisolated func session(_ session: MCSession,didStartReceivingResourceWithName name: String,fromPeer peerID: MCPeerID,with progress: Progress) {}
     nonisolated func session(_ session: MCSession,didFinishReceivingResourceWithName name: String,fromPeer peerID: MCPeerID,at localURL: URL?,withError error: Error?) {}

@@ -122,6 +122,24 @@
       }
     },
     {
+      "source": "Blue",
+      "values": {
+        "zh-Hans": "蓝色",
+        "zh-Hant": "藍色",
+        "en": "Blue",
+        "ja": "ブルー"
+      }
+    },
+    {
+      "source": "Brown",
+      "values": {
+        "zh-Hans": "棕色",
+        "zh-Hant": "棕色",
+        "en": "Brown",
+        "ja": "ブラウン"
+      }
+    },
+    {
       "source": "CALL / 养成呼叫",
       "values": {
         "zh-Hant": "CALL / 養成呼叫",
@@ -170,11 +188,51 @@
       }
     },
     {
+      "source": "COLOR 只有肉和蛋白质",
+      "values": {
+        "zh-Hant": "COLOR 只有肉和蛋白質",
+        "en": "COLOR only meat and protein",
+        "ja": "COLOR 肉とプロテインのみ"
+      }
+    },
+    {
+      "source": "COLOR 按作息自动入睡；暂停成长请使用 Cold",
+      "values": {
+        "zh-Hant": "COLOR 按作息自動入睡；暫停成長請使用 Cold",
+        "en": "COLOR Automatically falls asleep according to schedule; please use Cold to pause growth",
+        "ja": "COLOR スケジュールに従って自動的に眠りにつく。成長を一時停止するにはColdを使用してください"
+      }
+    },
+    {
+      "source": "COLOR 数码蛋 · 8秒孵化",
+      "values": {
+        "zh-Hant": "COLOR 數碼蛋 · 8秒孵化",
+        "en": "COLOR digital egg · 8 seconds hatching",
+        "ja": "COLOR デジタルタマゴ・8秒孵化"
+      }
+    },
+    {
+      "source": "COLOR战斗使用力量与三次命中判定。睡眠和隐藏进化条件依公开资料实现，尚待实体机复核。",
+      "values": {
+        "zh-Hant": "COLOR戰鬥使用力量與三次命中判定。睡眠和隱藏進化條件依公開資料實現，尚待實體機複覈。",
+        "en": "COLOR battle uses strength and three hit determinations. Sleep and hidden evolution conditions are implemented based on public information and are yet to be reviewed by the physical machine.",
+        "ja": "COLORバトルは力強さと3つのヒット判定を使用します。睡眠と隠れた進化の条件は公開情報に基づいて実装されており、物理マシンによるレビューはまだ行われていません。"
+      }
+    },
+    {
       "source": "COLOR标志",
       "values": {
         "zh-Hant": "COLOR標誌",
         "en": "COLOR logo",
         "ja": "カラーロゴ"
+      }
+    },
+    {
+      "source": "COLOR规则包中没有该角色",
+      "values": {
+        "zh-Hant": "COLOR規則包中沒有該角色",
+        "en": "This role does not exist in the COLOR rule package",
+        "ja": "このロールは COLOR ルール パッケージに存在しません"
       }
     },
     {
@@ -247,6 +305,15 @@
         "zh-Hant": "Game Center 在線匹配",
         "en": "Game Center Online Matching",
         "ja": "ゲームセンターオンラインマッチング"
+      }
+    },
+    {
+      "source": "Gray",
+      "values": {
+        "zh-Hans": "灰色",
+        "zh-Hant": "灰色",
+        "en": "Gray",
+        "ja": "グレー"
       }
     },
     {
@@ -474,14 +541,6 @@
       }
     },
     {
-      "source": "Ver.1 只有肉和蛋白质",
-      "values": {
-        "zh-Hant": "Ver.1 只有肉和蛋白質",
-        "en": "Ver.1 Only meat and protein",
-        "ja": "Ver.1 肉とタンパク質のみ"
-      }
-    },
-    {
       "source": "Ver.1 孵化已开始 · 8 秒后诞生",
       "values": {
         "zh-Hant": "Ver.1 孵化已開始 · 8 秒後誕生",
@@ -490,27 +549,11 @@
       }
     },
     {
-      "source": "Ver.1 按作息自动入睡；暂停成长请使用 Cold",
-      "values": {
-        "zh-Hant": "Ver.1 按作息自動入睡；暫停成長請使用 Cold",
-        "en": "Ver.1 Automatically falls asleep according to schedule; please use Cold to pause growth",
-        "ja": "Ver.1 スケジュールに従って自動的にスリープします。成長を一時停止するにはColdを使用してください"
-      }
-    },
-    {
       "source": "Ver.1 数码蛋",
       "values": {
         "zh-Hant": "Ver.1 數碼蛋",
         "en": "Ver.1 Digital Egg",
         "ja": "Ver.1 デジタルエッグ"
-      }
-    },
-    {
-      "source": "Ver.1 数码蛋 · 8秒孵化",
-      "values": {
-        "zh-Hant": "Ver.1 數碼蛋 · 8秒孵化",
-        "en": "Ver.1 Digital Egg · 8 seconds hatching",
-        "ja": "Ver.1 デジタルタマゴ・8秒孵化"
       }
     },
     {
@@ -546,11 +589,254 @@
       }
     },
     {
-      "source": "Ver.1战斗使用力量与三次命中判定。睡眠和隐藏进化条件依公开资料实现，尚待实体机复核。",
+      "source": "Ver.2 数码蛋",
       "values": {
-        "zh-Hant": "Ver.1戰鬥使用力量與三次命中判定。睡眠和隱藏進化條件依公開資料實現，尚待實體機複覈。",
-        "en": "Ver.1 uses strength and three hit determinations in battle. Sleep and hidden evolution conditions are implemented based on public information and are yet to be reviewed by the physical machine.",
-        "ja": "Ver.1では戦闘で力と3ヒット判定を使用します。睡眠と隠れた進化の条件は公開情報に基づいて実装されており、物理マシンによるレビューはまだ行われていません。"
+        "zh-Hant": "Ver.2 數碼蛋",
+        "en": "Ver.2 Digital Egg",
+        "ja": "Ver.2 デジタルエッグ"
+      }
+    },
+    {
+      "source": "White",
+      "values": {
+        "zh-Hans": "白色",
+        "zh-Hant": "白色",
+        "en": "White",
+        "ja": "ホワイト"
+      }
+    },
+    {
+      "source": "alive",
+      "values": {
+        "zh-Hans": "成长中",
+        "zh-Hant": "成長中",
+        "en": "Alive",
+        "ja": "育成中"
+      }
+    },
+    {
+      "source": "attack",
+      "values": {
+        "zh-Hans": "攻击",
+        "zh-Hant": "攻擊",
+        "en": "Attack",
+        "ja": "攻撃"
+      }
+    },
+    {
+      "source": "baby1",
+      "values": {
+        "zh-Hans": "幼年期Ⅰ",
+        "zh-Hant": "幼年期Ⅰ",
+        "en": "Baby I",
+        "ja": "幼年期Ⅰ"
+      }
+    },
+    {
+      "source": "baby2",
+      "values": {
+        "zh-Hans": "幼年期Ⅱ",
+        "zh-Hant": "幼年期Ⅱ",
+        "en": "Baby II",
+        "ja": "幼年期Ⅱ"
+      }
+    },
+    {
+      "source": "champion",
+      "values": {
+        "zh-Hans": "成熟期",
+        "zh-Hant": "成熟期",
+        "en": "Champion",
+        "ja": "成熟期"
+      }
+    },
+    {
+      "source": "data",
+      "values": {
+        "zh-Hans": "数据",
+        "zh-Hant": "資料",
+        "en": "Data",
+        "ja": "データ"
+      }
+    },
+    {
+      "source": "dead",
+      "values": {
+        "zh-Hans": "回归数据",
+        "zh-Hant": "回歸資料",
+        "en": "Returned to data",
+        "ja": "データに還った"
+      }
+    },
+    {
+      "source": "eat",
+      "values": {
+        "zh-Hans": "进食",
+        "zh-Hant": "進食",
+        "en": "Eat",
+        "ja": "食べる"
+      }
+    },
+    {
+      "source": "free",
+      "values": {
+        "zh-Hans": "自由",
+        "zh-Hant": "自由",
+        "en": "Free",
+        "ja": "フリー"
+      }
+    },
+    {
+      "source": "frozen",
+      "values": {
+        "zh-Hans": "已冷冻",
+        "zh-Hant": "已冷凍",
+        "en": "Frozen",
+        "ja": "コールド"
+      }
+    },
+    {
+      "source": "grasslands",
+      "values": {
+        "zh-Hans": "草原",
+        "zh-Hant": "草原",
+        "en": "Grasslands",
+        "ja": "草原"
+      }
+    },
+    {
+      "source": "grid",
+      "values": {
+        "zh-Hans": "网格",
+        "zh-Hant": "網格",
+        "en": "Grid",
+        "ja": "グリッド"
+      }
+    },
+    {
+      "source": "happy",
+      "values": {
+        "zh-Hans": "开心",
+        "zh-Hant": "開心",
+        "en": "Happy",
+        "ja": "喜ぶ"
+      }
+    },
+    {
+      "source": "idle",
+      "values": {
+        "zh-Hans": "待机",
+        "zh-Hant": "待機",
+        "en": "Idle",
+        "ja": "待機"
+      }
+    },
+    {
+      "source": "mega",
+      "values": {
+        "zh-Hans": "究极体",
+        "zh-Hant": "究極體",
+        "en": "Mega",
+        "ja": "究極体"
+      }
+    },
+    {
+      "source": "office",
+      "values": {
+        "zh-Hans": "办公室",
+        "zh-Hant": "辦公室",
+        "en": "Office",
+        "ja": "オフィス"
+      }
+    },
+    {
+      "source": "refuse",
+      "values": {
+        "zh-Hans": "拒绝",
+        "zh-Hant": "拒絕",
+        "en": "Refuse",
+        "ja": "拒否"
+      }
+    },
+    {
+      "source": "rookie",
+      "values": {
+        "zh-Hans": "成长期",
+        "zh-Hant": "成長期",
+        "en": "Rookie",
+        "ja": "成長期"
+      }
+    },
+    {
+      "source": "sad",
+      "values": {
+        "zh-Hans": "沮丧",
+        "zh-Hant": "沮喪",
+        "en": "Sad",
+        "ja": "悲しむ"
+      }
+    },
+    {
+      "source": "sleep",
+      "values": {
+        "zh-Hans": "睡眠",
+        "zh-Hant": "睡眠",
+        "en": "Sleep",
+        "ja": "睡眠"
+      }
+    },
+    {
+      "source": "ultimate",
+      "values": {
+        "zh-Hans": "完全体",
+        "zh-Hant": "完全體",
+        "en": "Ultimate",
+        "ja": "完全体"
+      }
+    },
+    {
+      "source": "ultra",
+      "values": {
+        "zh-Hans": "究极体＋",
+        "zh-Hant": "究極體＋",
+        "en": "Ultra",
+        "ja": "究極体＋"
+      }
+    },
+    {
+      "source": "unknown",
+      "values": {
+        "zh-Hans": "未知",
+        "zh-Hant": "未知",
+        "en": "Unknown",
+        "ja": "不明"
+      }
+    },
+    {
+      "source": "vaccine",
+      "values": {
+        "zh-Hans": "疫苗",
+        "zh-Hant": "疫苗",
+        "en": "Vaccine",
+        "ja": "ワクチン"
+      }
+    },
+    {
+      "source": "virus",
+      "values": {
+        "zh-Hans": "病毒",
+        "zh-Hant": "病毒",
+        "en": "Virus",
+        "ja": "ウィルス"
+      }
+    },
+    {
+      "source": "walk",
+      "values": {
+        "zh-Hans": "走动",
+        "zh-Hant": "走動",
+        "en": "Walk",
+        "ja": "歩く"
       }
     },
     {
@@ -642,6 +928,46 @@
       }
     },
     {
+      "source": "アンデッド型",
+      "values": {
+        "zh-Hant": "アンデッド型",
+        "en": "アンデッド type",
+        "ja": "アンデッドタイプ"
+      }
+    },
+    {
+      "source": "グラウンド・ゼロ改",
+      "values": {
+        "zh-Hant": "グラウンド・ゼロ改",
+        "en": "グラウンド・ゼロ开",
+        "ja": "グラウンド・ゼロ开"
+      }
+    },
+    {
+      "source": "サイボーグ型",
+      "values": {
+        "zh-Hant": "サイボーグ型",
+        "en": "サイボーグ type",
+        "ja": "サイボーグタイプ"
+      }
+    },
+    {
+      "source": "スライム型",
+      "values": {
+        "zh-Hant": "スライム型",
+        "en": "スライム type",
+        "ja": "ゼルダタイプ"
+      }
+    },
+    {
+      "source": "レッサー型",
+      "values": {
+        "zh-Hant": "レッサー型",
+        "en": "レッサーtype",
+        "ja": "レッサータイプ"
+      }
+    },
+    {
       "source": "一个小小的屏幕。\n一个持续生长的世界。",
       "values": {
         "zh-Hant": "一個小小的屏幕。\n一個持續生長的世界。",
@@ -687,6 +1013,22 @@
         "zh-Hant": "與備份夥伴交換",
         "en": "Exchange with backup partner",
         "ja": "バックアップパートナーとの交換"
+      }
+    },
+    {
+      "source": "丧尸暴龙兽",
+      "values": {
+        "zh-Hant": "喪屍暴龍獸",
+        "en": "SkullGreymon",
+        "ja": "スカルグレイモン"
+      }
+    },
+    {
+      "source": "丧尸猛犸兽",
+      "values": {
+        "zh-Hant": "喪屍猛獁獸",
+        "en": "SkullMammon",
+        "ja": "スカルマンモン"
       }
     },
     {
@@ -746,11 +1088,11 @@
       }
     },
     {
-      "source": "仅在伙伴死亡后重新孵化 Ver.1 蛋",
+      "source": "仅在伙伴死亡后重新孵化本机型数码蛋",
       "values": {
-        "zh-Hant": "僅在夥伴死亡後重新孵化 Ver.1 蛋",
-        "en": "Only re-hatch Ver.1 eggs after death of partner",
-        "ja": "パートナー死亡後のみVer.1のタマゴを再孵化させる"
+        "zh-Hant": "僅在夥伴死亡後重新孵化本機型數碼蛋",
+        "en": "Only re-hatches the digital egg of this model after the death of the partner",
+        "ja": "パートナーの死後、このモデルのデジタルタマゴのみが再孵化します"
       }
     },
     {
@@ -1119,6 +1461,22 @@
         "zh-Hant": "修改過的檔案只能在Sandbox參與測試對戰",
         "en": "Modified files can only participate in test battles in Sandbox",
         "ja": "変更されたファイルはサンドボックスのテスト戦闘にのみ参加できます"
+      }
+    },
+    {
+      "source": "偃月加魯魯獸",
+      "values": {
+        "zh-Hant": "偃月加魯魯獸",
+        "en": "Moon Garurumon",
+        "ja": "ムーンガルルモン"
+      }
+    },
+    {
+      "source": "偃月加鲁鲁兽",
+      "values": {
+        "zh-Hant": "偃月加魯魯獸",
+        "en": "CresGarurumon",
+        "ja": "クーレスガルルモン"
       }
     },
     {
@@ -1498,6 +1856,38 @@
       }
     },
     {
+      "source": "加布兽",
+      "values": {
+        "zh-Hant": "加布獸",
+        "en": "Gabumon",
+        "ja": "ガブモン"
+      }
+    },
+    {
+      "source": "加布獸",
+      "values": {
+        "zh-Hant": "加布獸",
+        "en": "Gabumon",
+        "ja": "ガブモン"
+      }
+    },
+    {
+      "source": "加魯魯獸",
+      "values": {
+        "zh-Hant": "加魯魯獸",
+        "en": "Garurumon",
+        "ja": "ガルルモン"
+      }
+    },
+    {
+      "source": "加鲁鲁兽",
+      "values": {
+        "zh-Hant": "加魯魯獸",
+        "en": "Garurumon",
+        "ja": "ガルルモン"
+      }
+    },
+    {
       "source": "动作预览",
       "values": {
         "zh-Hant": "動作預覽",
@@ -1530,11 +1920,11 @@
       }
     },
     {
-      "source": "包含Ver.1的17种养成角色及最终区Alter-S，使用有来源记录的原版彩色角色像素。附近手机通信已接入，双机待验收，联展未开放；部分动作采用已有姿势回退。",
+      "source": "包含COLOR Ver.1和Ver.2共35种角色，使用有来源记录的原版彩色图集。跨版本通信联展已接入，真实双机待验收；部分动作使用已有姿势回退。",
       "values": {
-        "zh-Hant": "包含Ver.1的17種養成角色及最終區Alter-S，使用有來源記錄的原版彩色角色像素。附近手機通信已接入，雙機待驗收，聯展未開放；部分動作採用已有姿勢回退。",
-        "en": "includes 17 developed characters from Ver.1 and the final zone Alter-S, using original color character pixels with provenance records. The nearby mobile phone communication has been connected, the two machines are waiting for acceptance, and the joint exhibition is not open; some actions are reverted using existing postures.",
-        "ja": "には、Ver.1と最終ゾーンAlter-Sの開発キャラクター17体が収録されており、出自記録付きのオリジナルカラーキャラクターピクセルを使用しています。近くの携帯電話通信は接続されており、2 台のマシンは受付を待っており、共同展示会は開いていません。一部のアクションは、既存の姿勢を使用して元に戻されます。"
+        "zh-Hant": "包含COLOR Ver.1和Ver.2共35種角色，使用有來源記錄的原版彩色圖集。跨版本通信聯展已接入，真實雙機待驗收；部分動作使用已有姿勢回退。",
+        "en": "includes COLOR Ver.1 and Ver.2, a total of 35 characters, using the original color atlas with source records. The cross-version communication joint exhibition has been connected, and the real dual-machine is waiting for acceptance; some actions use existing postures to fall back.",
+        "ja": "には、ソースレコード付きのオリジナルカラーアトラスを使用した、COLOR Ver.1 と Ver.2、合計 35 キャラクターが含まれています。クロスバージョン通信共同展示は接続されており、実際のデュアルマシンは受け入れを待っています。一部のアクションは既存の姿勢を使用してフォールバックします。"
       }
     },
     {
@@ -1714,6 +2104,14 @@
       }
     },
     {
+      "source": "哺乳類型",
+      "values": {
+        "zh-Hant": "哺乳類型",
+        "en": "Breastfeeding type",
+        "ja": "授乳タイプ"
+      }
+    },
+    {
       "source": "喂食",
       "values": {
         "zh-Hant": "餵食",
@@ -1735,6 +2133,22 @@
         "zh-Hant": "餵食次數",
         "en": "Feeding times",
         "ja": "授乳時間"
+      }
+    },
+    {
+      "source": "喪屍暴龍獸",
+      "values": {
+        "zh-Hant": "喪屍暴龍獸",
+        "en": "ZombieGreymon",
+        "ja": "ゾンビグレイモン"
+      }
+    },
+    {
+      "source": "喪屍猛獁獸",
+      "values": {
+        "zh-Hant": "喪屍猛獁獸",
+        "en": "Zombie Mammoth Beast\nThe enhanced mode of",
+        "ja": "ゾンビ マンモス ビースト"
       }
     },
     {
@@ -1834,11 +2248,11 @@
       }
     },
     {
-      "source": "增强模式沿用Ver.1养成规则，增加触屏、图鉴与历史辅助。",
+      "source": "增强模式沿用当前机型养成规则，增加触屏、图鉴与历史辅助。",
       "values": {
-        "zh-Hant": "增強模式沿用Ver.1養成規則，增加觸屏、圖鑑與歷史輔助。",
-        "en": "Enhanced mode follows the development rules of Ver.1 and adds touch screen, illustrations and historical assistance.",
-        "ja": "エンハンスドモードは、Ver.1の開発ルールを踏襲し、タッチスクリーンやイラスト、歴史支援などを追加しています。"
+        "zh-Hant": "增強模式沿用當前機型養成規則，增加觸屏、圖鑑與歷史輔助。",
+        "en": "follows the development rules of the current model and adds touch screen, illustrations and historical assistance.",
+        "ja": "の拡張モードは、現行モデルの開発ルールに従っており、タッチ スクリーン、イラスト、歴史支援が追加されています。"
       }
     },
     {
@@ -1903,6 +2317,46 @@
         "zh-Hant": "復古彩色",
         "en": "retro color",
         "ja": "レトロカラー"
+      }
+    },
+    {
+      "source": "外星兽",
+      "values": {
+        "zh-Hant": "外星獸",
+        "en": "Vademon",
+        "ja": "ベーダモン"
+      }
+    },
+    {
+      "source": "外星獸",
+      "values": {
+        "zh-Hant": "外星獸",
+        "en": "alien beast",
+        "ja": "エイリアンビースト"
+      }
+    },
+    {
+      "source": "天使兽",
+      "values": {
+        "zh-Hant": "天使獸",
+        "en": "Angemon",
+        "ja": "エンジェモン"
+      }
+    },
+    {
+      "source": "天使型",
+      "values": {
+        "zh-Hant": "天使型",
+        "en": "angel type",
+        "ja": "エンジェルタイプ"
+      }
+    },
+    {
+      "source": "天使獸",
+      "values": {
+        "zh-Hant": "天使獸",
+        "en": "Angel Beast",
+        "ja": "エンジェルビースト"
       }
     },
     {
@@ -2082,19 +2536,19 @@
       }
     },
     {
+      "source": "孵化 · ",
+      "values": {
+        "zh-Hant": "孵化 · ",
+        "en": "hatching ·",
+        "ja": "孵化・"
+      }
+    },
+    {
       "source": "孵化 · {0}",
       "values": {
         "zh-Hant": "孵化 · {0}",
         "en": "hatching · {0}",
         "ja": "孵化 · {0}"
-      }
-    },
-    {
-      "source": "孵化 · 黑球兽",
-      "values": {
-        "zh-Hant": "孵化 · 黑球獸",
-        "en": "Hatching · Black Ball Beast",
-        "ja": "孵化・黒玉獣"
       }
     },
     {
@@ -2127,6 +2581,14 @@
         "zh-Hant": "孵化這枚數碼蛋",
         "en": "Hatching this digital egg",
         "ja": "このデジタル卵を孵化させます"
+      }
+    },
+    {
+      "source": "宇宙人型",
+      "values": {
+        "zh-Hant": "宇宙人型",
+        "en": "space humanoid",
+        "ja": "スペースヒューマノイド"
       }
     },
     {
@@ -2186,11 +2648,11 @@
       }
     },
     {
-      "source": "实体机通信与联展尚未实现；手机同版本对战由独立通信模块处理；奥米加兽Alter-S仅作为最终关敌人，不会通过普通养成赠送。",
+      "source": "实体机物理通信尚未实现；手机通信对战与Ver.1/Ver.2指定角色联展由独立模块处理；奥米加兽Alter-S不通过普通进化赠送。",
       "values": {
-        "zh-Hant": "實體機通信與聯展尚未實現；手機同版本對戰由獨立通信模塊處理；奧米加獸Alter-S僅作爲最終關敵人，不會通過普通養成贈送。",
-        "en": "Physical machine communication and joint exhibition have not yet been implemented; mobile phone battles of the same version are handled by independent communication modules; Omegamon Alter-S is only the final enemy and will not be given away through ordinary development.",
-        "ja": "物理マシン通信と共同展示はまだ実装されていません。同じバージョンの携帯電話での戦闘は、独立した通信モジュールによって処理されます。オメガモンオルタ-Sは最後の敵のみであり、通常の開発では配布されません。"
+        "zh-Hant": "實體機物理通信尚未實現；手機通信對戰與Ver.1/Ver.2指定角色聯展由獨立模塊處理；奧米加獸Alter-S不通過普通進化贈送。",
+        "en": "Physical communication with physical machines has not yet been implemented; mobile communication battles and Ver.1/Ver.2 designated character joint exhibitions are handled by independent modules; Omegamon Alter-S is not given through ordinary evolution.",
+        "ja": "物理マシンとの物理通信はまだ実装されていません。モバイル通信対戦とVer.1/Ver.2指定キャラクターの合同展示は独立したモジュールで対応します。オメガモンオルタSは通常進化では付与されません。"
       }
     },
     {
@@ -2295,6 +2757,30 @@
         "zh-Hant": "屬性",
         "en": "Properties",
         "ja": "プロパティ"
+      }
+    },
+    {
+      "source": "巨鯨獸",
+      "values": {
+        "zh-Hant": "巨鯨獸",
+        "en": "giant whale beast",
+        "ja": "巨大な鯨獣"
+      }
+    },
+    {
+      "source": "巨鲸兽",
+      "values": {
+        "zh-Hant": "巨鯨獸",
+        "en": "Whamon",
+        "ja": "ホエーモン"
+      }
+    },
+    {
+      "source": "巨鳥型",
+      "values": {
+        "zh-Hant": "巨鳥型",
+        "en": "giant bird type",
+        "ja": "巨鳥型"
       }
     },
     {
@@ -2487,6 +2973,22 @@
         "zh-Hant": "已邀請 {0}，等待對方接受",
         "en": "has invited {0} and is waiting for the other party to accept it",
         "ja": "が {0} を招待し、相手が承諾するのを待っています"
+      }
+    },
+    {
+      "source": "巴多拉兽",
+      "values": {
+        "zh-Hant": "巴多拉獸",
+        "en": "Birdramon",
+        "ja": "バードラモン"
+      }
+    },
+    {
+      "source": "巴多拉獸",
+      "values": {
+        "zh-Hant": "巴多拉獸",
+        "en": "Badoramon",
+        "ja": "バドラモン"
       }
     },
     {
@@ -2858,6 +3360,14 @@
       }
     },
     {
+      "source": "悪魔の投げキッス",
+      "values": {
+        "zh-Hant": "悪魔の投げキッス",
+        "en": "悪魔の出げキッス",
+        "ja": "悪魔出現げキッス"
+      }
+    },
+    {
       "source": "惡魔獸",
       "values": {
         "zh-Hant": "惡魔獸",
@@ -3002,11 +3512,11 @@
       }
     },
     {
-      "source": "手机对战请使用连接页面；联展尚未开放。奥米加兽 Alter-S 现为最终区敌人。",
+      "source": "手机对战请使用连接页面；Ver.1电光暴龙兽与Ver.2偃月加鲁鲁兽通信后可联展。奥米加兽 Alter-S 现为最终区敌人。",
       "values": {
-        "zh-Hant": "手機對戰請使用連接頁面；聯展尚未開放。奧米加獸 Alter-S 現爲最終區敵人。",
-        "en": "Please use the connection page for mobile battle; the joint exhibition is not yet open. Omegamon Alter-S is now a final area enemy.",
-        "ja": "モバイル対戦用の接続ページをご利用ください。合同展示会はまだ開催されていません。オメガモンオルタ-Sが最終エリアの敵になりました。"
+        "zh-Hant": "手機對戰請使用連接頁面；Ver.1電光暴龍獸與Ver.2偃月加魯魯獸通信後可聯展。奧米加獸 Alter-S 現爲最終區敵人。",
+        "en": "Please use the connection page for mobile battle; Ver.1 LightningGreymon and Ver.2 YanzukiGarurumon can join forces after communicating. Omegamon Alter-S is now a final area enemy.",
+        "ja": "モバイル対戦用の接続ページをご利用ください。 Ver.1のライトニンググレイモンとVer.2のヤンズキガルルモンはコミュニケーションをとることで仲間にできる。オメガモンオルタ-Sが最終エリアの敵になりました。"
       }
     },
     {
@@ -3554,6 +4064,14 @@
       }
     },
     {
+      "source": "昆虫型",
+      "values": {
+        "zh-Hant": "昆蟲型",
+        "en": "insect type",
+        "ja": "昆虫型"
+      }
+    },
+    {
       "source": "显示完整记录",
       "values": {
         "zh-Hant": "顯示完整記錄",
@@ -3567,6 +4085,22 @@
         "zh-Hant": "顯示設置或Sandbox隔離標記無效",
         "en": "Invalid display settings or Sandbox isolation flag",
         "ja": "無効な表示設定またはサンドボックス分離フラグ"
+      }
+    },
+    {
+      "source": "普尼兽",
+      "values": {
+        "zh-Hant": "普尼獸",
+        "en": "Punimon",
+        "ja": "プニモン"
+      }
+    },
+    {
+      "source": "普尼獸",
+      "values": {
+        "zh-Hant": "普尼獸",
+        "en": "Punimon",
+        "ja": "プニモン"
       }
     },
     {
@@ -3874,6 +4408,22 @@
       }
     },
     {
+      "source": "植物兽",
+      "values": {
+        "zh-Hant": "植物獸",
+        "en": "Vegimon",
+        "ja": "ベジーモン"
+      }
+    },
+    {
+      "source": "植物獸",
+      "values": {
+        "zh-Hant": "植物獸",
+        "en": "plant beast",
+        "ja": "植物獣"
+      }
+    },
+    {
       "source": "機械暴龍獸",
       "values": {
         "zh-Hant": "機械暴龍獸",
@@ -4026,11 +4576,43 @@
       }
     },
     {
+      "source": "比多兽",
+      "values": {
+        "zh-Hant": "比多獸",
+        "en": "Kabuterimon",
+        "ja": "カブテリモン"
+      }
+    },
+    {
+      "source": "比多獸",
+      "values": {
+        "zh-Hant": "比多獸",
+        "en": "Bidomon",
+        "ja": "ビドモン"
+      }
+    },
+    {
       "source": "水果",
       "values": {
         "zh-Hant": "水果",
         "en": "Fruit",
         "ja": "フルーツ"
+      }
+    },
+    {
+      "source": "水棲型",
+      "values": {
+        "zh-Hant": "水棲型",
+        "en": "Aquatic type",
+        "ja": "水生タイプ"
+      }
+    },
+    {
+      "source": "氷雪型",
+      "values": {
+        "zh-Hant": "氷雪型",
+        "en": "Ice and Snow Type",
+        "ja": "氷雪タイプ"
       }
     },
     {
@@ -4258,6 +4840,14 @@
       }
     },
     {
+      "source": "爬虫類型",
+      "values": {
+        "zh-Hant": "爬蟲類型",
+        "en": "crawler type",
+        "ja": "クローラータイプ"
+      }
+    },
+    {
       "source": "特别食物",
       "values": {
         "zh-Hant": "特別食物",
@@ -4279,6 +4869,38 @@
         "zh-Hant": "獨立測試副本：角色、數值與時間修改不計入正式收藏。",
         "en": "Independent test copy: Character, value and time modifications are not included in the official collection.",
         "ja": "独立したテスト コピー: 文字、値、時間の変更は公式コレクションには含まれていません。"
+      }
+    },
+    {
+      "source": "独角兽",
+      "values": {
+        "zh-Hant": "獨角獸",
+        "en": "Tsunomon",
+        "ja": "ツノモン"
+      }
+    },
+    {
+      "source": "獣型",
+      "values": {
+        "zh-Hant": "獣型",
+        "en": "beast type",
+        "ja": "獣型"
+      }
+    },
+    {
+      "source": "獣騎士型",
+      "values": {
+        "zh-Hant": "獣騎士型",
+        "en": "Beast Knight type",
+        "ja": "ビーストナイトタイプ"
+      }
+    },
+    {
+      "source": "獨角獸",
+      "values": {
+        "zh-Hant": "獨角獸",
+        "en": "Unicorn",
+        "ja": "ユニコーン"
       }
     },
     {
@@ -4386,11 +5008,11 @@
       }
     },
     {
-      "source": "电光暴龙兽＋Ver.2偃月加鲁鲁兽的联展未开放；Alter-S不会通过普通进化获得。",
+      "source": "电光暴龙兽与Ver.2偃月加鲁鲁兽通信对战后，无论胜败均可联展为Alter-S；不消耗本机备份伙伴。",
       "values": {
-        "zh-Hant": "電光暴龍獸＋Ver.2偃月加魯魯獸的聯展未開放；Alter-S不會通過普通進化獲得。",
-        "en": "The joint exhibition of LightningGreymon + Ver.2 YanzukiGarurumon is not open; Alter-S cannot be obtained through normal evolution.",
-        "ja": "ライトニンググレイモン + Ver.2 ヤンズキガルルモン 合同展示会は開催しておりません。アルターSは通常進化では入手できません。"
+        "zh-Hant": "電光暴龍獸與Ver.2偃月加魯魯獸通信對戰後，無論勝敗均可聯展爲Alter-S；不消耗本機備份夥伴。",
+        "en": "After the communication battle between ElectroGreymon and Ver.2 YanzukiGarurumon, they can jointly transform into Alter-S regardless of victory or defeat; local backup partners are not consumed.",
+        "ja": "エレクトログレイモンとVer.2ヤンズキガルルモンの通信戦闘後、勝敗に関係なく合体してオルタ-Sに変身可能。ローカル バックアップ パートナーは消費されません。"
       }
     },
     {
@@ -4546,6 +5168,14 @@
       }
     },
     {
+      "source": "确认消息与伙伴信息不一致，请重新连接",
+      "values": {
+        "zh-Hant": "確認消息與夥伴信息不一致，請重新連接",
+        "en": "The confirmation message is inconsistent with the partner information, please reconnect.",
+        "ja": "確認メッセージがパートナー情報と一致しません。再接続してください。"
+      }
+    },
+    {
       "source": "确认重置",
       "values": {
         "zh-Hant": "確認重置",
@@ -4567,6 +5197,22 @@
         "zh-Hant": "種族",
         "en": "race",
         "ja": "レース"
+      }
+    },
+    {
+      "source": "科学怪人兽",
+      "values": {
+        "zh-Hant": "科學怪人獸",
+        "en": "Ebemon",
+        "ja": "イーバモン"
+      }
+    },
+    {
+      "source": "科學怪人獸",
+      "values": {
+        "zh-Hant": "科學怪人獸",
+        "en": "Frankenstein Beast",
+        "ja": "フランケンシュタインの獣"
       }
     },
     {
@@ -4674,6 +5320,14 @@
       }
     },
     {
+      "source": "絶対零度パンチ",
+      "values": {
+        "zh-Hant": "絶対零度パンチ",
+        "en": "ZERO ZERO パンチ",
+        "ja": "ゼロゼロパンチ"
+      }
+    },
+    {
       "source": "繁體中文",
       "values": {
         "zh-Hant": "繁體中文",
@@ -4738,19 +5392,19 @@
       }
     },
     {
-      "source": "缺少 Ver.1 数据",
-      "values": {
-        "zh-Hant": "缺少 Ver.1 數據",
-        "en": "Missing Ver.1 data",
-        "ja": "Ver.1 データがありません"
-      }
-    },
-    {
       "source": "缺少 database.json",
       "values": {
         "zh-Hant": "缺少 database.json",
         "en": "database.json is missing",
         "ja": "データベース.json がありません"
+      }
+    },
+    {
+      "source": "缺少COLOR机型规则数据",
+      "values": {
+        "zh-Hant": "缺少COLOR機型規則數據",
+        "en": "Missing COLOR model rule data",
+        "ja": "COLOR モデル ルール データが欠落しています"
       }
     },
     {
@@ -4927,6 +5581,22 @@
         "zh-Hant": "自動保存雲端快照",
         "en": "Automatically save cloud snapshots",
         "ja": "クラウド スナップショットを自動的に保存します"
+      }
+    },
+    {
+      "source": "艾力兽",
+      "values": {
+        "zh-Hant": "艾力獸",
+        "en": "Elecmon",
+        "ja": "エレキモン"
+      }
+    },
+    {
+      "source": "艾力獸",
+      "values": {
+        "zh-Hant": "艾力獸",
+        "en": "Aili beast",
+        "ja": "アイリ獣"
       }
     },
     {
@@ -5642,6 +6312,14 @@
       }
     },
     {
+      "source": "通信联展 · 奥米加兽 Alter-S",
+      "values": {
+        "zh-Hant": "通信聯展 · 奧米加獸 Alter-S",
+        "en": "Communications Joint Exhibition ·Omegamon Alter-S",
+        "ja": "コミュニケーションズ合同展示会・オメガモン アルター-S"
+      }
+    },
+    {
       "source": "通信记录容量已满，请先导出完整档案",
       "values": {
         "zh-Hant": "通信記錄容量已滿，請先導出完整檔案",
@@ -5738,11 +6416,27 @@
       }
     },
     {
+      "source": "酸の泡",
+      "values": {
+        "zh-Hant": "酸の泡",
+        "en": "Sour bubbles",
+        "ja": "酸っぱい泡"
+      }
+    },
+    {
       "source": "采用 Digital Monster COLOR 角色像素图集的原创融合养成规则；不是实体机规则的精确模拟。",
       "values": {
         "zh-Hant": "採用 Digital Monster COLOR 角色像素圖集的原創融合養成規則；不是實體機規則的精確模擬。",
         "en": "adopts the original fusion development rules of the Digital Monster COLOR character pixel atlas; it is not an exact simulation of the physical machine rules.",
         "ja": "は、デジタルモンスター COLOR キャラクターピクセルアトラスの独自の融合開発ルールを採用しています。これは、物理マシンのルールを正確にシミュレーションしたものではありません。"
+      }
+    },
+    {
+      "source": "采用Ver.1/Ver.2共用说明书及Ver.2社区实测规则；独立名单、分支、作息、力量和Quest，支持与Ver.1指定角色通信联展。",
+      "values": {
+        "zh-Hant": "採用Ver.1/Ver.2共用說明書及Ver.2社區實測規則；獨立名單、分支、作息、力量和Quest，支持與Ver.1指定角色通信聯展。",
+        "en": "adopts Ver.1/Ver.2 shared instructions and Ver.2 community actual test rules; independent list, branch, schedule, power and Quest, supports communication and joint exhibition with Ver.1 designated characters.",
+        "ja": "は、Ver.1/Ver.2 共通命令と Ver.2 コミュニティ実際のテスト ルールを採用しています。リスト、分岐、スケジュール、パワー、クエストを独立させ、Ver.1指定キャラクターとのコミュニケーションや共同出展に対応。"
       }
     },
     {
@@ -5775,6 +6469,22 @@
         "zh-Hant": "重置前歸檔",
         "en": "Archive before reset",
         "ja": "リセット前のアーカイブ"
+      }
+    },
+    {
+      "source": "鋼鐵豆豆獸",
+      "values": {
+        "zh-Hant": "鋼鐵豆豆獸",
+        "en": "Steel Bean Beast",
+        "ja": "スティールビーンビースト"
+      }
+    },
+    {
+      "source": "钢铁豆豆兽",
+      "values": {
+        "zh-Hant": "鋼鐵豆豆獸",
+        "en": "MetalMamemon",
+        "ja": "メタルマメモン"
       }
     },
     {
@@ -5823,6 +6533,22 @@
         "zh-Hant": "隱藏開發入口提供角色、道具與數值編輯；這裏的時間推進調用同一養成引擎，不改變系統時鐘。",
         "en": "The hidden development entrance provides editing of characters, props and values; the time advancement here calls the same development engine and does not change the system clock.",
         "ja": "非表示の開発入口では、キャラクター、小道具、および値の編集が可能です。ここでの時間の進行は同じ開発エンジンを呼び出し、システム クロックを変更しません。"
+      }
+    },
+    {
+      "source": "雪人兽",
+      "values": {
+        "zh-Hant": "雪人獸",
+        "en": "Yukidarumon",
+        "ja": "ユキダルモン"
+      }
+    },
+    {
+      "source": "雪人獸",
+      "values": {
+        "zh-Hant": "雪人獸",
+        "en": "Snowman Beast",
+        "ja": "雪だるまビースト"
       }
     },
     {
@@ -5906,6 +6632,14 @@
       }
     },
     {
+      "source": "食虫植物型",
+      "values": {
+        "zh-Hant": "食蟲植物型",
+        "en": "carnivorous plant type",
+        "ja": "食虫植物の種類"
+      }
+    },
+    {
       "source": "饱食",
       "values": {
         "zh-Hant": "飽食",
@@ -5983,6 +6717,14 @@
         "zh-Hant": "高階進化依通算勝率判定：40%起25%、60%起50%、80%起必定。60～69%區間資料存在分歧，待實體機複覈。",
         "en": "High-level evolution is determined based on the general winning rate: 25% from 40%, 50% from 60%, and certain from 80%. There are differences in the data in the 60-69% interval, which needs to be reviewed by the physical machine.",
         "ja": "上位進化は一般勝率40％から25％、60％から50％、80％から確変で決定される。 60 ～ 69% の間隔でデータに差異があるため、物理マシンで確認する必要があります。"
+      }
+    },
+    {
+      "source": "黄獣偃月刀（きじゅうえんげつとう）",
+      "values": {
+        "zh-Hant": "黃獣偃月刀（きじゅうえんげつとう）",
+        "en": "Yellow Beast Moon Sword (きじゅうえんげつとう)",
+        "ja": "黄獣月剣 (きじゅうえんげつとう)"
       }
     },
     {

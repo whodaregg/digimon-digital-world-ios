@@ -14,7 +14,7 @@ struct CloudBackupView: View {
     var body: some View {
         Panel(title: "云端备份与同步") {
             Text(l(cloud.notice)).accessibilityIdentifier("cloudNotice")
-            Button(l("选择iCloud Drive或云盘文件夹")) { picker = true }.accessibilityIdentifier("cloudChooseFolder")
+            Button(l("选择iCloud Drive或云盘文件夹")) { picker = true }.disabled(cloud.busy).accessibilityIdentifier("cloudChooseFolder")
             if cloud.connected {
                 Toggle(l("自动保存云端快照"),isOn: $cloud.automatic)
                 Button(l("立即备份全部设备")) { cloud.upload(model: model) }.disabled(cloud.busy).accessibilityIdentifier("cloudUpload")
@@ -29,7 +29,7 @@ struct CloudBackupView: View {
                         VStack(alignment: .leading) { Text(l(revision.date.formatted(date: .abbreviated,time: .shortened))); Text(l(revision.id)).font(.caption2).lineLimit(1) }
                     }.disabled(cloud.busy)
                 }
-                Button(l("断开云盘文件夹")) { cloud.disconnect() }
+                Button(l("断开云盘文件夹")) { cloud.disconnect() }.disabled(cloud.busy)
             }
             Text(l("每次备份生成独立版本，不覆盖另一台手机的进度。恢复先验证全部设备，再作为新设备导入，当前设备保持保留；请选择需要继续养成的版本，避免同时操作同一伙伴。"))
                 .font(.caption).foregroundStyle(Palette.muted)

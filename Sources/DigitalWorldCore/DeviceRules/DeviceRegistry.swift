@@ -1,6 +1,7 @@
 import Foundation
 
 public enum DeviceRegistry {
+    public static func isColor(_ id: String) -> Bool { ["dmc-ver1","dmc-ver2"].contains(id) }
     public static func newGame(database: ContentDatabase, deviceID: String, eggID: String,
                                now: Date, timeZone: String = "UTC") throws -> GameState {
         let device = try database.device(deviceID)
@@ -15,13 +16,13 @@ public enum DeviceRegistry {
         guard egg.requiredRaised == 0 else { throw GameError.cannotAct("该数码蛋尚未解锁") }
         var pet = Pet(speciesID: egg.species, eggID: eggID)
         pet.record("egg", "数码蛋开始孵化", at: now)
-        if deviceID == DMCV1Engine.deviceID {
+        if isColor(deviceID) {
             pet.dmc = DMCCareState(eggStartedAt: now); pet.stats.dp = 0
             DMCV1Engine.sync(&pet)
         }
         var state = GameState(databaseVersion: database.version, deviceID: deviceID, mode: device.mode,
                               timeZone: timeZone, now: now, pet: pet)
-        if deviceID == DMCV1Engine.deviceID { state.dmc = DMCDeviceState() }
+        if isColor(deviceID) { state.dmc = DMCDeviceState(); state.dmc!.eggSpeciesID = egg.species }
         return state
     }
 }

@@ -13,6 +13,7 @@ extension WorldViewModel {
     func lcdKeyDown(_ key: DeviceKey) { performLCD(lcd.keyDown(key,at: Date(),state: state)); feedbackTap() }
     func lcdKeyUp(_ key: DeviceKey) {
         guard let state else { return }
+        if lcd.screen == .food,isFeeding,key != .c { lcd.cancelTouches(); return }
         lcdNotice = nil
         if lcd.screen == .battle && lcdBattleFinished && (key == .b || key == .c) {
             _ = lcd.keyUp(key,at: Date(),state: state,availableAreas: 8); finishLCDQuest(); return
@@ -25,7 +26,9 @@ extension WorldViewModel {
         switch action {
         case .none: return
         case .feedback: feedbackTap(); return
-        case .feed(let id): care(.feed(id))
+        case .feed(let id):
+            guard !isFeeding else { return }
+            feedingFoodID = id; care(.feed(id))
         case .beginTraining: beginTraining()
         case .train(let key): originalTraining(key)
         case .cancelTraining: cancelTraining()
@@ -35,7 +38,7 @@ extension WorldViewModel {
         case .lights: care(.lights(!(state?.pet.lightsOff ?? false)))
         case .cold: care(.freeze(state?.pet.life != .frozen))
         case .backup: swapBackup()
-        case .rebirth: care(.rebirth("dmc-v1-egg"))
+        case .rebirth: care(.rebirth(state?.pet.eggID ?? "dmc-v1-egg"))
         case .sound(let on): settings { $0.sound = on }
         case .skipBattle: lcdSkipRequest += 1
         case .brightness(let value): editPresentation { $0.brightness = value }

@@ -70,7 +70,7 @@ def profile():
       verificationNotes=['按官方说明书核对操作，隐藏阈值、敌人力量和心值下降周期使用社区实测资料；周期为分钟近似值。',
        '胜率60～69%的进化概率资料有分歧：本配置采用Humulos的50%，NHOKO记为25%，尚待实体机复核。',
        '完全体15战采用NHOKO的成长期与成熟期合计；究极体须在完全体阶段另战15次。',
-       '实体机通信与联展尚未实现；手机同版本对战由独立通信模块处理；奥米加兽Alter-S仅作为最终关敌人，不会通过普通养成赠送。'],
+       '实体机物理通信尚未实现；手机通信对战与Ver.1/Ver.2指定角色联展由独立模块处理；奥米加兽Alter-S不通过普通进化赠送。'],
       hatchSeconds=8,trainingPatterns=['BBBAA','ABABB','BABBA','ABBAB','AAABA','BBAAB','ABBBA','BAABB','BABAB','ABAAA'],
       roster=roster,evolutions=routes,areas=[dict(id=i,name='AREA '+('F' if i==8 else str(i)),
         opponents=[dict(speciesID=s,attribute=a,power=p) for s,a,p in enemies],

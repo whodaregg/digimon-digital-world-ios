@@ -8,7 +8,7 @@ struct AdventureView: View {
 
     @ObservedObject var model: WorldViewModel
     var body: some View {
-        if model.isOriginal, let game = model.state, let rules = model.database?.dmcV1 {
+        if model.isOriginal, let game = model.state, let rules = model.database?.colorRules(for: game.deviceID) {
             Panel(title: "QUEST / 顺序闯关") {
                 Text(l("按区域顺序挑战"))
                     .font(.title3.bold()).accessibilityIdentifier("questHeading")
@@ -46,7 +46,7 @@ struct AdventureView: View {
                     }.padding(.vertical,10)
                     Divider().overlay(Palette.line)
                 }
-                Text(l("手机对战请使用连接页面；联展尚未开放。奥米加兽 Alter-S 现为最终区敌人。"))
+                Text(l("手机对战请使用连接页面；Ver.1电光暴龙兽与Ver.2偃月加鲁鲁兽通信后可联展。奥米加兽 Alter-S 现为最终区敌人。"))
                     .font(.caption).foregroundStyle(Palette.muted)
             }
         } else {

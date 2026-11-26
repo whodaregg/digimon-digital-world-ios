@@ -3,8 +3,8 @@ import Foundation
 /// COLOR Ver.1's care loop. Legacy experimental saves use their original engines.
 public enum DMCV1Engine {
     public static let deviceID = "dmc-ver1"
-    public static func rules(_ database: ContentDatabase) throws -> DMCV1Rules {
-        guard let rules = database.dmcV1 else { throw GameError.invalidData("缺少 Ver.1 数据") }
+    public static func rules(_ database: ContentDatabase,deviceID: String = Self.deviceID) throws -> DMCV1Rules {
+        guard let rules = database.colorRules(for: deviceID) else { throw GameError.invalidData("缺少COLOR机型规则数据") }
         return rules
     }
     static func sync(_ p: inout Pet) {
@@ -37,7 +37,7 @@ public enum DMCV1Engine {
         guard now.timeIntervalSince1970.isFinite else { throw GameError.invalidData("时间无效") }
         var report = TimeReport()
         guard now >= state.highWatermark else { report.clockReversed = true; return report }
-        let rules = try rules(database)
+        let rules = try rules(database,deviceID: state.deviceID)
         let previous = state.highWatermark
         state.highWatermark = now
         let i = state.activeIndex
@@ -55,12 +55,12 @@ public enum DMCV1Engine {
         if state.pet.isEgg {
             let deadline = state.pet.dmc!.eggStartedAt.addingTimeInterval(Double(rules.hatchSeconds))
             guard now >= deadline else { return report }
-            state.pets[i].isEgg = false; state.pets[i].evolutionHistory = ["botamon"]
+            state.pets[i].isEgg = false; state.pets[i].evolutionHistory = [state.pet.speciesID]
             state.pets[i].stats.weight = 5; state.pets[i].stats.dp = 0
             state.pets[i].dmc!.hungerCall = deadline; state.pets[i].dmc!.strengthCall = deadline
-            state.pets[i].record("hatch","孵化 · 黑球兽",at: deadline)
-            state.pets[i].appearances = [SpeciesAppearance("botamon",at: deadline)]
-            state.dex["botamon"] = .raised; state.lastTick = deadline; report.hatchings = 1
+            state.pets[i].record("hatch","孵化 · "+(try database.species(state.pet.speciesID).nameSC),at: deadline)
+            state.pets[i].appearances = [SpeciesAppearance(state.pet.speciesID,at: deadline)]
+            state.dex[state.pet.speciesID] = .raised; state.lastTick = deadline; report.hatchings = 1
         }
         let seconds = now.timeIntervalSince(state.lastTick)
         guard seconds >= 60, seconds < Double(Int.max/2) else { return report }
@@ -114,7 +114,8 @@ public enum DMCV1Engine {
                     if p.dmc!.strengthHearts == 0 && p.dmc!.strengthCall == nil { p.dmc!.strengthCall = date }
                 }
                 p.dmc!.wasteMinutes += 1
-                let interval = p.speciesID == "botamon" ? 3 : p.speciesID == "koromon" ? 60 : 120
+                let petStage = try database.species(p.speciesID).stage
+                let interval = petStage == .baby1 ? 3 : petStage == .baby2 ? 60 : 120
                 if p.dmc!.wasteMinutes >= interval { p.stats.waste = min(8,p.stats.waste+1); p.dmc!.wasteMinutes = 0 }
             }
             if p.dmc!.hungerHearts > 0 { p.dmc!.hungerCall = nil; p.dmc!.emptyHungerMinutes = 0 }
@@ -122,11 +123,11 @@ public enum DMCV1Engine {
             if p.dmc!.strengthHearts > 0 { p.dmc!.strengthCall = nil; p.dmc!.emptyStrengthMinutes = 0 }
             else if !intervalSleeping { p.dmc!.emptyStrengthMinutes += 1 }
             if let call = p.dmc!.hungerCall, date.timeIntervalSince(call) >= 600 {
-                if p.speciesID != "botamon" { mistake(&p,"空腹呼叫十分钟未回应",at: date) }
+                if try database.species(p.speciesID).stage != .baby1 { mistake(&p,"空腹呼叫十分钟未回应",at: date) }
                 p.dmc!.hungerCall = nil
             }
             if let call = p.dmc!.strengthCall, date.timeIntervalSince(call) >= 600 {
-                if p.speciesID != "botamon" { mistake(&p,"力量呼叫十分钟未回应",at: date) }
+                if try database.species(p.speciesID).stage != .baby1 { mistake(&p,"力量呼叫十分钟未回应",at: date) }
                 p.dmc!.strengthCall = nil
             }
             if p.stats.waste >= 8 { injure(&p,doses: s.healDoses,at: date) }
@@ -164,7 +165,7 @@ public enum DMCV1Engine {
         guard let c = p.dmc else { return nil }
         func fits(_ n: Int,_ low: Int,_ high: Int?) -> Bool { n >= low && (high.map { n <= $0 } ?? true) }
         return rules.evolutions.filter { r in
-            let battles = ["metalgreymon","mamemon","monzaemon"].contains(p.speciesID) ? c.megaBattleCount : c.perfectBattleCount
+            let battles = rules.roster[p.speciesID]?.evolutionMinutes == 2880 ? c.megaBattleCount : c.perfectBattleCount
             return r.from == p.speciesID && fits(c.stageMistakes,r.minimumMistakes,r.maximumMistakes) &&
                 fits(c.stageTrainings,r.minimumTraining,r.maximumTraining) && fits(c.overfeeds,r.minimumOverfeeds,r.maximumOverfeeds) &&
                 fits(c.sleepDisturbances,r.minimumSleepDisturbances,r.maximumSleepDisturbances) && battles >= r.minimumBattles
@@ -200,11 +201,11 @@ public enum DMCV1Engine {
         }
     }
     public static func perform(_ action: CareAction,state: inout GameState,database: ContentDatabase,at now: Date) throws {
-        let rules = try rules(database), i = state.activeIndex
+        let rules = try rules(database,deviceID: state.deviceID), i = state.activeIndex
         var result = state
         switch action {
         case .rebirth(let id):
-            guard state.pet.life == .dead, id == "dmc-v1-egg" else { throw GameError.cannotAct("仅在伙伴死亡后重新孵化 Ver.1 蛋") }
+            guard state.pet.life == .dead, id == state.pet.eggID else { throw GameError.cannotAct("仅在伙伴死亡后重新孵化本机型数码蛋") }
             try addEgg(&result,at: now)
         case .selectPet:
             throw GameError.cannotAct("档案仅供查看；请通过备份交换恢复另一只伙伴")
@@ -215,16 +216,16 @@ public enum DMCV1Engine {
             result.training = nil; result.lastTick = now
             result.pets[i].record("cold",frozen ? "Cold · 暂停成长" : "解除 Cold",at: now)
         case .rest:
-            throw GameError.cannotAct("Ver.1 按作息自动入睡；暂停成长请使用 Cold")
+            throw GameError.cannotAct("COLOR 按作息自动入睡；暂停成长请使用 Cold")
         default:
             guard state.pet.life == .alive, !state.pet.isEgg, state.training == nil else { throw GameError.cannotAct("当前无法照顾，请结束训练或恢复成长") }
             switch action {
             case .feed(let id):
-                guard ["meat","protein"].contains(id) else { throw GameError.cannotAct("Ver.1 只有肉和蛋白质") }
+                guard ["meat","protein"].contains(id) else { throw GameError.cannotAct("COLOR 只有肉和蛋白质") }
                 try wake(&result,at: now)
                 guard !result.pet.stats.injured else { throw GameError.cannotAct("请先治疗") }
                 if id == "meat" {
-                    let baby = result.pet.speciesID == "botamon"
+                    let baby = try database.species(result.pet.speciesID).stage == .baby1
                     guard result.pet.dmc!.hungerHearts < 4 || (!baby && result.pet.dmc!.meatBeyondFull < 10) else { throw GameError.cannotAct("已经吃饱，拒绝继续进食") }
                     if result.pet.dmc!.hungerHearts < 4 { result.pets[i].dmc!.hungerHearts += 1 }
                     else { result.pets[i].dmc!.meatBeyondFull += 1 }
@@ -261,14 +262,14 @@ public enum DMCV1Engine {
     }
     static func addEgg(_ state: inout GameState,at now: Date) throws {
         try LifecycleManager.makeRoom(&state)
-        var pet = Pet(speciesID: "botamon",eggID: "dmc-v1-egg")
+        var pet = Pet(speciesID: state.dmc?.eggSpeciesID ?? "botamon",eggID: state.pet.eggID)
         pet.dmc = DMCCareState(eggStartedAt: now,traited: state.dmc!.nextEggTraited)
-        pet.stats.dp = 0; sync(&pet); pet.record("egg","Ver.1 数码蛋 · 8秒孵化",at: now)
+        pet.stats.dp = 0; sync(&pet); pet.record("egg","COLOR 数码蛋 · 8秒孵化",at: now)
         state.dmc!.nextEggTraited = false; state.pets.append(pet); state.activePetID = pet.id
         state.lastTick = now; state.training = nil
     }
     public static func swapBackup(_ state: inout GameState,at now: Date) throws {
-        guard state.deviceID == deviceID, !state.pet.isEgg, state.pet.life != .dead, state.training == nil else { throw GameError.cannotAct("当前无法交换备份") }
+        guard DeviceRegistry.isColor(state.deviceID), !state.pet.isEgg, state.pet.life != .dead, state.training == nil else { throw GameError.cannotAct("当前无法交换备份") }
         var result = state
         let current = result.activeIndex, backup = result.dmc!.backupPetID, waste = result.pet.stats.waste
         if let backup {
@@ -298,7 +299,7 @@ public enum DMCV1Engine {
         guard let session = state.training, session.petID == state.activePetID, ["A","B"].contains(choice),
               state.pet.life == .alive, !state.pet.sleeping, !state.pet.stats.injured,
               state.dmc!.trainingChoices.count < 5 else { throw GameError.cannotAct("训练尚未开始或已失效") }
-        let rules = try rules(database), shot = state.dmc!.trainingChoices.count
+        let rules = try rules(database,deviceID: state.deviceID), shot = state.dmc!.trainingChoices.count
         let pattern = Array(rules.trainingPatterns[state.dmc!.trainingCycle % 10])
         state.dmc!.trainingChoices.append(choice); state.dmc!.trainingHits.append(String(pattern[shot]) == choice)
         guard state.dmc!.trainingChoices.count == 5 else { return nil }
@@ -319,7 +320,7 @@ public enum DMCV1Engine {
         return max(0,min(100,power*100/max(1,power+enemyPower)+adjustment))
     }
     public static func quest(_ state: inout GameState,areaID: Int,database: ContentDatabase,at now: Date) throws -> DMCQuestResult {
-        let rules = try rules(database)
+        let rules = try rules(database,deviceID: state.deviceID)
         guard let area = rules.areas.first(where: { $0.id == areaID }),
               areaID == 1 || state.dmc!.clearedAreas.contains(areaID-1) else { throw GameError.cannotAct("请先通关前一区域") }
         var result = state

@@ -120,6 +120,7 @@ public struct DMCCareState: Codable, Equatable, Sendable {
 }
 
 public struct DMCDeviceState: Codable, Equatable, Sendable {
+    public var eggSpeciesID: String? = nil
     public var trainingCycle = 0
     public var trainingChoices: [String] = []
     public var trainingHits: [Bool] = []

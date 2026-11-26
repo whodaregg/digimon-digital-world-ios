@@ -26,8 +26,9 @@ public enum GameLocalization {
         return Pattern(source: source,regex: regex,tokens: tokens)
     }
     public static func text(_ source: String,language: AppLanguage) -> String {
-        guard language != .simplified else { return source }
         if let translated = exact[source]?[language.rawValue] { return translated }
+        guard language != .simplified else { return source }
+        guard source.range(of: "[\\p{Han}]",options: .regularExpression) != nil else { return source }
         let range = NSRange(source.startIndex...,in: source)
         for pattern in patterns {
             guard let match = pattern.regex.firstMatch(in: source,range: range),let translated = exact[pattern.source]?[language.rawValue] else { continue }

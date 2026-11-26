@@ -60,7 +60,7 @@ struct DetailView: View {
                 if !model.isOriginal { Readout(name: "性格",value: game.pet.personality) }
             }
             if let care = game.pet.dmc {
-                Panel(title: "CARE / Ver.1") {
+                Panel(title: "CARE / COLOR") {
                     HeartReadout(name: "饱食",value: care.hungerHearts)
                     HeartReadout(name: "力量",value: care.strengthHearts)
                     HeartReadout(name: "努力",value: care.effortHearts)
@@ -68,7 +68,7 @@ struct DetailView: View {
                     Readout(name: "战斗 / 通算胜率",value: "\(game.pet.stats.battles) / \(Int(game.pet.stats.winRate*100))%")
                     if !model.isClassic {
                     Readout(name: "阶段成长时间",value: "\(game.pet.stageMinutes) MIN")
-                    if let minutes = model.database?.dmcV1?.roster[game.pet.speciesID]?.evolutionMinutes,minutes > 0 {
+                    if let minutes = model.database?.colorRules(for: model.state?.deviceID ?? "dmc-ver1")?.roster[game.pet.speciesID]?.evolutionMinutes,minutes > 0 {
                         Readout(name: "距离本阶段进化判定",value: care.evolutionChecked ? "本阶段已判定" : "\(max(0,minutes-game.pet.stageMinutes)) MIN")
                     } else { Text(l("当前阶段无计时普通进化")).font(.caption) }
                     Text(l("COLOR Ver.1不使用HP、等级或经验值。")) .font(.caption).foregroundStyle(Palette.muted)

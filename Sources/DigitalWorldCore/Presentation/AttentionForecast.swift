@@ -16,7 +16,7 @@ public enum AttentionForecast {
         }
         if let care = copy.pet.dmc {
             if copy.pet.isEgg {
-                let date = care.eggStartedAt.addingTimeInterval(Double(database.dmcV1?.hatchSeconds ?? 8))
+                let date = care.eggStartedAt.addingTimeInterval(Double(database.colorRules(for: state.deviceID)?.hatchSeconds ?? 8))
                 if date > now { append("hatch",date,"数码蛋即将孵化") }
             }
             if care.hungerCall != nil { append("hunger",now.addingTimeInterval(1),"伙伴空腹，请及时喂肉") }

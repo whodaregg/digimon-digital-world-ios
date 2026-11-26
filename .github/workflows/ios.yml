@@ -8,6 +8,7 @@ on:
       - 'Tests/**'
       - 'iOSUITests/**'
       - 'Scripts/**'
+      - 'Configuration/**'
       - 'Package.swift'
       - 'DigitalWorld.xcodeproj/**'
       - '.github/workflows/ios.yml'

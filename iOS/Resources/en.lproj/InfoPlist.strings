@@ -1,0 +1,2 @@
+"NSLocalNetworkUsageDescription" = "Find nearby players and battle after both players confirm.";
+"NSMotionUsageDescription" = "Read acceleration only during Sandbox motion input testing. Motion data is not uploaded.";

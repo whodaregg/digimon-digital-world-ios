@@ -12,6 +12,8 @@ final class WorldViewModel: ObservableObject {
     @Published var alert: String?
     @Published var fatalError: String?
     @Published var animation = "idle"
+    @Published var feedingFoodID = "meat"
+    var isFeeding: Bool { animation == "eat" || animation == "refuse" }
     @Published var lastBattle: BattleRecord?
     @Published var encounter: String?
     @Published var trainingScore: Int?
@@ -91,6 +93,10 @@ final class WorldViewModel: ObservableObject {
                     test.pets[0].developerTuning!.power = 1_000_000
                 }
                 test.homeTimeZone = "UTC"
+                if ProcessInfo.processInfo.arguments.contains("--ui-testing-feed-refusal") {
+                    test.pets[0].dmc?.hungerHearts = 4; test.pets[0].dmc?.meatBeyondFull = 10
+                    test.pets[0].stats.fullness = 100
+                }
                 state = test
             }
             #endif
@@ -118,7 +124,7 @@ final class WorldViewModel: ObservableObject {
     var species: Species? { state.flatMap { try? database?.species($0.pet.speciesID) } }
     var exportURL: URL? { store?.primaryURL }
     var display: DisplayMode { state?.settings.display ?? .color }
-    var isOriginal: Bool { state?.deviceID == DMCV1Engine.deviceID }
+    var isOriginal: Bool { state.map { DeviceRegistry.isColor($0.deviceID) } ?? false }
     var hatchRemainingSeconds: Int {
         guard let care = state?.pet.dmc else { return 0 }
         return max(0,Int(ceil(care.eggStartedAt.addingTimeInterval(8).timeIntervalSince(simulationDate))))
@@ -168,13 +174,14 @@ final class WorldViewModel: ObservableObject {
             else if result.evolutions > 0 { message = "伙伴进化了！"; play("evolution") }
             else if result.hatchings > 0 { message = "新生命诞生，开始照顾它吧"; play("happy") }
             if forceSave || now.timeIntervalSince(lastPersist) >= 60 { persist() }
+            cloud.upload(model: self,force: false)
         } catch { alert = error.localizedDescription }
     }
     func care(_ action: CareAction) {
         command { game, content, now in try GameEngine.perform(action, state: &game, database: content, at: now) }
         guard alert == nil else { return }
         switch action {
-        case .feed: message = "喂食完成"; play("eat")
+        case .feed(let food): feedingFoodID = food; message = "喂食完成"; play("eat")
         case .clean: message = "环境清理完成"; play("clean")
         case .medicine: message = "治疗完成"; play("medicine")
         case .lights(let off): message = off ? "灯光已关闭" : "灯光已开启"
@@ -396,7 +403,7 @@ final class WorldViewModel: ObservableObject {
         let cue = cues[value]
         if let cue,let game = state { feedback.play(sound: game.settings.sound,haptics: game.settings.haptics,volume: game.settings.presentation.volume,cue: cue) }
         animationTask = Task { [weak self] in
-            try? await Task.sleep(for: .seconds(value == "evolution" ? 3 : 1.6))
+            try? await Task.sleep(for: .seconds(value == "evolution" ? 3 : (value == "eat" || value == "refuse") ? 2.4 : 1.6))
             guard !Task.isCancelled else { return }
             self?.animation = "idle"
         }

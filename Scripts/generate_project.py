@@ -5,6 +5,8 @@ import json
 import plistlib
 
 ROOT=Path(__file__).resolve().parents[1]
+capabilities=json.loads((ROOT/'Configuration/Capabilities.json').read_text())
+assert not capabilities['gameCenter'] or capabilities['teamID'],'Game Center requires an Apple developer team'
 PROJECT=ROOT/'DigitalWorld.xcodeproj'
 PROJECT.mkdir(exist_ok=True)
 
@@ -26,6 +28,20 @@ for file in resources:
     filetype='folder.assetcatalog' if file.endswith('xcassets') else 'file' if file.endswith('ttf') else 'folder' if file.endswith('FontLicenses') else 'text.xml'
     obj('ref:'+file,f'isa = PBXFileReference; lastKnownFileType = {filetype}; path = {q(file)}; sourceTree = SOURCE_ROOT;')
     obj('build:'+file,f'isa = PBXBuildFile; fileRef = {uid("ref:"+file)};')
+privacy_strings={
+    'zh-Hans':('用于发现附近玩家，并在双方确认后进行本地对战。','仅在主动开始Sandbox摇晃输入测试时读取加速度，数据不上传。'),
+    'zh-Hant':('用於尋找附近玩家，並在雙方確認後進行本機對戰。','僅在主動開始Sandbox搖晃輸入測試時讀取加速度，資料不會上傳。'),
+    'en':('Find nearby players and battle after both players confirm.','Read acceleration only during Sandbox motion input testing. Motion data is not uploaded.'),
+    'ja':('近くのプレイヤーを検索し、双方の確認後に対戦します。','Sandboxの振動入力テスト中のみ加速度を読み取ります。データは送信しません。')}
+localized_refs=[]
+for language,strings in privacy_strings.items():
+    path=f'iOS/Resources/{language}.lproj/InfoPlist.strings'
+    file=ROOT/path;file.parent.mkdir(exist_ok=True)
+    file.write_text('\n'.join(json.dumps(key)+' = '+json.dumps(value,ensure_ascii=False)+';' for key,value in zip(['NSLocalNetworkUsageDescription','NSMotionUsageDescription'],strings))+'\n')
+    localized_refs.append('ref:'+path)
+    obj('ref:'+path,f'isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = {q(language)}; path = {q(path)}; sourceTree = SOURCE_ROOT;')
+obj('ref:localization',f'isa = PBXVariantGroup; children = {refs(localized_refs)}; name = InfoPlist.strings; sourceTree = "<group>";')
+obj('build:localization',f'isa = PBXBuildFile; fileRef = {uid("ref:localization")};')
 obj('product:app','isa = PBXFileReference; explicitFileType = wrapper.application; path = DigitalWorld.app; sourceTree = BUILT_PRODUCTS_DIR;')
 obj('product:uitest','isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = DigitalWorldUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR;')
 obj('group:app',f'isa = PBXGroup; name = iOS; children = {refs(["ref:"+f for f in app_files+resources])}; sourceTree = "<group>";')
@@ -37,7 +53,7 @@ obj('package:core',f'isa = XCSwiftPackageProductDependency; package = {uid("pack
 obj('build:core',f'isa = PBXBuildFile; productRef = {uid("package:core")};')
 for kind,files in [('app',app_files),('uitest',test_files)]:
     obj(f'sources:{kind}',f'isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = {refs(["build:"+f for f in files])}; runOnlyForDeploymentPostprocessing = 0;')
-    resource_refs=refs(['build:'+f for f in resources]) if kind=='app' else '()'
+    resource_refs=refs(['build:'+f for f in resources]+['build:localization']) if kind=='app' else '()'
     obj(f'resources:{kind}',f'isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = {resource_refs}; runOnlyForDeploymentPostprocessing = 0;')
     framework_refs=refs(['build:core']) if kind=='app' else '()'
     obj(f'frameworks:{kind}',f'isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = {framework_refs}; runOnlyForDeploymentPostprocessing = 0;')
@@ -57,11 +73,13 @@ for config in ['Debug','Release']:
                 GCC_PREPROCESSOR_DEFINITIONS='DEBUG=1 $(inherited)' if config=='Debug' else '$(inherited)')
     obj('config:project:'+config,f'isa = XCBuildConfiguration; buildSettings = {settings(common)}; name = {config};')
     for target in ['app','uitest']:
-        values=dict(PRODUCT_NAME='$(TARGET_NAME)',PRODUCT_BUNDLE_IDENTIFIER='org.digitalworld.pet'+('.uitests' if target=='uitest' else ''),
+        values=dict(PRODUCT_NAME='$(TARGET_NAME)',PRODUCT_BUNDLE_IDENTIFIER=capabilities['bundleIdentifier']+('.uitests' if target=='uitest' else ''),
                     CURRENT_PROJECT_VERSION='7',MARKETING_VERSION='0.7.0',CODE_SIGN_STYLE='Automatic',
                     TARGETED_DEVICE_FAMILY='1,2',SWIFT_EMIT_LOC_STRINGS='YES',
                     SUPPORTED_PLATFORMS='iphoneos iphonesimulator',SUPPORTS_MACCATALYST='NO')
         if target=='app':
+            if capabilities['teamID']: values['DEVELOPMENT_TEAM']=capabilities['teamID']
+            if capabilities['gameCenter']: values['CODE_SIGN_ENTITLEMENTS']='iOS/Resources/DigitalWorld.entitlements'
             values.update(INFOPLIST_FILE='iOS/Resources/Info.plist',GENERATE_INFOPLIST_FILE='NO',
                           ASSETCATALOG_COMPILER_APPICON_NAME='AppIcon',ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME='AccentColor',
                           LD_RUNPATH_SEARCH_PATHS='$(inherited) @executable_path/Frameworks')
@@ -83,7 +101,7 @@ obj('project',f'''isa = PBXProject; attributes = {{ BuildIndependentTargetsInPar
     TargetAttributes = {{ {uid("target:app")} = {{ CreatedOnToolsVersion = 16.0; }};
     {uid("target:uitest")} = {{ CreatedOnToolsVersion = 16.0; TestTargetID = {uid("target:app")}; }}; }}; }};
     buildConfigurationList = {uid("configs:project")}; compatibilityVersion = "Xcode 14.0";
-    developmentRegion = "zh-Hans"; hasScannedForEncodings = 0; knownRegions = (en,"zh-Hans",Base);
+    developmentRegion = "zh-Hans"; hasScannedForEncodings = 0; knownRegions = (en,"zh-Hans","zh-Hant",ja,Base);
     mainGroup = {uid("group:main")}; productRefGroup = {uid("group:products")};
     packageReferences = {refs(["package"])}; projectDirPath = ""; projectRoot = "";
     targets = {refs(["target:app","target:uitest"])};''')
@@ -115,12 +133,13 @@ plist=dict(CFBundleDevelopmentRegion='zh-Hans',CFBundleDisplayName='Digital Worl
     NSLocalNetworkUsageDescription='用于发现附近玩家，并在双方确认后进行本地对战。',
     NSBonjourServices=['_world-pets._tcp'],
     NSMotionUsageDescription='仅在主动开始Sandbox摇晃输入测试时读取加速度，数据不上传。',
-    GameCenterEnabled=False,
+    GameCenterEnabled=capabilities['gameCenter'],
     LSRequiresIPhoneOS=True,UIApplicationSceneManifest=dict(UIApplicationSupportsMultipleScenes=False),
     UILaunchScreen={},UISupportedInterfaceOrientations=['UIInterfaceOrientationPortrait'],
     **{'UISupportedInterfaceOrientations~ipad':['UIInterfaceOrientationPortrait','UIInterfaceOrientationLandscapeLeft','UIInterfaceOrientationLandscapeRight']})
 resources_dir=ROOT/'iOS/Resources'
 (resources_dir/'Info.plist').write_bytes(plistlib.dumps(plist))
+(resources_dir/'DigitalWorld.entitlements').write_bytes(plistlib.dumps({'com.apple.developer.game-center':True} if capabilities['gameCenter'] else {}))
 (resources_dir/'PrivacyInfo.xcprivacy').write_bytes(plistlib.dumps(dict(NSPrivacyTracking=False,
     NSPrivacyTrackingDomains=[],NSPrivacyCollectedDataTypes=[],NSPrivacyAccessedAPITypes=[])))
 print(f'Generated DigitalWorld.xcodeproj: {len(app_files)} app sources, {len(test_files)} UI test sources.')

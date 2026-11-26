@@ -11,7 +11,7 @@ final class CloudBackupCoordinator: ObservableObject {
     @Published private(set) var connected = false
     @Published var automatic: Bool { didSet { UserDefaults.standard.set(automatic,forKey: "cloud.backup.automatic") } }
     private var folder: URL?
-    private var lastUpload = Date.distantPast
+    private var lastAttempt = Date.distantPast
     private let bookmarkKey = "cloud.backup.folder"
     init() {
         automatic = UserDefaults.standard.object(forKey: "cloud.backup.automatic") as? Bool ?? true
@@ -35,10 +35,10 @@ final class CloudBackupCoordinator: ObservableObject {
     func disconnect() { folder = nil; connected = false; revisions = []; UserDefaults.standard.removeObject(forKey: bookmarkKey) }
     func upload(model: WorldViewModel,force: Bool = true) {
         guard !busy,let folder,let library = model.library,model.state != nil,
-              force || (automatic && Date().timeIntervalSince(lastUpload) >= 900) else { return }
+              force || (automatic && Date().timeIntervalSince(lastAttempt) >= 900) else { return }
         do { try model.saveCurrentSlot() } catch { notice = error.localizedDescription; return }
         let index = model.libraryIndex
-        busy = true
+        busy = true; lastAttempt = Date()
         Task {
             do {
                 let count = try await Task.detached(priority: .utility) {
@@ -53,7 +53,7 @@ final class CloudBackupCoordinator: ObservableObject {
                     if let writeError { throw writeError }
                     return archive.entries.count
                 }.value
-                lastUpload = Date(); notice = "已保存\(count)台设备的云端快照；系统云盘负责上传同步。"
+                notice = "已保存\(count)台设备的云端快照；系统云盘负责上传同步。"
                 busy = false; refresh()
             } catch { busy = false; notice = "云端备份失败：\(error.localizedDescription)" }
         }
@@ -64,8 +64,14 @@ final class CloudBackupCoordinator: ObservableObject {
             do {
                 let files = try await Task.detached(priority: .utility) {
                     let access = folder.startAccessingSecurityScopedResource(); defer { if access { folder.stopAccessingSecurityScopedResource() } }
-                    return try FileManager.default.contentsOfDirectory(at: folder,includingPropertiesForKeys: [.contentModificationDateKey],options: .skipsHiddenFiles)
-                        .filter { $0.pathExtension == "worldarchive" }
+                    return try FileManager.default.contentsOfDirectory(at: folder,includingPropertiesForKeys: [.contentModificationDateKey],options: [])
+                        .filter { $0.pathExtension == "worldarchive" || ($0.lastPathComponent.hasPrefix(".") && $0.lastPathComponent.hasSuffix(".worldarchive.icloud")) }
+                        .map { url -> URL in
+                            if url.lastPathComponent.hasSuffix(".worldarchive.icloud") {
+                                return url.deletingLastPathComponent().appendingPathComponent(String(url.lastPathComponent.dropFirst().dropLast(7)))
+                            }
+                            return url
+                        }
                         .map { ($0,(try? $0.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate) ?? .distantPast) }
                         .sorted { $0.1 > $1.1 }
                 }.value
@@ -77,6 +83,9 @@ final class CloudBackupCoordinator: ObservableObject {
         guard let folder else { throw GameError.unavailable("请先连接云盘文件夹") }
         return try await Task.detached(priority: .utility) {
             let access = folder.startAccessingSecurityScopedResource(); defer { if access { folder.stopAccessingSecurityScopedResource() } }
+            if (try? revision.url.resourceValues(forKeys: [.isUbiquitousItemKey]).isUbiquitousItem) == true {
+                try FileManager.default.startDownloadingUbiquitousItem(at: revision.url)
+            }
             var coordinationError: NSError?; var result: Result<Data,Error>?
             NSFileCoordinator(filePresenter: nil).coordinate(readingItemAt: revision.url,options: [],error: &coordinationError) { url in
                 result = Result {

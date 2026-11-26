@@ -80,7 +80,10 @@ struct DeveloperToolsView: View {
             search("搜索角色名称或ID")
             Text(l("直接指定当前伙伴，包括仅用于关卡的角色；该操作属于开发测试。"))
                 .font(.caption).foregroundStyle(Palette.muted)
-            ForEach(database.species.filter { s in query.isEmpty || [s.id,s.name,s.nameSC,s.nameJP].contains { $0.localizedCaseInsensitiveContains(query) } }) { s in
+            ForEach(database.species.filter { s in
+                (!model.isOriginal || database.colorRules(for: model.state?.deviceID ?? "dmc-ver1")?.roster[s.id] != nil) &&
+                (query.isEmpty || [s.id,s.name,s.nameSC,s.nameJP].contains { $0.localizedCaseInsensitiveContains(query) })
+            }) { s in
                 HStack {
                     SpriteThumbnail(id: s.id,size: 48)
                     VStack(alignment: .leading) {

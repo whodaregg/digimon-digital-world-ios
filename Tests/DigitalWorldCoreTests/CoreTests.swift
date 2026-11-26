@@ -17,10 +17,10 @@ final class CoreTests: XCTestCase {
     func testDatabaseReferencesAndArchivedColorSheets() throws {
         let content = try db()
         try content.validate()
-        XCTAssertEqual(content.species.count, 18)
+        XCTAssertEqual(content.species.count, 35)
         let manifest = try SpriteLibrary.manifest()
         XCTAssertEqual(manifest.schemaVersion, 2)
-        XCTAssertEqual(manifest.sprites.count, 18)
+        XCTAssertEqual(manifest.sprites.count, 35)
         XCTAssertEqual(manifest.artStatus, "archived-digital-monster-color")
         for s in content.species {
             let sheet = try XCTUnwrap(manifest.sprites[s.spriteID])

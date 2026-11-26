@@ -1,18 +1,46 @@
 import XCTest
 
 final class WorldUITests: XCTestCase {
-    func testEnglishSettingsAndCloudBackupEntry() throws {
-        let app = launch(); openSettings(app)
-        let language = app.buttons["appLanguage"]
-        scrollTo(language,in: app); language.tap()
-        app.buttons["English"].tap()
-        let cloud = app.buttons["cloudChooseFolder"]
-        scrollTo(cloud,in: app)
-        XCTAssertTrue(cloud.label.contains("iCloud Drive"))
-        XCTAssertFalse(cloud.label.contains("选择"))
-        app.buttons["pageDone"].tap()
-        openSettings(app)
-        XCTAssertTrue(app.buttons["play-style-classic"].label.contains("CLASSIC"))
+    func testFeedingAndRefusalKeepFoodAndCharacterInsideLCD() throws {
+        for refusing in [false,true] {
+            let app = XCUIApplication()
+            app.launchArguments = ["--ui-testing","--ui-testing-hatched"] + (refusing ? ["--ui-testing-feed-refusal"] : [])
+            app.launch()
+            XCTAssertTrue(app.buttons["action-FOOD"].waitForExistence(timeout: 10))
+            app.buttons["action-FOOD"].tap(); app.buttons["lcdFeed"].tap()
+            let probe = app.staticTexts["feedingLayoutProbe"]
+            XCTAssertTrue(probe.waitForExistence(timeout: 2))
+            XCTAssertTrue(probe.label.contains(refusing ? "pose=refuse" : "pose=eat"))
+            XCTAssertTrue(probe.label.contains("petWithin=true;foodWithin=true"))
+            XCTAssertFalse(app.buttons["lcdFeed"].isEnabled)
+            attachScreenshot(refusing ? "food-refusal-layout" : "food-eating-layout")
+            XCTAssertTrue(app.buttons["lcdFeed"].waitForExistence(timeout: 4))
+            app.buttons["hardware-C"].tap()
+            XCTAssertTrue(app.staticTexts["gameStateProbe"].label.contains(refusing ? "meals=0;weight=20;" : "meals=1;weight=21;"))
+            app.terminate()
+        }
+    }
+    func testVersionTwoCreatesItsOwnEggAndRules() throws {
+        let app = launch()
+        app.buttons["action-DIGIVICE"].tap(); app.buttons["profile-dmc-ver2"].tap()
+        XCTAssertTrue(app.buttons["create-device-dmc-ver2"].waitForExistence(timeout: 5))
+        app.buttons["create-device-dmc-ver2"].tap()
+        if app.buttons["pageDone"].exists { app.buttons["pageDone"].tap() }
+        XCTAssertTrue(app.staticTexts["Ver.2"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["普尼兽"].waitForExistence(timeout: 12))
+    }
+    func testFourLanguagesSettingsAndCloudBackupEntry() throws {
+        let app = launch()
+        for languageName in ["English","日本語","繁體中文"] {
+            openSettings(app)
+            let language = app.buttons["appLanguage"]
+            scrollTo(language,in: app); language.tap(); app.buttons[languageName].tap()
+            let cloud = app.buttons["cloudChooseFolder"]; scrollTo(cloud,in: app)
+            XCTAssertTrue(cloud.label.contains("iCloud Drive"))
+            if languageName == "English" { XCTAssertFalse(cloud.label.contains("选择")) }
+            app.buttons["pageDone"].tap()
+            XCTAssertTrue(app.staticTexts["gameStateProbe"].label.contains("font=true"))
+        }
     }
     override func setUpWithError() throws { continueAfterFailure = false }
     func testHatchingAndHardwareNavigation() throws {

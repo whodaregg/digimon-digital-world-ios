@@ -9,7 +9,7 @@ public enum GameEngine {
                                database: ContentDatabase, at now: Date) throws {
         try TimeEngine.advance(&state, to: now, database: database)
         guard now >= state.highWatermark else { throw GameError.cannotAct("设备时间早于已保存时间，请恢复正确时间") }
-        if state.deviceID == DMCV1Engine.deviceID {
+        if DeviceRegistry.isColor(state.deviceID) {
             try DMCV1Engine.perform(action,state: &state,database: database,at: now)
             return
         }

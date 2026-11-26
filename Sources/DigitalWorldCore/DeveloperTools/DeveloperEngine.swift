@@ -109,8 +109,8 @@ public enum DeveloperField: String, CaseIterable, Identifiable, Sendable {
         case .awakeMinutes: return p.awakeMinutes
         case .weight: return p.stats.weight
         case .dp: return p.stats.dp
-        case .dpCapacity: return try p.developerTuning?.maxDP ?? database.dmcV1!.species(p.speciesID).maxDP
-        case .power: return try p.developerTuning?.power ?? database.dmcV1!.species(p.speciesID).power
+        case .dpCapacity: return try p.developerTuning?.maxDP ?? database.colorSpecies(p.speciesID).maxDP
+        case .power: return try p.developerTuning?.power ?? database.colorSpecies(p.speciesID).power
         case .hungerHearts: return c!.hungerHearts
         case .strengthHearts: return c!.strengthHearts
         case .stageTrainings: return c!.stageTrainings
@@ -244,7 +244,7 @@ public enum DeveloperEngine {
         guard now >= state.highWatermark, now.timeIntervalSince1970.isFinite else { throw GameError.cannotAct("请恢复正确设备时间") }
         var next = state
         try TimeEngine.advance(&next,to: now,database: database)
-        let i = next.activeIndex, original = next.deviceID == DMCV1Engine.deviceID
+        let i = next.activeIndex, original = DeviceRegistry.isColor(next.deviceID)
         switch action {
         case .selectSpecies(let id):
             let species = try database.species(id)
@@ -254,7 +254,7 @@ public enum DeveloperEngine {
             p.neglectMinutes = 0; p.sleepNeglectMinutes = 0; p.dirtyMinutes = 0
             p.stats = CareStats(); p.developerTuning = DeveloperTuning()
             if original {
-                let rule = try database.dmcV1!.species(id)
+                let rule = try database.colorRules(for: next.deviceID)!.species(id)
                 p.dmc = DMCCareState(eggStartedAt: now); p.dmc!.hungerHearts = 4; p.dmc!.strengthHearts = 4
                 p.dmc!.awakeUntil = now.addingTimeInterval(600)
                 p.stats.weight = rule.minimumWeight; p.stats.dp = rule.maxDP

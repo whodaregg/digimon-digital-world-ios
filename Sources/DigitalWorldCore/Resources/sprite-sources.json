@@ -418,6 +418,366 @@
       "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Omegamon%20Alter-S.png",
       "originalDeviceReference": "https://humulos.com/digimon/dmc/",
       "transform": "none; original PNG bytes copied unchanged"
+    },
+    "punimon": {
+      "file": "punimon.png",
+      "character": "Punimon",
+      "sha256": "57c92cafba105b38043fa8957187084a83649b075d69fca07672d0deb147d9de",
+      "width": 832,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        10,
+        12
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Punimon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "tsunomon": {
+      "file": "tsunomon.png",
+      "character": "Tsunomon",
+      "sha256": "f4c0bbba6a540e40a8c52ed0e88a8cbffc2906947b3747e8d8d415fe72ec0eaf",
+      "width": 768,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        9,
+        10
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Tsunomon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "gabumon": {
+      "file": "gabumon.png",
+      "character": "Gabumon",
+      "sha256": "51aab380df4dd2a33d8c1b25aae080ebddfba2253bc6a7b60947d8535278a625",
+      "width": 768,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        9,
+        10
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Gabumon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "elecmon": {
+      "file": "elecmon.png",
+      "character": "Elecmon",
+      "sha256": "61f8b393daa9839831a44b892ff6b309fc461376b461288dd16d59ba4c3c091a",
+      "width": 768,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Elecmon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "kabuterimon": {
+      "file": "kabuterimon.png",
+      "character": "Kabuterimon",
+      "sha256": "5d0d2b863c651a5e2fe554166f1368edfb4780e3e9df21626455c79b6523ad34",
+      "width": 832,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        9,
+        10,
+        12
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Kabuterimon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "garurumon": {
+      "file": "garurumon.png",
+      "character": "Garurumon",
+      "sha256": "429cbc8133877e48fcffdbe674df14b09dd62384fcd241f259c4fdcb8257b2dd",
+      "width": 768,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        10
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Garurumon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "angemon": {
+      "file": "angemon.png",
+      "character": "Angemon",
+      "sha256": "028a2dd2abc41fc59e4d8fae0bff96fbeb8d9b3c8f1a4a1a6dda7b9abc47b53e",
+      "width": 768,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Angemon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "yukidarumon": {
+      "file": "yukidarumon.png",
+      "character": "Yukidarumon",
+      "sha256": "b69dc811ae46f94467eeda8cd24765fdd8dbf59b1a51ef8d8a6ee6a5dacaf105",
+      "width": 768,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        9,
+        10
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Yukidarumon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "birdramon": {
+      "file": "birdramon.png",
+      "character": "Birdramon",
+      "sha256": "524b1ab0b4d43f8a9c4def1cd0f893cc5dd86dd26bf1a1c05ffc3d1cdf83323b",
+      "width": 768,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        9,
+        10
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Birdramon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "whamon": {
+      "file": "whamon.png",
+      "character": "Whamon",
+      "sha256": "c78892e1b31f2b254397bf853b121394a5fd84320042d9d2df7cb1d6299134de",
+      "width": 832,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        10,
+        12
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Whamon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "vegimon": {
+      "file": "vegimon.png",
+      "character": "Vegimon",
+      "sha256": "48eca159ccf0fc47caadb9291446913324eb3e03fd439f9c93826186f6b90878",
+      "width": 832,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        12
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Vegimon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "skullgreymon": {
+      "file": "skullgreymon.png",
+      "character": "Skull Greymon",
+      "sha256": "7918aa16dcd0b7ffac1fb508d705912565be9b258941aed89e25339bd018cb85",
+      "width": 768,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        7,
+        10
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Skull%20Greymon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "metalmamemon": {
+      "file": "metalmamemon.png",
+      "character": "Metal Mamemon",
+      "sha256": "f890621f10de89b1b83f7e39c47ef0bcf3b4967f68d990fbd96fa4f885ec1e7c",
+      "width": 832,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        12
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Metal%20Mamemon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "vademon": {
+      "file": "vademon.png",
+      "character": "Vademon",
+      "sha256": "f7591bb601eed13f8cfcfa718b36e4b4cfdbb669ad54ab16e1d9db699fa3a058",
+      "width": 768,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        7,
+        10
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Vademon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "skullmammon": {
+      "file": "skullmammon.png",
+      "character": "Skull Mammon",
+      "sha256": "64c60aa448b2a7bdeebd36d08666a7cad31d0cfffc57333f20a1749776f794ff",
+      "width": 832,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        12
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Skull%20Mammon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "cresgarurumon": {
+      "file": "cresgarurumon.png",
+      "character": "Cres Garurumon",
+      "sha256": "ac47c7f1879194602b51269dd067504dffdcfe17a19e2ebdbde3b0f17ac4194d",
+      "width": 832,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        12
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Cres%20Garurumon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
+    },
+    "ebemon": {
+      "file": "ebemon.png",
+      "character": "Ebemon",
+      "sha256": "da17d5c1cb6557b5355b02a65ca205dc6ba4057675ed9ec076d8174a10973525",
+      "width": 832,
+      "height": 64,
+      "availableFrameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        9,
+        10,
+        12
+      ],
+      "sourceURL": "https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmc/Ebemon.png",
+      "originalDeviceReference": "https://humulos.com/digimon/dmc/",
+      "transform": "none; original PNG bytes copied unchanged"
     }
   }
 }

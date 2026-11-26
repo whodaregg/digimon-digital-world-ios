@@ -20,6 +20,13 @@ public struct ContentDatabase: Codable, Sendable {
     public var foods: [Food]
     public var maps: [TileMap]
     public var dmcV1: DMCV1Rules?
+    public var colorProfiles: [String:DMCV1Rules]? = nil
+    public func colorRules(for id: String) -> DMCV1Rules? { id == DMCV1Engine.deviceID ? dmcV1 : colorProfiles?[id] }
+    public func colorSpecies(_ id: String) throws -> DMCSpeciesRule {
+        if let s = dmcV1?.roster[id] { return s }
+        for profile in colorProfiles?.values ?? [:].values { if let s = profile.roster[id] { return s } }
+        throw GameError.invalidData("COLOR规则包中没有该角色")
+    }
 
     public static func bundled() throws -> Self {
         guard let url = Bundle.module.url(forResource: "database", withExtension: "json") else {
@@ -28,6 +35,11 @@ public struct ContentDatabase: Codable, Sendable {
         var database = try load(Data(contentsOf: url))
         database.dmcV1 = try DMCV1Rules.bundled()
         try database.dmcV1?.validate(database: database)
+        if let url = Bundle.module.url(forResource: "dmc-ver2",withExtension: "json") {
+            let rules = try JSONDecoder().decode(DMCV1Rules.self,from: Data(contentsOf: url))
+            try rules.validate(database: database)
+            database.colorProfiles = [rules.deviceID:rules]
+        }
         return database
     }
     public static func load(_ data: Data) throws -> Self {
@@ -128,8 +140,8 @@ public struct ContentDatabase: Codable, Sendable {
                   (1...999).contains(s.weight), (0...8).contains(s.waste),
                   s.wins >= 0, s.battles >= s.wins, s.mistakes >= 0,
                   s.training >= 0, s.trainingAttempts >= s.training else { throw GameError.invalidData("养成数据越界") }
-            if state.deviceID == DMCV1Engine.deviceID {
-                guard let c = pet.dmc, let rule = dmcV1?.roster[pet.speciesID], pet.eggID == "dmc-v1-egg",
+            if DeviceRegistry.isColor(state.deviceID) {
+                guard let c = pet.dmc, let rule = colorRules(for: state.deviceID)?.roster[pet.speciesID], d.eggs.contains(pet.eggID),
                       (0...4).contains(c.hungerHearts), (0...4).contains(c.strengthHearts),
                       (0...7).contains(c.proteinOverdoses), (0...10).contains(c.meatBeyondFull),
                       (1...99).contains(s.weight), (0...(pet.developerTuning?.maxDP ?? rule.maxDP)).contains(s.dp),
@@ -165,8 +177,9 @@ public struct ContentDatabase: Codable, Sendable {
         if let modified = state.developerModifiedAt {
             guard modified.timeIntervalSince1970.isFinite, modified <= state.highWatermark else { throw GameError.invalidData("测试记录时间无效") }
         }
-        if state.deviceID == DMCV1Engine.deviceID {
-            guard let c = state.dmc, (0..<10).contains(c.trainingCycle),
+        if DeviceRegistry.isColor(state.deviceID) {
+            let initial = try egg(state.pet.eggID).species
+            guard let c = state.dmc,(c.eggSpeciesID ?? "botamon") == initial,(0..<10).contains(c.trainingCycle),
                   c.trainingChoices.count <= 5, c.trainingChoices.count == c.trainingHits.count,
                   c.trainingChoices.allSatisfy({ ["A","B"].contains($0) }),
                   c.clearedAreas == Set(1...8).intersection(c.clearedAreas),

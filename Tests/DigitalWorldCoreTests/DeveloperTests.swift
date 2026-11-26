@@ -12,7 +12,7 @@ final class DeveloperTests: XCTestCase {
         var (db,g) = try game()
         let id = g.pet.id, egg = g.pet.eggID
         let store = SaveStore(directory: URL(fileURLWithPath: "/unused"),database: db)
-        for species in db.species {
+        for species in db.species where db.dmcV1!.roster[species.id] != nil {
             try DeveloperEngine.perform(.selectSpecies(species.id),state: &g,database: db,at: now)
             XCTAssertEqual(g.pet.id,id); XCTAssertEqual(g.pet.eggID,egg)
             XCTAssertEqual(g.pet.speciesID,species.id); XCTAssertFalse(g.pet.isEgg)

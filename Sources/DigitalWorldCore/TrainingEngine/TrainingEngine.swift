@@ -13,7 +13,7 @@ public enum TrainingEngine {
         return Int((accuracy.reduce(0, +) / 3 * 100).rounded())
     }
     public static func begin(_ state: inout GameState, at now: Date) throws {
-        guard state.deviceID != DMCV1Engine.deviceID else { return try DMCV1Engine.beginTraining(&state,at: now) }
+        guard !DeviceRegistry.isColor(state.deviceID) else { return try DMCV1Engine.beginTraining(&state,at: now) }
         guard state.training == nil else { throw GameError.cannotAct("训练已开始，请完成或取消") }
         guard state.pet.life == .alive, !state.pet.isEgg, !state.pet.sleeping,
               !state.pet.stats.sick, !state.pet.stats.injured, state.pet.stats.energy >= 10 else {
@@ -26,7 +26,7 @@ public enum TrainingEngine {
     /// Taps derive from elapsed wall time at receipt; callers cannot submit arbitrary scores.
     @discardableResult
     public static func tap(_ state: inout GameState, sessionID: UUID, at now: Date) throws -> Int? {
-        guard state.deviceID != DMCV1Engine.deviceID else { throw GameError.cannotAct("Ver.1 请使用 A/B 上下段训练") }
+        guard !DeviceRegistry.isColor(state.deviceID) else { throw GameError.cannotAct("Ver.1 请使用 A/B 上下段训练") }
         guard var session = state.training, session.id == sessionID, session.petID == state.activePetID else {
             throw GameError.cannotAct("训练已结束或失效")
         }

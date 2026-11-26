@@ -22,7 +22,7 @@ struct ColorDeviceView: View {
                         Text(l(model.state?.pet.isEgg == true ? model.text(.egg) : model.species?.localizedName(model.language) ?? ""))
                             .lineLimit(1).minimumScaleFactor(0.6)
                         Spacer(minLength: 2)
-                        Text(l(model.isSandbox ? "TEST" : "Ver.1"))
+                        Text(l(model.isSandbox ? "TEST" : model.state?.deviceID == "dmc-ver2" ? "Ver.2" : "Ver.1"))
                     }.font(PixelFont.font(10,language: model.language)).padding(.horizontal,6).padding(.top,4)
                     Rectangle().fill(Palette.screenSurface(model.display))
                         .aspectRatio(4/3,contentMode: .fit)
@@ -164,19 +164,22 @@ struct ColorDeviceView: View {
         }.accessibilityElement(children: .ignore).accessibilityLabel(l(model.text(title))).accessibilityValue(l("\(count) / 4"))
     }
     private var food: some View {
-        VStack(spacing: 8) {
-            PixelGlyph(id: model.lcd.item == 0 ? "meat" : "protein",color: model.lcd.item == 0 && model.display != .lcd ? .brown : ink).frame(width: 42,height: 42)
-            Text(l(model.text(model.lcd.item == 0 ? .meat : .protein)))
+        ZStack {
+            if model.isFeeding { FeedingScreen(model: model) }
+            VStack(spacing: 8) {
+            if model.isFeeding { Spacer() }
+            else {
+                PixelGlyph(id: model.lcd.item == 0 ? "meat" : "protein",color: model.lcd.item == 0 && model.display != .lcd ? .brown : ink).frame(width: 42,height: 42)
+                Text(l(model.text(model.lcd.item == 0 ? .meat : .protein)))
+            }
             if model.touchEnabled {
                 HStack {
-                    Button(l("A")) { model.lcd.item = (model.lcd.item+1)%2 }
+                    Button(l("A")) { model.lcd.item = (model.lcd.item+1)%2 }.disabled(model.isFeeding)
                     Button(l(model.text(.confirm))) { model.performLCD(.feed(model.lcd.item == 0 ? "meat" : "protein")) }
-                        .accessibilityIdentifier("lcdFeed")
+                        .accessibilityIdentifier("lcdFeed").disabled(model.isFeeding)
                 }.buttonStyle(.borderless)
             } else { Text(l("A SELECT · B FEED")).font(PixelFont.font(9,language: .english)) }
-        }
-        .overlay(alignment: .bottomTrailing) {
-            if model.animation == "eat" || model.animation == "refuse" { PetScreen(model: model).frame(width: 95,height: 60).allowsHitTesting(false) }
+            }.padding(.horizontal,16).padding(.bottom,12)
         }
     }
     private var training: some View {
@@ -200,7 +203,7 @@ struct ColorDeviceView: View {
     private var areas: some View {
         VStack(spacing: 12) {
             Text(l("AREA \(model.lcd.item == 7 ? "F" : String(model.lcd.item+1))")).font(PixelFont.font(24,language: .english))
-            Text(l("\((model.database?.dmcV1?.areas[model.lcd.item].opponents.count) ?? 0) BATTLES"))
+            Text(l("\((model.database?.colorRules(for: model.state?.deviceID ?? "dmc-ver1")?.areas[model.lcd.item].opponents.count) ?? 0) BATTLES"))
             if model.touchEnabled {
                 HStack {
                     Button(l("◀")) { let n = min(8,(model.state?.dmc?.clearedAreas.max() ?? 0)+1); model.lcd.item = (model.lcd.item+1)%max(1,n) }
