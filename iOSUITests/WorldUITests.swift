@@ -81,6 +81,16 @@ final class WorldUITests: XCTestCase {
         app.navigationBars.buttons["完成"].tap()
         XCTAssertTrue(waitFor(app.staticTexts["gameStateProbe"],containing: "egg=true;",timeout: 5))
     }
+    func testLegacyProfileCanStillBeBackedUpAndRestored() throws {
+        let app = XCUIApplication(); app.launchArguments = ["--ui-testing","--ui-testing-legacy"]; app.launch()
+        let settings = app.buttons["action-SETTINGS"]; scrollTo(settings,in: app); settings.tap()
+        let start = app.buttons["备份旧档并开始 Ver.1"]; scrollTo(start,in: app); start.tap()
+        XCTAssertTrue(app.buttons["hardware-A"].waitForExistence(timeout: 5))
+        openSettings(app)
+        let restore = app.buttons["restorePreviousProfile"]; scrollTo(restore,in: app); restore.tap()
+        XCTAssertTrue(app.staticTexts["AGUMON"].waitForExistence(timeout: 5))
+        attachScreenshot("legacy-profile-preserved")
+    }
     func testDeveloperCodeAndSessionLock() throws {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing","--ui-testing-hatched"]
