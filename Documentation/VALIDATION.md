@@ -1,5 +1,17 @@
 # 实测记录
 
+## v0.8 授权音频与手机运动输入
+
+记录日期为2026-11-27（Australia/Sydney）。[主分支统一验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45897220332)验证提交`1a7893df8ab3b5dc1d13586b465fdfcba1bed5ff`，核心、中继、iOS界面与Release构建全部通过。后续提交只整理文档。
+
+- Linux／Swift 6.0.3 和 GitHub macOS 各通过91项核心测试，零失败。新增测试覆盖音频模式与上下文匹配、ZIP格式及完整性、运动阈值与实测步数转换。
+- 4项WebSocket中继测试通过。35份原版角色PNG、工程生成及872条既有四语模板通过校验。
+- 22项iPhone模拟器界面测试全部通过，零失败。新增用例验证缺失原版音频提示、授权勾选限制，以及虚拟A键五次输入并得到训练结果。喂食与拒食画面回归通过，Debug与Release模拟器构建通过。
+
+初轮训练页启动后未出现虚拟按键。改为在设置内导航，并让运动训练页管理自己的会话后，最终轮验证通过。
+
+音频资源默认空库。用户自有文件在真实iPhone上的导入、音画同步与听感，以及物理静音、蓝牙、来电、计步与运动权限均待验收。详见[音频与运动说明](ORIGINAL_AUDIO.md)及[真机验收清单](DEVICE_CHECKLIST.md)。v0.8尚未生成IPA。
+
 ## v0.7 四语、云盘、Ver.2与喂食显示
 
 记录日期为2026-11-27（Australia/Sydney）。最终验证提交为`bcd2090158bd2b1f1cb891b872fdfda2925aac1f`，核心、中继、iOS界面和Release任务均已通过。后续提交只更新文档和测试截图。[主分支统一验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45857722087)

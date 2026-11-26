@@ -1,8 +1,10 @@
 # DIGIMON · DIGITAL WORLD
 
-原生 iOS 17 像素电子宠物工程，使用 SwiftUI、SpriteKit 与独立 Swift 游戏核心。**v0.7 默认以 Digital Monster COLOR Ver.1 为基准：彩色养成＋8区顺序闯关。** 角色采用原版彩色像素归档图集，设置可自由切换复古彩色、高级彩色和经典灰绿色 LCD，并保存选择。
+原生 iOS 17 像素电子宠物工程，使用 SwiftUI、SpriteKit 与独立 Swift 游戏核心。**v0.8 默认以 Digital Monster COLOR Ver.1 为基准：彩色养成＋8区顺序闯关。** 角色采用原版彩色像素归档图集，设置可自由切换复古彩色、高级彩色和经典灰绿色 LCD，并保存选择。
 
 v0.7加入COLOR Ver.2、跨Ver.1/Ver.2联展、四语显示和云盘设备合集，并修复喂食画面遮挡。侧装用户可通过自托管中继使用在线房间，无需加入Apple开发者计划。[在线房间搭建说明](Server/README.md) · [战斗与主页动作](Documentation/BATTLE_PRESENTATION.md)
+
+v0.8 支持从 Files 导入有使用权限的音频、按机型选择三种音频模式和分别调节各频道。运动训练支持手机计步、摇晃、倾斜和虚拟按键。[音频包格式与操作说明](Documentation/ORIGINAL_AUDIO.md)
 
 隐藏的本机开发测试面板现只修改独立Sandbox，可指定已收录角色、发放道具、修改数值，并自动保留调试前快照。功能范围见[开发测试说明](Documentation/DEVELOPER_TOOLS.md)。
 
@@ -18,11 +20,11 @@ v0.7加入COLOR Ver.2、跨Ver.1/Ver.2联展、四语显示和云盘设备合集
 <img src="Documentation/Screenshots/v07-room-battle.png" width="220" alt="通过本机中继进行房间对战">
 </p>
 
-87项核心测试、20项原生界面测试、4项中继测试及Debug/Release编译全部通过。[实测记录与剩余验收范围](Documentation/VALIDATION.md)
+v0.8 通过了 91 项核心、22 项界面、4 项中继测试及 Debug/Release 编译。[实测记录与剩余验收范围](Documentation/VALIDATION.md)
 
 ## 下载IPA
 
-当前源码v0.7尚未打包。下方v0.6.0为上轮已发布旧包，包含LCD养成与动画，不包含本轮Ver.2、联展、完整四语、云盘或喂食显示修复；旧v0.4也继续保留。
+当前源码v0.8尚未打包。下方v0.6.0为上轮已发布旧包，包含LCD养成与动画，不包含本轮Ver.2、联展、完整四语、云盘或喂食显示修复；旧v0.4也继续保留。
 
 [下载 v0.6.0 未签名 IPA](https://github.com/whodaregg/digimon-digital-world-ios/releases/download/v0.6.0/DigitalWorld-v0.6.0-unsigned.ipa) · [发布页与校验文件](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.6.0)
 

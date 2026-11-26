@@ -42,15 +42,23 @@
 | 世代 | 可填写的曲目或素材名称 | 场景校对 |
 | --- | --- | --- |
 | `adventure` | brave heart、Butter-Fly、进化设备／场景音效和语音 | 东映地区资料区分开场《Butter-Fly》和插曲《brave heart》。不通过曲名把开场曲绑定到所有进化。 |
-| `adventure02` | Break Up!、Beat Hit!、brave heart、装甲及联展音效 | 可按 `armorEvolution` 和 `jogress` 分开映射。导入者应按实际片段确认。 |
-| `tamers` | EVO、One Vision、SLASH!!、Card Slash、Matrix Evolution | 发行目录有特定 Matrix Evolution 版本的 One Vision。导入时保留原版本信息，不按标题推断所有场景。 |
-| `frontier` | With the Will、The Last Element、Spirit／Double Spirit／Hyper Spirit 片段 | 支持分开填写进化条件，具体音轨及场景需核对。 |
-| `savers` | Believer、Digisoul、Burst Mode | 支持按事件和进化类型填写，具体音轨及场景需核对。 |
-| `xrosWars` | WE ARE クロスハート！、DigiXros、Super Evolution | 支持按事件和进化类型填写，具体音轨及场景需核对。 |
+| `adventure02` | Break Up!、Beat Hit!、brave heart、装甲及联展音效 | 已核对发行目录和东映公布的装甲、联展分类。应以实际片段确认曲目后分别映射为 `armorEvolution` 和 `jogress`。[唱片](https://www.feelmee.jp/index.php/item/product/665) · [东映](https://lineup.toei-anim.co.jp/ja/tv/digimon02/story/) |
+| `tamers` | EVO、One Vision、SLASH!!、Card Slash、Matrix Evolution | 电视原声有 EVO 及 One Vision 的进化时长版，电影原声另有红莲骑士兽 Matrix Evolution 版。使用对应版本与场景。[电视原声](https://www.feelmee.jp/index.php/item/product/769) · [电影原声](https://www.feelmee.jp/index.php/item/product/755) |
+| `frontier` | With the Will、The Last Element、Spirit／Double Spirit／Hyper Spirit 片段 | 发行目录区分和田光司原唱与翻唱，也确认《The last element》为本作插曲。三类武装进化的片段需分开核对。[原唱与翻唱](https://www.feelmee.jp/index.php/item/product/1435) · [插曲](https://www.feelmee.jp/index.php/item/product/749) |
+| `savers` | Believer、Digisoul、Burst Mode | 东映标注《Believer》为插曲。具体音轨及场景需核对。[东映曲目](https://lineup.toei-anim.co.jp/ja/tv/digimon_s/song/) |
+| `xrosWars` | WE ARE クロスハート！、DigiXros、Super Evolution | 东映将该曲列入插曲。可按事件和进化类型填写，不能仅凭曲名绑定所有合体。[东映曲目](https://lineup.toei-anim.co.jp/ja/tv/digimon_xw/song/) |
 
 曲目参考：[东映 Adventure 曲目](https://lineup.toei-anim.co.jp/ja/tv/dejimon/song/) · [东映电影音乐公告](https://www.toei-anim.co.jp/movie/digimon-adventure/last-evolution/news/inc/2019121701.php) · [唱片发行目录](https://www.feelmee.jp/index.php/item/product/655)。发布资料只用来核对曲名和公开的曲目用途。当前没有逐集核对其余世代的片段，也没有预置未经确认的曲目绑定。
 
-现有进化动画约 3 秒。时间轴以触发音开始，约 0.2 秒播放设备响应，0.4 秒进化音乐进入，0.63 秒语音，1.2 秒新形态音效，2.85 秒完成提示并恢复背景音乐。导入适合上述时长的自有剪辑，整首长曲会在演出结束处淡出。原始首尾无空白的 WAV／CAF 适合连续循环，带编码延迟或文件本身静音的素材仍需在源文件中处理。已接入常用操作、喂食、训练、战斗和进化时间轴，喝水、洗澡及尚无对应玩法的特殊进化等目前保留事件 ID。
+后续世代的下列资料已核对，世代选项和具体角色条件尚未接入。
+
+- 东映将 2020 年版《Break the chain》标为进化插曲。[2020 年官方发布](https://www.toei-anim.co.jp/tv/digimon/news/2021042401.php)
+- Ghost Game 的《First Riders》是战斗插曲，《MAKUAKE》是究极体插曲。[First Riders 官方发布](https://www.toei-anim.co.jp/tv/digimon_ghost_game/news/2021110201.php) · [MAKUAKE 官方发布](https://www.toei-anim.co.jp/tv/digimon_ghost_game/news/2022121801.php)
+- 东映确认《Edge of Limit》用于 BEATBREAK 第 12 集 Geckomon 的进化场景。同批公开的《Resonance》是作品主题曲，单独记录用途。[BEATBREAK 官方发布](https://www.toei-anim.co.jp/tv/digimon_beatbreak/news/detail/?id=2025122106)
+
+现有进化动画约 3 秒。时间轴以触发音开始，约 0.2 秒播放设备响应，0.4 秒进化音乐进入，0.63 秒语音，1.2 秒新形态音效，2.85 秒完成提示并恢复背景音乐。导入适合上述时长的自有剪辑，整首长曲会在演出结束处淡出。原始首尾无空白的 WAV／CAF 适合连续循环，带编码延迟或文件本身静音的素材仍需在源文件中处理。
+
+按键、养成、训练、顺序闯关和现有进化演出可触发映射。喝水、洗澡、防御、特殊攻击、独立必杀和未实现的进化剧情目前预留事件 ID，游戏内还没有对应触发流程。
 
 播放在前台遵循独立通道、背景压低、淡入淡出、按键预热和短间隔去重。进入后台停止播放，来电使用系统中断通知，后台及蓝牙耳机的具体行为仍需真机验收。系统本地通知保留文字，前台提醒播放用户导入的对应音频。
 
