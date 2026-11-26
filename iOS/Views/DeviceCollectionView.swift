@@ -5,6 +5,7 @@ struct DeviceCollectionView: View {
     @ObservedObject var model: WorldViewModel
     @State private var selected: DeviceRule?
     var body: some View {
+        Group {
         if let database = model.database {
             Panel(title: model.text(.devices)) {
                 Text("每台设备独立保存；切换时结算对应档案的离线成长。Sandbox与正式收藏隔离。")
@@ -37,7 +38,7 @@ struct DeviceCollectionView: View {
                 }
             }
         }
-        EmptyView().sheet(item: $selected) { profile in
+        }.sheet(item: $selected) { profile in
             NavigationStack {
                 ScrollView {
                     VStack(spacing: 16) {
@@ -65,7 +66,9 @@ struct PlaySettingsView: View {
     @ObservedObject var model: WorldViewModel
     @State private var confirmReset = false
     @State private var minutes = 60
+    @State private var showMotion = false
     var body: some View {
+        Group {
         if let state = model.state {
             Panel(title: model.text(.mode)) {
                 ForEach(PlayStyle.allCases,id: \.self) { style in
@@ -80,7 +83,7 @@ struct PlaySettingsView: View {
             Panel(title: "LCD / INPUT") {
                 Toggle(model.text(.touch),isOn: Binding(get: { state.settings.presentation.touchMode },set: { value in model.editPresentation { $0.touchMode = value } }))
                     .disabled(model.isClassic).accessibilityIdentifier("touchMode")
-                Text("A选择 · B确认 · C返回；C长按返回，C＋A打开音效菜单。按键支持多指组合与防重复触发。")
+                Text("A选择 · B确认 · C返回；C长按2秒打开LCD设置，A＋C切换音效，死亡时A＋B重新孵化。按键支持多指组合与防重复触发。")
                     .font(.caption).foregroundStyle(Palette.muted)
                 Text(model.text(.volume))
                 Slider(value: Binding(get: { state.settings.presentation.volume },set: { value in model.editPresentation { $0.volume = value } }),in: 0...1)
@@ -99,8 +102,9 @@ struct PlaySettingsView: View {
                 Panel(title: "SANDBOX") {
                     Stepper("\(minutes) MIN",value: $minutes,in: 1...43_200,step: 10)
                     Button(model.text(.timeAdvance)) { model.advanceSandbox(minutes: minutes) }.accessibilityIdentifier("sandboxAdvance")
+                    Button("摇晃训练输入测试") { showMotion = true }
                     Button(model.text(.returnFormal)) { model.setPlayStyle(.enhanced) }.accessibilityIdentifier("returnFormal")
-                    Text("0313入口提供角色、道具与数值编辑；这里的时间推进调用同一养成引擎，不改变系统时钟。")
+                    Text("隐藏开发入口提供角色、道具与数值编辑；这里的时间推进调用同一养成引擎，不改变系统时钟。")
                         .font(.caption).foregroundStyle(Palette.muted)
                 }
             }
@@ -110,7 +114,11 @@ struct PlaySettingsView: View {
                     .font(.caption).foregroundStyle(Palette.muted)
             }
         }
-        EmptyView().confirmationDialog("确认重置当前设备？",isPresented: $confirmReset,titleVisibility: .visible) {
+        }.sheet(isPresented: $showMotion) {
+            NavigationStack { MotionTrainingView(model: model).padding().background(Palette.background).navigationTitle("Sandbox")
+                .toolbar { ToolbarItem(placement: .topBarTrailing) { Button("完成") { showMotion = false } } } }
+        }
+        .confirmationDialog("确认重置当前设备？",isPresented: $confirmReset,titleVisibility: .visible) {
             Button("确认重置",role: .destructive) { model.resetCurrentDevice() }
             Button("取消",role: .cancel) {}
         }

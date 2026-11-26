@@ -77,7 +77,7 @@ struct ColorDeviceView: View {
                             .background(model.lcd.selectedIcon == i ? ink.opacity(0.22) : .clear)
                             .overlay(Rectangle().stroke(model.lcd.selectedIcon == i ? ink : .clear,lineWidth: 1))
                             .contentShape(Rectangle())
-                    }.buttonStyle(.plain).disabled(!model.touchEnabled)
+                    }.buttonStyle(.plain).disabled(!model.touchEnabled || model.state?.pet.life == .dead)
                         .accessibilityLabel(model.text(labels[i])).accessibilityIdentifier("action-\(iconIDs[i])")
                 }
             }
@@ -87,6 +87,15 @@ struct ColorDeviceView: View {
         ZStack {
             switch model.lcd.screen {
             case .home: PetScreen(model: model)
+            case .deviceSettings: menu(["BACKGROUND",model.text(.brightness),model.text(.volume),"SCREEN OFF"])
+            case .settingValue:
+                VStack(spacing: 14) {
+                    Text(model.lcd.setting == 0 ? "BACKGROUND" : model.text(model.lcd.setting == 1 ? .brightness : .volume))
+                    if model.lcd.setting == 0 { Text((model.state?.dmc?.backgrounds.sorted() ?? ["grasslands"])[model.lcd.choice]).font(PixelFont.font(12,language: .english)) }
+                    else { Text("\(model.lcd.choice+1) / 5").font(PixelFont.font(24,language: .english)) }
+                    Text("A SELECT · B OK").font(PixelFont.font(9,language: .english))
+                }
+            case .displayOff: Color.black
             case .status: status
             case .food: food
             case .training: training
@@ -110,7 +119,6 @@ struct ColorDeviceView: View {
                     .accessibilityIdentifier("lcdNotice")
             }
         }.font(PixelFont.font(14,language: model.language))
-            .accessibilityIdentifier("lcd-\(model.lcd.screen.rawValue)")
     }
     private var clockString: String {
         let f = DateFormatter(); f.dateFormat = "HH:mm:ss"; f.timeZone = TimeZone(identifier: model.state?.homeTimeZone ?? "UTC")

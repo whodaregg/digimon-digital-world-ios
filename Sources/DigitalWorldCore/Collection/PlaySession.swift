@@ -60,7 +60,11 @@ public enum CollectionManager {
                 }
             }
             for life in world.lifecycles ?? [] {
-                for id in life.forms { obtained[id,default: []].insert(life.id) }
+                for id in life.forms {
+                    obtained[id,default: []].insert(life.id)
+                    var entry = result[id] ?? .init(id: id,discovery: .raised,firstObtained: nil,obtainedCount: 0,deviceIDs: [])
+                    entry.discovery = .raised; entry.deviceIDs.insert(world.deviceID); result[id] = entry
+                }
                 for appearance in life.appearances {
                     obtained[appearance.speciesID,default: []].insert(life.id)
                     var entry = result[appearance.speciesID] ?? .init(id: appearance.speciesID,discovery: .raised,firstObtained: nil,obtainedCount: 0,deviceIDs: [])
@@ -78,6 +82,7 @@ public struct LifecycleRecord: Codable, Equatable, Identifiable, Sendable {
     public var deviceID: String
     public var finalSpeciesID: String
     public var startedAt: Date
+    public var reason: String?
     public var endedAt: Date
     public var activeMinutes: Int
     public var battles: Int
@@ -92,11 +97,22 @@ public enum LifecycleManager {
         for pet in state.pets where pet.life == .dead && !records.contains(where: { $0.id == pet.id }) {
             guard let end = pet.history.last(where: { $0.kind == "death" })?.date else { continue }
             records.append(.init(id: pet.id,deviceID: state.deviceID,finalSpeciesID: pet.speciesID,
-                                 startedAt: pet.dmc?.eggStartedAt ?? pet.history.first?.date ?? end,endedAt: end,
+                                 startedAt: pet.dmc?.eggStartedAt ?? pet.history.first?.date ?? end,reason: "death",endedAt: end,
                                  activeMinutes: pet.activeMinutes,battles: pet.stats.battles,wins: pet.stats.wins,
                                  forms: pet.evolutionHistory,appearances: pet.appearances ?? [],history: pet.history))
         }
         if !records.isEmpty { state.lifecycles = records }
+    }
+    public static func archiveBeforeReset(_ state: inout GameState,at date: Date) {
+        capture(&state)
+        var records = state.lifecycles ?? []
+        for pet in state.pets where !records.contains(where: { $0.id == pet.id }) {
+            records.append(.init(id: pet.id,deviceID: state.deviceID,finalSpeciesID: pet.speciesID,
+                                 startedAt: pet.dmc?.eggStartedAt ?? pet.history.first?.date ?? date,reason: "reset",endedAt: date,
+                                 activeMinutes: pet.activeMinutes,battles: pet.stats.battles,wins: pet.stats.wins,
+                                 forms: pet.evolutionHistory,appearances: pet.appearances ?? [],history: pet.history))
+        }
+        state.lifecycles = records
     }
     public static func makeRoom(_ state: inout GameState) throws {
         capture(&state)

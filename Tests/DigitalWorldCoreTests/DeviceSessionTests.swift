@@ -81,8 +81,9 @@ final class DeviceSessionTests: XCTestCase {
         _ = press(.b); XCTAssertEqual(router.screen,.status)
         _ = press(.b); XCTAssertEqual(router.statusPage,1)
         _ = press(.c); XCTAssertEqual(router.screen,.home)
-        _ = router.keyDown(.c,at: date+1); _ = router.keyDown(.a,at: date+1.1)
-        XCTAssertEqual(router.screen,.sound)
+        _ = router.keyDown(.c,at: date+1)
+        XCTAssertEqual(router.keyDown(.a,at: date+1.1,state: game),.sound(false))
+        XCTAssertEqual(router.screen,.home)
         XCTAssertEqual(router.keyUp(.a,at: date+1.2,state: game,availableAreas: 1),.none)
         _ = router.keyUp(.c,at: date+1.3,state: game,availableAreas: 1)
         router.screen = .battle; game.sessionStyle = .classic

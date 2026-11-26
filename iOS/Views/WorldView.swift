@@ -2,7 +2,7 @@ import SwiftUI
 import DigitalWorldCore
 
 enum WorldPage: String, Identifiable, CaseIterable {
-    case status, food, train, battle, sleep, adventure, digidex, storage, settings, devices, call, clock, developer
+    case status, food, train, battle, sleep, adventure, digidex, storage, settings, devices, call, clock, developer, connection
     var id: String { rawValue }
     var title: String {
         switch self {
@@ -19,6 +19,7 @@ enum WorldPage: String, Identifiable, CaseIterable {
         case .call: return "养成呼叫"
         case .clock: return "时钟"
         case .developer: return "开发测试"
+        case .connection: return "手机连接"
         }
     }
 }
@@ -166,11 +167,12 @@ struct WorldView: View {
                             utility("SETTINGS",model.text(.settings),page: .settings)
                             utility("DIGIVICE",model.text(.devices),page: .devices)
                         }
+                        Button("手机连接对战") { page = .connection }.accessibilityIdentifier("action-CONNECTION")
                     }
                     if !model.isOriginal { hardwareButtons }
                     #if DEBUG
                     if ProcessInfo.processInfo.arguments.contains("--ui-testing") {
-                        Text("meals=\(state.pet.stats.meals);weight=\(state.pet.stats.weight);training=\(state.pet.stats.trainingAttempts);dp=\(state.pet.stats.dp);style=\(state.playStyle.rawValue);offset=\(state.sandboxOffsetSeconds ?? 0);egg=\(state.pet.isEgg);slots=\(model.libraryIndex.slots.count)")
+                        Text("meals=\(state.pet.stats.meals);weight=\(state.pet.stats.weight);training=\(state.pet.stats.trainingAttempts);dp=\(state.pet.stats.dp);style=\(state.playStyle.rawValue);offset=\(state.sandboxOffsetSeconds ?? 0);egg=\(state.pet.isEgg);slots=\(model.libraryIndex.slots.count);font=\(UIFont(name: PixelFont.name(model.language),size: 12) != nil)")
                             .font(.system(size: 1)).frame(height: 1).accessibilityIdentifier("gameStateProbe")
                     }
                     #endif

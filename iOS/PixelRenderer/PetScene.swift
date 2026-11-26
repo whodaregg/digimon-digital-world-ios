@@ -102,6 +102,7 @@ final class PetScene: SKScene {
         pet.position.x = min(64,max(-64,pet.position.x))
         pet.alpha = life == .frozen ? 0.55 : (dark && !lcd ? 0.7 : 1)
         if egg {
+            pet.clear()
             pet.position = CGPoint(x: 0,y: -10)
             pet.texture = nil; pet.colorBlendFactor = 0; pet.color = .clear
             for y in 0..<16 {

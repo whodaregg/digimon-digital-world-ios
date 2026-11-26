@@ -4,6 +4,7 @@ import DigitalWorldCore
 struct DetailView: View {
     let page: WorldPage
     @ObservedObject var model: WorldViewModel
+    @State private var showStatus = false
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
@@ -19,6 +20,7 @@ struct DetailView: View {
                 case .settings: settings
                 case .devices: DeviceCollectionView(model: model)
                 case .developer: DeveloperToolsView(model: model)
+                case .connection: ConnectionView(model: model)
                 case .call:
                     Panel(title: "CALL / 养成呼叫") {
                         Text(model.callMessage).font(.headline)
@@ -36,6 +38,10 @@ struct DetailView: View {
                 }
             }.pageStyle()
         }.background(Palette.background)
+            .sheet(isPresented: $showStatus) {
+                NavigationStack { DetailView(page: .status,model: model).navigationTitle("伙伴状态")
+                    .toolbar { ToolbarItem(placement: .topBarTrailing) { Button("完成") { showStatus = false } } } }
+            }
     }
     @ViewBuilder private var status: some View {
         if let game = model.state {
@@ -46,6 +52,8 @@ struct DetailView: View {
                 Readout(name: "年龄",value: "\(game.pet.activeMinutes/1440) 天 \(game.pet.activeMinutes%1440/60) 小时")
                 Readout(name: "体重",value: "\(game.pet.stats.weight) g")
                 Readout(name: "属性",value: model.species?.attribute.rawValue ?? "unknown")
+                Readout(name: "角色编号",value: game.pet.speciesID)
+                Readout(name: "种族",value: model.species?.type ?? "unknown")
                 if !model.isOriginal { Readout(name: "性格",value: game.pet.personality) }
             }
             if let care = game.pet.dmc {
@@ -56,6 +64,9 @@ struct DetailView: View {
                     Readout(name: "DP",value: "\(game.pet.stats.dp)")
                     Readout(name: "战斗 / 通算胜率",value: "\(game.pet.stats.battles) / \(Int(game.pet.stats.winRate*100))%")
                     if !model.isClassic {
+                    Readout(name: "阶段成长时间",value: "\(game.pet.stageMinutes) MIN")
+                    Readout(name: "距离本阶段进化判定",value: "\(max(0,(model.database?.dmcV1?.roster[game.pet.speciesID]?.evolutionMinutes ?? 0)-game.pet.stageMinutes)) MIN")
+                    Text("COLOR Ver.1不使用HP、等级或经验值。") .font(.caption).foregroundStyle(Palette.muted)
                     Readout(name: "本阶段训练",value: "\(care.stageTrainings)")
                     Readout(name: "本阶段照顾失误",value: "\(care.stageMistakes)")
                     Readout(name: "本阶段满腹 / 睡眠打扰",value: "\(care.overfeeds) / \(care.sleepDisturbances)")
@@ -147,6 +158,7 @@ struct DetailView: View {
     @ViewBuilder private var storage: some View {
         if let game = model.state, let database = model.database {
             Panel(title: "STORAGE / \(game.pets.count) 条养成档案") {
+                Button("查看当前伙伴数据") { showStatus = true }
                 Text("冷冻会暂停年龄与养成消耗。死亡后可从数码蛋开始新生命，图鉴和历史仍然保留。")
                     .font(.footnote).foregroundStyle(Palette.muted)
                 ForEach(game.pets) { pet in
@@ -172,6 +184,14 @@ struct DetailView: View {
                     }
                 } else {
                     GameButton(title: game.pet.life == .frozen ? "恢复成长" : "冷冻当前伙伴") { model.care(.freeze(game.pet.life != .frozen)) }
+                }
+                ForEach(game.lifecycles ?? []) { life in
+                    VStack(alignment: .leading,spacing: 4) {
+                        Text((try? database.species(life.finalSpeciesID).localizedName(model.language)) ?? life.finalSpeciesID).font(.headline)
+                        Text("\(life.reason == "reset" ? "重置前归档" : "生命周期结束") · \(life.activeMinutes/1440) DAYS · \(life.wins)/\(life.battles)")
+                            .font(.caption).foregroundStyle(Palette.muted)
+                        Text(life.forms.joined(separator: " → ")).font(.caption2)
+                    }
                 }
                 if let url = model.exportURL { ShareLink("导出完整存档",item: url) }
             }

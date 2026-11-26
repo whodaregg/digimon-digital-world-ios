@@ -31,6 +31,7 @@ struct DigidexView: View {
     @State private var deviceFilter = "all"
     @State private var collectionFilter = "all"
     var body: some View {
+        Group {
         if let database = model.database {
             Panel(title: "DIGIDEX / \(model.state?.dex.count ?? 0) OF \(database.species.count)") {
                 let raised = model.isSandbox ? model.state?.dex.values.filter { $0 == .raised }.count ?? 0 : model.collectionEntries.filter { $0.discovery == .raised }.count
@@ -78,7 +79,7 @@ struct DigidexView: View {
                             Spacer()
                             Text(species.stage.rawValue.uppercased()).font(.system(size: 8,design: .monospaced)).foregroundStyle(Palette.amber)
                             Image(systemName: "chevron.right").font(.caption2)
-                        }.padding(.vertical,4)
+                        }.padding(.vertical,4).contentShape(Rectangle())
                     }.buttonStyle(.plain)
                 }
             }
@@ -108,10 +109,13 @@ struct DigidexView: View {
             Text("包含Ver.1的17种养成角色及最终区Alter-S，使用有来源记录的原版彩色角色像素。通信与联展尚未实现；部分动作采用已有姿势回退。")
                 .font(.caption2).foregroundStyle(Palette.muted)
         }
-        EmptyView().sheet(item: $selected) { species in
+        }.sheet(item: $selected) { species in
             NavigationStack {
                 ScrollView {
                     VStack(spacing: 16) {
+                        if discovery(species.id) == nil && !model.isSandbox {
+                            Panel(title: "???") { SpriteThumbnail(id: species.spriteID,size: 120,silhouette: true); Text(model.text(.unknown)) }
+                        } else {
                         Panel(title: species.name.uppercased()) {
                             if discovery(species.id) != nil || model.isSandbox { SpeciesPreview(id: species.spriteID,mode: model.display) }
                             else { SpriteThumbnail(id: species.id,size: 120,silhouette: true) }
@@ -157,6 +161,7 @@ struct DigidexView: View {
                                     }.font(.caption).foregroundStyle(Palette.muted).padding(.vertical,5)
                                 }
                             }
+                        }
                         }
                     }.pageStyle()
                 }.background(Palette.background).navigationTitle(species.name).navigationBarTitleDisplayMode(.inline)

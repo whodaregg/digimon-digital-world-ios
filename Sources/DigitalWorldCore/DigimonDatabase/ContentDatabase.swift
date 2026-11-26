@@ -143,6 +143,24 @@ public struct ContentDatabase: Codable, Sendable {
                 }
             }
         }
+        if let receipts = state.connectionReceipts {
+            guard receipts.count <= 100_000,Set(receipts).count == receipts.count else { throw GameError.invalidData("通信收据重复或越界") }
+        }
+        if let records = state.lifecycles {
+            guard records.count <= 10_000,Set(records.map(\.id)).count == records.count else { throw GameError.invalidData("生命周期记录越界或重复") }
+            for record in records {
+                _ = try species(record.finalSpeciesID); _ = try device(record.deviceID)
+                guard record.startedAt.timeIntervalSince1970.isFinite,record.endedAt.timeIntervalSince1970.isFinite,
+                      record.startedAt <= record.endedAt,record.endedAt <= state.highWatermark,
+                      record.activeMinutes >= 0,record.battles >= record.wins,record.wins >= 0,
+                      record.history.count <= 300,[nil,"death","reset"].contains(record.reason) else { throw GameError.invalidData("生命周期数据无效") }
+                for id in record.forms { _ = try species(id) }
+                for appearance in record.appearances {
+                    _ = try species(appearance.speciesID)
+                    guard appearance.date.timeIntervalSince1970.isFinite,appearance.date <= record.endedAt else { throw GameError.invalidData("获得日期无效") }
+                }
+            }
+        }
         if let modified = state.developerModifiedAt {
             guard modified.timeIntervalSince1970.isFinite, modified <= state.highWatermark else { throw GameError.invalidData("测试记录时间无效") }
         }

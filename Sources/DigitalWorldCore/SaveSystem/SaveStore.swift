@@ -28,7 +28,9 @@ public struct SaveStore: Sendable {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.sortedKeys]
         let payload = try encoder.encode(state)
-        return try encoder.encode(Envelope(format: 1, checksum: Self.checksum(payload), payload: payload))
+        let data = try encoder.encode(Envelope(format: 1,checksum: Self.checksum(payload),payload: payload))
+        guard data.count <= 16*1024*1024 else { throw GameError.cannotAct("存档达到容量上限，请先导出完整档案；原存档保持原样") }
+        return data
     }
     public func decode(_ data: Data) throws -> LoadedSave {
         guard data.count <= 16 * 1024 * 1024 else { throw GameError.saveCorrupt }

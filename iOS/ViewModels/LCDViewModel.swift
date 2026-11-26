@@ -10,7 +10,7 @@ extension WorldViewModel {
         if [1,2,3].contains(icon) { openCareCommand() }
         performLCD(lcd.open(icon: icon,state: state))
     }
-    func lcdKeyDown(_ key: DeviceKey) { performLCD(lcd.keyDown(key,at: Date())); feedbackTap() }
+    func lcdKeyDown(_ key: DeviceKey) { performLCD(lcd.keyDown(key,at: Date(),state: state)); feedbackTap() }
     func lcdKeyUp(_ key: DeviceKey) {
         guard let state else { return }
         lcdNotice = nil
@@ -38,6 +38,9 @@ extension WorldViewModel {
         case .rebirth: care(.rebirth("dmc-v1-egg"))
         case .sound(let on): settings { $0.sound = on }
         case .skipBattle: lcdSkipRequest += 1
+        case .brightness(let value): editPresentation { $0.brightness = value }
+        case .volume(let value): editPresentation { $0.volume = value }
+        case .background(let id): selectBackground(id)
         }
         if let failure = alert {
             alert = nil; lcdNotice = failure

@@ -45,6 +45,22 @@ final class QuestBattleScene: SKScene {
                     .run { [weak self] in self?.onFinished?() }]
         run(.sequence(actions),withKey: "quest")
     }
+    func playConnection(player species: Species,opponent: Species,result: ConnectionBattleResult,mode: DisplayMode,reduceMotion: Bool) {
+        stop(); self.mode = mode; reduced = reduceMotion
+        player.use(species.spriteID,mode: mode); enemy.use(opponent.spriteID,mode: mode)
+        playerEffect = species.effect; enemyEffect = opponent.effect; backdrop(); card("BATTLE")
+        var actions: [SKAction] = [.wait(forDuration: 0.7)],p = 0,e = 0
+        for (i,side) in result.hits.enumerated() {
+            if i == 6 {
+                let loser: BattleSide = side == .player ? .opponent : .player
+                actions += attack(loser,lands: false,round: .init(number: 4,winner: side,playerHits: p,opponentHits: e))
+            }
+            if side == .player { p += 1 } else { e += 1 }
+            actions += attack(side,lands: true,round: .init(number: i/2+1,winner: side,playerHits: p,opponentHits: e))
+        }
+        actions += [.run { [weak self] in self?.result(won: result.playerWon) },.wait(forDuration: 1.6),.run { [weak self] in self?.onFinished?() }]
+        run(.sequence(actions),withKey: "quest")
+    }
     override func update(_ currentTime: TimeInterval) {
         let delta = previousFrame.map { min(0.25,max(0,currentTime-$0)) } ?? 0
         previousFrame = currentTime; player.tick(delta); enemy.tick(delta)

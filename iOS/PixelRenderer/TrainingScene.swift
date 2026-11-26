@@ -23,7 +23,7 @@ final class TrainingScene: SKScene {
         pet.play("idle",animated: !reduceMotion); defender.play("idle",animated: !reduceMotion)
         if choices.count > choicesSeen,let choice = choices.last,let hit = hits.last {
             pet.play("attack",animated: !reduceMotion)
-            let shot = PixelSymbols.node("meat",color: lcd ? .darkGray : .systemRed,scale: 4)
+            let shot = PixelSymbols.node("fire",color: lcd ? .darkGray : .systemRed,scale: 4)
             shot.name = "training-shot"; shot.position = CGPoint(x: -15,y: choice == "A" ? 20 : -24); addChild(shot)
             let finish = SKAction.run { [weak self,weak shot] in
                 guard let self else { return }

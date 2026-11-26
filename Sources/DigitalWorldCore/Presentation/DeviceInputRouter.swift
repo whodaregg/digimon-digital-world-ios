@@ -2,17 +2,19 @@ import Foundation
 
 public enum DeviceKey: String, Codable, CaseIterable, Hashable, Sendable { case a = "A", b = "B", c = "C" }
 public enum LCDScreen: String, Sendable {
-    case home, status, food, training, areas, battle, power, clock, sound, confirmBackup, confirmRebirth
+    case home, status, food, training, areas, battle, power, clock, sound, confirmBackup, confirmRebirth, deviceSettings, settingValue, displayOff
 }
 public enum LCDCommand: Equatable, Sendable {
     case none, feedback, feed(String), beginTraining, train(String), cancelTraining, quest(Int), clean, medicine
-    case lights, cold, backup, rebirth, sound(Bool), skipBattle
+    case lights, cold, backup, rebirth, sound(Bool), skipBattle, brightness(Double), volume(Double), background(String)
 }
 public struct DeviceInputRouter: Sendable {
     public var screen: LCDScreen = .home
     public var selectedIcon: Int?
     public var item = 0
     public var statusPage = 0
+    public var setting = 0
+    public var choice = 0
     private var pressed: [DeviceKey:Date] = [:]
     private var consumed: Set<DeviceKey> = []
     private var lastReleased: Date?
@@ -31,12 +33,14 @@ public struct DeviceInputRouter: Sendable {
         }
         return .feedback
     }
-    public mutating func keyDown(_ key: DeviceKey,at date: Date) -> LCDCommand {
+    public mutating func keyDown(_ key: DeviceKey,at date: Date,state: GameState? = nil) -> LCDCommand {
         guard pressed[key] == nil else { return .none }
         pressed[key] = date
-        // The COLOR sound shortcut is C held while pressing A on the normal screen.
-        if screen == .home,pressed[.a] != nil,pressed[.c] != nil {
-            consumed.formUnion([.a,.c]); screen = .sound; item = 0; return .feedback
+        if screen == .home,let state,state.pet.life == .dead,pressed[.a] != nil,pressed[.b] != nil {
+            consumed.formUnion([.a,.b]); return .rebirth
+        }
+        if screen == .home,selectedIcon == nil,pressed[.a] != nil,pressed[.c] != nil {
+            consumed.formUnion([.a,.c]); return .sound(!(state?.settings.sound ?? true))
         }
         return .none
     }
@@ -46,13 +50,18 @@ public struct DeviceInputRouter: Sendable {
         guard date >= began,date.timeIntervalSince(began) < 20 else { return .none }
         if let lastReleased,date.timeIntervalSince(lastReleased) < 0.12 { return .none }
         lastReleased = date
-        let held = date.timeIntervalSince(began) >= 0.65
-        if held && key == .c && screen != .battle {
+        let duration = date.timeIntervalSince(began),held = duration >= 0.65
+        if screen == .displayOff { screen = .home; return .feedback }
+        if screen == .home && selectedIcon == nil && key == .c && duration >= 2 {
+            screen = .deviceSettings; item = 0; return .feedback
+        }
+        if held && key == .c && screen != .battle && state.playStyle != .classic {
             let cancel = state.training != nil
             screen = .home; selectedIcon = nil; item = 0
             return cancel ? .cancelTraining : .feedback
         }
         if screen == .home {
+            if state.pet.life == .dead && state.playStyle == .classic { return .feedback }
             if key == .a { selectedIcon = selectedIcon.map { ($0+1)%7 } ?? 0 }
             if key == .b {
                 if state.pet.life == .dead { screen = .confirmRebirth; item = 0 }
@@ -64,11 +73,31 @@ public struct DeviceInputRouter: Sendable {
         }
         if screen == .battle { return key == .b && state.playStyle != .classic ? .skipBattle : .none }
         if key == .c {
+            if screen == .settingValue { screen = .deviceSettings; return .feedback }
             let cancel = screen == .training && state.training != nil
             screen = .home; selectedIcon = nil; item = 0
             return cancel ? .cancelTraining : .feedback
         }
         switch screen {
+        case .deviceSettings:
+            if key == .a { item = (item+1)%4 }
+            if key == .b {
+                if item == 3 { screen = .displayOff }
+                else {
+                    setting = item; screen = .settingValue
+                    if setting == 0 { choice = state.dmc?.backgrounds.sorted().firstIndex(of: state.dmc?.selectedBackground ?? "grasslands") ?? 0 }
+                    else { choice = setting == 1 ? min(4,max(0,Int(((state.settings.presentation.brightness-0.3)/0.7*4).rounded()))) : Int((state.settings.presentation.volume*4).rounded()) }
+                }
+            }
+        case .settingValue:
+            let backgrounds = state.dmc?.backgrounds.sorted() ?? ["grasslands"]
+            if key == .a { choice = (choice+1)%(setting == 0 ? backgrounds.count : 5) }
+            if key == .b {
+                screen = .deviceSettings
+                if setting == 0 { return .background(backgrounds[choice]) }
+                if setting == 1 { return .brightness(0.3+Double(choice)*0.175) }
+                return .volume(Double(choice)/4)
+            }
         case .status:
             if key != .c { statusPage = (statusPage+1)%(state.playStyle == .classic ? 6 : 8) }
         case .food:

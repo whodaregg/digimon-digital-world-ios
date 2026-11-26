@@ -18,7 +18,8 @@ extension WorldViewModel {
             guard !isSandbox else { return }
         }
         guard var game = state else { return }
-        game.sessionStyle = style; state = game; persist(); updateLibraryMetadata()
+        game.sessionStyle = style
+        do { try commit(game); updateLibraryMetadata() } catch { alert = error.localizedDescription }
     }
     func createDevice(_ deviceID: String,style: PlayStyle = .enhanced) {
         guard let database,let library else { return }
@@ -65,7 +66,7 @@ extension WorldViewModel {
         guard isSandbox,(1...43_200).contains(minutes),var game = state,let database else { return }
         do {
             try SandboxEngine.advance(&game,minutes: minutes,wallTime: Date(),database: database)
-            try store?.save(game); state = game; lastQuest = nil; lastBattle = nil
+            try commit(game); lastQuest = nil; lastBattle = nil
             message = "Sandbox已推进\(minutes)分钟"; refreshCollection()
         } catch { alert = error.localizedDescription }
     }
@@ -74,9 +75,11 @@ extension WorldViewModel {
         do {
             let device = try database.device(old.deviceID)
             guard let egg = device.eggs.first else { return }
-            var game = try DeviceRegistry.newGame(database: database,deviceID: old.deviceID,eggID: egg,now: Date(),timeZone: old.homeTimeZone)
-            game.settings = old.settings; game.sessionStyle = old.playStyle
-            game.dex = old.dex; game.lifecycles = old.lifecycles
+            let now = max(simulationDate,old.highWatermark)
+            var archived = old; LifecycleManager.archiveBeforeReset(&archived,at: now)
+            var game = try DeviceRegistry.newGame(database: database,deviceID: old.deviceID,eggID: egg,now: now,timeZone: old.homeTimeZone)
+            game.settings = old.settings; game.sessionStyle = old.playStyle; game.sandboxOffsetSeconds = old.sandboxOffsetSeconds
+            game.dex = old.dex; game.lifecycles = archived.lifecycles
             if old.playStyle == .sandbox { game.developerModifiedAt = game.highWatermark }
             let path = store.directory.appendingPathComponent("world.before-reset.\(UUID().uuidString).json")
             try store.encode(old).write(to: path,options: .atomic)

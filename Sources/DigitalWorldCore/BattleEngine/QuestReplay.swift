@@ -7,6 +7,9 @@ public struct BattleReplayRound: Equatable, Sendable {
     public let winner: BattleSide
     public let playerHits: Int
     public let opponentHits: Int
+    public init(number: Int,winner: BattleSide,playerHits: Int,opponentHits: Int) {
+        self.number = number; self.winner = winner; self.playerHits = playerHits; self.opponentHits = opponentHits
+    }
 }
 
 /// Pure presentation data. Replaying a saved result never consumes RNG or DP.

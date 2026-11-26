@@ -248,6 +248,7 @@ public struct GameState: Codable, Equatable, Sendable {
     public var battles: [BattleRecord] = []
     public var rng: UInt64 = 0xD1617A1
     public var dmc: DMCDeviceState?
+    public var connectionReceipts: [UUID]?
     public var sandboxOffsetSeconds: Int?
     public var sessionStyle: PlayStyle?
     public var lifecycles: [LifecycleRecord]?

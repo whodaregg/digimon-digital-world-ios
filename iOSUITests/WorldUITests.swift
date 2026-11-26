@@ -143,6 +143,7 @@ final class WorldUITests: XCTestCase {
         let probe = app.staticTexts["homeMotionProbe"]
         XCTAssertTrue(probe.waitForExistence(timeout: 10))
         XCTAssertTrue(probe.label.contains("size=192"))
+        XCTAssertTrue(app.staticTexts["gameStateProbe"].label.contains("font=true"))
         XCTAssertTrue(waitFor(probe,containing: "pose=walk",timeout: 5))
         let before = probe.label.components(separatedBy: ";").first!
         attachScreenshot("large-pet-walk-a")

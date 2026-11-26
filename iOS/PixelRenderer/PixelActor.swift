@@ -46,8 +46,9 @@ final class PixelActor: SKSpriteNode {
     required init?(coder: NSCoder) { fatalError("Storyboard initialization is not supported") }
     func use(_ id: String,mode: DisplayMode) { speciesID = id; shader = mode == .lcd ? PixelAtlas.lcdShader : nil; color = .white }
     func face(right: Bool) { desiredRight = right; xScale = right ? -1 : 1 }
+    func clear() { frames = []; texture = nil; speciesID = ""; clock.reset(); face(right: false) }
     func play(_ action: String,animated: Bool = true) {
-        pose = action; animates = animated; clock.reset()
+        pose = action; animates = animated; clock.reset(); frames = []
         guard let sheet = PixelAtlas.manifest?.sprites[speciesID] else { texture = nil; return }
         let alias = ["jump":"happy","blink":"idle","refuse":"sad","wake":"happy","sick":"sad","critical":"special","dodge":"hit","death":"defeat","clean":"happy","medicine":"happy"]
         let animation = sheet.animations[action] ?? sheet.animations[alias[action] ?? "idle"]

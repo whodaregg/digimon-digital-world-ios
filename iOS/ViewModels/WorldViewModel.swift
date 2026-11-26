@@ -149,8 +149,10 @@ final class WorldViewModel: ObservableObject {
     func refresh(now: Date = Date(), forceSave: Bool = false) {
         guard var game = state, let database, fatalError == nil else { return }
         do {
+            let wasCalling = hasCall
             let result = try TimeEngine.advance(&game, to: SandboxEngine.date(for: game,wallTime: now), database: database)
             state = game
+            if !wasCalling && hasCall { feedback.play(sound: game.settings.sound,haptics: game.settings.haptics,volume: game.settings.presentation.volume,cue: .attention) }
             if result.clockReversed { message = "检测到设备时间倒退，请恢复正确时间" }
             else if result.deaths > 0 { message = "伙伴回归数据，记录已保留"; play("defeat") }
             else if result.evolutions > 0 { message = "伙伴进化了！"; play("evolution") }
@@ -188,9 +190,8 @@ final class WorldViewModel: ObservableObject {
     }
     func quest(_ area: Int) {
         lastQuest = nil
-        command { game, content, now in
-            lastQuest = try DMCV1Engine.quest(&game,areaID: area,database: content,at: now)
-        }
+        var pending: DMCQuestResult?
+        if command({ game,content,now in pending = try DMCV1Engine.quest(&game,areaID: area,database: content,at: now) }) { lastQuest = pending }
         if let result = lastQuest {
             message = result.cleared ? "\(result.area.name) 通关" : "挑战结束，下次从本区首战重新开始"
             play(result.cleared ? "victory" : "hit")
@@ -280,10 +281,12 @@ final class WorldViewModel: ObservableObject {
         command { game, _, _ in game.training = nil }
     }
     func fight(_ opponent: String) {
-        command { game, content, now in
-            lastBattle = try BattleEngine.fight(&game, opponentID: opponent, database: content, at: now)
-        }
+        var pending: BattleRecord?
+        if command({ game,content,now in pending = try BattleEngine.fight(&game,opponentID: opponent,database: content,at: now) }) { lastBattle = pending }
         if let lastBattle { message = lastBattle.won ? "对战胜利 · 恢复食物 +1" : "伙伴受伤，请先治疗"; play(lastBattle.won ? "victory" : "hit") }
+    }
+    @discardableResult func saveConnection(_ result: ConnectionBattleResult,player: ConnectionFighter,opponent: ConnectionFighter) -> Bool {
+        command { game,content,now in _ = try ConnectionEngine.apply(result,player: player,opponent: opponent,state: &game,database: content,at: now) }
     }
     func move(dx: Int, dy: Int) {
         command { game, content, now in
@@ -293,7 +296,8 @@ final class WorldViewModel: ObservableObject {
     }
     func settings(_ change: (inout Settings) -> Void) {
         guard var game = state else { return }
-        change(&game.settings); state = game; persist()
+        change(&game.settings)
+        do { try commit(game) } catch { alert = error.localizedDescription }
     }
     func setNotifications(_ enabled: Bool) {
         if !enabled {
@@ -314,8 +318,13 @@ final class WorldViewModel: ObservableObject {
         catch { alert = "存档写入失败：\(error.localizedDescription)" }
     }
     func scheduleNotifications() {
-        guard let game = state, let database else { return }
-        notifications.schedule(game: game, database: database)
+        guard let database else { return }
+        var worlds: [(String,GameState)] = []
+        for slot in libraryIndex.slots where slot.style.isFormal {
+            if slot.id == libraryIndex.activeID,let game = state { worlds.append((slot.id.uuidString,game)) }
+            else if let game = try? library?.store(for: slot).load()?.state { worlds.append((slot.id.uuidString,game)) }
+        }
+        notifications.schedule(worlds: worlds,database: database)
     }
     func feedbackTap() { feedback.play(sound: state?.settings.sound ?? true, haptics: state?.settings.haptics ?? true,volume: state?.settings.presentation.volume ?? 0.55) }
     func inspectBackup(_ url: URL) throws -> GameState {
@@ -344,22 +353,32 @@ final class WorldViewModel: ObservableObject {
             refresh(forceSave: true)
         } catch { alert = "恢复失败：\(error.localizedDescription)" }
     }
-    private func command(_ operation: (inout GameState, ContentDatabase, Date) throws -> Void) {
+    @discardableResult func commit(_ game: GameState) throws -> Bool {
+        guard let store else { throw GameError.invalidData("存档目录不可用") }
+        try store.save(game); state = game; lastPersist = Date(); refreshCollection(); return true
+    }
+    @discardableResult private func command(_ operation: (inout GameState,ContentDatabase,Date) throws -> Void) -> Bool {
         alert = nil
-        guard var game = state, let database, fatalError == nil else { return }
+        guard var game = state,let database,fatalError == nil else { return false }
         let now = simulationDate
         do {
-            try TimeEngine.advance(&game, to: now, database: database)
+            try TimeEngine.advance(&game,to: now,database: database)
             guard now >= game.highWatermark else { throw GameError.cannotAct("设备时间早于存档时间，请恢复正确时间") }
-            try operation(&game, database, now)
-            state = game; persist(); feedbackTap()
-        } catch {
-            // Time still passes when an action is refused.
-            state = game; persist(); alert = error.localizedDescription
+        } catch { alert = error.localizedDescription; return false }
+        let elapsed = game
+        do { try operation(&game,database,now) }
+        catch {
+            do { try commit(elapsed) } catch { alert = "存档写入失败：\(error.localizedDescription)"; return false }
+            alert = error.localizedDescription; return false
         }
+        do { try commit(game); feedbackTap(); return true }
+        catch { alert = "存档写入失败：\(error.localizedDescription)"; return false }
     }
     func play(_ value: String) {
         animationTask?.cancel(); animation = value
+        let cues: [String:FeedbackEngine.Cue] = ["eat":.feed,"clean":.clean,"medicine":.medicine,"evolution":.evolution,"victory":.victory,"death":.defeat,"defeat":.defeat]
+        let cue = cues[value]
+        if let cue,let game = state { feedback.play(sound: game.settings.sound,haptics: game.settings.haptics,volume: game.settings.presentation.volume,cue: cue) }
         animationTask = Task { [weak self] in
             try? await Task.sleep(for: .seconds(value == "evolution" ? 3 : 1.6))
             guard !Task.isCancelled else { return }
