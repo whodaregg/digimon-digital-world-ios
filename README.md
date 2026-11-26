@@ -23,9 +23,11 @@ v0.6加入LCD内A/B/C养成、独立设备收藏、经典/增强/Sandbox隔离�
 
 ## 下载IPA
 
-当前源码为v0.6；按用户要求，本轮只验证，不自动打包。v0.5/v0.6尚未生成IPA，下方v0.4安装包不含本轮动画更新。
+已按用户指示发布v0.6.0未签名IPA，包含LCD按键养成、独立设备与Sandbox、主页大角色动作和逐场Quest演出。旧v0.4安装包继续保留在历史发布中。
 
-[下载 v0.4.0 未签名 IPA](https://github.com/whodaregg/digimon-digital-world-ios/releases/download/v0.4.0/DigitalWorld-v0.4.0-unsigned.ipa) · [发布页与校验文件](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.4.0)
+[下载 v0.6.0 未签名 IPA](https://github.com/whodaregg/digimon-digital-world-ios/releases/download/v0.6.0/DigitalWorld-v0.6.0-unsigned.ipa) · [发布页与校验文件](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.6.0)
+
+文件大小6,526,549字节，SHA-256：`30e1c3ebdc8d89be792d6a02afda59bd9ec059421bd1f3d6efdf594d07fe6057`。
 
 适用于真机arm64、iOS17及以上。安装包尚未签名，需要使用自己的签名工具与签名资料签名后安装，不能直接点开安装。发布页的Source code压缩包为源码，安装请下载`.ipa`文件。
 

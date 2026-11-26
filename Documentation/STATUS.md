@@ -12,4 +12,4 @@
 
 逐条对应用户28项要求的落实情况和依赖见[需求状态清单](FEATURE_STATUS.md)。实际通过与失败检查见[验证记录](VALIDATION.md)，不能将编译成功当成真实iPhone安装或双机验收。
 
-按用户要求，本轮只修改和验证，不生成v0.5/v0.6 IPA；等待用户明确要求“生成IPA”后才打包。现有v0.4安装包不包含本轮改动。
+收到用户打包指示后，已发布[v0.6.0未签名IPA](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.6.0)，包含上述修改。真机SDK编译、平台/架构、包结构、18份原图、三份字体及下载后的SHA-256均已核验；实际iPhone签名安装仍待验收。v0.4旧包继续保留，不包含本轮改动。

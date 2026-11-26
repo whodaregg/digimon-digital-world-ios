@@ -1,5 +1,17 @@
 # 实测记录
 
+## v0.6.0 真机IPA
+
+记录日期：2026-11-27（Australia/Sydney）。收到用户“打包”指示后，[真机打包任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45836630755)成功，构建源码为`48be213ff311ec4cccddbd15ade067bb92c4aeab`；应用、核心、工程与测试源码与下述80项核心及13项UI通过的版本一致。本次仅打包和更新文档。
+
+- 使用iPhoneOS SDK编译Release，独立复核Mach-O平台为IOS、架构arm64、最低系统iOS17.0；版本0.6.0，构建号6。
+- 已发布[v0.6.0未签名开发测试包](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.6.0)，文件`DigitalWorld-v0.6.0-unsigned.ipa`，6,526,549字节。
+- 从发布页重新下载IPA、校验文件与构建信息，核对SHA-256和大小一致；ZIP完整性、Payload、Info.plist、可执行文件及内容JSON通过检查，不含个人描述文件。
+- 包内18份原版角色PNG与出处哈希一致，三份像素字体与源码字节一致，字体注册、许可、本地网络和运动权限声明完整，Game Center保持默认关闭。
+- IPA SHA-256：`30e1c3ebdc8d89be792d6a02afda59bd9ec059421bd1f3d6efdf594d07fe6057`。
+
+此包需自行签名后安装，尚未完成真实iPhone签名安装验收；打包成功不代表未完成功能或真机清单已验收。
+
 ## v0.6 LCD养成、独立设备与动画
 
 记录日期：2026-11-26（Australia/Sydney）。保留既有项目、旧档和原图，在原工程上续做。最终源码为`f1ff3682fcb972536e28248fa0447fd50ee6e8aa`，[最终验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45736796091)已全部通过。其后仅整理文档与实测截图，不修改应用、核心或测试源码。
@@ -28,7 +40,7 @@
 
 ### 验证边界
 
-本轮不生成IPA，也未运行真机打包工作流。模拟器编译和交互通过不等于真实iPhone安装验收。两台手机附近连接、Game Center账号匹配、虚拟A/B/C多指与触觉、运动传感器、通知实际送达、iOS17最低版本、多屏幕/无障碍和长期性能仍按[真机清单](DEVICE_CHECKLIST.md)待验。其它世代、联展和完整翻译等未实现项目见[28项状态与依赖](FEATURE_STATUS.md)。
+此验证阶段按用户要求先不打包；随后收到打包指示，另行发布上文v0.6.0 IPA。模拟器编译和交互通过不等于真实iPhone安装验收。两台手机附近连接、Game Center账号匹配、虚拟A/B/C多指与触觉、运动传感器、通知实际送达、iOS17最低版本、多屏幕/无障碍和长期性能仍按[真机清单](DEVICE_CHECKLIST.md)待验。其它世代、联展和完整翻译等未实现项目见[28项状态与依赖](FEATURE_STATUS.md)。
 
 以下v0.4/v0.3均为历史记录，其IPA和截图不代表v0.6。
 
