@@ -1,5 +1,14 @@
 # 实测记录
 
+## v0.8.0 真机 IPA
+
+2026-11-27（Australia/Sydney）按用户要求打包。[真机打包任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45902088299)使用提交 `7ba36d814b1961097ec63764493e39d55bc5504e`，游戏和测试代码与下述模拟器验收一致。
+
+- iPhoneOS SDK Release 编译通过。下载后复核 IPA 的 ZIP 完整性、arm64 Mach-O、最低 iOS 17.0、游戏内容、35 份归档角色 PNG 和个人描述文件缺失状态。
+- 已发布未签名 IPA，构建号 8，大小 6,948,743 字节。SHA-256 为 `4c06d255282076fd4a0e1ff84de397a12c21c08eadea3cf893d03593dbe80b94`。[下载与校验文件](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.8.0)
+
+侧装需要自行签名。真实 iPhone 的签名安装和运行仍待验收。
+
 ## v0.8 授权音频与手机运动输入
 
 记录日期为2026-11-27（Australia/Sydney）。[主分支统一验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45897220332)验证提交`1a7893df8ab3b5dc1d13586b465fdfcba1bed5ff`，核心、中继、iOS界面与Release构建全部通过。后续提交只整理文档。
@@ -10,7 +19,7 @@
 
 初轮训练页启动后未出现虚拟按键。改为在设置内导航，并让运动训练页管理自己的会话后，最终轮验证通过。
 
-音频资源默认空库。用户自有文件在真实iPhone上的导入、音画同步与听感，以及物理静音、蓝牙、来电、计步与运动权限均待验收。详见[音频与运动说明](ORIGINAL_AUDIO.md)及[真机验收清单](DEVICE_CHECKLIST.md)。v0.8尚未生成IPA。
+音频资源默认空库。用户自有文件在真实iPhone上的导入、音画同步与听感，以及物理静音、蓝牙、来电、计步与运动权限均待验收。详见[音频与运动说明](ORIGINAL_AUDIO.md)及[真机验收清单](DEVICE_CHECKLIST.md)。
 
 ## v0.7 四语、云盘、Ver.2与喂食显示
 

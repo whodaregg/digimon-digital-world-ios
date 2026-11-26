@@ -24,11 +24,11 @@ v0.8 通过了 91 项核心、22 项界面、4 项中继测试及 Debug/Release 
 
 ## 下载IPA
 
-当前源码v0.8尚未打包。下方v0.6.0为上轮已发布旧包，包含LCD养成与动画，不包含本轮Ver.2、联展、完整四语、云盘或喂食显示修复；旧v0.4也继续保留。
+已发布 v0.8.0 侧装测试包，包含 COLOR Ver.2、音频资源库及手机运动训练。历次版本可在发布页查看。
 
-[下载 v0.6.0 未签名 IPA](https://github.com/whodaregg/digimon-digital-world-ios/releases/download/v0.6.0/DigitalWorld-v0.6.0-unsigned.ipa) · [发布页与校验文件](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.6.0)
+[下载 v0.8.0 未签名 IPA](https://github.com/whodaregg/digimon-digital-world-ios/releases/download/v0.8.0/DigitalWorld-v0.8.0-unsigned.ipa) · [发布页与校验文件](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.8.0)
 
-文件大小6,526,549字节，SHA-256：`30e1c3ebdc8d89be792d6a02afda59bd9ec059421bd1f3d6efdf594d07fe6057`。
+文件大小为 6,948,743 字节，SHA-256 为 `4c06d255282076fd4a0e1ff84de397a12c21c08eadea3cf893d03593dbe80b94`。
 
 适用于真机arm64、iOS17及以上。安装包尚未签名，需要使用自己的签名工具与签名资料签名后安装，不能直接点开安装。发布页的Source code压缩包为源码，安装请下载`.ipa`文件。
 

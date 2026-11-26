@@ -14,4 +14,4 @@ v0.8 支持导入用户有权使用的设备音效、动漫音效、音乐、语
 
 仍未完成：其它世代的完整可玩规则和原版素材、其它Jogress组合、Tag/Colosseum、DMX XAI、真实Pendulum训练/战斗规则、实体机物理通信，以及全设备性能/无障碍和长期养成验收。其它机型目录继续标记待核验，不以换壳或虚构参数冒充完整机型。增强及Sandbox模式的手机运动训练支持加速度摇晃、重力倾斜、真实计步与虚拟A/B。
 
-[28项清单](FEATURE_STATUS.md)和[验证记录](VALIDATION.md)区分实际代码、通过检查和外部依赖。v0.6.0已发布旧IPA不包含v0.7与v0.8改动；本轮按约定先开发验证，待用户再次明确打包后才生成新IPA。
+[28项清单](FEATURE_STATUS.md)和[验证记录](VALIDATION.md)记录实际代码、通过检查和外部依赖。v0.8.0 未签名侧装测试包已发布。[发布页](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.8.0)
