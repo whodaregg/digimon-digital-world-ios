@@ -30,10 +30,11 @@ public enum GameEngine {
             guard device.eggs.contains(eggID), result.dex.values.filter({ $0 == .raised }).count >= egg.requiredRaised else {
                 throw GameError.cannotAct("数码蛋尚未解锁")
             }
+            let previousSpeciesID = result.pet.speciesID
             try LifecycleManager.makeRoom(&result)
             var newPet = Pet(speciesID: egg.species, eggID: eggID)
             if device.id == ArchiveCareEngine.deviceID {
-                newPet.speciesID = result.pet.speciesID
+                newPet.speciesID = previousSpeciesID
                 newPet.isEgg = false
                 newPet.evolutionHistory = [newPet.speciesID]
                 newPet.appearances = [SpeciesAppearance(newPet.speciesID, at: now)]
