@@ -56,6 +56,19 @@ jobs:
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
+      - name: Start native room integration peer
+        run: |
+          python3 -m pip install --target "$RUNNER_TEMP/relay-deps" -r Server/requirements.txt
+          HOST=127.0.0.1 PORT=8765 PYTHONPATH="$RUNNER_TEMP/relay-deps" python3 Server/relay.py > relay-native.log 2>&1 &
+          python3 - <<'PY'
+          import socket,time
+          for _ in range(30):
+              try:
+                  with socket.create_connection(('127.0.0.1',8765),timeout=1): break
+              except OSError: time.sleep(0.2)
+          else: raise SystemExit('Room relay did not start')
+          PY
+          PYTHONPATH="$RUNNER_TEMP/relay-deps" python3 Server/native_opponent.py > opponent-native.log 2>&1 &
       - name: Select an available iPhone simulator
         timeout-minutes: 3
         run: |
@@ -93,6 +106,8 @@ jobs:
           path: |
             build-ios.log
             test-ios.log
+            relay-native.log
+            opponent-native.log
             build/NativeBuild.xcresult
             build/NativeTests.xcresult
   release:

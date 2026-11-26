@@ -21,14 +21,14 @@ struct ConnectionView: View {
                 .font(.footnote).foregroundStyle(Palette.muted)
             Text(l(connection.notice)).accessibilityIdentifier("connectionNotice")
             if connection.outcome != nil && playedID != nil {
-                SpriteView(scene: scene,preferredFramesPerSecond: 30).aspectRatio(4/3,contentMode: .fit)
+                SpriteView(scene: scene,preferredFramesPerSecond: 30).aspectRatio(4/3,contentMode: .fit).accessibilityIdentifier("connectionArena")
                 if finished {
                     Text(l(connection.outcome?.playerWon == true ? model.text(.victory) : model.text(.defeat))).font(.title.bold())
                     Button(l("准备下一场")) { scene.stop(); connection.reset(); playedID = nil; finished = false }
                 }
             } else if connection.connected,let remote = connection.remote {
                 Text(l((try? model.database?.species(remote.speciesID).localizedName(model.language)) ?? remote.speciesID))
-                GameButton(title: connection.ready ? "等待对方确认" : "确认对战") { connection.confirmBattle() }.disabled(connection.ready)
+                GameButton(title: connection.ready ? "等待对方确认" : "确认对战") { connection.confirmBattle() }.disabled(connection.ready).accessibilityIdentifier("confirmConnection")
             } else {
                 GameButton(title: "搜索附近玩家") { prepare(online: false) }.accessibilityIdentifier("searchNearby")
                 ForEach(connection.peers,id: \.self) { peer in Button(l("邀请 "+peer.displayName)) { connection.invite(peer) } }

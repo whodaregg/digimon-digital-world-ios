@@ -1,6 +1,21 @@
 import XCTest
 
 final class WorldUITests: XCTestCase {
+    func testRoomClientBattlesThroughRealRelay() throws {
+        let app = launch(); app.buttons["action-CONNECTION"].tap()
+        let server = app.textFields["roomServer"]
+        XCTAssertTrue(server.waitForExistence(timeout: 5))
+        replaceText(server,with: "ws://127.0.0.1:8765"); app.buttons["roomKeyboardDone"].tap()
+        replaceText(app.textFields["roomCode"],with: "UITEST01"); app.buttons["roomKeyboardDone"].tap()
+        let join = app.buttons["joinRoom"]; scrollTo(join,in: app); join.tap()
+        let confirm = app.buttons["confirmConnection"]
+        XCTAssertTrue(confirm.waitForExistence(timeout: 15)); confirm.tap()
+        XCTAssertTrue(element(app,"connectionArena").waitForExistence(timeout: 5))
+        attachScreenshot("sideload-room-battle")
+        app.buttons["pageDone"].tap()
+        XCTAssertTrue(waitFor(app.staticTexts["gameStateProbe"],containing: "dp=19;",timeout: 5))
+        XCTAssertTrue(app.staticTexts["gameStateProbe"].label.contains("battles=1;connections=1"))
+    }
     func testSideloadRoomEntryRejectsInsecurePublicAddress() throws {
         let app = launch(); app.buttons["action-CONNECTION"].tap()
         let server = app.textFields["roomServer"]
