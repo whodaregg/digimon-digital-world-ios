@@ -1,6 +1,25 @@
 import XCTest
 
 final class WorldUITests: XCTestCase {
+    func testUploadedArchiveCanStartIndependentCareAndFeed() {
+        let app = launch()
+        let devices = app.buttons["action-DIGIVICE"]
+        scrollTo(devices, in: app); devices.tap()
+        let roster = app.buttons["openArchiveRoster"]
+        XCTAssertTrue(roster.waitForExistence(timeout: 5)); roster.tap()
+        let search = app.textFields["archiveSearch"]
+        XCTAssertTrue(search.waitForExistence(timeout: 5))
+        search.tap(); search.typeText("Agumon (Black) X")
+        let adopt = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "adopt-archive-agumon-black-x-")).firstMatch
+        XCTAssertTrue(adopt.waitForExistence(timeout: 5))
+        adopt.tap()
+        let food = app.buttons["action-FOOD"]
+        XCTAssertTrue(food.waitForExistence(timeout: 8))
+        food.tap()
+        XCTAssertTrue(app.buttons["feed-meat"].waitForExistence(timeout: 5))
+        app.buttons["feed-meat"].tap()
+    }
+
     func testAudioLibraryReportsMissingOriginalAsset() {
         let app = launch()
         openSettings(app)

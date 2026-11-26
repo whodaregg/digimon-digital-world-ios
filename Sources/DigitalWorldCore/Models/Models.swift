@@ -4,6 +4,7 @@ public enum GameMode: String, Codable, CaseIterable, Sendable { case original, u
 public enum DisplayMode: String, Codable, CaseIterable, Sendable { case lcd, color, advanced }
 public enum Stage: String, Codable, CaseIterable, Sendable {
     case egg, baby1, baby2, rookie, champion, ultimate, mega, ultra
+    case unclassified = "待核对"
     public var order: Int { Self.allCases.firstIndex(of: self) ?? 0 }
 }
 public enum Attribute: String, Codable, CaseIterable, Sendable { case vaccine, data, virus, free, unknown }

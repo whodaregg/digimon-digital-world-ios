@@ -35,6 +35,20 @@ extension WorldViewModel {
         game.sessionStyle = style
         do { try commit(game); updateLibraryMetadata() } catch { alert = error.localizedDescription }
     }
+    @discardableResult func adoptArchive(_ speciesID: String) -> Bool {
+        guard let database, let library else { return false }
+        do {
+            var game = try ArchiveCareEngine.adopt(speciesID, database: database,
+                                                   at: Date(), timeZone: TimeZone.current.identifier)
+            game.settings = state?.settings ?? Settings()
+            try saveCurrentSlot()
+            let slot = try library.add(game, to: &libraryIndex, at: Date())
+            install(game, slot: slot)
+            syncAudio()
+            message = "开始养成 · \(try database.species(speciesID).name)"
+            return true
+        } catch { alert = error.localizedDescription; return false }
+    }
     func createDevice(_ deviceID: String,style: PlayStyle = .enhanced) {
         guard let database,let library else { return }
         do {

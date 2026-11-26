@@ -26,13 +26,17 @@ struct DeviceCollectionView: View {
                     }.padding(.vertical,6)
                 }
             }
+            Panel(title: "上传图集养成") {
+                NavigationLink("选择数码兽开始养成") { ArchiveRosterView(model: model) }
+                    .accessibilityIdentifier("openArchiveRoster")
+            }
             Panel(title: "DEVICE PROFILES") {
                 ForEach(database.devices) { profile in
                     Button { selected = profile } label: {
                         HStack {
                             VStack(alignment: .leading,spacing: 4) {
                                 Text(l(profile.name)).font(.headline)
-                                Text(l(profile.enabled && profile.verifiedOriginal ? model.text(.ready) : profile.enabled ? "旧版实验档兼容" : model.text(.pending)))
+                                Text(l(profile.enabled && profile.verifiedOriginal ? model.text(.ready) : profile.id == ArchiveCareEngine.deviceID ? "844种数码兽可养成" : profile.enabled ? "旧版实验档兼容" : model.text(.pending)))
                                     .font(.caption).foregroundStyle(profile.enabled && profile.verifiedOriginal ? Palette.mint : Palette.amber)
                             }
                             Spacer(); Image(systemName: "chevron.right")
@@ -47,7 +51,10 @@ struct DeviceCollectionView: View {
                     VStack(spacing: 16) {
                         Panel(title: profile.name) {
                             Text(l(profile.notes)).font(.subheadline)
-                            if profile.enabled && profile.verifiedOriginal {
+                            if profile.id == ArchiveCareEngine.deviceID {
+                                NavigationLink("选择数码兽") { ArchiveRosterView(model: model) }
+                                    .accessibilityIdentifier("openArchiveRoster")
+                            } else if profile.enabled && profile.verifiedOriginal {
                                 Text(l("四心养成 · A/B上下段训练 · 8区顺序Quest · Cold · 一只备份"))
                                 Text(l("17种养成角色及最终区Alter-S。附近手机通信已接入；联展和其他版本名单尚待接入。"))
                                     .font(.caption).foregroundStyle(Palette.muted)
