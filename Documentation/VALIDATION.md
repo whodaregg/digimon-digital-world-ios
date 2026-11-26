@@ -2,14 +2,20 @@
 
 ## v0.7 四语、云盘、Ver.2与喂食显示
 
-记录日期：2026-11-27（Australia/Sydney）。验证源码`8715ccef0c50bfee6c30bf405017236a25dc222f`，[统一验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45845789444)正在运行。
+记录日期为2026-11-27（Australia/Sydney）。最终验证提交为`bcd2090158bd2b1f1cb891b872fdfda2925aac1f`，核心、中继、iOS界面和Release任务均已通过。后续提交只更新文档和测试截图。[主分支统一验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45857722087)
 
-- 本地Linux及GitHub macOS 15：85项核心测试通过，0失败；Debug应用和原生测试runner、Release编译通过。
+- 本地Linux及GitHub macOS 15均通过87项核心测试，零失败。Debug应用、原生测试程序和Release编译通过。
 - 新增核心覆盖设备合集完整恢复、保留原设备、损坏拒绝、Sandbox来源绑定、插值翻译及原版名称、Ver.2独立蛋与48次训练分支、跨版本双方联展及收据防重放。
-- 35份原版角色PNG通过尺寸、SHA-256和非空帧引用检查；857条翻译/术语通过语言列与插值校验。工程重新生成结果与提交一致。
-- 原生界面包括既有13项、三种非默认语言与字体、云盘入口、Ver.2孵化，以及进食/拒食场景和未多扣食物的检查；最终结果待本任务结束后记录。
+- 35份原版角色PNG通过尺寸、SHA-256和非空帧引用检查；872条翻译/术语通过语言列与插值校验。工程重新生成结果与提交一致。
+- iPhone 16 Pro模拟器（iOS 18.5、arm64）通过20项界面测试，零失败。新增用例覆盖三种非默认语言、字体和云盘入口、Ver.2孵化、喂食与拒食、拒食后再次操作，以及真实WebSocket房间对战。房间用例连接本机中继测试对手，确认消息到达后，检查DP只扣1点、战斗记录和通信收据各新增一条。
 
-云盘真实跨手机同步、Game Center团队/账号/匹配、实体机物理通信及其它世代资料验证不由模拟器结果替代。完整范围见FEATURE_STATUS.md、CLOUD_BACKUP.md及LOCALIZATION.md。本轮未生成新IPA，已发布v0.6.0仍是旧包。
+云盘真实跨手机同步、公网WSS服务器部署及双机房间连接、实体机物理通信及其它世代资料验证不由模拟器结果替代。完整范围见FEATURE_STATUS.md、CLOUD_BACKUP.md及LOCALIZATION.md。本轮未生成新IPA，已发布v0.6.0仍是旧包。
+
+早先回归遇到喂食场景取快照时已结束、语言弹出菜单点击定位不稳定、设备切换后页面自动关闭等问题。最终版改为直接点选语言，按真实界面状态等待，并修复测试速率变量与SpriteKit属性重名。Debug用例将喂食演出延长到8秒以便检查实际节点位置和按钮，正式时长为2.4秒。
+
+4项实际WebSocket服务端测试通过，覆盖两端转发、房间隔离、第三人拒绝、控制消息伪造拒绝及容量限制。仅代表协议与本机网络验证，不代表公网两台iPhone已验收。
+
+进食、拒食与房间对战的模拟器截图均出自同一轮通过的原生测试附件。[进食](Screenshots/v07-feeding.png) · [拒食](Screenshots/v07-feeding-refusal.png) · [房间对战](Screenshots/v07-room-battle.png) · [完整结果包](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45857722087/artifacts/15136723999)
 
 ## v0.6.0 真机IPA
 
@@ -87,7 +93,7 @@
 
 记录日期：2026-11-26（Australia/Sydney）。本页记录实际执行结果，不代表真机发行或实体机逐项一致性验收完成。
 
-[本轮验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45685763845)，应用及测试源码原验证提交为 `fec9074067f9940ddc115508d2bca81e4f6def62`，在中文提交历史中对应 `dd37719b9c176da139e1c8e8bf009434d4f2ad41`，两者文件树哈希一致。后续截图和文档整理不修改应用、规则或测试源码；提交说明中文化只修改历史提交元数据，并逐提交校验文件树一致。
+[本轮验证任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45687263845)，应用及测试源码原验证提交为 `fec9074067f9940ddc115508d2bca81e4f6def62`，在中文提交历史中对应 `dd37719b9c176da139e1c8e8bf009434d4f2ad41`，两者文件树哈希一致。后续截图和文档整理不修改应用、规则或测试源码；提交说明中文化只修改历史提交元数据，并逐提交校验文件树一致。
 
 ### 游戏核心与素材
 
