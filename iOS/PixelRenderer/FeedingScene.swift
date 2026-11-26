@@ -13,7 +13,7 @@ final class FeedingScene: SKScene {
     private var refusing = false
     private var reduced = false
     private var remaining: Double = 1
-    private var speed = 1.0
+    private var playbackRate = 1.0
     override init(size: CGSize) {
         super.init(size: size); anchorPoint = CGPoint(x: 0.5,y: 0.5); scaleMode = .aspectFit
         actor.position = CGPoint(x: 48,y: 10); addChild(actor)
@@ -24,7 +24,7 @@ final class FeedingScene: SKScene {
         let key = "\(speciesID)|\(foodID)|\(action)|\(mode)|\(reduceMotion)"
         guard key != signature else { return }; signature = key
         elapsed = 0; previous = nil; refusing = action == "refuse"; reduced = reduceMotion; remaining = 1
-        speed = 2.4/max(0.1,duration)
+        playbackRate = 2.4/max(0.1,duration)
         backgroundColor = mode == .lcd ? UIColor(red: 0.66,green: 0.73,blue: 0.52,alpha: 1) : UIColor(red: 0.08,green: 0.19,blue: 0.27,alpha: 1)
         actor.use(speciesID,mode: mode); actor.face(right: false); actor.play(action,animated: !reduceMotion)
         food.removeAllChildren()
@@ -34,7 +34,7 @@ final class FeedingScene: SKScene {
     }
     override func update(_ currentTime: TimeInterval) {
         let delta = min(0.1,max(0,currentTime-(previous ?? currentTime))); previous = currentTime
-        elapsed += delta*speed; actor.tick(delta*speed)
+        elapsed += delta*playbackRate; actor.tick(delta*playbackRate)
         if refusing {
             actor.position.x = 48 + (reduced ? 0 : sin(elapsed*13)*4)
         } else {
