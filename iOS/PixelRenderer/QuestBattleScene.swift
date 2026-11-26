@@ -13,6 +13,7 @@ final class QuestBattleScene: SKScene {
     private var reduced = false
     private var playerEffect = "fire", enemyEffect = "electric"
     private(set) var phase = "准备"
+    var onAudio: ((AudioEvent) -> Void)?
     var onPhase: ((String) -> Void)?
     var onHit: ((BattleReplayRound) -> Void)?
     var onFinished: (() -> Void)?
@@ -30,12 +31,13 @@ final class QuestBattleScene: SKScene {
         playerEffect = species.effect; enemyEffect = opponent.effect
         backdrop(); show(.opponent,pose: "idle")
         setPhase(boss ? "BOSS登场" : "敌人登场")
+        onAudio?(boss ? .bossAppears : .encounter)
         var actions: [SKAction] = []
         if boss {
             card("WARNING"); setPhase("BOSS警告")
             actions += [.wait(forDuration: 0.6),.run { [weak self] in self?.show(.opponent,pose: "idle"); self?.setPhase("BOSS登场") }]
         }
-        actions += [.wait(forDuration: 0.9),.run { [weak self] in self?.card("BATTLE") },.wait(forDuration: 0.6)]
+        actions += [.wait(forDuration: 0.9),.run { [weak self] in self?.card("BATTLE"); self?.onAudio?(.battleStart) },.wait(forDuration: 0.6)]
         for round in rounds {
             actions += attack(.player,lands: round.winner == .player,round: round)
             // A third hit ends immediately: there is no extra enemy shot after victory.
@@ -48,7 +50,7 @@ final class QuestBattleScene: SKScene {
     func playConnection(player species: Species,opponent: Species,result: ConnectionBattleResult,mode: DisplayMode,reduceMotion: Bool) {
         stop(); self.mode = mode; reduced = reduceMotion
         player.use(species.spriteID,mode: mode); enemy.use(opponent.spriteID,mode: mode)
-        playerEffect = species.effect; enemyEffect = opponent.effect; backdrop(); card("BATTLE")
+        playerEffect = species.effect; enemyEffect = opponent.effect; backdrop(); card("BATTLE"); onAudio?(.battleStart)
         var actions: [SKAction] = [.wait(forDuration: 0.7)],p = 0,e = 0
         for (i,side) in result.hits.enumerated() {
             if i == 6 {
@@ -88,7 +90,7 @@ final class QuestBattleScene: SKScene {
         [
             .run { [weak self] in
                 guard let self else { return }
-                self.show(side,pose: "attack")
+                self.show(side,pose: "attack"); self.onAudio?(.attack)
                 self.setPhase(side == .player ? "伙伴攻击" : "敌人攻击")
                 let shot = self.projectile(side == .player ? self.playerEffect : self.enemyEffect)
                 shot.name = "projectile"; shot.position = CGPoint(x: side == .player ? -18 : 18,y: 6)
@@ -99,11 +101,11 @@ final class QuestBattleScene: SKScene {
             .run { [weak self] in
                 guard let self else { return }
                 if lands {
-                    self.hitMark(); self.onHit?(round)
+                    self.hitMark(); self.onHit?(round); self.onAudio?(.injured)
                     self.setPhase(side == .player ? "攻击命中" : "受到攻击")
                 } else {
                     let target = self.opposite(side)
-                    self.show(target,pose: "hit")
+                    self.show(target,pose: "hit"); self.onAudio?(.evade)
                     self.setPhase(target == .player ? "伙伴回避" : "敌人回避")
                     if !self.reduced {
                         let a = self.actor(target), x = a.position.x
@@ -156,7 +158,7 @@ final class QuestBattleScene: SKScene {
     }
     private func result(won: Bool) {
         show(.player,pose: won ? "victory" : "defeat"); player.position.x = 0
-        setPhase(won ? "胜利" : "败北")
+        setPhase(won ? "胜利" : "败北"); onAudio?(won ? .victory : .defeat)
         for x in [-110,110] {
             if won {
                 let sparkle = pixels(["..#..","#.#.#",".###.","#.#.#","..#.."],color: mode == .lcd ? ink : .systemOrange)
@@ -167,7 +169,7 @@ final class QuestBattleScene: SKScene {
             }
         }
     }
-    func clearArea() { card("CLEAR"); setPhase("区域通关") }
+    func clearArea() { card("CLEAR"); setPhase("区域通关"); onAudio?(.missionComplete) }
     private func card(_ text: String) {
         player.isHidden = true; enemy.isHidden = true; effects.removeAllChildren()
         block(effects,0,0,320,240,ink)

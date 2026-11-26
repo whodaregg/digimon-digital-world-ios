@@ -24,7 +24,7 @@ struct ConnectionView: View {
                 SpriteView(scene: scene,preferredFramesPerSecond: 30).aspectRatio(4/3,contentMode: .fit).accessibilityIdentifier("connectionArena")
                 if finished {
                     Text(l(connection.outcome?.playerWon == true ? model.text(.victory) : model.text(.defeat))).font(.title.bold())
-                    Button(l("准备下一场")) { scene.stop(); connection.reset(); playedID = nil; finished = false }
+                    Button(l("准备下一场")) { scene.stop(); model.audio.battleMusic(false); connection.reset(); playedID = nil; finished = false }
                 }
             } else if connection.connected,let remote = connection.remote {
                 Text(l((try? model.database?.species(remote.speciesID).localizedName(model.language)) ?? remote.speciesID))
@@ -50,11 +50,11 @@ struct ConnectionView: View {
                 Text(l("\(peer.displayName) 邀请你连接"))
                 HStack { Button(l("接受")) { connection.answerInvitation(true) }; Button(l("拒绝")) { connection.answerInvitation(false) } }
             }
-            Button(l("断开连接")) { scene.stop(); connection.reset(); playedID = nil; finished = false }
+            Button(l("断开连接")) { scene.stop(); model.audio.battleMusic(false); connection.reset(); playedID = nil; finished = false }
             Text(l("附近连接与在线房间均用于iPhone之间，不代表可以直接连接实体暴龙机。真实双机仍需验收。"))
                 .font(.caption).foregroundStyle(Palette.muted)
         }.onChange(of: connection.outcome?.id) { _,_ in playResult() }
-            .onDisappear { scene.stop(); connection.stop() }
+            .onDisappear { scene.stop(); connection.stop(); model.audio.battleMusic(false) }
             .toolbar { ToolbarItemGroup(placement: .keyboard) { Spacer(); Button(l("完成")) { focused = nil }.accessibilityIdentifier("roomKeyboardDone") } }
     }
     private func prepareRoom() {
@@ -86,7 +86,14 @@ struct ConnectionView: View {
               let database = model.database else { return }
         guard model.saveConnection(result,player: player,opponent: remote) else { connection.notice = model.alert ?? "无法保存战果"; return }
         do {
-            scene.onFinished = { finished = true }
+            let evolved = model.state?.pet.speciesID != player.speciesID
+            scene.onAudio = { model.emitAudio($0) }
+            model.audio.battleMusic(true)
+            scene.onFinished = {
+                finished = true
+                model.audio.battleMusic(false)
+                if evolved { model.playEvolution(jogress: true) }
+            }
             scene.playConnection(player: try database.species(player.speciesID),opponent: try database.species(remote.speciesID),result: result,mode: model.display,reduceMotion: reduced)
             playedID = result.id
         } catch { connection.notice = error.localizedDescription }

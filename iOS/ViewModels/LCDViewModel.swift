@@ -7,6 +7,8 @@ extension WorldViewModel {
     func lcdTouch(_ icon: Int) {
         guard touchEnabled,let state else { return }
         lcdNotice = nil
+        feedbackTap()
+        emitAudio(.menuSelect)
         if [1,2,3].contains(icon) { openCareCommand() }
         performLCD(lcd.open(icon: icon,state: state))
     }
@@ -20,6 +22,11 @@ extension WorldViewModel {
         }
         let previous = lcd.screen
         performLCD(lcd.keyUp(key,at: Date(),state: state,availableAreas: min(8,(state.dmc?.clearedAreas.max() ?? 0)+1)))
+        if previous == .displayOff && lcd.screen != .displayOff { emitAudio(.powerOn) }
+        else if previous != .displayOff && lcd.screen == .displayOff { emitAudio(.powerOff) }
+        else if key == .a { emitAudio(.menuSelect) }
+        else if key == .c { emitAudio(.cancel) }
+        else if lcdNotice == nil { emitAudio(.confirm) }
         if previous == .home,[LCDScreen.food,.training,.areas].contains(lcd.screen) { openCareCommand() }
     }
     func performLCD(_ action: LCDCommand) {
@@ -42,7 +49,11 @@ extension WorldViewModel {
         case .sound(let on): settings { $0.sound = on }
         case .skipBattle: lcdSkipRequest += 1
         case .brightness(let value): editPresentation { $0.brightness = value }
-        case .volume(let value): editPresentation { $0.volume = value }
+        case .volume(let value):
+            if let id = state?.deviceID {
+                audioAssets.update(id) { $0.volumes[.sfx] = value }
+                syncAudio()
+            }
         case .background(let id): selectBackground(id)
         case .clock(let hour,let minute): setDeviceClock(hour: hour,minute: minute)
         }

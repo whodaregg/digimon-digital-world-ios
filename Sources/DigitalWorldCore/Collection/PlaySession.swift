@@ -11,6 +11,7 @@ public enum AppLanguage: String, Codable, CaseIterable, Sendable {
     }
 }
 public struct DevicePresentationSettings: Codable, Equatable, Sendable {
+    public var sensorTrainingMode: SensorTrainingMode?
     public var touchMode = true
     public var volume: Double = 0.55
     public var contrast: Double = 1

@@ -1,2 +1,2 @@
 "NSLocalNetworkUsageDescription" = "近くのプレイヤーを検索し、双方の確認後に対戦します。";
-"NSMotionUsageDescription" = "Sandboxの振動入力テスト中のみ加速度を読み取ります。データは送信しません。";
+"NSMotionUsageDescription" = "モーション入力トレーニング中のみ加速度、重力、歩数を読み取ります。データは送信しません。";

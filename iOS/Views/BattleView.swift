@@ -125,8 +125,13 @@ struct QuestPlaybackView: View {
             Text(l("整区结果已保存；关闭页面或跳过演出不会重抽战果。"))
                 .font(.caption).foregroundStyle(Palette.muted)
         }
-        .onAppear { replay.start(result,database: model.database,mode: model.display,reduceMotion: reduceMotion) }
-        .onDisappear { replay.stop() }
+        .onAppear {
+            replay.scene.onAudio = { model.emitAudio($0) }
+            model.audio.battleMusic(true)
+            replay.start(result,database: model.database,mode: model.display,reduceMotion: reduceMotion)
+        }
+        .onChange(of: replay.finished) { _, finished in if finished { model.audio.battleMusic(false) } }
+        .onDisappear { replay.stop(); model.audio.battleMusic(false) }
     }
     private func hitMarks(_ count: Int,title: String,color: Color) -> some View {
         HStack(spacing: 4) {

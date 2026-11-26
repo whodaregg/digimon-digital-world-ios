@@ -229,10 +229,9 @@ struct DetailView: View {
                 }
             }
             Panel(title: "FEEDBACK / 声音与触觉") {
-                Toggle(l("电子按键音"),isOn: Binding(get: { model.state?.settings.sound ?? true },set: { v in model.settings { $0.sound = v } }))
                 Toggle(l("触觉反馈"),isOn: Binding(get: { model.state?.settings.haptics ?? true },set: { v in model.settings { $0.haptics = v } }))
-                Text(l("按键音遵循 iPhone 静音开关。")) .font(.caption).foregroundStyle(Palette.muted)
             }
+            OriginalAudioSettingsView(assets: model.audioAssets, model: model, deviceID: game.deviceID)
             Panel(title: "REMINDERS / 本地提醒") {
                 Toggle(l("允许养成提醒"),isOn: Binding(get: { game.settings.notifications },set: { model.setNotifications($0) }))
                 Stepper(l("安静开始 \(game.settings.quietStart):00"),value: Binding(get: { game.settings.quietStart },set: { v in model.settings { $0.quietStart = v } }),in: 0...23)

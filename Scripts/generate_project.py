@@ -29,10 +29,10 @@ for file in resources:
     obj('ref:'+file,f'isa = PBXFileReference; lastKnownFileType = {filetype}; path = {q(file)}; sourceTree = SOURCE_ROOT;')
     obj('build:'+file,f'isa = PBXBuildFile; fileRef = {uid("ref:"+file)};')
 privacy_strings={
-    'zh-Hans':('用于发现附近玩家，并在双方确认后进行本地对战。','仅在主动开始Sandbox摇晃输入测试时读取加速度，数据不上传。'),
-    'zh-Hant':('用於尋找附近玩家，並在雙方確認後進行本機對戰。','僅在主動開始Sandbox搖晃輸入測試時讀取加速度，資料不會上傳。'),
-    'en':('Find nearby players and battle after both players confirm.','Read acceleration only during Sandbox motion input testing. Motion data is not uploaded.'),
-    'ja':('近くのプレイヤーを検索し、双方の確認後に対戦します。','Sandboxの振動入力テスト中のみ加速度を読み取ります。データは送信しません。')}
+    'zh-Hans':('用于发现附近玩家，并在双方确认后进行本地对战。','仅在运动输入训练中读取加速度、重力或步数，数据不上传。'),
+    'zh-Hant':('用於尋找附近玩家，並在雙方確認後進行本機對戰。','只在運動輸入訓練中讀取加速度、重力或步數，資料不會上傳。'),
+    'en':('Find nearby players and battle after both players confirm.','Read acceleration, gravity or steps during motion input training only. Motion data is not uploaded.'),
+    'ja':('近くのプレイヤーを検索し、双方の確認後に対戦します。','モーション入力トレーニング中のみ加速度、重力、歩数を読み取ります。データは送信しません。')}
 localized_refs=[]
 for language,strings in privacy_strings.items():
     path=f'iOS/Resources/{language}.lproj/InfoPlist.strings'
@@ -74,7 +74,7 @@ for config in ['Debug','Release']:
     obj('config:project:'+config,f'isa = XCBuildConfiguration; buildSettings = {settings(common)}; name = {config};')
     for target in ['app','uitest']:
         values=dict(PRODUCT_NAME='$(TARGET_NAME)',PRODUCT_BUNDLE_IDENTIFIER=capabilities['bundleIdentifier']+('.uitests' if target=='uitest' else ''),
-                    CURRENT_PROJECT_VERSION='7',MARKETING_VERSION='0.7.0',CODE_SIGN_STYLE='Automatic',
+                    CURRENT_PROJECT_VERSION='8',MARKETING_VERSION='0.8.0',CODE_SIGN_STYLE='Automatic',
                     TARGETED_DEVICE_FAMILY='1,2',SWIFT_EMIT_LOC_STRINGS='YES',
                     SUPPORTED_PLATFORMS='iphoneos iphonesimulator',SUPPORTS_MACCATALYST='NO')
         if target=='app':
@@ -133,7 +133,7 @@ plist=dict(CFBundleDevelopmentRegion='zh-Hans',CFBundleDisplayName='Digital Worl
     NSLocalNetworkUsageDescription='用于发现附近玩家，并在双方确认后进行本地对战。',
     NSBonjourServices=['_world-pets._tcp'],
     NSAppTransportSecurity={'NSAllowsLocalNetworking':True},
-    NSMotionUsageDescription='仅在主动开始Sandbox摇晃输入测试时读取加速度，数据不上传。',
+    NSMotionUsageDescription='仅在运动输入训练中读取加速度、重力或步数，数据不上传。',
     GameCenterEnabled=capabilities['gameCenter'],
     LSRequiresIPhoneOS=True,UIApplicationSceneManifest=dict(UIApplicationSupportsMultipleScenes=False),
     UILaunchScreen={},UISupportedInterfaceOrientations=['UIInterfaceOrientationPortrait'],

@@ -36,12 +36,24 @@ final class WorldViewModel: ObservableObject {
     @Published var libraryIndex = DeviceLibraryIndex()
     @Published var collectionEntries: [DigidexEntry] = []
     private var lastPersist = Date.distantPast
-    private var feedback = FeedbackEngine()
+    let audioAssets: OriginalAudioAssetManager
+    lazy var audio = OriginalAudioPlayer(manager: audioAssets)
+    private var hasPlayedPowerOn = false
     private let notifications = NotificationCoordinator()
     let cloud = CloudBackupCoordinator()
     private var animationTask: Task<Void, Never>?
 
     init() {
+        let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        #if DEBUG
+        let testing = ProcessInfo.processInfo.arguments.contains("--ui-testing")
+        let audioFolder = testing ? "OriginalAudio-UITests-" + UUID().uuidString : "OriginalAudio"
+        let audioDefaults = testing ? UserDefaults(suiteName: audioFolder)! : .standard
+        #else
+        let audioFolder = "OriginalAudio"
+        let audioDefaults = UserDefaults.standard
+        #endif
+        audioAssets = OriginalAudioAssetManager(directory: appSupport.appendingPathComponent(audioFolder), defaults: audioDefaults)
         do {
             let content = try ContentDatabase.bundled()
             database = content
@@ -165,46 +177,58 @@ final class WorldViewModel: ObservableObject {
     func start(eggID: String) {
         guard fatalError == nil else { return }
         createDevice(DMCV1Engine.deviceID)
-        message = "Ver.1 孵化已开始 · 8 秒后诞生"; play("evolution")
+        message = "Ver.1 孵化已开始 · 8 秒后诞生"; play("happy")
     }
     func refresh(now: Date = Date(), forceSave: Bool = false) {
         guard var game = state, let database, fatalError == nil else { return }
         do {
-            let wasCalling = hasCall,wasSleeping = game.pet.sleeping
+            let previous = game.pet
             let result = try TimeEngine.advance(&game, to: SandboxEngine.date(for: game,wallTime: now), database: database)
             state = game
-            if !wasCalling && hasCall { feedback.play(sound: game.settings.sound,haptics: game.settings.haptics,volume: game.settings.presentation.volume,cue: .attention) }
-            if wasSleeping && !game.pet.sleeping && game.pet.life == .alive { play("wake") }
+            syncAudio()
+            if previous.speciesID != game.pet.speciesID && game.dex[game.pet.speciesID] == .raised { emitAudio(.digidexCollected) }
+            careAudio(previous: previous, current: game.pet)
+            if previous.sleeping && !game.pet.sleeping && game.pet.life == .alive { play("wake") }
             if result.clockReversed { message = "检测到设备时间倒退，请恢复正确时间" }
-            else if result.deaths > 0 { message = "伙伴回归数据，记录已保留"; play("defeat") }
-            else if result.evolutions > 0 { message = "伙伴进化了！"; play("evolution") }
-            else if result.hatchings > 0 { message = "新生命诞生，开始照顾它吧"; play("happy") }
+            else if result.deaths > 0 { message = "伙伴回归数据，记录已保留"; emitAudio(.death); play("defeat") }
+            else if result.evolutions > 0 { message = "伙伴进化了！"; playEvolution() }
+            else if result.hatchings > 0 { message = "新生命诞生，开始照顾它吧"; audio.careSequence([.eggHatches, .birth]); play("happy") }
             if forceSave || now.timeIntervalSince(lastPersist) >= 60 { persist() }
             cloud.upload(model: self,force: false)
         } catch { alert = error.localizedDescription }
     }
     func care(_ action: CareAction) {
-        command { game, content, now in try GameEngine.perform(action, state: &game, database: content, at: now) }
-        guard alert == nil else { return }
+        let previous = state?.pet
+        guard command({ game, content, now in try GameEngine.perform(action, state: &game, database: content, at: now) }) else {
+            if case .feed = action { emitAudio(.refuseFood) }
+            return
+        }
         switch action {
-        case .feed(let food): feedingFoodID = food; message = "喂食完成"; play("eat")
-        case .clean: message = "环境清理完成"; play("clean")
-        case .medicine: message = "治疗完成"; play("medicine")
-        case .lights(let off): message = off ? "灯光已关闭" : "灯光已开启"
+        case .feed(let food):
+            feedingFoodID = food; message = "喂食完成"; play("eat")
+            var cues: [AudioEvent] = [.feeding]
+            if food == "meat" { cues.append(.eatMeat) }
+            if food == "protein" { cues.append(.eatPill) }
+            if let previous, previous.stats.fullness < 100, state?.pet.stats.fullness == 100 { cues.append(.full) }
+            audio.careSequence(cues)
+        case .clean: message = "环境清理完成"; emitAudio(.cleanWaste); play("clean")
+        case .medicine: message = "治疗完成"; emitAudio(.treatment); play("medicine")
+        case .lights(let off): message = off ? "灯光已关闭" : "灯光已开启"; if off { emitAudio(.lightsOff) }
         case .rest(let rest): message = rest ? "休息中，恢复能量" : "已结束手动休息；作息时间内仍会睡眠"
         case .freeze(let frozen): message = frozen ? "成长已暂停" : "成长已恢复"
-        case .rebirth: message = "新数码蛋开始孵化"; play("evolution")
+        case .rebirth: message = "新数码蛋开始孵化"; audio.careSequence([.rebirth, .eggAppears]); play("happy")
         case .selectPet: message = "已切换查看的伙伴"
         }
     }
     func beginTraining() {
         trainingScore = nil
-        command { game, _, now in try TrainingEngine.begin(&game, at: now) }
+        if command({ game, _, now in try TrainingEngine.begin(&game, at: now) }) { emitAudio(.trainingStart) }
     }
     func originalTraining(_ choice: String) {
-        command { game, content, now in
+        guard command({ game, content, now in
             trainingScore = try DMCV1Engine.train(&game,choice: choice,database: content,at: now)
-        }
+        }) else { return }
+        emitAudio(trainingScore.map { $0 >= 3 ? .trainingSuccess : .trainingFailure } ?? .attack)
         play(trainingScore.map { $0 >= 3 ? "victory" : "sad" } ?? "attack")
     }
     func openCareCommand() {
@@ -300,7 +324,7 @@ final class WorldViewModel: ObservableObject {
             guard let id = game.training?.id else { throw GameError.cannotAct("请先开始训练") }
             trainingScore = try TrainingEngine.tap(&game, sessionID: id, at: now)
         }
-        if let trainingScore { play(trainingScore >= 60 ? "victory" : "sad") }
+        if let trainingScore { emitAudio(trainingScore >= 60 ? .trainingSuccess : .trainingFailure); play(trainingScore >= 60 ? "victory" : "sad") }
         else { play("training") }
     }
     func cancelTraining() {
@@ -309,7 +333,7 @@ final class WorldViewModel: ObservableObject {
     func fight(_ opponent: String) {
         var pending: BattleRecord?
         if command({ game,content,now in pending = try BattleEngine.fight(&game,opponentID: opponent,database: content,at: now) }) { lastBattle = pending }
-        if let lastBattle { message = lastBattle.won ? "对战胜利 · 恢复食物 +1" : "伙伴受伤，请先治疗"; play(lastBattle.won ? "victory" : "hit") }
+        if let lastBattle { emitAudio(.battleStart); emitAudio(lastBattle.won ? .victory : .defeat); if lastBattle.won { emitAudio(.itemObtained) }; message = lastBattle.won ? "对战胜利 · 恢复食物 +1" : "伙伴受伤，请先治疗"; play(lastBattle.won ? "victory" : "hit") }
     }
     @discardableResult func saveConnection(_ result: ConnectionBattleResult,player: ConnectionFighter,opponent: ConnectionFighter) -> Bool {
         command { game,content,now in _ = try ConnectionEngine.apply(result,player: player,opponent: opponent,state: &game,database: content,at: now) }
@@ -322,6 +346,7 @@ final class WorldViewModel: ObservableObject {
             let result = try AdventureEngine.move(&game, dx: dx, dy: dy, database: content, at: now)
             message = result.message; encounter = result.encounter
         }
+        if alert == nil { emitAudio(.mapMove); if encounter != nil { emitAudio(.encounter) } }
     }
     func settings(_ change: (inout Settings) -> Void) {
         guard var game = state else { return }
@@ -355,7 +380,62 @@ final class WorldViewModel: ObservableObject {
         }
         notifications.schedule(worlds: worlds,database: database)
     }
-    func feedbackTap() { feedback.play(sound: state?.settings.sound ?? true, haptics: state?.settings.haptics ?? true,volume: state?.settings.presentation.volume ?? 0.55) }
+    func audioContext() -> AudioContext? {
+        let device = state?.deviceID ?? DMCV1Engine.deviceID
+        return .init(deviceID: device, series: audioAssets.settings(for: device).series,
+                     speciesID: state?.pet.isEgg == false ? species?.id : nil,
+                     stage: state?.pet.isEgg == true ? Stage.egg.rawValue : species?.stage.rawValue)
+    }
+
+    func syncAudio() {
+        guard let context = audioContext() else { return }
+        if let volume = state?.settings.presentation.volume, audioAssets.settings(for: context.deviceID).volumes[.sfx] == nil {
+            audioAssets.update(context.deviceID) { $0.volumes[.sfx] = volume }
+        }
+        audio.configure(context: context, enabled: state?.settings.sound ?? true)
+    }
+
+    func audioActive(_ active: Bool) {
+        syncAudio()
+        audio.setActive(active)
+        if active && !hasPlayedPowerOn {
+            hasPlayedPowerOn = true
+            emitAudio(.powerOn)
+        }
+    }
+
+    func emitAudio(_ event: AudioEvent) { audio.emit(event) }
+
+    func feedbackTap() {
+        if state?.settings.haptics ?? true { audio.keyFeedback() }
+        emitAudio(.keyPress)
+    }
+
+    func playEvolution(jogress: Bool = false) {
+        guard var context = audioContext() else { return }
+        let event: AudioEvent
+        if jogress { event = .jogress }
+        else if let stage = species?.stage, stage == .mega || stage == .ultra { event = .ultimateEvolution }
+        else if species?.stage == .ultimate { event = .superEvolution }
+        else { event = .evolution }
+        context.evolutionType = event
+        syncAudio()
+        audio.evolution(context)
+        play("evolution")
+    }
+
+    private func careAudio(previous: Pet, current: Pet) {
+        guard previous.id == current.id else { return }
+        if (previous.dmc?.hungerCall == nil && current.dmc?.hungerCall != nil) ||
+           (previous.stats.fullness > 0 && current.stats.fullness == 0) { emitAudio(.hunger) }
+        if (previous.dmc?.strengthCall == nil && current.dmc?.strengthCall != nil) ||
+           (previous.dmc?.sleepCall == nil && current.dmc?.sleepCall != nil) { emitAudio(.attention) }
+        if !previous.sleeping && current.sleeping { emitAudio(.sleep) }
+        if previous.sleeping && !current.sleeping && current.life == .alive { emitAudio(.wake) }
+        if current.stats.waste > previous.stats.waste { emitAudio(.waste) }
+        if !previous.stats.sick && current.stats.sick { emitAudio(.sickness) }
+        if (previous.stats.sick || previous.stats.injured) && !current.stats.sick && !current.stats.injured { emitAudio(.recovered) }
+    }
     func inspectBackup(_ url: URL) throws -> GameState {
         guard let store else { throw GameError.invalidData("内容数据库不可用，无法验证备份") }
         let granted = url.startAccessingSecurityScopedResource()
@@ -384,7 +464,17 @@ final class WorldViewModel: ObservableObject {
     }
     @discardableResult func commit(_ game: GameState) throws -> Bool {
         guard let store else { throw GameError.invalidData("存档目录不可用") }
-        try store.save(game); state = game; lastPersist = Date(); refreshCollection(); return true
+        let oldState = state
+        try store.save(game)
+        state = game
+        lastPersist = Date()
+        refreshCollection()
+        syncAudio()
+        if let prior = oldState?.pet { careAudio(previous: prior, current: game.pet) }
+        if let oldState, game.dex.contains(where: { $0.value == .raised && oldState.dex[$0.key] != .raised }) {
+            emitAudio(.digidexCollected)
+        }
+        return true
     }
     @discardableResult private func command(_ operation: (inout GameState,ContentDatabase,Date) throws -> Void) -> Bool {
         alert = nil
@@ -393,21 +483,18 @@ final class WorldViewModel: ObservableObject {
         do {
             try TimeEngine.advance(&game,to: now,database: database)
             guard now >= game.highWatermark else { throw GameError.cannotAct("设备时间早于存档时间，请恢复正确时间") }
-        } catch { alert = error.localizedDescription; return false }
+        } catch { alert = error.localizedDescription; emitAudio(.error); return false }
         let elapsed = game
         do { try operation(&game,database,now) }
         catch {
-            do { try commit(elapsed) } catch { alert = "存档写入失败：\(error.localizedDescription)"; return false }
-            alert = error.localizedDescription; return false
+            do { try commit(elapsed) } catch { alert = "存档写入失败：\(error.localizedDescription)"; emitAudio(.error); return false }
+            alert = error.localizedDescription; emitAudio(.error); return false
         }
-        do { try commit(game); feedbackTap(); return true }
-        catch { alert = "存档写入失败：\(error.localizedDescription)"; return false }
+        do { try commit(game); return true }
+        catch { alert = "存档写入失败：\(error.localizedDescription)"; emitAudio(.error); return false }
     }
     func play(_ value: String) {
         animationTask?.cancel(); animation = value
-        let cues: [String:FeedbackEngine.Cue] = ["eat":.feed,"clean":.clean,"medicine":.medicine,"evolution":.evolution,"victory":.victory,"death":.defeat,"defeat":.defeat]
-        let cue = cues[value]
-        if let cue,let game = state { feedback.play(sound: game.settings.sound,haptics: game.settings.haptics,volume: game.settings.presentation.volume,cue: cue) }
         animationTask = Task { [weak self] in
             try? await Task.sleep(for: .seconds(value == "evolution" ? 3 : (value == "eat" || value == "refuse") ? self?.feedingDuration ?? 2.4 : 1.6))
             guard !Task.isCancelled else { return }

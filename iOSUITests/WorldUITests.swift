@@ -1,6 +1,29 @@
 import XCTest
 
 final class WorldUITests: XCTestCase {
+    func testAudioLibraryReportsMissingOriginalAsset() {
+        let app = launch()
+        openSettings(app)
+        let library = app.buttons["originalAudioLibrary"]
+        scrollTo(library, in: app); library.tap()
+        XCTAssertTrue(app.staticTexts["missingOriginalAudio"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["missingOriginalAudio"].label, "Missing Original Asset")
+        XCTAssertFalse(app.buttons["导入 ZIP 音频包"].isEnabled)
+    }
+
+    func testVirtualMotionTrainingSubmitsFiveInputs() {
+        let app = launch()
+        openSettings(app)
+        let training = app.buttons["sensorTrainingSettings"]
+        scrollTo(training, in: app); training.tap()
+        let start = app.buttons["beginSensorTraining"]
+        XCTAssertTrue(start.waitForExistence(timeout: 5)); start.tap()
+        let input = app.buttons["sensorVirtualA"]
+        XCTAssertTrue(input.waitForExistence(timeout: 5))
+        for _ in 0..<5 { input.tap() }
+        XCTAssertTrue(app.staticTexts["sensorTrainingResult"].waitForExistence(timeout: 5))
+    }
+
     func testRoomClientBattlesThroughRealRelay() throws {
         let app = launch(); app.buttons["action-CONNECTION"].tap()
         let server = app.textFields["roomServer"]

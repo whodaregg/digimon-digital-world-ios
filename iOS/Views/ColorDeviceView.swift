@@ -42,18 +42,24 @@ struct ColorDeviceView: View {
                 }.frame(width: 40)
             }
             HStack {
-                Circle().fill(.black.opacity(0.5)).frame(width: 5,height: 5)
+                TimelineView(.periodic(from: .now, by: 0.35)) { timeline in
+                    Circle()
+                        .fill(model.hasCall ? Color.red : model.isFeeding ? Color.orange : .black.opacity(0.5))
+                        .opacity(model.hasCall && !reduceMotion && Int(timeline.date.timeIntervalSince1970 / 0.35) % 2 == 0 ? 0.25 : 1)
+                        .frame(width: 5, height: 5)
+                        .accessibilityHidden(true)
+                }
                 Spacer(); Text(l("A SELECT  B OK  C BACK")).font(PixelFont.font(8,language: .english)).foregroundStyle(.black.opacity(0.6)); Spacer()
                 Circle().fill(.black.opacity(0.5)).frame(width: 5,height: 5)
             }
         }.padding(14)
             .background(shellColor,in: RoundedRectangle(cornerRadius: 24))
             .overlay(RoundedRectangle(cornerRadius: 24).stroke(.black.opacity(0.45),lineWidth: 3))
-            .onChange(of: model.lastQuest?.records.first?.id) { _,_ in if model.lastQuest == nil { replay.stop(); model.lcdBattleFinished = false } else { beginReplay() } }
+            .onChange(of: model.lastQuest?.records.first?.id) { _,_ in if model.lastQuest == nil { replay.stop(); model.audio.battleMusic(false); model.lcdBattleFinished = false } else { beginReplay() } }
             .onChange(of: model.lcdSkipRequest) { _,_ in replay.skip() }
-            .onChange(of: replay.finished) { _,done in model.lcdBattleFinished = done }
+            .onChange(of: replay.finished) { _,done in model.lcdBattleFinished = done; if done { model.audio.battleMusic(false) } }
             .onAppear { beginReplay() }
-            .onDisappear { replay.stop(); model.lcd.cancelTouches() }
+            .onDisappear { replay.stop(); model.audio.battleMusic(false); model.lcd.cancelTouches() }
     }
     private var shellColor: Color {
         switch model.state?.settings.presentation.shell {
@@ -250,6 +256,8 @@ struct ColorDeviceView: View {
     private func beginReplay() {
         guard let result = model.lastQuest,model.lcd.screen == .battle else { return }
         replay.stop(); model.lcdBattleFinished = false
+        replay.scene.onAudio = { model.emitAudio($0) }
+        model.audio.battleMusic(true)
         replay.start(result,database: model.database,mode: model.display,reduceMotion: reduceMotion)
     }
 }

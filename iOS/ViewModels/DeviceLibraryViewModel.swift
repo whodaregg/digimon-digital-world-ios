@@ -46,7 +46,7 @@ extension WorldViewModel {
             if style == .sandbox { game.developerModifiedAt = game.highWatermark }
             try saveCurrentSlot()
             let slot = try library.add(game,to: &libraryIndex,at: Date())
-            install(game,slot: slot); message = "已创建独立设备档案"
+            install(game,slot: slot); message = "已创建独立设备档案"; syncAudio(); emitAudio(.eggAppears)
         } catch { alert = error.localizedDescription }
     }
     func activateSlot(_ id: UUID) {

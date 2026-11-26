@@ -91,8 +91,6 @@ struct PlaySettingsView: View {
                     .disabled(model.isClassic).accessibilityIdentifier("touchMode")
                 Text(l("A选择 · B确认 · C返回；C长按2秒打开LCD设置，A＋C切换音效，死亡时A＋B重新孵化。按键支持多指组合与防重复触发。"))
                     .font(.caption).foregroundStyle(Palette.muted)
-                Text(l(model.text(.volume)))
-                Slider(value: Binding(get: { state.settings.presentation.volume },set: { value in model.editPresentation { $0.volume = value } }),in: 0...1)
                 Text(l(model.text(.contrast)))
                 Slider(value: Binding(get: { state.settings.presentation.contrast },set: { value in model.editPresentation { $0.contrast = value } }),in: 0.5...1.5)
                 Text(l(model.text(.brightness)))
@@ -108,11 +106,13 @@ struct PlaySettingsView: View {
                     }.buttonStyle(.plain).accessibilityIdentifier("choose-language-\(language.rawValue)")
                 }
             }
+            if model.isOriginal && !model.isClassic {
+                Button("运动输入训练") { showMotion = true }.accessibilityIdentifier("sensorTrainingSettings")
+            }
             if model.isSandbox {
                 Panel(title: "SANDBOX") {
                     Stepper(l("\(minutes) MIN"),value: $minutes,in: 1...43_200,step: 10)
                     Button(l(model.text(.timeAdvance))) { model.advanceSandbox(minutes: minutes) }.accessibilityIdentifier("sandboxAdvance")
-                    Button(l("摇晃训练输入测试")) { showMotion = true }
                     Button(l(model.text(.returnFormal))) { model.returnToFormal() }.accessibilityIdentifier("returnFormal")
                     Text(l("隐藏开发入口提供角色、道具与数值编辑；这里的时间推进调用同一养成引擎，不改变系统时钟。"))
                         .font(.caption).foregroundStyle(Palette.muted)
@@ -125,7 +125,7 @@ struct PlaySettingsView: View {
             }
         }
         }.sheet(isPresented: $showMotion) {
-            NavigationStack { MotionTrainingView(model: model).padding().background(Palette.background).navigationTitle(l("Sandbox"))
+            NavigationStack { MotionTrainingView(model: model).padding().background(Palette.background).navigationTitle("运动输入训练")
                 .toolbar { ToolbarItem(placement: .topBarTrailing) { Button(l("完成")) { showMotion = false } } } }
         }
         .confirmationDialog(l("确认重置当前设备？"),isPresented: $confirmReset,titleVisibility: .visible) {

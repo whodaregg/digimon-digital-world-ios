@@ -1,2 +1,2 @@
 "NSLocalNetworkUsageDescription" = "用于发现附近玩家，并在双方确认后进行本地对战。";
-"NSMotionUsageDescription" = "仅在主动开始Sandbox摇晃输入测试时读取加速度，数据不上传。";
+"NSMotionUsageDescription" = "仅在运动输入训练中读取加速度、重力或步数，数据不上传。";

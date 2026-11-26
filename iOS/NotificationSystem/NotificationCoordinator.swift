@@ -17,7 +17,6 @@ final class NotificationCoordinator {
                 if TimeEngine.isSleepHour(hour,sleep: game.settings.quietStart,wake: game.settings.quietEnd) { continue }
                 let content = UNMutableNotificationContent()
                 content.title = "Digital World"; content.body = GameLocalization.text(reminder.message,language: game.settings.presentation.language)
-                if game.settings.sound { content.sound = .default }
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: max(1,reminder.date.timeIntervalSince(now)),repeats: false)
                 requests.append((reminder.date,UNNotificationRequest(identifier: "care.\(id).\(reminder.kind)",content: content,trigger: trigger)))
             }
