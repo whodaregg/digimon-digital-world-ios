@@ -15,3 +15,7 @@ PNG原始字节与配色保留，三种显示模式可继续切换。动作沿�
 用户上传包的SHA-256、角色名和稳定ID在 `Scripts/Data/archive-roster.json`。每份图片的SHA-256、尺寸、非空帧、原路径和来源URL在 `sprite-sources.json`。上游第三方权利说明继续有效，新增图片保留该声明，不改变原始素材许可。
 
 [固定版本素材目录](https://github.com/furudbat/wayland-vpets/tree/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/dmall) · [素材权利声明](https://github.com/furudbat/wayland-vpets/blob/2b05afdaa5a2ebc306b22b4950d35bd55d62c4e0/assets/COPYRIGHT.md)
+
+## 验证
+
+94项核心、23项原生界面和4项中继测试，以及Debug/Release模拟器编译已通过。详细范围见[实测记录](VALIDATION.md)。
