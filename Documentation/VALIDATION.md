@@ -1,5 +1,16 @@
 # 实测记录
 
+## v0.9.1 真机IPA
+
+2026-11-28（Australia/Sydney）按用户要求打包并发布。[真机打包任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/46035094971)使用源码 `5b3e0ea653da7207a4b348f5d01e950847737845`，应用和测试代码与下述通过96项核心及24项界面的提交一致。
+
+- 真机iPhoneOS SDK Release编译通过，版本0.9.1、构建10、arm64、最低iOS17.0。
+- 从发布页重新下载后核对ZIP完整性、Info.plist、Mach-O平台和架构、内容清单、全部879份PNG与19份WAV的SHA-256，均一致。
+- IPA为8,516,570字节，SHA-256为 `bdeb570625b69948e32ad7e3f4b89b1bc29ae4bd12b1f1ba628d40803d5a0215`。[下载与校验文件](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.9.1)
+
+安装包未签名，侧装前需自行签名。真实iPhone的安装、扬声器、静音与蓝牙听感待复测。
+
+
 ## v0.9.1 内置社区录音
 
 2026-11-28（Australia/Sydney）核对提交 `30c4cef6aa86353af96be15d55cf6dafba7668d2`。核心、中继、iOS界面和Release任务均成功，后续仅整理文档。[完整验收任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/46021497463)
@@ -9,7 +20,7 @@
 - 4项中继测试、Debug应用与测试程序编译、Release模拟器编译均通过。
 - 19份WAV的SHA-256、时长、PCM格式及有效音频信号已检查，原始字节保持不变。879份角色PNG、工程和872条既有翻译校验通过。
 
-此结果确认模拟器可以启动播放，真实iPhone的扬声器、静音开关、蓝牙、来电恢复与听感仍待复测。按用户此前要求，本轮没有生成新IPA，现有v0.8.0下载包不包含内置社区录音。
+此结果确认模拟器可以启动播放，真实iPhone的扬声器、静音开关、蓝牙、来电恢复与听感仍待复测。本次源码验证之后，按用户打包要求发布了上文v0.9.1 IPA。
 
 
 ## v0.9 上传图集养成

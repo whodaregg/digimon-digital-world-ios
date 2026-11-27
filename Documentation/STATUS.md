@@ -2,7 +2,7 @@
 
 v0.9.1增加19份内置社区原机录音，默认混合模式可用。设置提供开关、试听和来源说明。逐文件机型仍待核对。[社区录音说明](COMMUNITY_AUDIO.md)
 
-v0.9 已接入用户上传的844份图集，通过独立的「数码兽图集养成」档案使用通用养成、训练和战斗。该入口可从「机型与规则」进入，详细范围见[上传图集养成](ARCHIVE_CARE.md)。角色阶段与进化路线仍待补充。最新已发布IPA为v0.8.0，新增图集需后续打包。
+v0.9 已接入用户上传的844份图集，通过独立的「数码兽图集养成」档案使用通用养成、训练和战斗。该入口可从「机型与规则」进入，详细范围见[上传图集养成](ARCHIVE_CARE.md)。角色阶段与进化路线仍待补充。最新已发布IPA为v0.9.1，包含新增图集及社区录音。
 
 当前源码v0.9，默认仍为Digital Monster COLOR Ver.1，并可新增独立COLOR Ver.2。两者有各自角色名单、进化条件、作息、力量和8区顺序Quest。旧版COLOR LAB档案继续按旧实验规则读取、备份和恢复。
 
@@ -18,4 +18,4 @@ v0.8 支持导入用户有权使用的设备音效、动漫音效、音乐、语
 
 仍未完成：其它世代的完整可玩规则和原版素材、其它Jogress组合、Tag/Colosseum、DMX XAI、真实Pendulum训练/战斗规则、实体机物理通信，以及全设备性能/无障碍和长期养成验收。其它机型目录继续标记待核验，不以换壳或虚构参数冒充完整机型。增强及Sandbox模式的手机运动训练支持加速度摇晃、重力倾斜、真实计步与虚拟A/B。
 
-[28项清单](FEATURE_STATUS.md)和[验证记录](VALIDATION.md)记录实际代码、通过检查和外部依赖。v0.8.0 未签名侧装测试包已发布。[发布页](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.8.0)
+[28项清单](FEATURE_STATUS.md)和[验证记录](VALIDATION.md)记录实际代码、通过检查和外部依赖。v0.9.1 未签名侧装测试包已发布。[发布页](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.9.1)

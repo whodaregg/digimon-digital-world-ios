@@ -28,11 +28,11 @@ v0.9.1 通过了 96 项核心、24 项界面、4 项中继测试及 Debug/Releas
 
 ## 下载IPA
 
-已发布 v0.8.0 侧装测试包，包含 COLOR Ver.2、音频资源库及手机运动训练。历次版本可在发布页查看。
+已发布 v0.9.1 侧装测试包，包含新增844份图集养成、19份内置社区录音、COLOR Ver.2及手机运动训练。历次版本可在发布页查看。
 
-[下载 v0.8.0 未签名 IPA](https://github.com/whodaregg/digimon-digital-world-ios/releases/download/v0.8.0/DigitalWorld-v0.8.0-unsigned.ipa) · [发布页与校验文件](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.8.0)
+[下载 v0.9.1 未签名 IPA](https://github.com/whodaregg/digimon-digital-world-ios/releases/download/v0.9.1/DigitalWorld-v0.9.1-unsigned.ipa) · [发布页与校验文件](https://github.com/whodaregg/digimon-digital-world-ios/releases/tag/v0.9.1)
 
-文件大小为 6,948,743 字节，SHA-256 为 `4c06d255282076fd4a0e1ff84de397a12c21c08eadea3cf893d03593dbe80b94`。
+文件大小为 8,516,570 字节，SHA-256 为 `bdeb570625b69948e32ad7e3f4b89b1bc29ae4bd12b1f1ba628d40803d5a0215`。
 
 适用于真机arm64、iOS17及以上。安装包尚未签名，需要使用自己的签名工具与签名资料签名后安装，不能直接点开安装。发布页的Source code压缩包为源码，安装请下载`.ipa`文件。
 
