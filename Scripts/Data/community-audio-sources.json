@@ -1,0 +1,141 @@
+{
+  "repository": "https://github.com/joeltco/tuipet",
+  "commit": "b4e3621a55f5906fc7a55107cce3eb7faaf5a60c",
+  "recordingCredits": "DVPet community archive; PenOG/DMOG recording attribution to BladeSabre, per DVPet public credits. Individual device assignments unverified.",
+  "creditsURL": "https://withthewill.net/threads/digimon-v-pet-fangame-for-pc-alpha.18418/",
+  "files": {
+    "alarm": {
+      "file": "community-alarm.wav",
+      "sha256": "28a5235cfc5715fe257c705d4d19c4c3f8a8481dc2245e51f69f9a20ab4ef918",
+      "duration": 0.500453514739229,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/alarm.wav",
+      "bytes": 22114
+    },
+    "angry": {
+      "file": "community-angry.wav",
+      "sha256": "0a0844ec807c87cb006ee7cd3a6339b3db89a4aadd34ce7067f884aa1be6676c",
+      "duration": 1.3750566893424037,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/angry.wav",
+      "bytes": 60684
+    },
+    "attack": {
+      "file": "community-attack.wav",
+      "sha256": "5b5b5f912eefdf45688b9a8063b308b4265352414235dca518261e405e7dc6fa",
+      "duration": 0.7,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/attack.wav",
+      "bytes": 30914
+    },
+    "attackHit": {
+      "file": "community-attackHit.wav",
+      "sha256": "c4e71ca291bcc8487e82831a09290c5e0ecd25a0b19f9d3c6741d2644982e5bb",
+      "duration": 0.6,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/attackHit.wav",
+      "bytes": 26504
+    },
+    "click": {
+      "file": "community-click.wav",
+      "sha256": "e2ca7a73f1f1ab15cb265f70d4b24af3ad441ae4c2c227885482d20304931a2f",
+      "duration": 0.3750566893424036,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/click.wav",
+      "bytes": 16584
+    },
+    "eat": {
+      "file": "community-eat.wav",
+      "sha256": "e2ca7a73f1f1ab15cb265f70d4b24af3ad441ae4c2c227885482d20304931a2f",
+      "duration": 0.3750566893424036,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/eat.wav",
+      "bytes": 16584
+    },
+    "error": {
+      "file": "community-error.wav",
+      "sha256": "acb693c0cbdfe2393dcf919284dbde0027cb8ebeefaa2566140fb2f53d72999d",
+      "duration": 0.6,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/error.wav",
+      "bytes": 26504
+    },
+    "evolve": {
+      "file": "community-evolve.wav",
+      "sha256": "5726d14aa705caa4ccb122363b5e20e416217af640d594e6485a9d42e8e3b479",
+      "duration": 2.939002267573696,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/evolve.wav",
+      "bytes": 129654
+    },
+    "happy": {
+      "file": "community-happy.wav",
+      "sha256": "8c0aeabf4904180016b2cc8a27154af710ab4515cf923341faae9f85aab5a784",
+      "duration": 1.000453514739229,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/happy.wav",
+      "bytes": 44164
+    },
+    "hatch": {
+      "file": "community-hatch.wav",
+      "sha256": "0d2b30a54af6f02a5369374e91629f3a37138bda8d30e3c3b3e5260fc17b52a7",
+      "duration": 1.3850340136054422,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/hatch.wav",
+      "bytes": 61124
+    },
+    "jogress": {
+      "file": "community-jogress.wav",
+      "sha256": "a9045b3bbff28e1e793a8d098096ce09ecf0bb1fc6626a1673b17e8d8bc4f1c3",
+      "duration": 0.9070294784580499,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/jogress.wav",
+      "bytes": 40044
+    },
+    "lose": {
+      "file": "community-lose.wav",
+      "sha256": "0a0844ec807c87cb006ee7cd3a6339b3db89a4aadd34ce7067f884aa1be6676c",
+      "duration": 1.3750566893424037,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/lose.wav",
+      "bytes": 60684
+    },
+    "poop": {
+      "file": "community-poop.wav",
+      "sha256": "acb693c0cbdfe2393dcf919284dbde0027cb8ebeefaa2566140fb2f53d72999d",
+      "duration": 0.6,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/poop.wav",
+      "bytes": 26504
+    },
+    "refuse": {
+      "file": "community-refuse.wav",
+      "sha256": "28a5235cfc5715fe257c705d4d19c4c3f8a8481dc2245e51f69f9a20ab4ef918",
+      "duration": 0.500453514739229,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/refuse.wav",
+      "bytes": 22114
+    },
+    "select": {
+      "file": "community-select.wav",
+      "sha256": "b2aac3b3762db08af92d540311d6142c48026a32cb8008b787da7a00b525d7e0",
+      "duration": 0.039909297052154194,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/select.wav",
+      "bytes": 1804
+    },
+    "startBattle": {
+      "file": "community-startBattle.wav",
+      "sha256": "af72c2bd6300ae5d35ce57bd2a23998d45a884b860240366df4726ff2f631072",
+      "duration": 2.2501133786848073,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/startBattle.wav",
+      "bytes": 99274
+    },
+    "strongAttack": {
+      "file": "community-strongAttack.wav",
+      "sha256": "26ca779d57d3273fec64e0ad4647ca5ee2cd196e0b6f39579b35a7128974bf37",
+      "duration": 0.5625850340136055,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/strongAttack.wav",
+      "bytes": 24854
+    },
+    "wash": {
+      "file": "community-wash.wav",
+      "sha256": "dbeccc8c272d0a34f5e0123a45f1d3081de4937e6f97424d735d57abb92cb2fa",
+      "duration": 0.2,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/wash.wav",
+      "bytes": 8864
+    },
+    "win": {
+      "file": "community-win.wav",
+      "sha256": "8c0aeabf4904180016b2cc8a27154af710ab4515cf923341faae9f85aab5a784",
+      "duration": 1.000453514739229,
+      "url": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/win.wav",
+      "bytes": 44164
+    }
+  }
+}

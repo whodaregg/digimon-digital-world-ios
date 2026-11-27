@@ -23,6 +23,7 @@ struct DeviceAudioPreferences: Codable, Equatable {
     var mode: AudioMode = .hybrid
     var series: AudioSeries?
     var respectSilentSwitch = true
+    var communityRecordings: Bool? = nil
     var volumes: [AudioChannel: Double] = [:]
 
     func volume(_ channel: AudioChannel) -> Double {
@@ -50,6 +51,8 @@ final class OriginalAudioAssetManager: ObservableObject {
     @Published private(set) var available: Set<String> = []
     @Published private(set) var preferences: [String: DeviceAudioPreferences] = [:]
     @Published private(set) var loadingError: String?
+    private var bundledAssets: [OriginalAudioAsset] = []
+    private var bundledAvailable: Set<String> = []
     private let directory: URL
     private let defaults: UserDefaults
     private let preferenceKey = "originalAudio.preferences.v1"
@@ -69,6 +72,20 @@ final class OriginalAudioAssetManager: ObservableObject {
     init(directory: URL, defaults: UserDefaults = .standard) {
         self.directory = directory
         self.defaults = defaults
+        do {
+            let pack = try JSONDecoder().decode(OriginalAudioManifest.self, from: BundledAudioLibrary.manifestData())
+            guard pack.version == 1, pack.assets.allSatisfy({ $0.mapping.category == .communityRecording && $0.mapping.isValid })
+            else { throw AudioImportError.invalidMapping }
+            bundledAssets = pack.assets
+            for asset in bundledAssets {
+                guard let url = BundledAudioLibrary.fileURL(asset.originalFilename),
+                      let data = try? Self.read(url, limit: AudioZIP.maxFileBytes),
+                      Self.hash(data) == asset.sha256 else { continue }
+                bundledAvailable.insert(asset.storageName)
+            }
+            available = bundledAvailable
+        } catch { loadingError = "社区录音载入失败：\(error.localizedDescription)" }
+
         if let data = defaults.data(forKey: preferenceKey),
            let values = try? JSONDecoder().decode([String: DeviceAudioPreferences].self, from: data) {
             preferences = values
@@ -114,7 +131,19 @@ final class OriginalAudioAssetManager: ObservableObject {
     private static func isHash(_ hash: String) -> Bool {
         hash.count == 64 && hash.utf8.allSatisfy { (48...57).contains($0) || (97...102).contains($0) }
     }
-    func file(for asset: OriginalAudioAsset) -> URL { directory.appendingPathComponent(asset.storageName) }
+    func file(for asset: OriginalAudioAsset) -> URL {
+        if bundledAssets.contains(where: { $0.id == asset.id }),
+           let url = BundledAudioLibrary.fileURL(asset.originalFilename) { return url }
+        return directory.appendingPathComponent(asset.storageName)
+    }
+
+    var installedAssets: [OriginalAudioAsset] { manifest.assets + bundledAssets }
+    var communityAssetCount: Int {
+        Set(bundledAssets.filter { bundledAvailable.contains($0.storageName) }.map(\.originalFilename)).count
+    }
+    func communityAsset(for event: AudioEvent) -> OriginalAudioAsset? {
+        bundledAssets.first { $0.mapping.event == event && bundledAvailable.contains($0.storageName) }
+    }
 
     func scan(verifyHashes: Bool = true) {
         var checked: [String: Bool] = [:]
@@ -127,12 +156,13 @@ final class OriginalAudioAssetManager: ObservableObject {
                 checked[asset.storageName] = FileManager.default.fileExists(atPath: url.path)
             }
         }
-        available = Set(checked.compactMap { $0.value ? $0.key : nil })
+        available = bundledAvailable.union(checked.compactMap { $0.value ? $0.key : nil })
     }
 
     func resolve(_ event: AudioEvent, context: AudioContext) -> OriginalAudioAsset? {
         let mode = settings(for: context.deviceID).mode
-        let candidates = manifest.assets.compactMap { asset -> (OriginalAudioAsset, Int)? in
+        let includeCommunity = settings(for: context.deviceID).communityRecordings ?? true
+        let candidates = (manifest.assets + (includeCommunity ? bundledAssets : [])).compactMap { asset -> (OriginalAudioAsset, Int)? in
             guard available.contains(asset.storageName),
                   let score = asset.mapping.score(for: event, mode: mode, context: context) else { return nil }
             return (asset, score)
@@ -180,7 +210,7 @@ final class OriginalAudioAssetManager: ObservableObject {
         for (name, originalMapping, bytes) in entries {
             var mapping = originalMapping
             mapping.id = replacing ?? UUID()
-            guard mapping.isValid else { throw AudioImportError.invalidMapping }
+            guard mapping.isValid, mapping.category != .communityRecording else { throw AudioImportError.invalidMapping }
             let format = URL(fileURLWithPath: name).pathExtension.lowercased()
             guard Self.formats.contains(format),
                   let probe = try? AVAudioPlayer(data: bytes, fileTypeHint: format == "aac" ? "public.aac-audio" : nil),

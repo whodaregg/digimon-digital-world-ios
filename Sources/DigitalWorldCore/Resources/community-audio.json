@@ -1,0 +1,396 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "mapping": {
+        "id": "cb7dc6c3-f20b-5e09-b4d8-df736dd741ba",
+        "event": "keyPress",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/click.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-click.wav",
+      "format": "wav",
+      "duration": 0.3750566893424036,
+      "sha256": "e2ca7a73f1f1ab15cb265f70d4b24af3ad441ae4c2c227885482d20304931a2f"
+    },
+    {
+      "mapping": {
+        "id": "2ae390d3-781f-536e-b349-5d9ed8fecd9a",
+        "event": "menuSelect",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/select.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-select.wav",
+      "format": "wav",
+      "duration": 0.039909297052154194,
+      "sha256": "b2aac3b3762db08af92d540311d6142c48026a32cb8008b787da7a00b525d7e0"
+    },
+    {
+      "mapping": {
+        "id": "c1e7b64f-bc39-57af-af14-f7097606a9ca",
+        "event": "confirm",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/select.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-select.wav",
+      "format": "wav",
+      "duration": 0.039909297052154194,
+      "sha256": "b2aac3b3762db08af92d540311d6142c48026a32cb8008b787da7a00b525d7e0"
+    },
+    {
+      "mapping": {
+        "id": "247df76f-40f1-5a00-a7fc-bfa6bb826727",
+        "event": "error",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/error.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-error.wav",
+      "format": "wav",
+      "duration": 0.6,
+      "sha256": "acb693c0cbdfe2393dcf919284dbde0027cb8ebeefaa2566140fb2f53d72999d"
+    },
+    {
+      "mapping": {
+        "id": "12cf0eb7-42e9-5bb7-a57f-1cf497799a69",
+        "event": "eggHatches",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/hatch.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-hatch.wav",
+      "format": "wav",
+      "duration": 1.3850340136054422,
+      "sha256": "0d2b30a54af6f02a5369374e91629f3a37138bda8d30e3c3b3e5260fc17b52a7"
+    },
+    {
+      "mapping": {
+        "id": "031867f1-2767-53f4-8f8e-c334b6d30630",
+        "event": "attention",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/alarm.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-alarm.wav",
+      "format": "wav",
+      "duration": 0.500453514739229,
+      "sha256": "28a5235cfc5715fe257c705d4d19c4c3f8a8481dc2245e51f69f9a20ab4ef918"
+    },
+    {
+      "mapping": {
+        "id": "c48104f6-a9ff-5d79-89fc-a8d8a28723f9",
+        "event": "hunger",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/alarm.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-alarm.wav",
+      "format": "wav",
+      "duration": 0.500453514739229,
+      "sha256": "28a5235cfc5715fe257c705d4d19c4c3f8a8481dc2245e51f69f9a20ab4ef918"
+    },
+    {
+      "mapping": {
+        "id": "03f0197a-9e8d-5e74-9992-3a22d6811ab7",
+        "event": "feeding",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/eat.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-eat.wav",
+      "format": "wav",
+      "duration": 0.3750566893424036,
+      "sha256": "e2ca7a73f1f1ab15cb265f70d4b24af3ad441ae4c2c227885482d20304931a2f"
+    },
+    {
+      "mapping": {
+        "id": "c2b6fab1-cb82-5fb4-b17a-ea9cef9f1ecc",
+        "event": "eatMeat",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/eat.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-eat.wav",
+      "format": "wav",
+      "duration": 0.3750566893424036,
+      "sha256": "e2ca7a73f1f1ab15cb265f70d4b24af3ad441ae4c2c227885482d20304931a2f"
+    },
+    {
+      "mapping": {
+        "id": "9e3c847f-deaf-54c8-b9f7-c8d5e3aad7b0",
+        "event": "eatPill",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/eat.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-eat.wav",
+      "format": "wav",
+      "duration": 0.3750566893424036,
+      "sha256": "e2ca7a73f1f1ab15cb265f70d4b24af3ad441ae4c2c227885482d20304931a2f"
+    },
+    {
+      "mapping": {
+        "id": "b5549d7c-145b-5f43-becf-ad9ff30473ee",
+        "event": "refuseFood",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/refuse.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-refuse.wav",
+      "format": "wav",
+      "duration": 0.500453514739229,
+      "sha256": "28a5235cfc5715fe257c705d4d19c4c3f8a8481dc2245e51f69f9a20ab4ef918"
+    },
+    {
+      "mapping": {
+        "id": "c8ecac34-613c-547b-b580-efe0b2976890",
+        "event": "waste",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/poop.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-poop.wav",
+      "format": "wav",
+      "duration": 0.6,
+      "sha256": "acb693c0cbdfe2393dcf919284dbde0027cb8ebeefaa2566140fb2f53d72999d"
+    },
+    {
+      "mapping": {
+        "id": "f0afbac3-eb5a-520f-ad92-685d953d798b",
+        "event": "cleanWaste",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/wash.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-wash.wav",
+      "format": "wav",
+      "duration": 0.2,
+      "sha256": "dbeccc8c272d0a34f5e0123a45f1d3081de4937e6f97424d735d57abb92cb2fa"
+    },
+    {
+      "mapping": {
+        "id": "838456d1-f6ed-502f-8896-8391e7d0c717",
+        "event": "trainingSuccess",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/happy.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-happy.wav",
+      "format": "wav",
+      "duration": 1.000453514739229,
+      "sha256": "8c0aeabf4904180016b2cc8a27154af710ab4515cf923341faae9f85aab5a784"
+    },
+    {
+      "mapping": {
+        "id": "a92a664e-bf0d-56a0-be4a-9e115c306810",
+        "event": "trainingFailure",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/angry.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-angry.wav",
+      "format": "wav",
+      "duration": 1.3750566893424037,
+      "sha256": "0a0844ec807c87cb006ee7cd3a6339b3db89a4aadd34ce7067f884aa1be6676c"
+    },
+    {
+      "mapping": {
+        "id": "7c40d9ab-ea37-535d-8ad9-9a6f034bade3",
+        "event": "battleStart",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/startBattle.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "battle",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-startBattle.wav",
+      "format": "wav",
+      "duration": 2.2501133786848073,
+      "sha256": "af72c2bd6300ae5d35ce57bd2a23998d45a884b860240366df4726ff2f631072"
+    },
+    {
+      "mapping": {
+        "id": "af78f9f8-29b6-59d7-b66c-c0f06abadcc0",
+        "event": "attack",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/attack.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "battle",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-attack.wav",
+      "format": "wav",
+      "duration": 0.7,
+      "sha256": "5b5b5f912eefdf45688b9a8063b308b4265352414235dca518261e405e7dc6fa"
+    },
+    {
+      "mapping": {
+        "id": "84055ff1-06ba-5025-b3ee-87a6c9731e9f",
+        "event": "specialAttack",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/strongAttack.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "battle",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-strongAttack.wav",
+      "format": "wav",
+      "duration": 0.5625850340136055,
+      "sha256": "26ca779d57d3273fec64e0ad4647ca5ee2cd196e0b6f39579b35a7128974bf37"
+    },
+    {
+      "mapping": {
+        "id": "0f723af1-8115-5f20-b198-0e7202304f7f",
+        "event": "injured",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/attackHit.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "battle",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-attackHit.wav",
+      "format": "wav",
+      "duration": 0.6,
+      "sha256": "c4e71ca291bcc8487e82831a09290c5e0ecd25a0b19f9d3c6741d2644982e5bb"
+    },
+    {
+      "mapping": {
+        "id": "e2a21eb5-296a-5b76-8d35-8a0db04d3adc",
+        "event": "victory",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/win.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "battle",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-win.wav",
+      "format": "wav",
+      "duration": 1.000453514739229,
+      "sha256": "8c0aeabf4904180016b2cc8a27154af710ab4515cf923341faae9f85aab5a784"
+    },
+    {
+      "mapping": {
+        "id": "18d7377e-62e7-58a5-aef2-1b870fc9fd1b",
+        "event": "defeat",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/lose.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "battle",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-lose.wav",
+      "format": "wav",
+      "duration": 1.3750566893424037,
+      "sha256": "0a0844ec807c87cb006ee7cd3a6339b3db89a4aadd34ce7067f884aa1be6676c"
+    },
+    {
+      "mapping": {
+        "id": "f1bf5391-e464-56ab-8101-35571fdcc859",
+        "event": "evolutionTrigger",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/evolve.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-evolve.wav",
+      "format": "wav",
+      "duration": 2.939002267573696,
+      "sha256": "5726d14aa705caa4ccb122363b5e20e416217af640d594e6485a9d42e8e3b479"
+    },
+    {
+      "mapping": {
+        "id": "b714eda2-8b7a-5446-8da2-c8488aa6c48e",
+        "event": "jogress",
+        "category": "COMMUNITY DEVICE RECORDING",
+        "source": "https://raw.githubusercontent.com/joeltco/tuipet/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds/jogress.wav",
+        "authorization": "Community archival recording. User requested inclusion. Third-party rights retained; no official redistribution license asserted.",
+        "channel": "sfx",
+        "loop": false,
+        "volume": 0.8,
+        "priority": 20
+      },
+      "originalFilename": "community-jogress.wav",
+      "format": "wav",
+      "duration": 0.9070294784580499,
+      "sha256": "a9045b3bbff28e1e793a8d098096ce09ecf0bb1fc6626a1673b17e8d8bc4f1c3"
+    }
+  ]
+}

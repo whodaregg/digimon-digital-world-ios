@@ -44,6 +44,7 @@ jobs:
         run: |
           python3 Scripts/build_content.py
           python3 Scripts/validate_assets.py
+          python3 Scripts/validate_audio.py
           python3 Scripts/generate_project.py
           python3 Scripts/validate_project.py
           python3 Scripts/validate_localization.py

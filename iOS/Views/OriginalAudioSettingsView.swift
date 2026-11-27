@@ -7,6 +7,7 @@ struct OriginalAudioSettingsView: View {
     let model: WorldViewModel
     let deviceID: String
     @State private var showingLibrary = false
+    @State private var playbackNotice: String?
 
     var body: some View {
         Panel(title: "原版音频") {
@@ -20,6 +21,21 @@ struct OriginalAudioSettingsView: View {
                 ForEach(AudioSeries.allCases) { Text($0.title).tag(Optional($0)) }
             }
             Toggle("遵循 iPhone 静音模式", isOn: preference(\.respectSilentSwitch))
+            Toggle("混合模式使用社区原机录音", isOn: Binding(
+                get: { assets.settings(for: deviceID).communityRecordings ?? true },
+                set: { enabled in update { $0.communityRecordings = enabled } }))
+                .accessibilityIdentifier("useCommunityRecordings")
+            Text("已内置 \(assets.communityAssetCount) 份社区录音。逐文件机型待核对，混合模式下用于缺失的操作音效。")
+                .font(.caption).foregroundStyle(Palette.muted)
+            Button("试听社区按键录音") {
+                do {
+                    guard let asset = assets.communityAsset(for: .keyPress) else { throw AudioImportError.missingFile }
+                    try model.audio.preview(asset)
+                    playbackNotice = "已开始播放社区按键录音。若听不到，请检查系统音量、静音开关和蓝牙输出。"
+                } catch { playbackNotice = "播放失败：\(error.localizedDescription)" }
+            }.accessibilityIdentifier("previewCommunityAudio")
+            if let playbackNotice { Text(playbackNotice).font(.caption).accessibilityIdentifier("communityAudioPlaybackStatus") }
+
             ForEach(AudioChannel.allCases) { channel in
                 VStack(alignment: .leading, spacing: 4) {
                     Text(channel.volumeTitle).font(.caption)
@@ -30,7 +46,7 @@ struct OriginalAudioSettingsView: View {
             }
             Button("管理音频资源") { showingLibrary = true }
                 .accessibilityIdentifier("originalAudioLibrary")
-            Text("缺少对应资源时保持静音。来源与授权由导入者填写。").font(.caption).foregroundStyle(Palette.muted)
+            Text("有匹配的自有资源时优先播放。社区录音来源见资源库，经典与动漫模式按原有匹配规则播放。").font(.caption).foregroundStyle(Palette.muted)
         }
         .sheet(isPresented: $showingLibrary, onDismiss: { model.audio.stopPreview() }) {
             NavigationStack {
@@ -83,16 +99,24 @@ private struct AudioLibraryView: View {
                     ForEach(AudioEvent.allCases) { Text($0.rawValue).tag($0) }
                 }.accessibilityIdentifier("originalAudioEvent")
                 if let context = model.audioContext(), let asset = assets.resolve(event, context: context) {
-                    Text(asset.originalFilename)
+                    if asset.mapping.category == .communityRecording {
+                        Text("Missing Original Asset").accessibilityIdentifier("missingOriginalAudio")
+                        Text("当前使用社区录音 · \(asset.originalFilename)")
+                    } else { Text(asset.originalFilename) }
                 } else {
                     Text("Missing Original Asset").accessibilityIdentifier("missingOriginalAudio")
                 }
+            }
+            Section("内置社区录音") {
+                Text("原始WAV来自DVPet社区归档。历史资料注明PenOG／DMOG录音贡献者为BladeSabre，逐文件对应机型尚待核对。")
+                    .font(.footnote)
+                Link("录音归档与固定版本", destination: URL(string: "https://github.com/joeltco/tuipet/tree/b4e3621a55f5906fc7a55107cce3eb7faaf5a60c/src/tuipet/data/sounds")!)
             }
             Section("从 iOS Files 导入") {
                 Toggle("我拥有对导入音频的相应使用权限", isOn: $permitted)
                 Button("导入 ZIP 音频包") { replacing = nil; zip = true; importing = true }.disabled(!permitted || busy)
                 Picker("类别", selection: $category) {
-                    ForEach(AudioCategory.allCases) { Text($0.rawValue).tag($0) }
+                    ForEach(AudioCategory.allCases.filter { $0 != .communityRecording }) { Text($0.rawValue).tag($0) }
                 }
                 if isDeviceCategory { LabeledContent("机型", value: deviceID) }
                 else {

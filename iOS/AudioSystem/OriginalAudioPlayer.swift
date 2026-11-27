@@ -58,6 +58,8 @@ final class OriginalAudioPlayer {
         guard active != value else { return }
         active = value
         if value {
+            interrupted = false
+            preload()
             updateMusic()
         } else {
             stopPreview()
@@ -94,11 +96,11 @@ final class OriginalAudioPlayer {
 
     func libraryChanged() {
         prepared.removeAll()
-        let valid = Set(manager.manifest.assets.filter { manager.available.contains($0.storageName) }.map(\.id))
+        let valid = Set(manager.installedAssets.filter { manager.available.contains($0.storageName) }.map(\.id))
         for channel in AudioChannel.allCases {
             guard let track = tracks[channel],
                   !valid.contains(track.asset.id) ||
-                    !manager.manifest.assets.contains(where: { $0 == track.asset }) else { continue }
+                    !manager.installedAssets.contains(where: { $0 == track.asset }) else { continue }
             track.player.stop()
             tracks[channel] = nil
         }
@@ -123,9 +125,11 @@ final class OriginalAudioPlayer {
         cueTask?.cancel()
         guard let context, active, enabled, !interrupted else { return }
         cueTask = Task { @MainActor [weak self] in
+            var playedFiles = Set<String>()
             for event in events {
                 guard let self, !Task.isCancelled, self.context == context else { return }
-                guard let asset = self.manager.resolve(event, context: context) else { continue }
+                guard let asset = self.manager.resolve(event, context: context),
+                      playedFiles.insert(asset.storageName).inserted else { continue }
                 self.emit(event)
                 try? await Task.sleep(for: .seconds(min(0.6, asset.duration)))
             }
@@ -165,7 +169,7 @@ final class OriginalAudioPlayer {
         stopPreview()
         guard active, !interrupted, manager.available.contains(asset.storageName) else { throw AudioImportError.missingFile }
         let player = try open(asset)
-        activateSession()
+        try activateSession()
         player.volume = Float(asset.mapping.volume * preferences.volume(asset.mapping.channel))
         tracks[.bgm]?.player.setVolume(0, fadeDuration: 0.15)
         guard player.play() else { updateDucking(); throw AudioImportError.invalidFile }
@@ -194,13 +198,13 @@ final class OriginalAudioPlayer {
         }
     }
 
-    private func activateSession() {
+    private func activateSession() throws {
         let session = AVAudioSession.sharedInstance()
         let category: AVAudioSession.Category = preferences.respectSilentSwitch ? .ambient : .playback
         if session.category != category {
-            try? session.setCategory(category, mode: .default, options: category == .ambient ? [] : [.mixWithOthers])
+            try session.setCategory(category, mode: .default, options: category == .ambient ? [] : [.mixWithOthers])
         }
-        try? session.setActive(true)
+        try session.setActive(true)
     }
 
     private func open(_ asset: OriginalAudioAsset) throws -> AVAudioPlayer {
@@ -239,7 +243,7 @@ final class OriginalAudioPlayer {
             if channel == .bgm, let previous { fadeOut(previous.player, duration: 0.2) }
             else { previous?.player.stop() }
         }
-        activateSession()
+        do { try activateSession() } catch { return false }
         player.currentTime = 0
         player.numberOfLoops = asset.mapping.loop ? -1 : 0
         player.volume = channel == .bgm || channel == .evolutionMusic ? 0 : Float(level)
@@ -263,7 +267,7 @@ final class OriginalAudioPlayer {
         let asset = manager.resolve(musicEvent, context: context)
         if let track = tracks[.bgm], track.asset == asset {
             if !track.player.isPlaying && track.asset.mapping.loop {
-                activateSession()
+                do { try activateSession() } catch { return }
                 track.player.play()
             }
             updateDucking()

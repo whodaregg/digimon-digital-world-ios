@@ -50,6 +50,7 @@ public enum AudioMode: String, Codable, CaseIterable, Identifiable, Sendable {
 }
 
 public enum AudioCategory: String, Codable, CaseIterable, Identifiable, Sendable {
+    case communityRecording = "COMMUNITY DEVICE RECORDING"
     case deviceSFX = "ORIGINAL DEVICE SFX"
     case animeSFX = "ORIGINAL ANIME SFX"
     case animeBGM = "ORIGINAL ANIME BGM"
@@ -116,6 +117,10 @@ public struct AudioMapping: Codable, Equatable, Identifiable, Sendable {
               !source.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
               !authorization.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
               evolutionType.map({ Self.validEvolutionTypes.contains($0) }) ?? true else { return false }
+        if category == .communityRecording {
+            return deviceID == nil && series == nil && channel != .bgm && channel != .evolutionMusic &&
+                channel != .voice && !loop
+        }
         if category == .deviceSFX || category == .limitedEdition {
             guard let deviceID, !deviceID.isEmpty, series == nil else { return false }
         } else if series == nil { return false }
@@ -137,6 +142,9 @@ public struct AudioMapping: Codable, Equatable, Identifiable, Sendable {
               speciesID == nil || speciesID == context.speciesID,
               evolutionType == nil || evolutionType == context.evolutionType,
               stage == nil || stage == context.stage else { return nil }
+        if category == .communityRecording {
+            return mode == .hybrid && event != .deviceEvolutionResponse ? -1000 : nil
+        }
         let fromDevice = category == .deviceSFX || category == .limitedEdition
         if event == .deviceEvolutionResponse {
             guard fromDevice else { return nil }

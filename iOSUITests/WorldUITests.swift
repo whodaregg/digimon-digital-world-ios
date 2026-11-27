@@ -1,6 +1,17 @@
 import XCTest
 
 final class WorldUITests: XCTestCase {
+    func testCommunityRecordingPreviewCanStartWithoutImport() {
+        let app = launch()
+        openSettings(app)
+        let preview = app.buttons["previewCommunityAudio"]
+        scrollTo(preview, in: app); preview.tap()
+        let result = app.staticTexts["communityAudioPlaybackStatus"]
+        XCTAssertTrue(result.waitForExistence(timeout: 5))
+        XCTAssertTrue(result.label.contains("已开始播放社区按键录音"), result.label)
+        XCTAssertTrue(app.switches["useCommunityRecordings"].exists)
+    }
+
     func testUploadedArchiveCanStartIndependentCareAndFeed() {
         let app = launch()
         let devices = app.buttons["action-DIGIVICE"]
