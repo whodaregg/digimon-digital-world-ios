@@ -1,5 +1,17 @@
 # 实测记录
 
+## v0.9.1 内置社区录音
+
+2026-11-28（Australia/Sydney）核对提交 `30c4cef6aa86353af96be15d55cf6dafba7668d2`。核心、中继、iOS界面和Release任务均成功，后续仅整理文档。[完整验收任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/46021497463)
+
+- 96项核心测试通过，零失败。新增检查确认23个映射及19份内置WAV可读取，社区类别仅用于混合模式的低优先级匹配，具体机型资源优先。
+- 24项iOS模拟器界面测试通过，零失败。新增用例实际进入设置并点击试听，确认AVAudioPlayer成功启动内置按键录音，无需先导入文件。
+- 4项中继测试、Debug应用与测试程序编译、Release模拟器编译均通过。
+- 19份WAV的SHA-256、时长、PCM格式及有效音频信号已检查，原始字节保持不变。879份角色PNG、工程和872条既有翻译校验通过。
+
+此结果确认模拟器可以启动播放，真实iPhone的扬声器、静音开关、蓝牙、来电恢复与听感仍待复测。按用户此前要求，本轮没有生成新IPA，现有v0.8.0下载包不包含内置社区录音。
+
+
 ## v0.9 上传图集养成
 
 2026-11-28（Australia/Sydney）续查确认，提交 `e7d4edb54807bf21931e89628b06dd6c3b47ae9f` 的核心、中继、iOS界面和Release任务均已成功。[完整验收任务](https://github.com/whodaregg/digimon-digital-world-ios/actions/runs/45906016801)

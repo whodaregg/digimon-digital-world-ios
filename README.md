@@ -1,5 +1,7 @@
 # DIGIMON · DIGITAL WORLD
 
+v0.9.1内置19份社区原机录音，默认混合模式可播放，并提供试听与来源说明。[社区录音说明](Documentation/COMMUNITY_AUDIO.md)
+
 v0.9 新增上传图集养成。打开「机型与规则」→「选择数码兽开始养成」，可搜索全部844份上传角色并创建独立档案，使用通用喂食、训练、清洁、休息、治疗和对战。图集角色的阶段与进化路线待补充，名称沿用原文件名。[接入说明](Documentation/ARCHIVE_CARE.md)
 
 原生 iOS 17 像素电子宠物工程，使用 SwiftUI、SpriteKit 与独立 Swift 游戏核心。**v0.9 默认以 Digital Monster COLOR Ver.1 为基准：彩色养成＋8区顺序闯关。** 角色采用原版彩色像素归档图集，设置可自由切换复古彩色、高级彩色和经典灰绿色 LCD，并保存选择。
@@ -22,7 +24,7 @@ v0.8 支持从 Files 导入有使用权限的音频、按机型选择三种音�
 <img src="Documentation/Screenshots/v07-room-battle.png" width="220" alt="通过本机中继进行房间对战">
 </p>
 
-v0.9 通过了 94 项核心、23 项界面、4 项中继测试及 Debug/Release 编译。[实测记录与剩余验收范围](Documentation/VALIDATION.md)
+v0.9.1 通过了 96 项核心、24 项界面、4 项中继测试及 Debug/Release 编译。[实测记录与剩余验收范围](Documentation/VALIDATION.md)
 
 ## 下载IPA
 
